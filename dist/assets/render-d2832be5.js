@@ -1,1 +1,0 @@
-import{a3 as t,a4 as r,a5 as n,a6 as o}from"./index-1fdd0a17.js";const i=s=>{var e;return[...(e=t(s,[r,n,o],"about"))==null?void 0:e.map(a=>({key:a.key||"",label:a.title,url:a.path}))]};export{i as r};

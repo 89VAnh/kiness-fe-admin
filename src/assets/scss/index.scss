@@ -52,53 +52,9 @@ body {
   max-height: 100% !important;
 }
 
-.ant-layout-content.ant-pro-layout-content {
-  background-color: $color-white;
-  @media only screen and (min-width: 1024px) {
-    padding: 0px;
-  }
-}
-
-.ant-select-selector {
-  border-radius: 5px !important;
-}
-
-.ant-menu.ant-menu-root.ant-menu-horizontal {
-  justify-content: flex-end;
-}
-
-.ant-pro-base-menu-horizontal-menu-item {
-  &:hover {
-    color: $color-primary !important;
-  }
-  .ant-pro-base-menu-horizontal-item-text {
-    font-weight: 600;
-    font-size: 14px;
-  }
-}
-
 // header mobile 
 .ant-pro-global-header {
-  @include responsive-content;
-  justify-content: space-between;
-  background-color: $color-white;
-  flex-direction: row-reverse;
-  padding: 8px 20px;
   height: auto;
-
-  .ant-pro-global-header-logo {
-    display: block;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .ant-pro-global-header-collapsed-button {
-    margin: 0;
-  }
-
-  & > div {
-    flex: 0 !important;
-  }
   img {
     max-width: 140px;
   }
@@ -106,66 +62,22 @@ body {
 
 .ant-layout-header {
   height: auto !important;
-  border: none !important;
-  background-color: transparent !important;
-  backdrop-filter: blur(0) !important;
-
-  .ant-menu-horizontal {
-    li {
-      border-bottom: 3px solid transparent;
-      & a {
-        color: $color-coffee;
-        font-size: 14px;
-        font-weight: 700;
-        transition: .1s;
-      }
-
-      &:hover {
-        a {
-          color: $color-blue;
-        }
-      }
-
-      &.ant-menu-submenu-selected {
-        border-radius: 10px;
-        border-bottom: 3px solid $color-blue;
-        transition: .2s;
-        a {
-          color: $color-blue;
-        }
-      }
-    }
-  }
 }
 
-.ant-menu-item-selected  {
-  a {
-    transition: .1s;
-    color: $color-blue !important;
-  }
-}
-
-.ant-pro-top-nav-header-main {
-  height: auto;
-  align-items: center;
-  height: 80px;
-  border-radius: 0px 0px 10px 10px;
-  opacity: 0.8;
-  background: var(--neutral-1, #fff);
-  @include responsive-content;
+.ant-page-header-heading-title {
+  color: transparent !important;
 }
 
 .ant-layout-content {
   padding: 0 !important;
 }
 
+.ant-pro-page-container-children-container {
+  padding: 0 16px !important;
+}
+
 .logo {
   max-width: 199px;
   height: 79px;
   object-fit: cover;
-}
-
-// Only work with CTAs
-.card-right {
-  justify-content: flex-end;
 }
