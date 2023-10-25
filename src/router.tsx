@@ -1,9 +1,8 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
-
+import { createBrowserRouter } from "react-router-dom";
 
 import AppLayout from "./modules/app/AppLayout";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
-import { } from "./urls";
+import "./urls";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +13,5 @@ export const router = createBrowserRouter([
         <ErrorBoundaryPage />
       </AppLayout>
     ),
-  
   },
 ]);
