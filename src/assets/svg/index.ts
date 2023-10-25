@@ -1,0 +1,9 @@
+export { ReactComponent as CloudDown } from "./cloud-down.svg";
+export { ReactComponent as CloudUp } from "./cloud-up.svg";
+export { ReactComponent as ArrowCircle } from "./arrow-circle.svg";
+export { ReactComponent as LocationIcon } from "./location.svg";
+export { ReactComponent as PhoneIcon } from "./phone.svg";
+export { ReactComponent as MailIcon } from "./mail.svg";
+export { ReactComponent as TwitterIcon } from "./twitter-social.svg";
+export { ReactComponent as InstagramIcon } from "./instagram-social.svg";
+export { ReactComponent as FacebookIcon } from "./facebook-social.svg";

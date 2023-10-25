@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  app:
+    build: ./
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - "80:80"
+    environment:
+      - VITE_BASE_URL=$VITE_BASE_URL
