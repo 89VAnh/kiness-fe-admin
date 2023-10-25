@@ -1,3 +1,4 @@
+import { SmileFilled } from "@ant-design/icons";
 import { ProLayoutProps } from "@ant-design/pro-components";
 import { TFunction } from "i18next";
 import { Link } from "react-router-dom";
@@ -6,9 +7,16 @@ import { HOME_URL } from "@/urls";
 import { getKeyFromPath } from "@/utils/format-string";
 
 export const appRoute = (t: TFunction): ProLayoutProps["route"] => {
+  console.log(t);
   return {
     path: HOME_URL,
-    routes: [],
+    routes: [
+      {
+        path: "/",
+        name: "Home",
+        icon: <SmileFilled />,
+      },
+    ],
   };
 };
 
