@@ -1,5 +1,6 @@
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Image } from "antd";
+import { Button, Image } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
@@ -38,6 +39,18 @@ const columns: ProColumns<NewsModel>[] = [
     valueType: "dateTime",
   },
   { dataIndex: "created_user", key: "created_user", title: "Người tạo" },
+  {
+    title: "",
+    key: "option",
+    width: 120,
+    valueType: "option",
+    render: () => [
+      <Button icon={<EditOutlined />}> Edit</Button>,
+      <Button danger icon={<DeleteOutlined />}>
+        Delete
+      </Button>,
+    ],
+  },
 ];
 
 export default function News() {
@@ -71,6 +84,7 @@ export default function News() {
         ...x,
         key: x.news_id,
       }))}
+      search={false}
       loading={isLoadingNews}
     />
   );

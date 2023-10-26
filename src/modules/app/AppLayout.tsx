@@ -42,15 +42,8 @@ export default function AppLayout({ children }: Props): JSX.Element {
       route={appRoute(t)}
       {...settings}
     >
-      <PageContainer
-        token={{
-          paddingInlinePageContainerContent: 80,
-        }}
-        title="i"
-      >
-        <Outlet />
-        {children}
-      </PageContainer>
+      <Outlet />
+      {children}
       {/* <FloatButtons /> */}
     </ProLayout>
   );
