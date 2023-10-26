@@ -5,12 +5,15 @@ import {
   ProFormCheckbox,
   ProFormText,
 } from "@ant-design/pro-components";
-import { Form, Typography, theme } from "antd";
-import { message } from "antd/lib";
+import { Form, Typography, notification, theme } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import logo from "@/assets/img/logo/logo-bigsize.png";
+import { LOCAL_USER } from "@/constant/config";
+import { useLogin } from "@/loader/user.loader";
+import storage, { storageService } from "@/utils/storage";
 import { RULES_FORM } from "@/utils/validator";
 
 type LoginType = "phone" | "account";
@@ -20,12 +23,38 @@ const Page = () => {
   const [loginType, setLoginType] = useState<LoginType>("account");
   const { token } = theme.useToken();
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    form
-      .validateFields()
-      .then()
-      .catch(() => message.warning(t("validate_form")));
+  const login = useLogin({
+    config: {
+      onSuccess: (data) => {
+        if (!data || data?.message) {
+          notification.error({
+            message:
+              data.response?.data?.message || t("messages.login_failure"),
+          });
+          return navigate("/login");
+        } else {
+          storage.setToken(data.token);
+          storageService.setStorage(LOCAL_USER, JSON.stringify(data));
+          notification.success({
+            message: t("messages.login_success"),
+          });
+          window.open("/", "_parent");
+        }
+      },
+      onError: (data) => {
+        notification.error({
+          message: data.response?.data?.message || t("messages.login_failure"),
+        });
+      },
+    },
+  });
+
+  const handleLogin = () => {
+    form.validateFields().then((values) => {
+      login.mutate(values);
+    });
   };
 
   return (

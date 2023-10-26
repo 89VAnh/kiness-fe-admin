@@ -11,16 +11,36 @@
   "all": {
     "btn_cancel": "Hủy",
     "btn_confirm": "Xác nhận",
-    "btn_register": "Đăng ký"
+    "btn_register": "Đăng ký",
+    "btn_add": "Thêm mới",
+    "btn_save": "Lưu",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa"
   },
   "messages": {
-     "login_success": "Đăng nhập thành công",
-     "login_failure": "Tài khoản hoặc mật khẩu không đúng!",
-     "validate_form": "Bạn cần điền đầy đủ thông tin"
+    "login_success": "Đăng nhập thành công",
+    "login_failure": "Tài khoản hoặc mật khẩu không đúng!",
+    "validate_form": "Bạn cần điền đầy đủ thông tin"
   },
   "nav": {
     "dashboard": "Dashboard",
     "news": "Quản lý tin tức",
-    "customers": "Quản lý khách hàng"
+    "customer": "Quản lý khách hàng"
+  },
+  "customer": {
+    "title": "Quản lý khách hàng",
+    "title_create": "Thêm mới khách hàng",
+    "title_update": "Cập nhật khách hàng",
+    "fields": {
+      "serial": "STT",
+      "id": "Tài khoản",
+      "name": "Họ và tên",
+      "gender": "Giới tính",
+      "birthday": "Ngày sinh",
+      "phone": "SĐT",
+      "email": "Email",
+      "branch": "Chi nhánh",
+      "actions": "Tác vụ"
+    }
   }
 }
