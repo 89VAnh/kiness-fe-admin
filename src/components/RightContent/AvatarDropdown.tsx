@@ -4,10 +4,15 @@ import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 // import { history, useModel } from '@umijs/max';
 import { Spin } from "antd";
 import type { MenuInfo } from "rc-menu/lib/interface";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState, useResetRecoilState } from "recoil";
 
+import { LOCAL_USER } from "@/constant/config";
+import { authorization } from "@/services/user.service";
+import { UserState } from "@/store/auth/atom";
 import { LOGIN_URL } from "@/urls";
+import { storageService } from "@/utils/storage";
 
 import HeaderDropdown from "../HeaderDropdown";
 
@@ -26,50 +31,34 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({
   menu,
   children,
 }) => {
-  /**
-   * 退出登录，并且将当前的 url 保存
-   */
   const navigate = useNavigate();
+  const [userProfile, setUserProfile] = useRecoilState(UserState);
+  const resetUserProfile = useResetRecoilState(UserState);
+
+  useEffect(() => {
+    (async () => {
+      const userLocal = storageService.getStorage(LOCAL_USER);
+      if (!userLocal.user_id) {
+        resetUserProfile();
+        return;
+      }
+      const user = await authorization();
+      if (user) setUserProfile(userLocal);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const loginOut = async () => {
-    // await outLogin();
-    // const { search, pathname } = window.location;
     const urlParams = new URL(window.location.href).searchParams;
-    /** 此方法会跳转到 redirect 参数所在的位置 */
     const redirect = urlParams.get("redirect");
-    // Note: There may be security issues, please note
     if (window.location.pathname !== LOGIN_URL && !redirect) {
       navigate(LOGIN_URL);
-      // history.replace({
-      //   pathname: "/user/login",
-      //   search: stringify({
-      //     redirect: pathname + search,
-      //   }),
-      // });
     }
   };
-  // const actionClassName = useEmotionCss(({ token }) => {
-  //   return {
-  //     display: "flex",
-  //     height: "48px",
-  //     marginLeft: "auto",
-  //     overflow: "hidden",
-  //     alignItems: "center",
-  //     padding: "0 8px",
-  //     cursor: "pointer",
-  //     borderRadius: token.borderRadius,
-  //     "&:hover": {
-  //       backgroundColor: token.colorBgTextHover,
-  //     },
-  //   };
-  // });
-  // const { initialState, setInitialState } = useModel("@@initialState");
 
   const onMenuClick = useCallback((event: MenuInfo) => {
     const { key } = event;
     if (key === "logout") {
-      // flushSync(() => {
-      //   setInitialState((s) => ({ ...s, currentUser: undefined }));
-      // });
       loginOut();
       return;
     }
@@ -89,14 +78,11 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({
     </span>
   );
 
-  // if (!initialState) {
-  //   return loading;
-  // }
+  if (!userProfile.user_id) {
+    return loading;
+  }
 
-  // const { currentUser } = initialState;
-  const { currentUser } = { currentUser: { name: "ha" } };
-
-  if (!currentUser || !currentUser.name) {
+  if (!userProfile.user_id || !userProfile.user_id) {
     return loading;
   }
 

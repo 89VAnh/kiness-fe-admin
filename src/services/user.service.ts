@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const loginService = async (data: Props): Promise<any> => {
-  const res = await apiClient?.post(`${prefix}/login`, data);
+  const res = await apiClient?.post(`${prefix}/login-employee`, data);
 
   return res.data;
 };

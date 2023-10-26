@@ -19,6 +19,22 @@
   padding: 0 16px !important;
 }
 
+.ant-menu-light .ant-menu-item-selected {
+  background-color: $color-primary !important;
+  color: $color-white;
+  transition: none !important;
+
+  a,
+  span,
+  div {
+    transition: none !important;
+  }
+
+  :hover {
+    color: $color-white;
+  }
+}
+
 .logo {
   max-width: 129px;
   height: 70px;

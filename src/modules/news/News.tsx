@@ -59,10 +59,18 @@ export default function News() {
 
   let searchContent = searchParams.get("k") || "";
 
-  const { data, isLoading: isLoadingNews } = useSearchNews({
+  const {
+    data,
+    isLoading: isLoadingNews,
+    remove,
+  } = useSearchNews({
     params: { search_content: searchContent },
     config: {},
   });
+
+  useEffect(() => {
+    return () => remove();
+  }, [remove]);
 
   // Get menus
   const items = renderAboutMenus(t);

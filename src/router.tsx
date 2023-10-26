@@ -2,11 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 
 import AppLayout from "./modules/app/AppLayout";
 import { LoginPage } from "./modules/auth";
-import Dashboard from "./modules/dashboard/Dashboard";
+import { CustomerPage } from "./modules/customer";
+import { DashboardPage } from "./modules/dashboard";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
-import News from "./modules/news/News";
+import { NewsPage } from "./modules/news";
 import "./urls";
-import { HOME_URL, LOGIN_URL, NEWS_URL } from "./urls";
+import { CUSTOMERS_URL, HOME_URL, LOGIN_URL, NEWS_URL } from "./urls";
 
 export const router = createBrowserRouter([
   {
@@ -20,11 +21,15 @@ export const router = createBrowserRouter([
     children: [
       {
         path: HOME_URL,
-        element: <Dashboard />,
+        element: <DashboardPage />,
       },
       {
         path: NEWS_URL,
-        element: <News />,
+        element: <NewsPage />,
+      },
+      {
+        path: CUSTOMERS_URL,
+        element: <CustomerPage />,
       },
     ],
   },

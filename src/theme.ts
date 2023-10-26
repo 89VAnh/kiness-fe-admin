@@ -6,6 +6,6 @@ export const theme: ThemeConfig = {
     fontWeightStrong: 800,
     // fontSize: 16,
     lineHeight: 2,
-    colorPrimary: "#159AC9",
+    colorPrimary: "#2c53a5",
   },
 };
