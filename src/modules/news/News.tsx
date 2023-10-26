@@ -22,7 +22,6 @@ type NewsModel = {
 
 const columns: ProColumns<NewsModel>[] = [
   { dataIndex: "RowNumber", key: "RowNumber", title: "STT" },
-  { dataIndex: "news_id", key: "news_id", title: "Mã tin tức" },
   {
     dataIndex: "thumbnail",
     key: "thumbnail",
