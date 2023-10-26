@@ -4,6 +4,7 @@ import AppLayout from "./modules/app/AppLayout";
 import { LoginPage } from "./modules/auth";
 import Dashboard from "./modules/dashboard/Dashboard";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
+import News from "./modules/news/News";
 import "./urls";
 import { HOME_URL, LOGIN_URL, NEWS_URL } from "./urls";
 
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: NEWS_URL,
-        element: <Dashboard />,
+        element: <News />,
       },
     ],
   },
