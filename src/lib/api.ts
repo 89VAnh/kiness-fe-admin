@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { BASE_URL, LOCAL_USER } from "@/constant/config";
+import { LOGIN_URL } from "@/urls";
 import storage, { storageService } from "@/utils/storage";
 
 export const apiClient = axios.create({
@@ -31,9 +32,8 @@ apiClient.interceptors.response.use(
     if (error?.response?.status === 401) {
       storage.clearToken();
       storageService.clearStorage(LOCAL_USER);
-      console.clear();
-      // if (error.response?.data?.message !== "Sai mật tài khoản hoặc mật khẩu")
-      //   window.open("/login", "_parent");
+      if (error.response?.data?.message !== "Sai mật tài khoản hoặc mật khẩu")
+        window.open(LOGIN_URL, "_parent");
     }
     return Promise.reject(error);
   },

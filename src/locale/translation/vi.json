@@ -15,8 +15,12 @@
   },
   "messages": {
      "login_success": "Đăng nhập thành công",
-     "login_failure": "Tài khoản hoặc mật khẩu không đúng!"
+     "login_failure": "Tài khoản hoặc mật khẩu không đúng!",
+     "validate_form": "Bạn cần điền đầy đủ thông tin"
   },
   "nav": {
+    "dashboard": "Dashboard",
+    "news": "Quản lý tin tức",
+    "customers": "Quản lý khách hàng"
   }
 }

@@ -1,9 +1,9 @@
-import { SmileFilled } from "@ant-design/icons";
+import { DashboardOutlined, FileSearchOutlined } from "@ant-design/icons";
 import { ProLayoutProps } from "@ant-design/pro-components";
 import { TFunction } from "i18next";
 import { Link } from "react-router-dom";
 
-import { HOME_URL } from "@/urls";
+import { HOME_URL, NEWS_URL } from "@/urls";
 import { getKeyFromPath } from "@/utils/format-string";
 
 export const appRoute = (t: TFunction): ProLayoutProps["route"] => {
@@ -12,9 +12,14 @@ export const appRoute = (t: TFunction): ProLayoutProps["route"] => {
     path: HOME_URL,
     routes: [
       {
-        path: "/",
-        name: "Home",
-        icon: <SmileFilled />,
+        path: HOME_URL,
+        name: <Link to={HOME_URL}>{t("nav.dashboard")}</Link>,
+        icon: <DashboardOutlined />,
+      },
+      {
+        path: NEWS_URL,
+        name: <Link to={NEWS_URL}>{t("nav.news")}</Link>,
+        icon: <FileSearchOutlined />,
       },
     ],
   };

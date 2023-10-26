@@ -1,3 +1,14 @@
-const HOME_URL = "/";
+import { BreadcrumbProps } from "antd";
 
-export { HOME_URL };
+const HOME_URL = "/dashboard";
+
+// Auth
+const LOGIN_URL = "/login";
+
+// Nav
+const NEWS_URL = "/news";
+const CUSTOMERS_URL = "/customers";
+
+const breadcrumbs: BreadcrumbProps = {};
+
+export { breadcrumbs, HOME_URL, LOGIN_URL, NEWS_URL, CUSTOMERS_URL };
