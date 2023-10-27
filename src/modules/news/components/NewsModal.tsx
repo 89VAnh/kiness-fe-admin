@@ -6,14 +6,11 @@ import { useTranslation } from "react-i18next";
 import { useDisclosure } from "@/utils/modal";
 
 interface Props {
-  id?: string;
+  id?: number;
   isCreate?: boolean;
 }
 
-export default function CustomerModal({
-  id,
-  isCreate = true,
-}: Props): JSX.Element {
+export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
 
@@ -36,7 +33,7 @@ export default function CustomerModal({
         </Tooltip>
       )}
       <Modal
-        title={t("customer.title_update")}
+        title={t("news.title_update")}
         open={isOpen}
         onCancel={close}
         onOk={close}
