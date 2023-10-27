@@ -67,9 +67,9 @@ export default function CustomerTable(): JSX.Element {
       width: 150,
       align: "center",
       valueType: "date",
-      render: (value) => (
+      render: (_, customer) => (
         <Typography.Text>
-          {formatToDate(value?.toString() || "")}
+          {formatToDate(customer.birthday?.toString() || "")}
         </Typography.Text>
       ),
       search: false,
@@ -106,7 +106,7 @@ export default function CustomerTable(): JSX.Element {
       size="small"
       rowSelection={{
         selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-        defaultSelectedRowKeys: [1],
+        defaultSelectedRowKeys: [],
       }}
       loading={customers.isLoading}
       pagination={{
