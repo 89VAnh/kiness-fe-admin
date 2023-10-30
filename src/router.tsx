@@ -6,8 +6,9 @@ import { CustomerPage } from "./modules/customer";
 import { DashboardPage } from "./modules/dashboard";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { NewsPage } from "./modules/news";
+import { PageManagePage } from "./modules/page";
 import "./urls";
-import { CUSTOMERS_URL, HOME_URL, LOGIN_URL, NEWS_URL } from "./urls";
+import { CUSTOMERS_URL, HOME_URL, LOGIN_URL, NEWS_URL, PAGE_URL } from "./urls";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: CUSTOMERS_URL,
         element: <CustomerPage />,
+      },
+      {
+        path: PAGE_URL,
+        element: <PageManagePage />,
       },
     ],
   },

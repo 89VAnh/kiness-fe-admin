@@ -1,4 +1,8 @@
-import { ProLayout, ProLayoutProps } from "@ant-design/pro-components";
+import {
+  PageContainer,
+  ProLayout,
+  ProLayoutProps,
+} from "@ant-design/pro-components";
 import { Image } from "antd";
 import { useTranslation } from "react-i18next";
 import {
@@ -46,6 +50,10 @@ export default function AppLayout({ children }: Props): JSX.Element {
         <Question key="doc" />,
         <SelectLang key="SelectLang" />,
       ]}
+      breadcrumbRender={(routes) => {
+        console.log(routes);
+        return routes;
+      }}
       menuHeaderRender={undefined}
       avatarProps={{
         src: avatar,
@@ -74,8 +82,10 @@ export default function AppLayout({ children }: Props): JSX.Element {
       route={appRoute(t)}
       {...settings}
     >
-      <Outlet />
-      {children}
+      <PageContainer>
+        <Outlet />
+        {children}
+      </PageContainer>
     </ProLayout>
   );
 }

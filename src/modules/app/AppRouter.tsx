@@ -7,7 +7,7 @@ import { ProLayoutProps } from "@ant-design/pro-components";
 import { TFunction } from "i18next";
 import { Link } from "react-router-dom";
 
-import { CUSTOMERS_URL, HOME_URL, NEWS_URL } from "@/urls";
+import { CUSTOMERS_URL, HOME_URL, NEWS_URL, PAGE_URL } from "@/urls";
 import { getKeyFromPath } from "@/utils/format-string";
 
 export const appRoute = (t: TFunction): ProLayoutProps["route"] => {
@@ -27,6 +27,11 @@ export const appRoute = (t: TFunction): ProLayoutProps["route"] => {
       {
         path: CUSTOMERS_URL,
         name: <Link to={CUSTOMERS_URL}>{t("nav.customer")}</Link>,
+        icon: <TeamOutlined />,
+      },
+      {
+        path: PAGE_URL,
+        name: <Link to={PAGE_URL}>{t("nav.page")}</Link>,
         icon: <TeamOutlined />,
       },
     ],

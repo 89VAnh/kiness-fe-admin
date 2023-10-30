@@ -1,11 +1,19 @@
 /// <reference types="vite/client" />
+import ckeditor5 from "@ckeditor/vite-plugin-ckeditor5";
 import react from "@vitejs/plugin-react-swc";
+import { createRequire } from "node:module";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 
+const require = createRequire(import.meta.url);
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr()],
+  plugins: [
+    react(),
+    svgr(),
+    ckeditor5({ theme: require.resolve("@ckeditor/ckeditor5-theme-lark") }),
+  ],
   resolve: {
     alias: [
       { find: /^~/, replacement: "" },
@@ -24,6 +32,8 @@ export default defineConfig({
     proxy: {
       "/api": {
         target: "http://localhost:4010",
+        changeOrigin: true,
+        secure: false,
       },
     },
   },
