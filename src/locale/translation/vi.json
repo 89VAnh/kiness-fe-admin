@@ -23,6 +23,7 @@
     "validate_form": "Bạn cần điền đầy đủ thông tin"
   },
   "nav": {
+    "home": "Trang chủ",
     "dashboard": "Dashboard",
     "news": "Quản lý tin tức",
     "customer": "Quản lý khách hàng"

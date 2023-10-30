@@ -9,6 +9,6 @@ const LOGIN_URL = "/login";
 const NEWS_URL = "/news";
 const CUSTOMERS_URL = "/customers";
 
-const breadcrumbs: BreadcrumbProps = {};
+const breadcrumbs: BreadcrumbProps = { items: [] };
 
-export { breadcrumbs, HOME_URL, LOGIN_URL, NEWS_URL, CUSTOMERS_URL };
+export { CUSTOMERS_URL, HOME_URL, LOGIN_URL, NEWS_URL, breadcrumbs };
