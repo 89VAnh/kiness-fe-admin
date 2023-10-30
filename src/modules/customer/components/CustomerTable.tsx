@@ -8,6 +8,7 @@ import { useSearchCustomers } from "@/loader/customers.loader";
 import { ICustomer } from "@/models/customer";
 import { UserState } from "@/store/auth/atom";
 import { compareNumbers, compareStrings } from "@/utils/array";
+import { formatToDate } from "@/utils/format-string";
 
 import CustomerDelete from "./CustomerDelete";
 import CustomerModal from "./CustomerModal";
@@ -80,6 +81,11 @@ export default function CustomerTable(): JSX.Element {
       align: "center",
       valueType: "date",
       sorter: (a, b) => compareStrings(a, b, "birthday"),
+      render: (_, customer) => (
+        <Typography.Text>
+          {formatToDate(customer.birthday?.toString() || "")}
+        </Typography.Text>
+      ),
       search: false,
     },
     {

@@ -33,6 +33,7 @@
     "title_create": "Thêm mới khách hàng",
     "title_update": "Cập nhật khách hàng",
     "search_placeholder": "Nhập tên, email, số điện thoại...",
+    "title_delete": "Xóa khách hàng",
     "fields": {
       "serial": "STT",
       "id": "Tài khoản",
@@ -43,6 +44,23 @@
       "email": "Email",
       "branch": "Chi nhánh",
       "verify": "Chưa xác thực",
+      "actions": "Tác vụ"
+    }
+  },
+  "news": {
+    "title": "Quản lý tin tức",
+    "title_create": "Thêm mới tin",
+    "title_update": "Cập nhật tin",
+    "title_delete": "Xóa tin",
+    "fields": {
+      "serial": "STT",
+      "id": "Tin",
+      "thumbnail": "Ảnh",
+      "title": "Tiêu đề",
+      "content": "Nội dung",
+      "views": "Lượt xem",
+      "created_date_time": "Ngày tạo",
+      "created_user": "Người tạo",
       "actions": "Tác vụ"
     }
   }
