@@ -22,9 +22,8 @@ export type GlobalHeaderRightProps = {
 };
 
 export const AvatarName = () => {
-  // const { initialState } = useModel("@@initialState");
-  const { currentUser } = { currentUser: { name: "ha" } };
-  return <span className="anticon">{currentUser?.name}</span>;
+  const [userProfile] = useRecoilState(UserState);
+  return <span>{userProfile?.full_name || userProfile?.user_name}</span>;
 };
 
 export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({

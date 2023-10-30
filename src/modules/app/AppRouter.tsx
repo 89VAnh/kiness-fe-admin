@@ -7,7 +7,7 @@ import { ProLayoutProps } from "@ant-design/pro-components";
 import { TFunction } from "i18next";
 import { Link } from "react-router-dom";
 
-import { CUSTOMERS_URL, HOME_URL, NEWS_URL } from "@/urls";
+import { CUSTOMERS_URL, HOME_URL, NEWS_URL, PAGE_URL } from "@/urls";
 import { getKeyFromPath } from "@/utils/format-string";
 
 export const routes = (t: TFunction) => [
