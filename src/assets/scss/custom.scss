@@ -19,6 +19,10 @@
   padding: 0 16px !important;
 }
 
+.ant-page-header-heading {
+  display: none !important;
+}
+
 .ant-menu-light .ant-menu-item-selected {
   background-color: $color-primary !important;
   color: $color-white;

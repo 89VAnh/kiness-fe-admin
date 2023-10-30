@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { convert } from "html-to-text";
 
 export const getKeyFromPath = (path: string) => {
   if (!path) return;
@@ -15,6 +16,10 @@ export const formatToDate = (strDate: string) => {
 
 export const getLastPath = (path: string) => {
   return path.split("/")?.[path.split("/").length - 1];
+};
+
+export const handleHtmlToString = (html: string) => {
+  return convert(html.replace(/<img[^>]*>/g, ""));
 };
 
 export const formatDateShow = "DD/MM/YYYY";

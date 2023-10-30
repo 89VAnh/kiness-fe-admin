@@ -25,21 +25,24 @@
   "nav": {
     "dashboard": "Dashboard",
     "news": "Quản lý tin tức",
-    "customer": "Quản lý khách hàng"
+    "customer": "Quản lý khách hàng",
+    "page": "Quản lý nội dung"
   },
   "customer": {
     "title": "Quản lý khách hàng",
     "title_create": "Thêm mới khách hàng",
     "title_update": "Cập nhật khách hàng",
+    "search_placeholder": "Nhập tên, email, số điện thoại...",
     "fields": {
       "serial": "STT",
       "id": "Tài khoản",
       "name": "Họ và tên",
       "gender": "Giới tính",
       "birthday": "Ngày sinh",
-      "phone": "SĐT",
+      "phone": "Số điện thoại",
       "email": "Email",
       "branch": "Chi nhánh",
+      "verify": "Chưa xác thực",
       "actions": "Tác vụ"
     }
   }
