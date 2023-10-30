@@ -1,11 +1,20 @@
-import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Input, Space, Table, Tag, Typography } from "antd";
+import { Key, ProColumns, ProTable } from "@ant-design/pro-components";
+import {
+  Input,
+  Space,
+  Table,
+  TableProps,
+  Tag,
+  Typography,
+  message,
+} from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
 import { useSearchCustomers } from "@/loader/customers.loader";
 import { ICustomer } from "@/models/customer";
+import { deleteCustomer } from "@/services/customers.service";
 import { UserState } from "@/store/auth/atom";
 import { compareNumbers, compareStrings } from "@/utils/array";
 import { formatToDate } from "@/utils/format-string";
@@ -35,6 +44,20 @@ export default function CustomerTable(): JSX.Element {
     // const content = _.join(_.values(params), " ").trim();
 
     setSearchContent(value);
+  };
+
+  const handleDeleteMulti = (keys: Key[]) => {
+    deleteCustomer({
+      list_json: keys.map((key) => ({ customer_id: key as string })),
+      customer_id: userProfile.user_id,
+    });
+
+    message.success(t("message_delete_success"));
+  };
+
+  const rowSelection: TableProps<ICustomer>["rowSelection"] = {
+    selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
+    defaultSelectedRowKeys: [],
   };
 
   const columns: ProColumns<ICustomer>[] = [
@@ -132,10 +155,7 @@ export default function CustomerTable(): JSX.Element {
     <ProTable
       size="small"
       cardBordered
-      rowSelection={{
-        selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-        defaultSelectedRowKeys: [],
-      }}
+      // rowSelection={rowSelection}
       loading={customers.isLoading}
       pagination={{
         pageSize: 10,
@@ -151,7 +171,7 @@ export default function CustomerTable(): JSX.Element {
       toolbar={{
         settings: [],
       }}
-      toolBarRender={() => [
+      toolBarRender={(_, { selectedRowKeys }) => [
         <Input.Search
           placeholder={t("search_placeholder")}
           loading={customers.isLoading}
@@ -159,6 +179,13 @@ export default function CustomerTable(): JSX.Element {
           onFocus={(e) => e.target.select()}
         />,
         <CustomerModal />,
+        // selectedRowKeys?.length ? (
+        //   <Button onClick={() => handleDeleteMulti(selectedRowKeys)} danger>
+        //     {t("title_delete_multi")}
+        //   </Button>
+        // ) : (
+        //   <></>
+        // ),
       ]}
       rowKey={"customer_id"}
     />

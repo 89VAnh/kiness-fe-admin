@@ -52,7 +52,6 @@ export default function AppLayout({ children }: Props): JSX.Element {
         <SelectLang key="SelectLang" />,
       ]}
       breadcrumbRender={(routes) => {
-        console.log(routes);
         return routes;
       }}
       menuHeaderRender={undefined}
