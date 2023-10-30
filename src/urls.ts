@@ -13,10 +13,10 @@ const breadcrumbNameMap: Record<string, string> = {
 };
 
 export {
-  breadcrumbNameMap,
+  CUSTOMERS_URL,
   HOME_URL,
   LOGIN_URL,
   NEWS_URL,
-  CUSTOMERS_URL,
   PAGE_URL,
+  breadcrumbNameMap,
 };

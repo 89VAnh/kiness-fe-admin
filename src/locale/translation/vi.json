@@ -23,6 +23,7 @@
     "validate_form": "Bạn cần điền đầy đủ thông tin"
   },
   "nav": {
+    "home": "Trang chủ",
     "dashboard": "Dashboard",
     "news": "Quản lý tin tức",
     "customer": "Quản lý khách hàng",
@@ -34,6 +35,8 @@
     "title_update": "Cập nhật khách hàng",
     "search_placeholder": "Nhập tên, email, số điện thoại...",
     "title_delete": "Xóa khách hàng",
+    "title_delete_multi": "Xóa những khách hàng được chọn",
+    "message_delete_success": "Xóa khách hàng thành công!",
     "fields": {
       "serial": "STT",
       "id": "Tài khoản",

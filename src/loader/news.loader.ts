@@ -1,8 +1,12 @@
 import { AxiosRequestConfig } from "axios";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
-import { ExtractFnReturnType, QueryConfig } from "@/lib/react-query";
-import { getNewsById, searchNews } from "@/services/news.service";
+import {
+  ExtractFnReturnType,
+  MutationConfig,
+  QueryConfig,
+} from "@/lib/react-query";
+import { deleteNews, getNewsById, searchNews } from "@/services/news.service";
 
 export const CACHE_NEWS = {
   NEWS: "NEWS",
@@ -22,6 +26,20 @@ const useGetNewsById = ({
   });
 };
 
+const useDeleteNews = ({
+  config,
+}: {
+  config?: MutationConfig<typeof deleteNews>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: deleteNews,
+  });
+};
+
 const useSearchNews = ({
   params,
   config,
@@ -36,4 +54,4 @@ const useSearchNews = ({
   });
 };
 
-export { useSearchNews, useGetNewsById };
+export { useDeleteNews, useGetNewsById, useSearchNews };

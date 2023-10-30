@@ -42,21 +42,16 @@ export default function NewsTable(): JSX.Element {
       width: 100,
     },
     {
-      title: t("fields.title"),
-      dataIndex: "news_title",
-      width: 200,
-    },
-    {
       title: t("fields.thumbnail"),
       dataIndex: "thumbnail",
-      width: 200,
+      width: 100,
       render: (thumbnail) => <Image src={`${thumbnail}`} preview={false} />,
       search: false,
     },
     {
-      title: t("fields.content"),
-      dataIndex: "content",
-      width: 600,
+      title: t("fields.title"),
+      dataIndex: "news_title",
+      width: 300,
     },
 
     {

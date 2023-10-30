@@ -16,6 +16,7 @@ import {
 import Logo from "@/assets/img/logo/logo.png";
 import avatar from "@/assets/img/others/default-avatar.png";
 import "@/assets/scss/index.scss";
+import MyBreadcrumb from "@/components/Breadcrumb";
 import { Question, SelectLang } from "@/components/RightContent";
 import {
   AvatarDropdown,
@@ -51,7 +52,6 @@ export default function AppLayout({ children }: Props): JSX.Element {
         <SelectLang key="SelectLang" />,
       ]}
       breadcrumbRender={(routes) => {
-        console.log(routes);
         return routes;
       }}
       menuHeaderRender={undefined}
@@ -73,19 +73,13 @@ export default function AppLayout({ children }: Props): JSX.Element {
           <Image className="logo" preview={false} src={Logo} />
         </Link>
       )}
-      onPageChange={() => {
-        // false will replace by current user
-        if (false && location.pathname !== LOGIN_URL) {
-          navigate(LOGIN_URL);
-        }
-      }}
+      onPageChange={() => {}}
       route={appRoute(t)}
       {...settings}
     >
-      <PageContainer>
-        <Outlet />
-        {children}
-      </PageContainer>
+      <MyBreadcrumb />
+      <Outlet />
+      {children}
     </ProLayout>
   );
 }
