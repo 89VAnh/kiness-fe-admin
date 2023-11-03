@@ -10,14 +10,9 @@ export default function MyBreadcrumb() {
   const r = routes(t);
 
   const breadcrumbItems = pathSnippets.map((item, index) => {
-    return (
-      <Breadcrumb.Item key={item}>
-        {r.find((x) => x.path === `/${item}`)?.name}
-      </Breadcrumb.Item>
-    );
+    return r.find((x) => x.path === `/${item}`)?.name;
   });
 
-  return (
-    <Breadcrumb style={{ padding: "10px 0" }}>{breadcrumbItems}</Breadcrumb>
-  );
+  // return <Breadcrumb style={{ padding: "10px 0" }} items={breadcrumbItems} />;
+  return <></>;
 }

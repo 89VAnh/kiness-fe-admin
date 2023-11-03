@@ -49,7 +49,7 @@ export default function CustomerTable(): JSX.Element {
   const handleDeleteMulti = (keys: Key[]) => {
     deleteCustomer({
       list_json: keys.map((key) => ({ customer_id: key as string })),
-      customer_id: userProfile.user_id,
+      updated_by_id: userProfile.user_id,
     });
 
     message.success(t("message_delete_success"));

@@ -4,21 +4,26 @@ import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useRecoilValue } from "recoil";
 
-import { CACHE_CUSTOMERS, useDeleteCustomer } from "@/loader/customers.loader";
+import {
+  CACHE_EXPERIENCE_REGISTER,
+  useDeleteExperienceRegister,
+} from "@/loader/experienceRegister.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
 interface Props {
-  id: string;
+  id: number;
 }
 
-export default function CustomerDelete({ id }: Props): JSX.Element {
-  const { t } = useTranslation("translation", { keyPrefix: "customer" });
+export default function ExperienceRegisterDelete({ id }: Props): JSX.Element {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "experience_register",
+  });
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
   const queryClient = useQueryClient();
 
-  const deleteCustomer = useDeleteCustomer({
+  const deleteExperienceRegister = useDeleteExperienceRegister({
     config: {
       onSuccess: (data: any) => {
         console.log(data.results);
@@ -33,7 +38,9 @@ export default function CustomerDelete({ id }: Props): JSX.Element {
           });
         }
 
-        queryClient.invalidateQueries([CACHE_CUSTOMERS.CUSTOMERS]);
+        queryClient.invalidateQueries([
+          CACHE_EXPERIENCE_REGISTER.EXPERIENCE_REGISTER,
+        ]);
         close();
       },
       onError: (err) => {
@@ -64,8 +71,8 @@ export default function CustomerDelete({ id }: Props): JSX.Element {
         open={isOpen}
         onCancel={close}
         onOk={() => {
-          deleteCustomer.mutate({
-            list_json: [{ customer_id: id }],
+          deleteExperienceRegister.mutate({
+            list_json: [{ register_id: id }],
             updated_by_id: userProfile.user_id,
           });
           close();

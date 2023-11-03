@@ -1,17 +1,7 @@
-import {
-  PageContainer,
-  ProLayout,
-  ProLayoutProps,
-} from "@ant-design/pro-components";
+import { ProLayout, ProLayoutProps } from "@ant-design/pro-components";
 import { Image } from "antd";
 import { useTranslation } from "react-i18next";
-import {
-  Link,
-  Navigate,
-  Outlet,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
 
 import Logo from "@/assets/img/logo/logo.png";
 import avatar from "@/assets/img/others/default-avatar.png";
@@ -22,7 +12,7 @@ import {
   AvatarDropdown,
   AvatarName,
 } from "@/components/RightContent/AvatarDropdown";
-import { HOME_URL, LOGIN_URL } from "@/urls";
+import { HOME_URL } from "@/urls";
 
 import { appRoute } from "./AppRouter";
 
@@ -38,7 +28,6 @@ const settings: ProLayoutProps = {
 };
 export default function AppLayout({ children }: Props): JSX.Element {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const location = useLocation();
 
   if (location.pathname === "/") {
