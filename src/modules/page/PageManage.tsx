@@ -1,9 +1,9 @@
-import CustomerTable from "./components/CustomerTable";
+import PageTable from "./components/PageTable";
 
 export default function PageManage(): JSX.Element {
   return (
     <div>
-      <CustomerTable />
+      <PageTable />
     </div>
   );
 }

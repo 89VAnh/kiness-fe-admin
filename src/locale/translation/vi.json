@@ -20,6 +20,8 @@
   "messages": {
     "login_success": "Đăng nhập thành công",
     "login_failure": "Tài khoản hoặc mật khẩu không đúng!",
+    "update_success": "Cập nhật thành công",
+    "update_failure": "Cập nhật thất bại! Vui lòng thử lại",
     "validate_form": "Bạn cần điền đầy đủ thông tin"
   },
   "nav": {
@@ -61,6 +63,20 @@
       "views": "Lượt xem",
       "created_date_time": "Ngày tạo",
       "created_user": "Người tạo",
+      "actions": "Tác vụ"
+    }
+  },
+  "page": {
+    "title": "Quản lý nội dung trang",
+    "title_create": "Thêm mới nội dung trang",
+    "title_update": "Cập nhật nội dung trang",
+    "search_placeholder": "Nhập tiêu đề, nội dung, url...",
+    "title_delete": "Xóa nội dung trang",
+    "fields": {
+      "serial": "STT",
+      "code": "Đường dẫn",
+      "title": "Tiêu đề",
+      "content": "Nội dung",
       "actions": "Tác vụ"
     }
   }

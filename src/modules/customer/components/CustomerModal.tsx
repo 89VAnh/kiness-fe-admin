@@ -9,10 +9,7 @@ interface Props {
   isCreate?: boolean;
 }
 
-export default function CustomerModal({
-  id,
-  isCreate = true,
-}: Props): JSX.Element {
+export default function CustomerModal({ isCreate = true }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
 
