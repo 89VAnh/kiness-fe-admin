@@ -8,7 +8,7 @@ interface Props {
   id: string;
 }
 
-export default function CustomerDelete({ id }: Props): JSX.Element {
+export default function PageDelete({ id }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
 
