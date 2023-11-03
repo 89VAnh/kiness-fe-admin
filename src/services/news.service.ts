@@ -10,6 +10,20 @@ export const getNewsById = async (id: string | number): Promise<any> => {
   return res.data;
 };
 
+export const deleteNews = async ({
+  list_json,
+  updated_by_id,
+}: {
+  list_json: { news_id: number }[];
+  updated_by_id: string;
+}): Promise<any> => {
+  const res = await apiClient?.delete(`${prefix}/delete`, {
+    data: { list_json, updated_by_id },
+  });
+
+  return res.data;
+};
+
 export const searchNews = async (
   params: AxiosRequestConfig["params"],
 ): Promise<any> => {

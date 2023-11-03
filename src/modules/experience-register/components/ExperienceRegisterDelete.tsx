@@ -1,10 +1,13 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Button, Modal, Tooltip, notification } from "antd";
 import { useTranslation } from "react-i18next";
+import { useQueryClient } from "react-query";
 import { useRecoilValue } from "recoil";
 
-import { queryClient } from "@/lib/react-query";
-import { CACHE_NEWS, useDeleteNews } from "@/loader/news.loader";
+import {
+  CACHE_EXPERIENCE_REGISTER,
+  useDeleteExperienceRegister,
+} from "@/loader/experienceRegister.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
@@ -12,28 +15,32 @@ interface Props {
   id: number;
 }
 
-export default function NewsDelete({ id }: Props): JSX.Element {
-  const { t } = useTranslation("translation", { keyPrefix: "news" });
+export default function ExperienceRegisterDelete({ id }: Props): JSX.Element {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "experience_register",
+  });
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
+  const queryClient = useQueryClient();
 
-  const deleteNews = useDeleteNews({
+  const deleteExperienceRegister = useDeleteExperienceRegister({
     config: {
-      onSuccess: (data: any[]) => {
-        if (data.length > 0) {
-          data.forEach((message) => {
-            if (message.status) {
-              notification.success({
-                message: message.message + ": " + message.vat_invoice_id,
-              });
-            } else {
-              notification.error({
-                message: message.message,
-              });
-            }
+      onSuccess: (data: any) => {
+        console.log(data.results);
+
+        if (data.results) {
+          notification.success({
+            message: data.message,
+          });
+        } else {
+          notification.error({
+            message: data.message,
           });
         }
-        queryClient.invalidateQueries([CACHE_NEWS.NEWS]);
+
+        queryClient.invalidateQueries([
+          CACHE_EXPERIENCE_REGISTER.EXPERIENCE_REGISTER,
+        ]);
         close();
       },
       onError: (err) => {
@@ -48,7 +55,13 @@ export default function NewsDelete({ id }: Props): JSX.Element {
   return (
     <>
       <Tooltip title={t("title_delete")}>
-        <Button type="dashed" danger onClick={open}>
+        <Button
+          type="dashed"
+          danger
+          onClick={() => {
+            open();
+          }}
+        >
           <DeleteOutlined />
         </Button>
       </Tooltip>
@@ -58,8 +71,8 @@ export default function NewsDelete({ id }: Props): JSX.Element {
         open={isOpen}
         onCancel={close}
         onOk={() => {
-          deleteNews.mutate({
-            list_json: [{ news_id: id }],
+          deleteExperienceRegister.mutate({
+            list_json: [{ register_id: id }],
             updated_by_id: userProfile.user_id,
           });
           close();

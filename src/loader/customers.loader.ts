@@ -1,7 +1,11 @@
 import { AxiosRequestConfig } from "axios";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
-import { ExtractFnReturnType, QueryConfig } from "@/lib/react-query";
+import {
+  ExtractFnReturnType,
+  MutationConfig,
+  QueryConfig,
+} from "@/lib/react-query";
 import {
   deleteCustomer,
   getCustomerById,
@@ -26,21 +30,19 @@ const useGetCustomerById = ({
   });
 };
 
-// const useDeleteCustomer = ({
-//   list_json,
-//   updated_by_id,
-//   config,
-// }: {
-//   list_json: [{ customer_id: string }];
-//   updated_by_id: string;
-//   config?: QueryConfig<typeof deleteCustomer>;
-// }) => {
-//   return useQuery<ExtractFnReturnType<typeof deleteCustomer>>({
-//     ...config,
-//     queryKey: [CACHE_CUSTOMERS.CUSTOMERS, list_json, updated_by_id],
-//     queryFn: () => deleteCustomer(list_json, updated_by_id),
-//   });
-// };
+const useDeleteCustomer = ({
+  config,
+}: {
+  config?: MutationConfig<typeof deleteCustomer>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: deleteCustomer,
+  });
+};
 
 const useSearchCustomers = ({
   params,
@@ -56,4 +58,4 @@ const useSearchCustomers = ({
   });
 };
 
-export { useGetCustomerById, useSearchCustomers };
+export { useDeleteCustomer, useGetCustomerById, useSearchCustomers };
