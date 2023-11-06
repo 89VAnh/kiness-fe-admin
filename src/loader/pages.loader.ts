@@ -6,12 +6,20 @@ import {
   MutationConfig,
   QueryConfig,
 } from "@/lib/react-query";
-import { getPageById, searchPages, updatePage } from "@/services/pages.service";
+import {
+  createPage,
+  deletePage,
+  getPageById,
+  searchPages,
+  updatePage,
+} from "@/services/pages.service";
 
 export const CACHE_PAGES = {
   PAGES: "PAGES",
+  PAGE_DETAIL: "PAGE_DETAIL",
 };
 
+// Get detail
 const useGetPageById = ({
   id,
   enabled = true,
@@ -24,11 +32,12 @@ const useGetPageById = ({
   return useQuery<ExtractFnReturnType<typeof getPageById>>({
     ...config,
     enabled,
-    queryKey: [CACHE_PAGES.PAGES, id],
+    queryKey: [CACHE_PAGES.PAGE_DETAIL, id],
     queryFn: () => getPageById(id),
   });
 };
 
+// Search list
 const useSearchPages = ({
   params,
   config,
@@ -43,6 +52,7 @@ const useSearchPages = ({
   });
 };
 
+// Update
 const useUpdatePage = ({
   config,
 }: {
@@ -57,4 +67,40 @@ const useUpdatePage = ({
   });
 };
 
-export { useSearchPages, useGetPageById, useUpdatePage };
+// Create
+const useCreatePage = ({
+  config,
+}: {
+  config?: MutationConfig<typeof createPage>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: createPage,
+  });
+};
+
+// Delete
+const useDeletePage = ({
+  config,
+}: {
+  config?: MutationConfig<typeof deletePage>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: deletePage,
+  });
+};
+
+export {
+  useSearchPages,
+  useGetPageById,
+  useUpdatePage,
+  useCreatePage,
+  useDeletePage,
+};

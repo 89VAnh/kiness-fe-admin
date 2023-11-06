@@ -2,11 +2,9 @@ import { ProColumns, ProTable } from "@ant-design/pro-components";
 import { Image, Space, Table, Typography } from "antd";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useRecoilValue } from "recoil";
 
 import { useSearchNews } from "@/loader/news.loader";
 import { INews } from "@/models/news";
-import { UserState } from "@/store/auth/atom";
 import { formatToDate } from "@/utils/format-string";
 
 import NewsDelete from "./NewsDelete";
@@ -14,7 +12,6 @@ import NewsModal from "./NewsModal";
 
 export default function NewsTable(): JSX.Element {
   const { t } = useTranslation("translation", { keyPrefix: "news" });
-  const userProfile = useRecoilValue(UserState);
   const news = useSearchNews({
     params: {
       pageIndex: 1,

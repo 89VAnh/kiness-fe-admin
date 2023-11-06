@@ -1,6 +1,5 @@
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Modal, Tooltip } from "antd";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useDisclosure } from "@/utils/modal";
@@ -10,7 +9,7 @@ interface Props {
   isCreate?: boolean;
 }
 
-export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
+export default function NewsModal({ isCreate = true }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
 

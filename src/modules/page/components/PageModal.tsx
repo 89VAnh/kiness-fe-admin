@@ -13,6 +13,7 @@ import {
 import { queryClient } from "@/lib/react-query";
 import {
   CACHE_PAGES,
+  useCreatePage,
   useGetPageById,
   useUpdatePage,
 } from "@/loader/pages.loader";
@@ -33,6 +34,21 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
   const [form] = Form.useForm();
 
   const updatePage = useUpdatePage({
+    config: {
+      onSuccess: (data) => {
+        if (data.results) {
+          message.success(t("messages.update_success"));
+          close();
+          queryClient.invalidateQueries([CACHE_PAGES.PAGES]);
+        } else message.error(data.message);
+      },
+      onError: (err) => {
+        message.error(err.message);
+      },
+    },
+  });
+
+  const createPage = useCreatePage({
     config: {
       onSuccess: (data) => {
         if (data.results) {
@@ -70,12 +86,18 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
         };
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
+          createPage.mutate(dataPost);
         } else {
           dataPost.lu_user_id = userProfile.user_id;
           updatePage.mutate(dataPost);
         }
       })
       .catch(() => message.warning(t("messages.validate_form")));
+  };
+
+  const handleCancel = () => {
+    form.resetFields();
+    close();
   };
 
   return (
@@ -101,9 +123,9 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
         width={"90vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
-        onCancel={close}
+        onCancel={handleCancel}
         onOk={handleSubmit}
-        confirmLoading={updatePage.isLoading}
+        confirmLoading={updatePage.isLoading || createPage.isLoading}
       >
         <div
           style={{
