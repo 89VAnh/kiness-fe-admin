@@ -1,7 +1,8 @@
 import {
   DashboardOutlined,
+  DesktopOutlined,
   FileSearchOutlined,
-  PaperClipOutlined,
+  SolutionOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
 import { ProLayoutProps } from "@ant-design/pro-components";
@@ -9,11 +10,14 @@ import { TFunction } from "i18next";
 import { Link } from "react-router-dom";
 
 import {
+  CONFIG_URL,
   CUSTOMERS_URL,
   EXPERIENCE_REGISTER_URL,
   HOME_URL,
+  MANAGER_URL,
   NEWS_URL,
   PAGE_URL,
+  SLIDES_URL,
 } from "@/urls";
 import { getKeyFromPath } from "@/utils/format-string";
 
@@ -24,26 +28,47 @@ export const routes = (t: TFunction) => [
     icon: <DashboardOutlined />,
   },
   {
-    path: NEWS_URL,
-    name: <Link to={NEWS_URL}>{t("nav.news")}</Link>,
-    icon: <FileSearchOutlined />,
+    path: MANAGER_URL,
+    name: t("nav.manager"),
+    routes: [
+      {
+        path: NEWS_URL,
+        name: <Link to={NEWS_URL}>{t("nav.news")}</Link>,
+        icon: <FileSearchOutlined />,
+      },
+      {
+        path: CUSTOMERS_URL,
+        name: <Link to={CUSTOMERS_URL}>{t("nav.customer")}</Link>,
+        icon: <TeamOutlined />,
+      },
+      {
+        path: EXPERIENCE_REGISTER_URL,
+        name: (
+          <Link to={EXPERIENCE_REGISTER_URL}>
+            {t("nav.experience_register")}
+          </Link>
+        ),
+        icon: <FileSearchOutlined />,
+      },
+    ],
   },
+
+  // Divider
   {
-    path: CUSTOMERS_URL,
-    name: <Link to={CUSTOMERS_URL}>{t("nav.customer")}</Link>,
-    icon: <TeamOutlined />,
-  },
-  {
-    path: PAGE_URL,
-    name: <Link to={PAGE_URL}>{t("nav.page")}</Link>,
-    icon: <PaperClipOutlined />,
-  },
-  {
-    path: EXPERIENCE_REGISTER_URL,
-    name: (
-      <Link to={EXPERIENCE_REGISTER_URL}>{t("nav.experience_register")}</Link>
-    ),
-    icon: <FileSearchOutlined />,
+    path: CONFIG_URL,
+    name: t("nav.config"),
+    routes: [
+      {
+        path: PAGE_URL,
+        name: <Link to={PAGE_URL}>{t("nav.page")}</Link>,
+        icon: <SolutionOutlined />,
+      },
+      {
+        path: SLIDES_URL,
+        name: <Link to={SLIDES_URL}>{t("nav.slides")}</Link>,
+        icon: <DesktopOutlined />,
+      },
+    ],
   },
 ];
 
