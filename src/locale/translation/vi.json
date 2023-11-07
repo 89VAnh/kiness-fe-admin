@@ -26,11 +26,14 @@
   },
   "nav": {
     "home": "Trang chủ",
+    "manager": "Quản lý",
+    "config": "Cấu hình website",
     "dashboard": "Dashboard",
     "news": "Quản lý tin tức",
     "customer": "Quản lý khách hàng",
     "experience_register": "Quản lý đăng ký trải nghiệm",
-    "page": "Quản lý nội dung"
+    "page": "Quản lý nội dung",
+    "slides": "Quản lý slides"
   },
   "customer": {
     "title": "Quản lý khách hàng",
@@ -81,6 +84,20 @@
       "code": "Đường dẫn",
       "title": "Tiêu đề",
       "content": "Nội dung",
+      "actions": "Tác vụ"
+    }
+  },
+  "slide": {
+    "title": "Quản lý slides",
+    "title_create": "Thêm mới slide",
+    "title_update": "Cập nhật slide",
+    "search_placeholder": "Nhập nội dung...",
+    "title_delete": "Xóa slide",
+    "fields": {
+      "serial": "STT",
+      "image": "Ảnh",
+      "order": "Sắp xếp",
+      "caption": "Nội dung",
       "actions": "Tác vụ"
     }
   },

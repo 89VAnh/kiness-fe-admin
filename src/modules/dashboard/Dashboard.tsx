@@ -1,3 +1,5 @@
+import StatisticCard from "./components/statistic-card/StatisticCard";
+
 export default function Dashboard(): JSX.Element {
-  return <>Dashboard</>;
+  return <StatisticCard />;
 }

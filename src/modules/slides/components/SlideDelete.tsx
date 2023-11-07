@@ -4,26 +4,29 @@ import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
-import { CACHE_PAGES, useDeletePage } from "@/loader/pages.loader";
+import { CACHE_SLIDES, useDeleteSlide } from "@/loader/slides.loader";
 import { IBaseDelete } from "@/models/base";
+import { deleteFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
 interface Props {
   id: string;
+  filePath: string;
 }
 
-export default function PageDelete({ id }: Props): JSX.Element {
+export default function SlideDelete({ id, filePath }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
 
-  const deletePage = useDeletePage({
+  const deletePage = useDeleteSlide({
     config: {
       onSuccess: (data) => {
         if (data.results) {
           message.success(data.message);
-          queryClient.invalidateQueries([CACHE_PAGES.PAGES]);
+          queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
+          deleteFile({ filePath });
           close();
         } else message.error(data.message);
       },
@@ -35,7 +38,7 @@ export default function PageDelete({ id }: Props): JSX.Element {
 
   const handleDelete = () => {
     const dataPost: IBaseDelete = {
-      list_json: [{ page_id: id }],
+      list_json: [{ slide_id: id }],
       updated_by_id: userProfile.user_id,
     };
 

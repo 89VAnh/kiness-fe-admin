@@ -8,6 +8,7 @@ import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { NewsPage } from "./modules/news";
 import { PageManagePage } from "./modules/page";
+import { SlideManagePage } from "./modules/slides";
 import "./urls";
 import {
   CUSTOMERS_URL,
@@ -16,6 +17,7 @@ import {
   LOGIN_URL,
   NEWS_URL,
   PAGE_URL,
+  SLIDES_URL,
 } from "./urls";
 
 export const router = createBrowserRouter([
@@ -47,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: PAGE_URL,
         element: <PageManagePage />,
+      },
+      {
+        path: SLIDES_URL,
+        element: <SlideManagePage />,
       },
     ],
   },
