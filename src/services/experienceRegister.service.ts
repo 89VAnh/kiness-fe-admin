@@ -45,7 +45,7 @@ export const printExperienceRegister = async (
     );
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", `response`);
+    link.setAttribute("download", `Danh sách đơn đăng ký trải nghiệm`);
     document.body.appendChild(link);
     link.click();
   }
