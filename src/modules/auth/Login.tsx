@@ -39,6 +39,7 @@ const Page = () => {
           storageService.setStorage(LOCAL_USER, JSON.stringify(data));
           notification.success({
             message: t("messages.login_success"),
+            description: "Đang chuyển hướng",
           });
           window.open("/", "_parent");
         }
@@ -51,7 +52,7 @@ const Page = () => {
     },
   });
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     form.validateFields().then((values) => {
       login.mutate(values);
     });
@@ -101,12 +102,8 @@ const Page = () => {
         //     </Typography.Link>
         //   ),
         // }}
-        // loading={true}
-        submitter={{
-          onSubmit() {
-            handleLogin();
-          },
-        }}
+        onFinish={handleLogin}
+        loading={login.isLoading}
       >
         {loginType === "account" ? (
           <>

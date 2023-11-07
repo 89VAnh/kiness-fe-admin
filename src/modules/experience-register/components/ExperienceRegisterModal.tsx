@@ -10,7 +10,6 @@ interface Props {
 }
 
 export default function ExperienceRegisterModal({
-  id,
   isCreate = true,
 }: Props): JSX.Element {
   const { t } = useTranslation();

@@ -7,24 +7,32 @@ import _ from "lodash";
 import { apiClient } from "@/lib/api";
 
 const handleDeleteImage = (event: any): void => {
+  const changes = event?.source?.differ?._cachedChangesWithGraveyard;
   const listImages = _.filter(
-    event?.source?.differ?._cachedChangesWithGraveyard,
-    { type: "remove" },
+    changes,
+    (item) =>
+      (item.type === "remove" || item.type === "insert") &&
+      (item.name === "imageBlock" || item.name === "imageInline"),
   );
 
-  const listAttributes = _.map(listImages, "attributes");
-  if (listAttributes) {
-    const listSrc: string[] = [];
-    listAttributes.forEach((attribute) => {
-      const src = attribute.get("src")?.replace(/^\/api\//, "");
-      if (src) listSrc.push(src);
-    });
-
-    listSrc.forEach((src) => {
-      apiClient.post(`core/delete-file`, {
-        filePath: src,
+  if (
+    listImages.length === 2 &&
+    (changes?.length === 2 || changes?.length === 3)
+  ) {
+    const listAttributes = _.map(listImages, "attributes");
+    if (listAttributes) {
+      const listSrc: string[] = [];
+      listAttributes.forEach((attribute) => {
+        const src = attribute.get("src")?.replace(/^\/api\//, "");
+        if (src) listSrc.push(src);
       });
-    });
+
+      listSrc.forEach((src) => {
+        apiClient.post(`core/delete-file`, {
+          filePath: src,
+        });
+      });
+    }
   }
 };
 

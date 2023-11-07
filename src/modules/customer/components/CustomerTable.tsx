@@ -1,20 +1,11 @@
-import { Key, ProColumns, ProTable } from "@ant-design/pro-components";
-import {
-  Input,
-  Space,
-  Table,
-  TableProps,
-  Tag,
-  Typography,
-  message,
-} from "antd";
+import { ProColumns, ProTable } from "@ant-design/pro-components";
+import { Input, Space, Tag, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
 import { useSearchCustomers } from "@/loader/customers.loader";
 import { ICustomer } from "@/models/customer";
-import { deleteCustomer } from "@/services/customers.service";
 import { UserState } from "@/store/auth/atom";
 import { compareNumbers, compareStrings } from "@/utils/array";
 import { formatToDate } from "@/utils/format-string";
@@ -46,19 +37,14 @@ export default function CustomerTable(): JSX.Element {
     setSearchContent(value);
   };
 
-  const handleDeleteMulti = (keys: Key[]) => {
-    deleteCustomer({
-      list_json: keys.map((key) => ({ customer_id: key as string })),
-      updated_by_id: userProfile.user_id,
-    });
+  // const handleDeleteMulti = (keys: Key[]) => {
+  //   deleteCustomer({
+  //     list_json: keys.map((key) => ({ customer_id: key as string })),
+  //     updated_by_id: userProfile.user_id,
+  //   });
 
-    message.success(t("message_delete_success"));
-  };
-
-  const rowSelection: TableProps<ICustomer>["rowSelection"] = {
-    selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-    defaultSelectedRowKeys: [],
-  };
+  //   message.success(t("message_delete_success"));
+  // };
 
   const columns: ProColumns<ICustomer>[] = [
     {
@@ -171,7 +157,7 @@ export default function CustomerTable(): JSX.Element {
       toolbar={{
         settings: [],
       }}
-      toolBarRender={(_, { selectedRowKeys }) => [
+      toolBarRender={(_) => [
         <Input.Search
           placeholder={t("search_placeholder")}
           loading={customers.isLoading}

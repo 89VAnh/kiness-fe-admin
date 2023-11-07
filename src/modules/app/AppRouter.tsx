@@ -1,6 +1,7 @@
 import {
   DashboardOutlined,
   FileSearchOutlined,
+  PaperClipOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
 import { ProLayoutProps } from "@ant-design/pro-components";
@@ -12,6 +13,7 @@ import {
   EXPERIENCE_REGISTER_URL,
   HOME_URL,
   NEWS_URL,
+  PAGE_URL,
 } from "@/urls";
 import { getKeyFromPath } from "@/utils/format-string";
 
@@ -30,6 +32,11 @@ export const routes = (t: TFunction) => [
     path: CUSTOMERS_URL,
     name: <Link to={CUSTOMERS_URL}>{t("nav.customer")}</Link>,
     icon: <TeamOutlined />,
+  },
+  {
+    path: PAGE_URL,
+    name: <Link to={PAGE_URL}>{t("nav.page")}</Link>,
+    icon: <PaperClipOutlined />,
   },
   {
     path: EXPERIENCE_REGISTER_URL,

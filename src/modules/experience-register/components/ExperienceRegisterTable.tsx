@@ -5,8 +5,6 @@ import {
   DatePicker,
   Input,
   Space,
-  Table,
-  TableProps,
   Tag,
   Typography,
   message,
@@ -20,7 +18,6 @@ import {
   useSearchExperienceRegister,
 } from "@/loader/experienceRegister.loader";
 import { IExperienceRegister } from "@/models/experience_register";
-import { printExperienceRegister } from "@/services/experienceRegister.service";
 import { UserState } from "@/store/auth/atom";
 import { compareNumbers, compareStrings } from "@/utils/array";
 import {
@@ -73,11 +70,6 @@ export default function ExperienceRegisterTable(): JSX.Element {
 
   //   message.success(t("message_delete_success"));
   // };
-
-  const rowSelection: TableProps<IExperienceRegister>["rowSelection"] = {
-    selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-    defaultSelectedRowKeys: [],
-  };
 
   const columns = [
     {
@@ -214,7 +206,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
       toolbar={{
         settings: [],
       }}
-      toolBarRender={(_, { selectedRowKeys }) => [
+      toolBarRender={(_) => [
         <RangePicker
           format={formatDateShow}
           style={{ width: 460 }}
@@ -238,7 +230,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
           onClick={handlePrint}
           disabled={
             experienceRegister.isLoading ||
-            [...experienceRegister.data.data].length == 0
+            [...experienceRegister.data.data].length === 0
           }
         >
           Xuất file
