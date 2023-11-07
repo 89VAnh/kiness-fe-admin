@@ -136,7 +136,9 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
         >
           <Form form={form} layout="vertical">
             <Row gutter={32}>
-              <Form.Item hidden name={"page_id"}></Form.Item>
+              <Form.Item name={"page_id"} hidden>
+                <Input />
+              </Form.Item>
               <Col span={12}>
                 <Form.Item name={"page_title"} label={t("page.fields.title")}>
                   <Input placeholder={t("page.fields.title")} />

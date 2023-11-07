@@ -1,5 +1,5 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Image, Space, Table, Typography } from "antd";
+import { Image, Space, Typography } from "antd";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -33,16 +33,17 @@ export default function NewsTable(): JSX.Element {
       render: (_, __, index) => <Typography.Text>{++index}</Typography.Text>,
       search: false,
     },
-    {
-      title: t("fields.id"),
-      dataIndex: "news_id",
-      width: 100,
-    },
+    // {
+    //   title: t("fields.id"),
+    //   dataIndex: "news_id",
+    //   width: 100,
+    // },
     {
       title: t("fields.thumbnail"),
       dataIndex: "thumbnail",
       width: 100,
-      render: (thumbnail) => <Image src={`${thumbnail}`} preview={false} />,
+      align: "center",
+      render: (thumbnail) => <Image src={`${thumbnail}`} />,
       search: false,
     },
     {
@@ -97,10 +98,6 @@ export default function NewsTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      rowSelection={{
-        selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-        defaultSelectedRowKeys: [],
-      }}
       loading={news.isLoading}
       pagination={{
         pageSize: 10,
@@ -108,6 +105,7 @@ export default function NewsTable(): JSX.Element {
       columns={columns}
       dataSource={news.data?.data || []}
       headerTitle={t("title")}
+      search={false}
       toolbar={{
         settings: [],
       }}
