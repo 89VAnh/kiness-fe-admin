@@ -4,7 +4,7 @@ import {
 } from "@ckeditor/ckeditor5-upload/src/filerepository";
 import _ from "lodash";
 
-import { apiClient } from "@/lib/api";
+import { deleteFile, uploadFile } from "@/services/upload.service";
 
 const handleDeleteImage = (event: any): void => {
   const changes = event?.source?.differ?._cachedChangesWithGraveyard;
@@ -28,9 +28,7 @@ const handleDeleteImage = (event: any): void => {
       });
 
       listSrc.forEach((src) => {
-        apiClient.post(`core/delete-file`, {
-          filePath: src,
-        });
+        deleteFile({ filePath: src });
       });
     }
   }
@@ -42,15 +40,7 @@ function uploadAdapter(loader: FileLoader): UploadAdapter {
       return new Promise(async (resolve, reject) => {
         try {
           const file = await loader.file;
-          const response = await apiClient.post(
-            `core/upload`,
-            { file },
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            },
-          );
+          const response = await uploadFile({ file });
           resolve({
             default: `/api/${response.data.path}`,
           });

@@ -54,15 +54,20 @@ export default function AppLayout({ children }: Props): JSX.Element {
       style={{
         height: "100vh",
       }}
+      siderWidth={258}
       location={location}
       logo={<Image className="logo" preview={false} src={Logo} />}
       title={""}
+      menu={{
+        collapsedShowGroupTitle: true,
+        defaultOpenAll: true,
+        type: "group",
+      }}
       headerTitleRender={(_, __, ___) => (
         <Link to={HOME_URL}>
           <Image className="logo" preview={false} src={Logo} />
         </Link>
       )}
-      onPageChange={() => {}}
       route={appRoute(t)}
       {...settings}
     >
