@@ -10,6 +10,7 @@ import {
   deleteCustomer,
   getCustomerById,
   searchCustomers,
+  updateCustomer,
 } from "@/services/customers.service";
 
 export const CACHE_CUSTOMERS = {
@@ -18,15 +19,32 @@ export const CACHE_CUSTOMERS = {
 
 const useGetCustomerById = ({
   id,
+  enabled,
   config,
 }: {
   id: string;
+  enabled: boolean;
   config?: QueryConfig<typeof getCustomerById>;
 }) => {
   return useQuery<ExtractFnReturnType<typeof getCustomerById>>({
     ...config,
+    enabled,
     queryKey: [CACHE_CUSTOMERS.CUSTOMERS, id],
     queryFn: () => getCustomerById(id),
+  });
+};
+
+const useUpdateCustomer = ({
+  config,
+}: {
+  config?: MutationConfig<typeof updateCustomer>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: updateCustomer,
   });
 };
 
@@ -58,4 +76,9 @@ const useSearchCustomers = ({
   });
 };
 
-export { useDeleteCustomer, useGetCustomerById, useSearchCustomers };
+export {
+  useDeleteCustomer,
+  useGetCustomerById,
+  useSearchCustomers,
+  useUpdateCustomer,
+};

@@ -18,6 +18,16 @@ export const searchExperienceRegister = async (
   return res.data;
 };
 
+export const updateExperienceRegisterStatus = async (data: {
+  register_id: number;
+  status: number;
+  lu_user_id: string;
+}): Promise<any> => {
+  const res = await apiClient?.post(`${prefix}/update-status`, data);
+
+  return res.data;
+};
+
 export const deleteExperienceRegister = async ({
   list_json,
   updated_by_id,

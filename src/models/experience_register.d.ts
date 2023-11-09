@@ -11,4 +11,5 @@ export interface IExperienceRegister {
   created_date_time: Date;
   detail: string;
   status: number;
+  lu_user_id: string;
 }

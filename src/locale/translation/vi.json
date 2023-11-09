@@ -22,7 +22,8 @@
     "login_failure": "Tài khoản hoặc mật khẩu không đúng!",
     "update_success": "Cập nhật thành công",
     "update_failure": "Cập nhật thất bại! Vui lòng thử lại",
-    "validate_form": "Bạn cần điền đầy đủ thông tin"
+    "validate_form": "Bạn cần điền đầy đủ thông tin",
+    "update_status_success": "Cập nhật trạng thái thành công"
   },
   "nav": {
     "home": "Trang chủ",
@@ -51,9 +52,11 @@
       "birthday": "Ngày sinh",
       "phone": "Số điện thoại",
       "email": "Email",
+      "city": "Thành phố",
       "branch": "Chi nhánh",
       "verify": "Chưa xác thực",
-      "actions": "Tác vụ"
+      "actions": "Tác vụ",
+      "address": "Địa chỉ"
     }
   },
   "news": {
@@ -67,6 +70,7 @@
       "thumbnail": "Ảnh",
       "title": "Tiêu đề",
       "content": "Nội dung",
+      "content_html": "Nội dung tin tức",
       "views": "Lượt xem",
       "created_date_time": "Ngày tạo",
       "created_user": "Người tạo",
@@ -136,6 +140,13 @@
         "label": "Đã hủy",
         "color": "red"
       }
+    },
+    "btn": {
+      "btn_confirm": "Xác nhận đơn",
+      "btn_cancel_confirm": "Hủy xác nhận"
+    },
+    "messages": {
+      "update_status_success": "Thay đổi trạng thái thành công"
     }
   }
 }
