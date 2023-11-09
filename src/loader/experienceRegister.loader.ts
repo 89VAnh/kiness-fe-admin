@@ -11,6 +11,7 @@ import {
   deleteExperienceRegister,
   printExperienceRegister,
   searchExperienceRegister,
+  updateExperienceRegisterStatus,
 } from "@/services/experienceRegister.service";
 
 export const CACHE_EXPERIENCE_REGISTER = {
@@ -44,6 +45,21 @@ const useSearchExperienceRegister = ({
     queryFn: () => searchExperienceRegister(params),
   });
 };
+
+const useUpdateExperienceRegisterStatus = ({
+  config,
+}: {
+  config?: MutationConfig<typeof updateExperienceRegisterStatus>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: updateExperienceRegisterStatus,
+  });
+};
+
 const useDeleteExperienceRegister = ({
   config,
 }: {
@@ -77,4 +93,5 @@ export {
   useDeleteExperienceRegister,
   usePrintExperienceRegister,
   useSearchExperienceRegister,
+  useUpdateExperienceRegisterStatus,
 };

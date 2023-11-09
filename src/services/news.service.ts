@@ -1,24 +1,32 @@
 import { AxiosRequestConfig } from "axios";
 
 import { apiClient } from "@/lib/api";
+import { IBaseDelete } from "@/models/base";
+import { INews } from "@/models/news";
 
 const prefix = "news";
 
-export const getNewsById = async (id: string | number): Promise<any> => {
+export const getNewsById = async (id: number): Promise<any> => {
   const res = await apiClient?.get(`${prefix}/get-by-id/${id}`);
 
   return res.data;
 };
 
-export const deleteNews = async ({
-  list_json,
-  updated_by_id,
-}: {
-  list_json: { news_id: number }[];
-  updated_by_id: string;
-}): Promise<any> => {
+export const createNews = async (data: INews): Promise<any> => {
+  const res = await apiClient?.post(`${prefix}/create`, data);
+
+  return res.data;
+};
+
+export const updateNews = async (data: INews): Promise<any> => {
+  const res = await apiClient?.post(`${prefix}/update`, data);
+
+  return res.data;
+};
+
+export const deleteNews = async (data: IBaseDelete): Promise<any> => {
   const res = await apiClient?.delete(`${prefix}/delete`, {
-    data: { list_json, updated_by_id },
+    data,
   });
 
   return res.data;

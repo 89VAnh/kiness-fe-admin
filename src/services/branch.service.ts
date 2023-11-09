@@ -12,6 +12,12 @@ export const getBranches = async (
   return res.data;
 };
 
+export const getBranchById = async (id: string | number): Promise<any> => {
+  const res = await apiClient?.get(`${prefix}/get-by-id/${id}`);
+
+  return res.data;
+};
+
 export const getBranchesDropdown = async (
   params: AxiosRequestConfig["params"],
 ): Promise<any> => {

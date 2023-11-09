@@ -6,7 +6,13 @@ import {
   MutationConfig,
   QueryConfig,
 } from "@/lib/react-query";
-import { deleteNews, getNewsById, searchNews } from "@/services/news.service";
+import {
+  createNews,
+  deleteNews,
+  getNewsById,
+  searchNews,
+  updateNews,
+} from "@/services/news.service";
 
 export const CACHE_NEWS = {
   NEWS: "NEWS",
@@ -14,15 +20,47 @@ export const CACHE_NEWS = {
 
 const useGetNewsById = ({
   id,
+  enabled = true,
   config,
 }: {
-  id: string;
+  id: number;
+  enabled: boolean;
   config?: QueryConfig<typeof getNewsById>;
 }) => {
   return useQuery<ExtractFnReturnType<typeof getNewsById>>({
     ...config,
+    enabled,
     queryKey: [CACHE_NEWS.NEWS, id],
     queryFn: () => getNewsById(id),
+  });
+};
+// Create
+const useCreateNews = ({
+  config,
+}: {
+  config?: MutationConfig<typeof createNews>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: createNews,
+  });
+};
+
+// Update
+const useUpdateNews = ({
+  config,
+}: {
+  config?: MutationConfig<typeof updateNews>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: updateNews,
   });
 };
 
@@ -54,4 +92,10 @@ const useSearchNews = ({
   });
 };
 
-export { useDeleteNews, useGetNewsById, useSearchNews };
+export {
+  useCreateNews,
+  useDeleteNews,
+  useGetNewsById,
+  useSearchNews,
+  useUpdateNews,
+};

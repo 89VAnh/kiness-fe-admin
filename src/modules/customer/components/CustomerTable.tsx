@@ -115,8 +115,8 @@ export default function CustomerTable(): JSX.Element {
       sorter: (a, b) => compareNumbers(a, b, "verify"),
       width: 200,
       render: (value) => (
-        <Tag color={value ? "green" : "red"}>
-          {value ? "Đã xác thực" : "Chưa xác thực"}
+        <Tag color={!value ? "red" : "green"}>
+          {value ? "Chưa xác thực" : "Đã xác thực"}
         </Tag>
       ),
     },
@@ -164,7 +164,7 @@ export default function CustomerTable(): JSX.Element {
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,
-        <CustomerModal />,
+        // <CustomerModal />,
         // selectedRowKeys?.length ? (
         //   <Button onClick={() => handleDeleteMulti(selectedRowKeys)} danger>
         //     {t("title_delete_multi")}

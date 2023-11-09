@@ -26,8 +26,8 @@ import {
   formatToDate,
 } from "@/utils/format-string";
 
+import ExperienceRegisterConfirm from "./ExperienceRegisterConfirm";
 import ExperienceRegisterDelete from "./ExperienceRegisterDelete";
-import ExperienceRegisterModal from "./ExperienceRegisterModal";
 
 export default function ExperienceRegisterTable(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -158,13 +158,18 @@ export default function ExperienceRegisterTable(): JSX.Element {
       width: 100,
       align: "center",
       search: false,
-      render: (_: any, record: { register_id: number }) => {
+      render: (_: any, record: { register_id: number; status: number }) => {
         return (
           <Space>
-            <ExperienceRegisterModal
+            {/* <ExperienceRegisterModal
               id={record?.register_id}
               isCreate={false}
+            /> */}
+            <ExperienceRegisterConfirm
+              id={record?.register_id}
+              status={record?.status}
             />
+
             <ExperienceRegisterDelete id={record?.register_id} />
           </Space>
         );

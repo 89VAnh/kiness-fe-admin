@@ -26,8 +26,16 @@ export const RULES_FORM: Record<keyof keyValidator, FormRule[]> = {
   ],
   phone: [
     {
-      pattern: /^\d{10,}$/gm,
-      message: "Số điện thoại phải lớn hơn 10 ký tự",
+      min: 10,
+      message: "Số điện thoại tối thiểu 10 ký tự",
+    },
+    {
+      pattern: /^0/gm,
+      message: "Số điện thoại phải bắt đầu bằng 0",
+    },
+    {
+      pattern: /^\d+$/gm,
+      message: "Số điện thoại chỉ chứa ký tự số",
     },
   ],
   number: [
@@ -38,8 +46,9 @@ export const RULES_FORM: Record<keyof keyValidator, FormRule[]> = {
   ],
   username: [
     {
-      pattern: /^[a-zA-Z0-9]{6,8}$/g,
-      message: "Tài khoản có độ dài 6-8 chữ/số",
+      pattern: /^[a-zA-Z0-9]{6,10}$/g,
+      message:
+        "Tài khoản có độ dài 6-10 chữ/số và không chứa khoảng cách và ký tự đặc biệt",
     },
   ],
   password: [
@@ -54,7 +63,12 @@ export const RULES_FORM: Record<keyof keyValidator, FormRule[]> = {
     {
       pattern:
         /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/gm,
-      message: "Tên này không hợp lệ",
+      message:
+        "Tên nguời dùng phải bắt đầu bằng chữ in hoa Không bắt đầu và kết thúc bằng dấu cách, không chứa sô và ký tự đặc biệt",
+    },
+    {
+      min: 5,
+      message: "Tên phải tối thiểu 5 ký tự",
     },
   ],
 };
