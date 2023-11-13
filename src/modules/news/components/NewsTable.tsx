@@ -1,7 +1,8 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Image, Space, Typography } from "antd";
-import { useEffect } from "react";
+import { Image, Input, Space, Typography } from "antd";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
 import { useSearchNews } from "@/loader/news.loader";
 import { INews } from "@/models/news";
@@ -12,12 +13,31 @@ import NewsModal from "./NewsModal";
 
 export default function NewsTable(): JSX.Element {
   const { t } = useTranslation("translation", { keyPrefix: "news" });
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchContent, setSearchContent] = useState<string>(
+    searchParams.get("k") || "",
+  );
+  const [page, setPage] = useState<number | string>(
+    searchParams.get("page") || 1,
+  );
+  const [pageSize, setPageSize] = useState<number | string>(
+    searchParams.get("page_size") || 10,
+  );
+
   const news = useSearchNews({
     params: {
-      pageIndex: 1,
-      pageSize: 10,
+      pageIndex: page,
+      pageSize: pageSize,
+      search_content: searchContent,
     },
   });
+  const handleSearch = (value: string) => {
+    searchParams.delete("page");
+    searchParams.set("k", value);
+    setSearchParams(searchParams);
+    setPage(1);
+    setSearchContent(value);
+  };
 
   useEffect(() => {
     return () => news.remove();
@@ -33,17 +53,12 @@ export default function NewsTable(): JSX.Element {
       render: (_, __, index) => <Typography.Text>{++index}</Typography.Text>,
       search: false,
     },
-    // {
-    //   title: t("fields.id"),
-    //   dataIndex: "news_id",
-    //   width: 100,
-    // },
     {
       title: t("fields.thumbnail"),
       dataIndex: "thumbnail",
       width: 100,
       align: "center",
-      render: (thumbnail) => <Image src={`${thumbnail}`} />,
+      render: (thumbnail) => <Image src={"/api/" + thumbnail} width={100} />,
       search: false,
     },
     {
@@ -68,7 +83,7 @@ export default function NewsTable(): JSX.Element {
       render: (_, news) => {
         return (
           <Typography.Text>
-            {formatToDate(news.created_date_time.toString() || "")}
+            {formatToDate(news.created_date_time?.toString() || "")}
           </Typography.Text>
         );
       },
@@ -99,9 +114,6 @@ export default function NewsTable(): JSX.Element {
     <ProTable
       size="small"
       loading={news.isLoading}
-      pagination={{
-        pageSize: 10,
-      }}
       columns={columns}
       dataSource={news.data?.data || []}
       headerTitle={t("title")}
@@ -109,7 +121,31 @@ export default function NewsTable(): JSX.Element {
       toolbar={{
         settings: [],
       }}
-      toolBarRender={() => [<NewsModal />]}
+      pagination={{
+        pageSize: Number(searchParams.get("page_size")) || 10,
+        current: Number(searchParams.get("page")) || 1,
+        onChange(page, pageSize) {
+          searchParams.set("page", page + "");
+          searchParams.set("page_size", pageSize + "");
+          setPage(page);
+          setPageSize(pageSize);
+          setSearchParams(searchParams);
+        },
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total}`;
+        },
+        total: news.data?.totalItems || 0,
+      }}
+      toolBarRender={() => [
+        <Input.Search
+          placeholder={t("search_placeholder")}
+          defaultValue={searchContent}
+          loading={news.isLoading}
+          onSearch={handleSearch}
+          onFocus={(e) => e.target.select()}
+        />,
+        <NewsModal />,
+      ]}
       rowKey={"news_id"}
     />
   );

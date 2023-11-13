@@ -64,6 +64,7 @@
     "title_create": "Thêm mới tin",
     "title_update": "Cập nhật tin",
     "title_delete": "Xóa tin",
+    "search_placeholder": "Nhập tiêu đề tin",
     "fields": {
       "serial": "STT",
       "id": "Tin",

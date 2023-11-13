@@ -4,11 +4,13 @@ import {
   Button,
   Col,
   Form,
-  Image,
   Input,
   Modal,
   Row,
   Tooltip,
+  Upload,
+  UploadFile,
+  UploadProps,
   message,
 } from "antd";
 import { useState } from "react";
@@ -27,6 +29,8 @@ import {
   useGetNewsById,
   useUpdateNews,
 } from "@/loader/news.loader";
+import { INews } from "@/models/news";
+import { uploadFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 import { RULES_FORM } from "@/utils/validator";
@@ -42,7 +46,8 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
   const [form] = Form.useForm();
   const userProfile = useRecoilValue(UserState);
   const [dataEditor, setDataEditor] = useState<string>("");
-  const [thumbnail, setThumbnail] = useState();
+  const [file, setFile] = useState<File | null>();
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   useGetNewsById({
     id: id!,
@@ -51,8 +56,14 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
       onSuccess(data) {
         if (!data?.message) {
           form.setFieldsValue(data);
-          setDataEditor(data?.content);
-          setThumbnail(data.thumbnail);
+
+          setFileList([
+            {
+              name: "",
+              uid: "1",
+              thumbUrl: "/api/" + data.thumbnail,
+            },
+          ]);
         }
       },
     },
@@ -91,11 +102,18 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
   const handleSubmit = () => {
     form
       .validateFields()
-      .then((values) => {
-        const dataPost = {
-          ...values,
-          content: dataEditor,
+      .then(async (values) => {
+        const data = await uploadFile({ file });
+
+        const dataPost: INews = {
+          news_id: values.news_id,
+          news_title: values.news_title,
+          content_html: dataEditor,
+          thumbnail: data.path,
+          content: values.content,
+          views: values.views,
         };
+
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
           createNews.mutate(dataPost);
@@ -110,6 +128,20 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
   const handleCancel = () => {
     form.resetFields();
     close();
+  };
+
+  const uploadProps: UploadProps = {
+    maxCount: 1,
+    accept: "image/*",
+    listType: "picture-card",
+    fileList,
+    beforeUpload(file) {
+      setFile(file);
+      return false;
+    },
+    onChange({ fileList }: any) {
+      setFileList(fileList);
+    },
   };
 
   return (
@@ -148,10 +180,16 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
         >
           <Form form={form} layout="vertical">
             <Row gutter={32}>
-              <Form.Item name={"news_id"} hidden>
+              <Form.Item name="news_id" hidden>
                 <Input />
               </Form.Item>
-              <Col span={12}>
+              <Form.Item name="views" hidden>
+                <Input />
+              </Form.Item>
+              <Form.Item name="content" hidden>
+                <Input />
+              </Form.Item>
+              <Col span={14}>
                 <Form.Item
                   name={"news_title"}
                   rules={[...RULES_FORM.required]}
@@ -160,22 +198,18 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
                   <Input placeholder={t("news.fields.title")} />
                 </Form.Item>
               </Col>
-              <Col span={20}>
-                <Form.Item
-                  name={"content"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("news.fields.content")}
-                >
-                  <Input.TextArea placeholder={t("news.fields.content")} />
-                </Form.Item>
-              </Col>
+
               <Col span={12}>
                 <Form.Item
                   name={"news_thumbnail"}
                   label={t("news.fields.thumbnail")}
                 >
-                  {/* <UploadImageCommand /> */}
-                  <Image src={thumbnail} />
+                  <Upload {...uploadProps}>
+                    <div>
+                      <PlusOutlined />
+                      <div style={{ marginTop: 8 }}>Upload</div>
+                    </div>
+                  </Upload>
                 </Form.Item>
               </Col>
               <Col span={24}>

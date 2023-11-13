@@ -1,10 +1,12 @@
 export interface INews {
   news_id: number;
-  thumbnail: string;
   news_title: string;
   content: string;
   content_html: string;
-  views: number;
-  created_date_time: Date;
-  created_user: string;
+  thumbnail: string;
+  views?: number;
+  created_by_user_id?: string;
+  created_date_time?: Date;
+  lu_user_id?: string;
+  created_user?: string;
 }
