@@ -30,15 +30,14 @@ const Page = () => {
       onSuccess: (data) => {
         if (!data || data?.message) {
           notification.error({
-            message:
-              data.response?.data?.message || t("messages.login_failure"),
+            message: data.response?.data?.message || t("login_failure"),
           });
           return navigate("/login");
         } else {
           storage.setToken(data.token);
           storageService.setStorage(LOCAL_USER, JSON.stringify(data));
           notification.success({
-            message: t("messages.login_success"),
+            message: t("login_success"),
             description: "Đang chuyển hướng",
           });
           window.open("/", "_parent");
@@ -46,7 +45,7 @@ const Page = () => {
       },
       onError: (data) => {
         notification.error({
-          message: data.response?.data?.message || t("messages.login_failure"),
+          message: data.response?.data?.message || t("login_failure"),
         });
       },
     },

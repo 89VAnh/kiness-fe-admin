@@ -9,6 +9,7 @@ import { ExperienceRegisterPage } from "./modules/experience-register";
 import { NewsPage } from "./modules/news";
 import { PageManagePage } from "./modules/page";
 import { SlideManagePage } from "./modules/slides";
+import { TestRegisterPage } from "./modules/test-register";
 import "./urls";
 import {
   CUSTOMERS_URL,
@@ -18,6 +19,7 @@ import {
   NEWS_URL,
   PAGE_URL,
   SLIDES_URL,
+  TEST_REGISTER_URL,
 } from "./urls";
 
 export const router = createBrowserRouter([
@@ -45,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: EXPERIENCE_REGISTER_URL,
         element: <ExperienceRegisterPage />,
+      },
+      {
+        path: TEST_REGISTER_URL,
+        element: <TestRegisterPage />,
       },
       {
         path: PAGE_URL,

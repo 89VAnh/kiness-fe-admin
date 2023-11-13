@@ -15,10 +15,10 @@ import { useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import {
-  usePrintExperienceRegister,
-  useSearchExperienceRegister,
-} from "@/loader/experienceRegister.loader";
-import { IExperienceRegister } from "@/models/experience_register";
+  usePrintTestRegister,
+  useSearchTestRegister,
+} from "@/loader/testRegister.loader";
+import { ITestRegister } from "@/models/test_register";
 import { UserState } from "@/store/auth/atom";
 import { compareNumbers, compareStrings } from "@/utils/array";
 import {
@@ -27,12 +27,12 @@ import {
   formatToDate,
 } from "@/utils/format-string";
 
-import ExperienceRegisterConfirm from "./ExperienceRegisterConfirm";
-import ExperienceRegisterDelete from "./ExperienceRegisterDelete";
+import TestRegisterConfirm from "./TestRegisterConfirm";
+import TestRegisterDelete from "./TestRegisterDelete";
 
-export default function ExperienceRegisterTable(): JSX.Element {
+export default function TestRegisterTable(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "experience_register",
+    keyPrefix: "test_register",
   });
 
   const { RangePicker } = DatePicker;
@@ -50,7 +50,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const experienceRegister = useSearchExperienceRegister({
+  const testRegister = useSearchTestRegister({
     params: {
       pageIndex: page,
       pageSize: pageSize,
@@ -62,9 +62,9 @@ export default function ExperienceRegisterTable(): JSX.Element {
   });
 
   useEffect(() => {
-    return () => experienceRegister.remove();
+    return () => testRegister.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [experienceRegister.remove]);
+  }, [testRegister.remove]);
 
   const handleSearch = (value: string) => {
     searchParams.delete("page");
@@ -165,23 +165,23 @@ export default function ExperienceRegisterTable(): JSX.Element {
       render: (_: any, record: { register_id: number; status: number }) => {
         return (
           <Space>
-            {/* <ExperienceRegisterModal
+            {/* <TestRegisterModal
               id={record?.register_id}
               isCreate={false}
             /> */}
-            <ExperienceRegisterConfirm
+            <TestRegisterConfirm
               id={record?.register_id}
               status={record?.status}
             />
 
-            <ExperienceRegisterDelete id={record?.register_id} />
+            <TestRegisterDelete id={record?.register_id} />
           </Space>
         );
       },
     },
   ];
 
-  const print = usePrintExperienceRegister({
+  const print = usePrintTestRegister({
     config: {
       onSuccess: () => {
         message.success("Xuất file thành công");
@@ -204,7 +204,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
     <ProTable
       size="small"
       cardBordered
-      loading={experienceRegister.isLoading}
+      loading={testRegister.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
         current: Number(searchParams.get("page")) || 1,
@@ -218,10 +218,10 @@ export default function ExperienceRegisterTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: experienceRegister.data?.totalItems || 0,
+        total: testRegister.data?.totalItems || 0,
       }}
-      columns={columns as ProColumns<IExperienceRegister>[]}
-      dataSource={experienceRegister.data?.data || []}
+      columns={columns as ProColumns<ITestRegister>[]}
+      dataSource={testRegister.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -241,7 +241,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
         />,
         <Input.Search
           placeholder={t("search_placeholder")}
-          loading={experienceRegister.isLoading}
+          loading={testRegister.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,
@@ -250,9 +250,9 @@ export default function ExperienceRegisterTable(): JSX.Element {
           icon={<FileExcelOutlined />}
           onClick={handlePrint}
           disabled={
-            experienceRegister.data?.data === undefined ||
-            experienceRegister.isLoading ||
-            [...experienceRegister.data.data].length === 0
+            testRegister.data?.data === undefined ||
+            testRegister.isLoading ||
+            [...testRegister.data.data].length === 0
           }
         >
           Xuất file

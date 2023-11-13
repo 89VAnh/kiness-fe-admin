@@ -33,6 +33,7 @@
     "news": "Quản lý tin tức",
     "customer": "Quản lý khách hàng",
     "experience_register": "Quản lý đăng ký trải nghiệm",
+    "test_register": "Quản lý đăng ký kiểm tra",
     "page": "Quản lý nội dung",
     "slides": "Quản lý slides"
   },
@@ -64,6 +65,7 @@
     "title_create": "Thêm mới tin",
     "title_update": "Cập nhật tin",
     "title_delete": "Xóa tin",
+    "search_placeholder": "Nhập tiêu đề tin",
     "fields": {
       "serial": "STT",
       "id": "Tin",
@@ -107,6 +109,50 @@
   },
   "experience_register": {
     "title": "Quản lý đăng ký trải nghiệm",
+    "title_create": "Thêm mới đơn đăng ký",
+    "search_placeholder": "Nhập tên chi nhánh, tên người đăng ký, số điện thoại...",
+    "title_update": "Cập nhật đơn đăng ký",
+    "title_delete": "Xóa đơn đăng ký",
+    "fields": {
+      "serial": "STT",
+      "id": "Mã đơn",
+      "branch_name": "Tên chi nhánh",
+      "fullname": "Tên người đăng ký",
+      "gender": "Giới tính",
+      "level": "Cấp",
+      "date": "Ngày đăng ký",
+      "phone": "Số điện thoại",
+      "address": "Địa chỉ",
+      "detail": "Chi tiết",
+      "status": "Trạng thái",
+      "created_date_time": "Ngày tạo",
+      "created_user": "Người tạo",
+      "actions": "Tác vụ"
+    },
+    "status": {
+      "0": {
+        "label": "Chưa chấp nhận",
+        "color": "red"
+      },
+      "1": {
+        "label": "Đã chấp nhận",
+        "color": "green"
+      },
+      "-1": {
+        "label": "Đã hủy",
+        "color": "red"
+      }
+    },
+    "btn": {
+      "btn_confirm": "Xác nhận đơn",
+      "btn_cancel_confirm": "Hủy xác nhận"
+    },
+    "messages": {
+      "update_status_success": "Thay đổi trạng thái thành công"
+    }
+  },
+  "test_register": {
+    "title": "Quản lý đăng ký kiểm tra",
     "title_create": "Thêm mới đơn đăng ký",
     "search_placeholder": "Nhập tên chi nhánh, tên người đăng ký, số điện thoại...",
     "title_update": "Cập nhật đơn đăng ký",

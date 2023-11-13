@@ -18,6 +18,7 @@ import {
   NEWS_URL,
   PAGE_URL,
   SLIDES_URL,
+  TEST_REGISTER_URL,
 } from "@/urls";
 import { getKeyFromPath } from "@/utils/format-string";
 
@@ -48,6 +49,11 @@ export const routes = (t: TFunction) => [
             {t("nav.experience_register")}
           </Link>
         ),
+        icon: <FileSearchOutlined />,
+      },
+      {
+        path: TEST_REGISTER_URL,
+        name: <Link to={TEST_REGISTER_URL}>{t("nav.test_register")}</Link>,
         icon: <FileSearchOutlined />,
       },
     ],
