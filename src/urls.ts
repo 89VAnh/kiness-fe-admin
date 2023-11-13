@@ -8,6 +8,7 @@ const MANAGER_URL = "/manager";
 const NEWS_URL = `${MANAGER_URL}/news`;
 const CUSTOMERS_URL = `${MANAGER_URL}/customers`;
 const EXPERIENCE_REGISTER_URL = `${MANAGER_URL}/experience-register`;
+const TEST_REGISTER_URL = `${MANAGER_URL}/test-register`;
 
 // Config
 const CONFIG_URL = "/config";
@@ -19,14 +20,15 @@ const breadcrumbNameMap: Record<string, string> = {
 };
 
 export {
+  CONFIG_URL,
   CUSTOMERS_URL,
   EXPERIENCE_REGISTER_URL,
-  MANAGER_URL,
-  CONFIG_URL,
   HOME_URL,
   LOGIN_URL,
+  MANAGER_URL,
   NEWS_URL,
   PAGE_URL,
   SLIDES_URL,
+  TEST_REGISTER_URL,
   breadcrumbNameMap,
 };

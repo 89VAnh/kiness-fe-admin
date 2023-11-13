@@ -2,6 +2,7 @@ import { ProColumns, ProTable } from "@ant-design/pro-components";
 import { Input, Space, Tag, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import { useSearchCustomers } from "@/loader/customers.loader";
@@ -16,11 +17,20 @@ import CustomerModal from "./CustomerModal";
 export default function CustomerTable(): JSX.Element {
   const { t } = useTranslation("translation", { keyPrefix: "customer" });
   const userProfile = useRecoilValue(UserState);
-  const [searchContent, setSearchContent] = useState<string>();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchContent, setSearchContent] = useState<string>(
+    searchParams.get("k") || "",
+  );
+  const [page, setPage] = useState<number | string>(
+    searchParams.get("page") || 1,
+  );
+  const [pageSize, setPageSize] = useState<number | string>(
+    searchParams.get("page_size") || 10,
+  );
   const customers = useSearchCustomers({
     params: {
-      pageIndex: 1,
-      pageSize: 10,
+      pageIndex: page,
+      pageSize: pageSize,
       search_content: searchContent,
       user_id: userProfile.user_id,
     },
@@ -32,7 +42,10 @@ export default function CustomerTable(): JSX.Element {
   }, [customers.remove]);
 
   const handleSearch = (value: string) => {
-    // const content = _.join(_.values(params), " ").trim();
+    searchParams.delete("page");
+    searchParams.set("k", value);
+    setSearchParams(searchParams);
+    setPage(1);
 
     setSearchContent(value);
   };
@@ -144,15 +157,23 @@ export default function CustomerTable(): JSX.Element {
       // rowSelection={rowSelection}
       loading={customers.isLoading}
       pagination={{
-        pageSize: 10,
+        pageSize: Number(searchParams.get("page_size")) || 10,
+        current: Number(searchParams.get("page")) || 1,
+        onChange(page, pageSize) {
+          searchParams.set("page", page + "");
+          searchParams.set("page_size", pageSize + "");
+          setPage(page);
+          setPageSize(pageSize);
+          setSearchParams(searchParams);
+        },
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total}`;
+        },
+        total: customers.data?.totalItems || 0,
       }}
       columns={columns}
       dataSource={customers.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      // search={{
-      //   resetText: "Reset",
-      //   labelWidth: "auto",
-      // }}
       search={false}
       toolbar={{
         settings: [],
@@ -164,14 +185,6 @@ export default function CustomerTable(): JSX.Element {
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,
-        // <CustomerModal />,
-        // selectedRowKeys?.length ? (
-        //   <Button onClick={() => handleDeleteMulti(selectedRowKeys)} danger>
-        //     {t("title_delete_multi")}
-        //   </Button>
-        // ) : (
-        //   <></>
-        // ),
       ]}
       rowKey={"customer_id"}
     />
