@@ -38,7 +38,7 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_success"));
-          close();
+          handleCancel();
           queryClient.invalidateQueries([CACHE_PAGES.PAGES]);
         } else message.error(data.message);
       },
@@ -53,7 +53,7 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_success"));
-          close();
+          handleCancel();
           queryClient.invalidateQueries([CACHE_PAGES.PAGES]);
         } else message.error(data.message);
       },

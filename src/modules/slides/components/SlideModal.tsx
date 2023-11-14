@@ -17,11 +17,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
-import EditorCustom from "@/components/Editor/Editor";
-import {
-  handleDeleteImage,
-  uploadPlugin,
-} from "@/components/Editor/utils/upload-editor";
+import EditorBasic from "@/components/Editor/EditorBasic";
+import { handleDeleteImage } from "@/components/Editor/utils/upload-editor";
 import { queryClient } from "@/lib/react-query";
 import {
   CACHE_SLIDES,
@@ -55,7 +52,7 @@ export default function SlideModal({
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_success"));
-          close();
+          handleCancel();
           queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
         } else message.error(data.message);
       },
@@ -70,7 +67,7 @@ export default function SlideModal({
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_success"));
-          close();
+          handleCancel();
           queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
         } else message.error(data.message);
       },
@@ -94,7 +91,7 @@ export default function SlideModal({
               thumbUrl: "/api/" + data.image,
             },
           ]);
-          setDataEditor(data?.slide_caption);
+          setDataEditor(data?.slide_caption || "");
         }
       },
     },
@@ -104,10 +101,13 @@ export default function SlideModal({
     form
       .validateFields()
       .then(async (values) => {
-        const data = await uploadFile({ file });
+        let dataFile;
+        if (file) dataFile = await uploadFile({ file });
         const dataPost = {
           ...values,
-          image: data.path,
+          image: dataFile
+            ? dataFile.path
+            : values.image?.[0]?.thumbUrl?.replace("/api/", ""),
           slide_caption: dataEditor,
         };
         if (isCreate) {
@@ -118,7 +118,10 @@ export default function SlideModal({
           updatePage.mutate(dataPost);
         }
       })
-      .catch(() => message.warning(t("messages.validate_form")));
+      .catch((err) => {
+        console.log(err);
+        message.warning(t("messages.validate_form"));
+      });
   };
 
   const handleCancel = () => {
@@ -144,6 +147,12 @@ export default function SlideModal({
           thumbUrl: URL.createObjectURL(file),
         },
       ]);
+    },
+    onRemove() {
+      form.setFieldValue("image", []);
+      setFile(null);
+
+      return false;
     },
   };
 
@@ -219,11 +228,7 @@ export default function SlideModal({
                   label={t("slide.fields.caption")}
                 >
                   <CKEditor
-                    config={{
-                      // @ts-ignore
-                      extraPlugins: [uploadPlugin],
-                    }}
-                    editor={EditorCustom}
+                    editor={EditorBasic}
                     onReady={() => {
                       // You can store the "editor" and use when it is needed.
                     }}
@@ -232,7 +237,7 @@ export default function SlideModal({
                       setDataEditor(data);
                       handleDeleteImage(event);
                     }}
-                    data={dataEditor}
+                    data={dataEditor || ""}
                   />
                 </Form.Item>
               </Col>

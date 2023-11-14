@@ -27,15 +27,18 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3465,
+    port: 7845,
     open: true,
-    proxy: {
-      "/api": {
-        // target: "http://localhost:4010",
-        target: "http://kiness.aiacademy.edu.vn",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+    // proxy: {
+    //   "/api": {
+    //     // target: "http://localhost:4010",
+    //     target: "http://kiness.aiacademy.edu.vn",
+    //     changeOrigin: true,
+    //     secure: false,
+    //   },
+    //   // "/api": {
+    //   //   target: "http://localhost:4010",
+    //   // },
+    // },
   },
 });

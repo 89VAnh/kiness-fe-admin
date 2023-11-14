@@ -3,9 +3,11 @@ version: "3.7"
 services:
   app:
     build: ./
-    restart: unless-stopped
+    restart: always
     env_file: ./.env
+    container_name: kiness_admin
+    image: kiness_admin
     ports:
-      - "80:80"
+      - "7840:80"
     environment:
       - VITE_BASE_URL=$VITE_BASE_URL

@@ -78,7 +78,7 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_success"));
-          close();
+          handleCancel();
           queryClient.invalidateQueries([CACHE_NEWS.NEWS]);
         } else message.error(data.message);
       },
@@ -93,7 +93,7 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_success"));
-          close();
+          handleCancel();
           queryClient.invalidateQueries([CACHE_NEWS.NEWS]);
         } else message.error(data.message);
       },
@@ -107,13 +107,16 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
     form
       .validateFields()
       .then(async (values) => {
-        const data = await uploadFile({ file });
+        let dataFile;
+        if (file) dataFile = await uploadFile({ file });
 
         const dataPost: INews = {
           news_id: values.news_id,
           news_title: values.news_title,
           content_html: dataEditor,
-          thumbnail: data.path,
+          thumbnail: dataFile
+            ? dataFile.path
+            : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
           content: values.content,
           views: values.views,
         };
@@ -131,6 +134,7 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
 
   const handleCancel = () => {
     form.resetFields();
+    setFile(null);
     close();
   };
 
@@ -145,6 +149,12 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
     },
     onChange({ fileList }: any) {
       setFileList(fileList);
+    },
+    onRemove() {
+      form.setFieldValue("image", []);
+      setFile(null);
+
+      return false;
     },
   };
 
