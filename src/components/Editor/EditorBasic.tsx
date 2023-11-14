@@ -65,6 +65,9 @@ class EditorBasic extends ClassicEditor {
         "blockQuote",
       ],
     },
+    fontSize: {
+      options: [9, 11, 13, "default", 17, 19, 21, 24, 32],
+    },
     language: "vi",
   };
 }

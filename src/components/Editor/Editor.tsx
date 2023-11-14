@@ -97,6 +97,9 @@ class EditorCustom extends ClassicEditor {
       ],
     },
     language: "vi",
+    fontSize: {
+      options: [9, 11, 13, "default", 17, 19, 21, 24, 32],
+    },
     image: {
       toolbar: [
         "imageTextAlternative",
