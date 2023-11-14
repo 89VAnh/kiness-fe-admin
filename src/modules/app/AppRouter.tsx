@@ -10,6 +10,7 @@ import { TFunction } from "i18next";
 import { Link } from "react-router-dom";
 
 import {
+  BRANCH_REGISTER_URL,
   CONFIG_URL,
   CUSTOMERS_URL,
   EXPERIENCE_REGISTER_URL,
@@ -54,6 +55,11 @@ export const routes = (t: TFunction) => [
       {
         path: TEST_REGISTER_URL,
         name: <Link to={TEST_REGISTER_URL}>{t("nav.test_register")}</Link>,
+        icon: <FileSearchOutlined />,
+      },
+      {
+        path: BRANCH_REGISTER_URL,
+        name: <Link to={BRANCH_REGISTER_URL}>{t("nav.branch_register")}</Link>,
         icon: <FileSearchOutlined />,
       },
     ],

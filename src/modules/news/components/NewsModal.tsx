@@ -64,6 +64,10 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
               thumbUrl: "/api/" + data.thumbnail,
             },
           ]);
+
+          console.log(data);
+
+          setDataEditor(data?.content_html);
         }
       },
     },

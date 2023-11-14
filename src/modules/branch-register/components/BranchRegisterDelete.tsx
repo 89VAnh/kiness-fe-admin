@@ -5,9 +5,9 @@ import { useQueryClient } from "react-query";
 import { useRecoilValue } from "recoil";
 
 import {
-  CACHE_TEST_REGISTER,
-  useDeleteTestRegister,
-} from "@/loader/testRegister.loader";
+  CACHE_BRANCH_REGISTER,
+  useDeleteBranchRegister,
+} from "@/loader/branchRegister.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
@@ -15,15 +15,15 @@ interface Props {
   id: number;
 }
 
-export default function TestRegisterDelete({ id }: Props): JSX.Element {
+export default function BranchRegisterDelete({ id }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "test_register",
+    keyPrefix: "branch_register",
   });
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
   const queryClient = useQueryClient();
 
-  const deleteTestRegister = useDeleteTestRegister({
+  const deleteBranchRegister = useDeleteBranchRegister({
     config: {
       onSuccess: (data: any) => {
         console.log(data.results);
@@ -38,7 +38,7 @@ export default function TestRegisterDelete({ id }: Props): JSX.Element {
           });
         }
 
-        queryClient.invalidateQueries([CACHE_TEST_REGISTER.TEST_REGISTER]);
+        queryClient.invalidateQueries([CACHE_BRANCH_REGISTER.BRANCH_REGISTER]);
         close();
       },
       onError: (err) => {
@@ -69,7 +69,7 @@ export default function TestRegisterDelete({ id }: Props): JSX.Element {
         open={isOpen}
         onCancel={close}
         onOk={() => {
-          deleteTestRegister.mutate({
+          deleteBranchRegister.mutate({
             list_json: [{ register_id: id }],
             updated_by_id: userProfile.user_id,
           });

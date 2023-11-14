@@ -9,6 +9,7 @@ const NEWS_URL = `${MANAGER_URL}/news`;
 const CUSTOMERS_URL = `${MANAGER_URL}/customers`;
 const EXPERIENCE_REGISTER_URL = `${MANAGER_URL}/experience-register`;
 const TEST_REGISTER_URL = `${MANAGER_URL}/test-register`;
+const BRANCH_REGISTER_URL = `${MANAGER_URL}/branch-register`;
 
 // Config
 const CONFIG_URL = "/config";
@@ -20,6 +21,7 @@ const breadcrumbNameMap: Record<string, string> = {
 };
 
 export {
+  BRANCH_REGISTER_URL,
   CONFIG_URL,
   CUSTOMERS_URL,
   EXPERIENCE_REGISTER_URL,

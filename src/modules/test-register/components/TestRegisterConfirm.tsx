@@ -4,9 +4,9 @@ import { useQueryClient } from "react-query";
 import { useRecoilValue } from "recoil";
 
 import {
-  CACHE_EXPERIENCE_REGISTER,
-  useUpdateExperienceRegisterStatus,
-} from "@/loader/experienceRegister.loader";
+  CACHE_TEST_REGISTER,
+  useUpdateTestRegisterStatus,
+} from "@/loader/testRegister.loader";
 import { UserState } from "@/store/auth/atom";
 
 interface Props {
@@ -14,24 +14,22 @@ interface Props {
   status: number;
 }
 
-export default function ExperienceRegisterConfirm({
+export default function TestRegisterConfirm({
   id,
   status,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "experience_register",
+    keyPrefix: "test_register",
   });
   const userProfile = useRecoilValue(UserState);
   const queryClient = useQueryClient();
 
-  const updateExperienceRegisterStatus = useUpdateExperienceRegisterStatus({
+  const updateTestRegisterStatus = useUpdateTestRegisterStatus({
     config: {
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_status_success"));
-          queryClient.invalidateQueries([
-            CACHE_EXPERIENCE_REGISTER.EXPERIENCE_REGISTER,
-          ]);
+          queryClient.invalidateQueries([CACHE_TEST_REGISTER.TEST_REGISTER]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -41,7 +39,8 @@ export default function ExperienceRegisterConfirm({
   });
 
   const handleUpdateStatus = (status: number) => {
-    updateExperienceRegisterStatus.mutate({
+    console.log(id);
+    updateTestRegisterStatus.mutate({
       register_id: id,
       status: status,
       lu_user_id: userProfile.user_id,
