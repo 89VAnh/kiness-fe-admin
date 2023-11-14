@@ -5,11 +5,12 @@ FROM node:18-alpine as build-stage
 WORKDIR /app
  
 # Copy package.json and package-lock.json to the working directory
-COPY package.json pnpm-lock.yaml yarn.lock ./
+COPY package.json pnpm-lock.yaml ./
  
 # Install dependencies
 RUN npm i -g pnpm
-RUN	pnpm i --lockfile-only
+RUN	pnpm i --frozen-lockfile
+# RUN	pnpm i --lockfile-only
  
 # Copy the rest of the application code to the working directory
 COPY . .

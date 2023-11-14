@@ -5,14 +5,16 @@ import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
 import { CACHE_NEWS, useDeleteNews } from "@/loader/news.loader";
+import { deleteFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
 interface Props {
   id: number;
+  thumbnail: string;
 }
 
-export default function NewsDelete({ id }: Props): JSX.Element {
+export default function NewsDelete({ id, thumbnail }: Props): JSX.Element {
   const { t } = useTranslation("translation", { keyPrefix: "news" });
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
@@ -34,6 +36,7 @@ export default function NewsDelete({ id }: Props): JSX.Element {
           });
         }
         queryClient.invalidateQueries([CACHE_NEWS.NEWS]);
+        deleteFile({ filePath: thumbnail });
         close();
       },
       onError: (err) => {

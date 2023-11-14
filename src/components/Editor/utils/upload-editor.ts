@@ -42,7 +42,7 @@ function uploadAdapter(loader: FileLoader): UploadAdapter {
           const file = await loader.file;
           const response = await uploadFile({ file });
           resolve({
-            default: `/api/${response.data.path}`,
+            default: `/api/${response?.path}`,
           });
         } catch (error) {
           reject("Hello");

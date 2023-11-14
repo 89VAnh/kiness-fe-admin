@@ -103,7 +103,7 @@ export default function NewsTable(): JSX.Element {
         return (
           <Space>
             <NewsModal id={record?.news_id} isCreate={false} />
-            <NewsDelete id={record?.news_id} />
+            <NewsDelete id={record?.news_id} thumbnail={record?.thumbnail} />
           </Space>
         );
       },
