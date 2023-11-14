@@ -26,16 +26,19 @@ export default defineConfig({
       localsConvention: "camelCase",
     },
   },
-  server: {
-    port: 3465,
-    open: true,
-    proxy: {
-      "/api": {
-        // target: "http://localhost:4010",
-        target: "http://kiness.aiacademy.edu.vn",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
+  // server: {
+  //   port: 7840,
+  //   open: true,
+  //   // proxy: {
+  //   //   "/api": {
+  //   //     // target: "http://localhost:4010",
+  //   //     target: "http://kiness.aiacademy.edu.vn",
+  //   //     changeOrigin: true,
+  //   //     secure: false,
+  //   //   },
+  //   //   // "/api": {
+  //   //   //   target: "http://localhost:4010",
+  //   //   // },
+  //   // },
+  // },
 });
