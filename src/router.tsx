@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import AppLayout from "./modules/app/AppLayout";
 import { LoginPage } from "./modules/auth";
+import { BranchRegisterPage } from "./modules/branch-register";
 import { CustomerPage } from "./modules/customer";
 import { DashboardPage } from "./modules/dashboard";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
@@ -12,6 +13,7 @@ import { SlideManagePage } from "./modules/slides";
 import { TestRegisterPage } from "./modules/test-register";
 import "./urls";
 import {
+  BRANCH_REGISTER_URL,
   CUSTOMERS_URL,
   EXPERIENCE_REGISTER_URL,
   HOME_URL,
@@ -51,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path: TEST_REGISTER_URL,
         element: <TestRegisterPage />,
+      },
+      {
+        path: BRANCH_REGISTER_URL,
+        element: <BranchRegisterPage />,
       },
       {
         path: PAGE_URL,

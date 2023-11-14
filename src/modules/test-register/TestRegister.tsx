@@ -1,5 +1,5 @@
-import ExperienceRegisterTable from "./components/TestRegisterTable";
+import TestRegisterTable from "./components/TestRegisterTable";
 
 export default function ExperienceRegister(): JSX.Element {
-  return <ExperienceRegisterTable />;
+  return <TestRegisterTable />;
 }
