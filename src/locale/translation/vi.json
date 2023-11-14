@@ -1,0 +1,198 @@
+{
+  "error": {
+    "404.title": "Không tìm thấy trang",
+    "404.subTitle": "Xin lỗi, trang bạn đang tìm kiếm không tồn tại.",
+    "403.title": "Không có quyền truy cập",
+    "403.subTitle": "Xin lỗi, bạn không có quyền truy cập trang này.",
+    "500.title": "Lỗi máy chủ",
+    "500.subTitle": "Xin lỗi, máy chủ đang gặp sự cố. Vui lòng thử lại sau.",
+    "backHome": "Quay lại trang chủ"
+  },
+  "all": {
+    "btn_cancel": "Hủy",
+    "btn_confirm": "Xác nhận",
+    "btn_register": "Đăng ký",
+    "btn_add": "Thêm mới",
+    "btn_save": "Lưu",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa"
+  },
+  "messages": {
+    "login_success": "Đăng nhập thành công",
+    "login_failure": "Tài khoản hoặc mật khẩu không đúng!",
+    "update_success": "Cập nhật thành công",
+    "update_failure": "Cập nhật thất bại! Vui lòng thử lại",
+    "validate_form": "Bạn cần điền đầy đủ thông tin",
+    "update_status_success": "Cập nhật trạng thái thành công"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "manager": "Quản lý",
+    "config": "Cấu hình website",
+    "dashboard": "Dashboard",
+    "news": "Quản lý tin tức",
+    "customer": "Quản lý khách hàng",
+    "experience_register": "Quản lý đăng ký trải nghiệm",
+    "test_register": "Quản lý đăng ký kiểm tra",
+    "page": "Quản lý nội dung",
+    "slides": "Quản lý slides"
+  },
+  "customer": {
+    "title": "Quản lý khách hàng",
+    "title_create": "Thêm mới khách hàng",
+    "title_update": "Cập nhật khách hàng",
+    "search_placeholder": "Nhập tên, email, số điện thoại...",
+    "title_delete": "Xóa khách hàng",
+    "title_delete_multi": "Xóa những khách hàng được chọn",
+    "message_delete_success": "Xóa khách hàng thành công!",
+    "fields": {
+      "serial": "STT",
+      "id": "Tài khoản",
+      "name": "Họ và tên",
+      "gender": "Giới tính",
+      "birthday": "Ngày sinh",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "city": "Thành phố",
+      "branch": "Chi nhánh",
+      "verify": "Chưa xác thực",
+      "actions": "Tác vụ",
+      "address": "Địa chỉ"
+    }
+  },
+  "news": {
+    "title": "Quản lý tin tức",
+    "title_create": "Thêm mới tin",
+    "title_update": "Cập nhật tin",
+    "title_delete": "Xóa tin",
+    "search_placeholder": "Nhập tiêu đề tin",
+    "fields": {
+      "serial": "STT",
+      "id": "Tin",
+      "thumbnail": "Ảnh",
+      "title": "Tiêu đề",
+      "content": "Nội dung",
+      "content_html": "Nội dung tin tức",
+      "views": "Lượt xem",
+      "created_date_time": "Ngày tạo",
+      "created_user": "Người tạo",
+      "actions": "Tác vụ"
+    }
+  },
+  "page": {
+    "title": "Quản lý nội dung trang",
+    "title_create": "Thêm mới nội dung trang",
+    "title_update": "Cập nhật nội dung trang",
+    "search_placeholder": "Nhập tiêu đề, nội dung, url...",
+    "title_delete": "Xóa nội dung trang",
+    "fields": {
+      "serial": "STT",
+      "code": "Đường dẫn",
+      "title": "Tiêu đề",
+      "content": "Nội dung",
+      "actions": "Tác vụ"
+    }
+  },
+  "slide": {
+    "title": "Quản lý slides",
+    "title_create": "Thêm mới slide",
+    "title_update": "Cập nhật slide",
+    "search_placeholder": "Nhập nội dung...",
+    "title_delete": "Xóa slide",
+    "fields": {
+      "serial": "STT",
+      "image": "Ảnh",
+      "order": "Sắp xếp",
+      "caption": "Nội dung",
+      "actions": "Tác vụ"
+    }
+  },
+  "experience_register": {
+    "title": "Quản lý đăng ký trải nghiệm",
+    "title_create": "Thêm mới đơn đăng ký",
+    "search_placeholder": "Nhập tên chi nhánh, tên người đăng ký, số điện thoại...",
+    "title_update": "Cập nhật đơn đăng ký",
+    "title_delete": "Xóa đơn đăng ký",
+    "fields": {
+      "serial": "STT",
+      "id": "Mã đơn",
+      "branch_name": "Tên chi nhánh",
+      "fullname": "Tên người đăng ký",
+      "gender": "Giới tính",
+      "level": "Cấp",
+      "date": "Ngày đăng ký",
+      "phone": "Số điện thoại",
+      "address": "Địa chỉ",
+      "detail": "Chi tiết",
+      "status": "Trạng thái",
+      "created_date_time": "Ngày tạo",
+      "created_user": "Người tạo",
+      "actions": "Tác vụ"
+    },
+    "status": {
+      "0": {
+        "label": "Chưa chấp nhận",
+        "color": "red"
+      },
+      "1": {
+        "label": "Đã chấp nhận",
+        "color": "green"
+      },
+      "-1": {
+        "label": "Đã hủy",
+        "color": "red"
+      }
+    },
+    "btn": {
+      "btn_confirm": "Xác nhận đơn",
+      "btn_cancel_confirm": "Hủy xác nhận"
+    },
+    "messages": {
+      "update_status_success": "Thay đổi trạng thái thành công"
+    }
+  },
+  "test_register": {
+    "title": "Quản lý đăng ký kiểm tra",
+    "title_create": "Thêm mới đơn đăng ký",
+    "search_placeholder": "Nhập tên chi nhánh, tên người đăng ký, số điện thoại...",
+    "title_update": "Cập nhật đơn đăng ký",
+    "title_delete": "Xóa đơn đăng ký",
+    "fields": {
+      "serial": "STT",
+      "id": "Mã đơn",
+      "branch_name": "Tên chi nhánh",
+      "fullname": "Tên người đăng ký",
+      "gender": "Giới tính",
+      "level": "Cấp",
+      "date": "Ngày đăng ký",
+      "phone": "Số điện thoại",
+      "address": "Địa chỉ",
+      "detail": "Chi tiết",
+      "status": "Trạng thái",
+      "created_date_time": "Ngày tạo",
+      "created_user": "Người tạo",
+      "actions": "Tác vụ"
+    },
+    "status": {
+      "0": {
+        "label": "Chưa chấp nhận",
+        "color": "red"
+      },
+      "1": {
+        "label": "Đã chấp nhận",
+        "color": "green"
+      },
+      "-1": {
+        "label": "Đã hủy",
+        "color": "red"
+      }
+    },
+    "btn": {
+      "btn_confirm": "Xác nhận đơn",
+      "btn_cancel_confirm": "Hủy xác nhận"
+    },
+    "messages": {
+      "update_status_success": "Thay đổi trạng thái thành công"
+    }
+  }
+}

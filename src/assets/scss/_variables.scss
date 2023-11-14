@@ -1,0 +1,52 @@
+// $color-primary: #f53838;
+$color-primary: #2c53a5;
+$color-blue: #23469a;
+$color-sky: #2bb8e1;
+$color-pink: #fa7a7a;
+$color-amber: #f49c0c;
+$color-black: #0b132a;
+$color-coffee: #595959;
+$color-white: #fff;
+$color-green: #27a150;
+$color-gray: #f8f8f8;
+$color-darker-gray: #8c8c8c;
+$color-blue-primary: #159ac9;
+$color-green-title: #6fc191;
+
+@mixin back-button-primary {
+  content: "";
+  position: absolute;
+  border-radius: 10px;
+  background: rgba(78, 56, 245, 0.35);
+  filter: blur(27px);
+  width: 211.829px;
+  height: 60px;
+  flex-shrink: 0;
+  top: 50%;
+}
+
+@mixin responsive-content {
+  margin: 0;
+  @media only screen and (min-width: 668px) {
+    padding: 0;
+    margin: 0 100px;
+  }
+  @media only screen and (min-width: 1540px) {
+    padding: 0;
+    margin: 0 300px;
+  }
+}
+
+@mixin perfect-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin perfect-flex-center($direction: "row") {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
