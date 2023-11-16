@@ -32,6 +32,7 @@ import {
 import { INews } from "@/models/news";
 import { uploadFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
+import { handleHtmlToString } from "@/utils/format-string";
 import { useDisclosure } from "@/utils/modal";
 import { RULES_FORM } from "@/utils/validator";
 
@@ -64,8 +65,6 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
               thumbUrl: "/api/" + data.thumbnail,
             },
           ]);
-
-          console.log(data);
 
           setDataEditor(data?.content_html);
         }
@@ -117,7 +116,7 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
           thumbnail: dataFile
             ? dataFile.path
             : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
-          content: values.content,
+          content: handleHtmlToString(values.content_html),
           views: values.views,
         };
 
