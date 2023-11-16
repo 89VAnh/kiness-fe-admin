@@ -92,14 +92,14 @@ export default function CustomerTable(): JSX.Element {
       sorter: (a, b) => compareNumbers(a, b, "gender"),
       width: 100,
       render: (value) => (
-        <Typography.Text>{value === 0 ? "Nam" : "Nữ"}</Typography.Text>
+        <Typography.Text>{value === 1 ? "Nam" : "Nữ"}</Typography.Text>
       ),
       search: false,
     },
     {
       title: t("fields.birthday"),
       dataIndex: "birthday",
-      width: 150,
+      width: 170,
       align: "center",
       valueType: "date",
       sorter: (a, b) => compareStrings(a, b, "birthday"),

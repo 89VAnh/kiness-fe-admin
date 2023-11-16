@@ -213,6 +213,7 @@
       "date": "Ngày đăng ký",
       "phone": "Số điện thoại",
       "address": "Địa chỉ",
+      "email": "Email",
       "detail": "Chi tiết",
       "status": "Trạng thái",
       "created_date_time": "Ngày tạo",

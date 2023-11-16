@@ -1,6 +1,15 @@
 import { FileExcelOutlined } from "@ant-design/icons";
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Button, DatePicker, Input, Space, Typography, message } from "antd";
+import {
+  Button,
+  DatePicker,
+  Input,
+  Select,
+  Space,
+  Tag,
+  Typography,
+  message,
+} from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
@@ -40,6 +49,9 @@ export default function BranchRegisterTable(): JSX.Element {
   const [pageSize, setPageSize] = useState<number | string>(
     searchParams.get("page_size") || 10,
   );
+  const [status, setStatus] = useState<string | null>(
+    searchParams.get("status") || null,
+  );
 
   const branchRegister = useSearchBranchRegister({
     params: {
@@ -47,6 +59,7 @@ export default function BranchRegisterTable(): JSX.Element {
       pageSize: pageSize,
       search_content: searchContent,
       user_id: userProfile.user_id,
+      status,
       from_date: rangeDate[0] ? rangeDate[0] : null,
       to_date: rangeDate[1] ? rangeDate[1] : null,
     },
@@ -64,6 +77,13 @@ export default function BranchRegisterTable(): JSX.Element {
     setPage(1);
 
     setSearchContent(value);
+  };
+
+  const handleSearchStatus = (status: string) => {
+    if (status !== undefined) searchParams.set("status", status);
+    else searchParams.delete("status");
+
+    setStatus(status);
   };
 
   const columns = [
@@ -102,6 +122,23 @@ export default function BranchRegisterTable(): JSX.Element {
       width: 200,
     },
     {
+      title: t("fields.email"),
+      dataIndex: "email",
+      sorter: (a: any, b: any) => compareNumbers(a, b, "email"),
+      width: 200,
+    },
+    {
+      title: t("fields.status"),
+      dataIndex: "status",
+      sorter: (a: any, b: any) => compareNumbers(a, b, "status"),
+      width: 200,
+      render: (value: any) => (
+        <Tag color={t(`status.${value}.color`)}>
+          {t(`status.${value}.label`)}
+        </Tag>
+      ),
+    },
+    {
       title: t("fields.created_user"),
       dataIndex: "created_user",
       width: 150,
@@ -111,7 +148,7 @@ export default function BranchRegisterTable(): JSX.Element {
     {
       title: t("fields.created_date_time"),
       dataIndex: "created_date_time",
-      width: 150,
+      width: 170,
       align: "center",
       valueType: "created_date_time",
       sorter: (a: any, b: any) => compareStrings(a, b, "created_date_time"),
@@ -164,6 +201,7 @@ export default function BranchRegisterTable(): JSX.Element {
     print.mutate({
       search_content: searchContent,
       user_id: userProfile.user_id,
+      status,
       from_date: rangeDate[0] ? rangeDate[0] : null,
       to_date: rangeDate[1] ? rangeDate[1] : null,
     });
@@ -197,6 +235,16 @@ export default function BranchRegisterTable(): JSX.Element {
         settings: [],
       }}
       toolBarRender={(_) => [
+        <Select
+          placeholder={t("fields.status")}
+          onChange={handleSearchStatus}
+          options={[
+            { value: "0", label: "Chưa xác nhận" },
+            { value: "1", label: "Đã xác nhận" },
+          ]}
+          allowClear
+          value={status}
+        />,
         <RangePicker
           format={formatDateShow}
           style={{ width: 460 }}
