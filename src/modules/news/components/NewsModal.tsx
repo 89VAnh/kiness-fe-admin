@@ -91,7 +91,7 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
     config: {
       onSuccess: (data) => {
         if (data.results) {
-          message.success(t("messages.update_success"));
+          message.success(t("messages.create_success"));
           handleCancel();
           queryClient.invalidateQueries([CACHE_NEWS.NEWS]);
         } else message.error(data.message);

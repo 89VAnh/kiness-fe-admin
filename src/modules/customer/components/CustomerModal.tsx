@@ -145,7 +145,9 @@ export default function CustomerModal({
         </Tooltip>
       )}
       <Modal
-        title={t("customer.title_create")}
+        title={
+          isCreate ? t("customer.title_create") : t("customer.title_update")
+        }
         width={"90vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}

@@ -2,6 +2,7 @@ import {
   DashboardOutlined,
   DesktopOutlined,
   FileSearchOutlined,
+  HomeOutlined,
   SolutionOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
@@ -11,6 +12,8 @@ import { Link } from "react-router-dom";
 
 import {
   BRANCH_REGISTER_URL,
+  BRANCH_URL,
+  CITY_URL,
   CONFIG_URL,
   CUSTOMERS_URL,
   EXPERIENCE_REGISTER_URL,
@@ -60,6 +63,16 @@ export const routes = (t: TFunction) => [
       {
         path: BRANCH_REGISTER_URL,
         name: <Link to={BRANCH_REGISTER_URL}>{t("nav.branch_register")}</Link>,
+        icon: <FileSearchOutlined />,
+      },
+      {
+        path: BRANCH_URL,
+        name: <Link to={BRANCH_URL}>{t("nav.branch")}</Link>,
+        icon: <HomeOutlined />,
+      },
+      {
+        path: CITY_URL,
+        name: <Link to={CITY_URL}>{t("nav.city")}</Link>,
         icon: <FileSearchOutlined />,
       },
     ],

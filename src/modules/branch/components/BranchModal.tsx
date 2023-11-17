@@ -1,59 +1,60 @@
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
 import {
   Button,
   Col,
   Form,
   Input,
-  InputNumber,
   Modal,
   Row,
   Tooltip,
   Upload,
+  UploadFile,
   UploadProps,
   message,
 } from "antd";
+import { Select } from "antd/lib";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
-import EditorBasic from "@/components/Editor/EditorBasic";
-import { handleDeleteImage } from "@/components/Editor/utils/upload-editor";
 import { queryClient } from "@/lib/react-query";
 import {
-  CACHE_SLIDES,
-  useCreateSlide,
-  useGetSlideById,
-  useUpdateSlide,
-} from "@/loader/slides.loader";
+  CACHE_BRANCH,
+  useCreateBranch,
+  useGetBranchById,
+  useUpdateBranch,
+} from "@/loader/branch.loader";
+import { useCityDropdown } from "@/loader/city.loader";
 import { uploadFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 import { RULES_FORM } from "@/utils/validator";
 
 interface Props {
-  id?: string;
+  id?: number;
   isCreate?: boolean;
 }
 
-export default function SlideModal({
+export default function BranchModal({
   id,
   isCreate = true,
 }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
-  const [dataEditor, setDataEditor] = useState<string>("");
   const [file, setFile] = useState<File | null>();
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [form] = Form.useForm();
 
-  const updatePage = useUpdateSlide({
+  const { data: cityOptions, isLoading: isLoadingCity } = useCityDropdown({});
+
+  const updateBranch = useUpdateBranch({
     config: {
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
+          queryClient.invalidateQueries([CACHE_BRANCH.BRANCHES]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -62,13 +63,13 @@ export default function SlideModal({
     },
   });
 
-  const createPage = useCreateSlide({
+  const createBranch = useCreateBranch({
     config: {
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.create_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
+          queryClient.invalidateQueries([CACHE_BRANCH.BRANCHES]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -77,21 +78,13 @@ export default function SlideModal({
     },
   });
 
-  useGetSlideById({
+  useGetBranchById({
     id: id!,
     enabled: isOpen && !isCreate,
     config: {
       onSuccess(data) {
         if (!data?.message) {
           form.setFieldsValue(data);
-          form.setFieldValue("image", [
-            {
-              name: "",
-              uid: "1",
-              thumbUrl: "/api/" + data.image,
-            },
-          ]);
-          setDataEditor(data?.slide_caption || "");
         }
       },
     },
@@ -103,19 +96,19 @@ export default function SlideModal({
       .then(async (values) => {
         let dataFile;
         if (file) dataFile = await uploadFile({ file });
+
         const dataPost = {
           ...values,
-          image: dataFile
+          thumbnail: dataFile
             ? dataFile.path
-            : values.image?.[0]?.thumbUrl?.replace("/api/", ""),
-          slide_caption: dataEditor,
+            : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
         };
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
-          createPage.mutate(dataPost);
+          createBranch.mutate(dataPost);
         } else {
           dataPost.lu_user_id = userProfile.user_id;
-          updatePage.mutate(dataPost);
+          updateBranch.mutate(dataPost);
         }
       })
       .catch((err) => {
@@ -126,8 +119,6 @@ export default function SlideModal({
 
   const handleCancel = () => {
     form.resetFields();
-    setFile(null);
-    setDataEditor("");
     close();
   };
 
@@ -135,18 +126,13 @@ export default function SlideModal({
     maxCount: 1,
     accept: "image/*",
     listType: "picture-card",
+    fileList,
     beforeUpload(file) {
       setFile(file);
       return false;
     },
-    onChange({ file }: any) {
-      form.setFieldValue("image", [
-        {
-          name: "",
-          uid: "1",
-          thumbUrl: URL.createObjectURL(file),
-        },
-      ]);
+    onChange({ fileList }: any) {
+      setFileList(fileList);
     },
     onRemove() {
       form.setFieldValue("image", []);
@@ -175,12 +161,12 @@ export default function SlideModal({
         </Tooltip>
       )}
       <Modal
-        title={isCreate ? t("slide.title_create") : t("slide.title_update")}
+        title={isCreate ? t("branch.title_create") : t("branch.title_update")}
         style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
-        confirmLoading={updatePage.isLoading || createPage.isLoading}
+        confirmLoading={updateBranch.isLoading || createBranch.isLoading}
       >
         <div
           style={{
@@ -191,15 +177,23 @@ export default function SlideModal({
         >
           <Form form={form} layout="vertical">
             <Row gutter={32}>
-              <Form.Item name={"slide_id"} hidden>
+              <Form.Item name={"branch_id"} hidden>
                 <Input />
               </Form.Item>
               <Col span={12}>
                 <Form.Item
-                  name={"image"}
-                  label={t("slide.fields.image")}
+                  name={"branch_name"}
+                  label={t("branch.fields.branch_name")}
                   rules={[...RULES_FORM.required]}
-                  valuePropName="fileList"
+                >
+                  <Input placeholder={t("branch.fields.branch_name")} />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name={"news_thumbnail"}
+                  label={t("news.fields.thumbnail")}
+                  rules={[...RULES_FORM.required]}
                 >
                   <Upload {...uploadProps}>
                     <div>
@@ -211,34 +205,34 @@ export default function SlideModal({
               </Col>
               <Col span={12}>
                 <Form.Item
-                  name={"order"}
-                  label={t("slide.fields.order") + " (Giảm dần)"}
-                  rules={[...RULES_FORM.required]}
-                  initialValue={0}
+                  name={"phone"}
+                  label={t("branch.fields.phone")}
+                  rules={[...RULES_FORM.required, ...RULES_FORM.phone]}
                 >
-                  <InputNumber
-                    style={{ width: "100%" }}
-                    placeholder={t("slide.fields.order")}
+                  <Input placeholder={t("branch.fields.phone")} />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name={"city_id"}
+                  label={t("branch.fields.city")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Select
+                    loading={isLoadingCity}
+                    placeholder="Chọn tỉnh, thành phố"
+                    options={cityOptions || []}
+                    style={{ width: "40%" }}
                   />
                 </Form.Item>
               </Col>
-              <Col span={24}>
+              <Col span={12}>
                 <Form.Item
-                  name={"slide_caption"}
-                  label={t("slide.fields.caption")}
+                  name={"address"}
+                  label={t("branch.fields.address")}
+                  rules={[...RULES_FORM.required]}
                 >
-                  <CKEditor
-                    editor={EditorBasic}
-                    onReady={() => {
-                      // You can store the "editor" and use when it is needed.
-                    }}
-                    onChange={(event, editor) => {
-                      const data = editor.getData();
-                      setDataEditor(data);
-                      handleDeleteImage(event);
-                    }}
-                    data={dataEditor || ""}
-                  />
+                  <Input placeholder={t("branch.fields.address")} />
                 </Form.Item>
               </Col>
             </Row>

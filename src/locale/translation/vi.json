@@ -36,7 +36,9 @@
     "test_register": "Quản lý đăng ký kiểm tra",
     "branch_register": "Quản lý đăng ký trung tâm",
     "page": "Quản lý nội dung",
-    "slides": "Quản lý slides"
+    "slides": "Quản lý slides",
+    "branch": "Quản lý chi nhánh",
+    "city": "Quản lý thành phố"
   },
   "customer": {
     "title": "Quản lý khách hàng",
@@ -240,6 +242,66 @@
     },
     "messages": {
       "update_status_success": "Thay đổi trạng thái thành công"
+    }
+  },
+  "branch": {
+    "title": "Quản lý chi nhánh",
+    "title_create": "Thêm mới chi nhánh",
+    "search_placeholder": "Nhập tên chi nhánh, số điện thoại...",
+    "title_update": "Cập nhật chi nhánh",
+    "title_delete": "Xóa chi nhánh",
+    "fields": {
+      "serial": "STT",
+      "id": "Mã chi nhánh",
+      "branch_name": "Tên chi nhánh",
+      "thumbnail": "Ảnh",
+      "city_name": "Tên thành phố",
+      "fullname": "Tên người đăng ký",
+      "gender": "Giới tính",
+      "level": "Cấp",
+      "date": "Ngày đăng ký",
+      "phone": "Số điện thoại",
+      "address": "Địa chỉ",
+      "email": "Email",
+      "detail": "Chi tiết",
+      "status": "Trạng thái",
+      "created_date_time": "Ngày tạo",
+      "created_user": "Người tạo",
+      "actions": "Tác vụ"
+    },
+    "status": {
+      "0": {
+        "label": "Chưa chấp nhận",
+        "color": "red"
+      },
+      "1": {
+        "label": "Đã chấp nhận",
+        "color": "green"
+      },
+      "-1": {
+        "label": "Đã hủy",
+        "color": "red"
+      }
+    },
+    "btn": {
+      "btn_confirm": "Xác nhận đơn",
+      "btn_cancel_confirm": "Hủy xác nhận"
+    },
+    "messages": {
+      "update_status_success": "Thay đổi trạng thái thành công"
+    }
+  },
+  "city": {
+    "title": "Quản lý nội dung trang",
+    "title_create": "Thêm mới nội dung trang",
+    "title_update": "Cập nhật nội dung trang",
+    "search_placeholder": "Nhập tiêu đề, nội dung, url...",
+    "title_delete": "Xóa nội dung trang",
+    "fields": {
+      "serial": "STT",
+      "city_name": "Tên thành phố",
+      "code": "Code",
+      "actions": "Tác vụ"
     }
   }
 }
