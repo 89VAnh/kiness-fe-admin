@@ -27,15 +27,17 @@
   },
   "nav": {
     "home": "Trang chủ",
-    "manager": "Quản lý",
+    "manager": "Quản lý nội dung",
     "config": "Cấu hình website",
+    "admin": "Quản trị hệ thống",
     "dashboard": "Dashboard",
     "news": "Quản lý tin tức",
     "customer": "Quản lý khách hàng",
+    "employee": "Quản lý nhân viên",
     "experience_register": "Quản lý đăng ký trải nghiệm",
     "test_register": "Quản lý đăng ký kiểm tra",
     "branch_register": "Quản lý đăng ký trung tâm",
-    "page": "Quản lý nội dung",
+    "page": "Quản lý các trang",
     "slides": "Quản lý slides",
     "branch": "Quản lý chi nhánh",
     "city": "Quản lý thành phố"
@@ -54,6 +56,30 @@
       "name": "Họ và tên",
       "gender": "Giới tính",
       "birthday": "Ngày sinh",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "city": "Thành phố",
+      "branch": "Chi nhánh",
+      "verify": "Chưa xác thực",
+      "actions": "Tác vụ",
+      "address": "Địa chỉ"
+    }
+  },
+  "employee": {
+    "title": "Quản lý nhân viên",
+    "title_create": "Thêm mới nhân viên",
+    "title_update": "Cập nhật nhân viên",
+    "search_placeholder": "Nhập tên, email, số điện thoại...",
+    "title_delete": "Xóa nhân viên",
+    "title_delete_multi": "Xóa những nhân viên được chọn",
+    "message_delete_success": "Xóa nhân viên thành công!",
+    "fields": {
+      "serial": "STT",
+      "id": "Tài khoản",
+      "name": "Họ và tên",
+      "gender": "Giới tính",
+      "birthday": "Ngày sinh",
+      "position": "Vị trí",
       "phone": "Số điện thoại",
       "email": "Email",
       "city": "Thành phố",
@@ -83,7 +109,7 @@
     }
   },
   "page": {
-    "title": "Quản lý nội dung trang",
+    "title": "Quản lý các trang",
     "title_create": "Thêm mới nội dung trang",
     "title_update": "Cập nhật nội dung trang",
     "search_placeholder": "Nhập tiêu đề, nội dung, url...",
@@ -242,66 +268,6 @@
     },
     "messages": {
       "update_status_success": "Thay đổi trạng thái thành công"
-    }
-  },
-  "branch": {
-    "title": "Quản lý chi nhánh",
-    "title_create": "Thêm mới chi nhánh",
-    "search_placeholder": "Nhập tên chi nhánh, số điện thoại...",
-    "title_update": "Cập nhật chi nhánh",
-    "title_delete": "Xóa chi nhánh",
-    "fields": {
-      "serial": "STT",
-      "id": "Mã chi nhánh",
-      "branch_name": "Tên chi nhánh",
-      "thumbnail": "Ảnh",
-      "city_name": "Tên thành phố",
-      "fullname": "Tên người đăng ký",
-      "gender": "Giới tính",
-      "level": "Cấp",
-      "date": "Ngày đăng ký",
-      "phone": "Số điện thoại",
-      "address": "Địa chỉ",
-      "email": "Email",
-      "detail": "Chi tiết",
-      "status": "Trạng thái",
-      "created_date_time": "Ngày tạo",
-      "created_user": "Người tạo",
-      "actions": "Tác vụ"
-    },
-    "status": {
-      "0": {
-        "label": "Chưa chấp nhận",
-        "color": "red"
-      },
-      "1": {
-        "label": "Đã chấp nhận",
-        "color": "green"
-      },
-      "-1": {
-        "label": "Đã hủy",
-        "color": "red"
-      }
-    },
-    "btn": {
-      "btn_confirm": "Xác nhận đơn",
-      "btn_cancel_confirm": "Hủy xác nhận"
-    },
-    "messages": {
-      "update_status_success": "Thay đổi trạng thái thành công"
-    }
-  },
-  "city": {
-    "title": "Quản lý nội dung trang",
-    "title_create": "Thêm mới nội dung trang",
-    "title_update": "Cập nhật nội dung trang",
-    "search_placeholder": "Nhập tiêu đề, nội dung, url...",
-    "title_delete": "Xóa nội dung trang",
-    "fields": {
-      "serial": "STT",
-      "city_name": "Tên thành phố",
-      "code": "Code",
-      "actions": "Tác vụ"
     }
   }
 }
