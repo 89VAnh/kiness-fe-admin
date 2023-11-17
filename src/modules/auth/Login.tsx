@@ -10,9 +10,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import logo from "@/assets/img/logo/logo-bigsize.png";
+import logo from "@/assets/img/logo/logo.png";
 import { LOCAL_USER } from "@/constant/config";
 import { useLogin } from "@/loader/user.loader";
+import { LOGIN_URL } from "@/urls";
 import storage, { storageService } from "@/utils/storage";
 import { RULES_FORM } from "@/utils/validator";
 
@@ -32,7 +33,7 @@ const Page = () => {
           notification.error({
             message: data.response?.data?.message || t("login_failure"),
           });
-          return navigate("/login");
+          return navigate(LOGIN_URL);
         } else {
           storage.setToken(data.token);
           storageService.setStorage(LOCAL_USER, JSON.stringify(data));
@@ -69,9 +70,9 @@ const Page = () => {
         backgroundImageUrl="https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr"
         logo={logo}
         backgroundVideoUrl="https://gw.alipayobjects.com/v/huamei_gcee1x/afts/video/jXRBRK_VAwoAAAAAAAAAAAAAK4eUAQBr"
-        title="KINESS"
+        title={"Kiness Việt Nam"}
         containerStyle={{
-          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          backgroundColor: "rgba(255, 255, 255)",
           backdropFilter: "blur(4px)",
         }}
         subTitle={loginType === "account" ? "Đăng nhập" : "Quên mật khẩu"}

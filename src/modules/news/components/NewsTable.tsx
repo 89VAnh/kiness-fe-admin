@@ -120,7 +120,7 @@ export default function NewsTable(): JSX.Element {
       loading={news.isLoading}
       columns={columns}
       dataSource={news.data?.data || []}
-      headerTitle={t("title")}
+      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
         settings: [],
