@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import AppLayout from "./modules/app/AppLayout";
+import ProtectedComponent from "./modules/app/ProtectComponent";
 import { LoginPage } from "./modules/auth";
 import { BranchRegisterPage } from "./modules/branch-register";
 import { CustomerPage } from "./modules/customer";
 import { DashboardPage } from "./modules/dashboard";
+import { EmployeePage } from "./modules/employee";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { NewsPage } from "./modules/news";
@@ -15,6 +17,7 @@ import "./urls";
 import {
   BRANCH_REGISTER_URL,
   CUSTOMERS_URL,
+  EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
   HOME_URL,
   LOGIN_URL,
@@ -36,40 +39,86 @@ export const router = createBrowserRouter([
     children: [
       {
         path: HOME_URL,
-        element: <DashboardPage />,
+        element: (
+          <ProtectedComponent Element={DashboardPage} title="Trang chủ" />
+        ),
       },
       {
         path: NEWS_URL,
-        element: <NewsPage />,
+        element: (
+          <ProtectedComponent Element={NewsPage} title="Quản lý tin tức" />
+        ),
       },
       {
         path: CUSTOMERS_URL,
-        element: <CustomerPage />,
+        element: (
+          <ProtectedComponent
+            Element={CustomerPage}
+            title="Quản lý khách hàng"
+          />
+        ),
       },
       {
         path: EXPERIENCE_REGISTER_URL,
-        element: <ExperienceRegisterPage />,
+        element: (
+          <ProtectedComponent
+            Element={ExperienceRegisterPage}
+            title="Quản lý đăng ký trải nghiệm"
+          />
+        ),
       },
       {
         path: TEST_REGISTER_URL,
-        element: <TestRegisterPage />,
+        element: (
+          <ProtectedComponent
+            Element={TestRegisterPage}
+            title="Quản lý đăng ký kiểm tra"
+          />
+        ),
       },
       {
         path: BRANCH_REGISTER_URL,
-        element: <BranchRegisterPage />,
+        element: (
+          <ProtectedComponent
+            Element={BranchRegisterPage}
+            title="Quản lý đăng ký trung tâm"
+          />
+        ),
       },
       {
         path: PAGE_URL,
-        element: <PageManagePage />,
+        element: (
+          <ProtectedComponent
+            Element={PageManagePage}
+            title="Quản lý các trang"
+            role={2}
+          />
+        ),
       },
       {
         path: SLIDES_URL,
-        element: <SlideManagePage />,
+        element: (
+          <ProtectedComponent
+            Element={SlideManagePage}
+            title="Quản lý slides"
+            role={2}
+          />
+        ),
+      },
+      {
+        path: EMPLOYEE_URL,
+        element: (
+          <ProtectedComponent
+            Element={EmployeePage}
+            title="Quản lý nhân viên"
+            role={2}
+          />
+        ),
       },
     ],
   },
   {
     path: LOGIN_URL,
-    element: <LoginPage />,
+    element: <ProtectedComponent Element={LoginPage} title="Đăng nhập" />,
   },
 ]);

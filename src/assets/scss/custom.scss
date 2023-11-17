@@ -7,8 +7,10 @@
 }
 
 // header mobile
-.ant-pro-global-header {
-  height: auto;
+.ant-pro-global-header,
+.ant-layout-header {
+  height: 60px !important;
+  filter: none;
 }
 
 .ant-page-header-heading-title {
@@ -41,11 +43,18 @@
 
 .logo {
   max-width: 129px;
-  height: 70px;
+  height: 58px !important;
+  margin-bottom: 1px;
   object-fit: cover;
 }
 
 .ant-table-wrapper {
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+.ant-menu-item-group-title {
+  font-size: 15px !important;
+  font-weight: 700;
+  color: #222 !important;
 }

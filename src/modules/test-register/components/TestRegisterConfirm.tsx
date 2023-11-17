@@ -39,7 +39,6 @@ export default function TestRegisterConfirm({
   });
 
   const handleUpdateStatus = (status: number) => {
-    console.log(id);
     updateTestRegisterStatus.mutate({
       register_id: id,
       status: status,

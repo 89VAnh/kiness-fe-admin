@@ -13,6 +13,7 @@ import {
   BRANCH_REGISTER_URL,
   CONFIG_URL,
   CUSTOMERS_URL,
+  EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
   HOME_URL,
   MANAGER_URL,
@@ -64,30 +65,50 @@ export const routes = (t: TFunction) => [
       },
     ],
   },
-
-  // Divider
-  {
-    path: CONFIG_URL,
-    name: t("nav.config"),
-    routes: [
-      {
-        path: PAGE_URL,
-        name: <Link to={PAGE_URL}>{t("nav.page")}</Link>,
-        icon: <SolutionOutlined />,
-      },
-      {
-        path: SLIDES_URL,
-        name: <Link to={SLIDES_URL}>{t("nav.slides")}</Link>,
-        icon: <DesktopOutlined />,
-      },
-    ],
-  },
 ];
 
-export const appRoute = (t: TFunction): ProLayoutProps["route"] => {
+export const appRoute = (
+  t: TFunction,
+  userRecoil: any,
+): ProLayoutProps["route"] => {
+  const listRoutes = routes(t);
+
+  if (userRecoil.position_id === 2)
+    listRoutes.push(
+      // Divider
+      {
+        path: CONFIG_URL,
+        name: t("nav.config"),
+        routes: [
+          {
+            path: PAGE_URL,
+            name: <Link to={PAGE_URL}>{t("nav.page")}</Link>,
+            icon: <SolutionOutlined />,
+          },
+          {
+            path: SLIDES_URL,
+            name: <Link to={SLIDES_URL}>{t("nav.slides")}</Link>,
+            icon: <DesktopOutlined />,
+          },
+        ],
+      },
+
+      {
+        path: "/admin",
+        name: t("nav.admin"),
+        routes: [
+          {
+            path: EMPLOYEE_URL,
+            name: <Link to={EMPLOYEE_URL}>{t("nav.employee")}</Link>,
+            icon: <SolutionOutlined />,
+          },
+        ],
+      },
+    );
+
   return {
     path: HOME_URL,
-    routes: routes(t),
+    routes: listRoutes,
   };
 };
 

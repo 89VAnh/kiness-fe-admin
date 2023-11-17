@@ -16,6 +16,9 @@ const CONFIG_URL = "/config";
 const PAGE_URL = `${CONFIG_URL}/pages`;
 const SLIDES_URL = `${CONFIG_URL}/slides`;
 
+// Administration
+const EMPLOYEE_URL = `${MANAGER_URL}/employees`;
+
 const breadcrumbNameMap: Record<string, string> = {
   [HOME_URL]: "Trang chủ",
 };
@@ -32,5 +35,6 @@ export {
   PAGE_URL,
   SLIDES_URL,
   TEST_REGISTER_URL,
+  EMPLOYEE_URL,
   breadcrumbNameMap,
 };
