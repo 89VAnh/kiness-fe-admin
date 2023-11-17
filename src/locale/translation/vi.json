@@ -38,7 +38,9 @@
     "test_register": "Quản lý đăng ký kiểm tra",
     "branch_register": "Quản lý đăng ký trung tâm",
     "page": "Quản lý các trang",
-    "slides": "Quản lý slides"
+    "slides": "Quản lý slides",
+    "branch": "Quản lý chi nhánh",
+    "city": "Quản lý thành phố"
   },
   "customer": {
     "title": "Quản lý khách hàng",
@@ -267,13 +269,5 @@
     "messages": {
       "update_status_success": "Thay đổi trạng thái thành công"
     }
-  },
-  "dashboard": {
-    "total_customer": "Khách hàng",
-    "total_employee": "Nhân viên",
-    "total_branch": "Mở trung tâm",
-    "total_experience": "ĐK trải nghiệm",
-    "total_test": "ĐK kiểm tra",
-    "total_news": "Tin tức"
   }
 }

@@ -1,45 +1,37 @@
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { Button, Col, Form, Input, Modal, Row, Tooltip, message } from "antd";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
-import EditorCustom from "@/components/Editor/Editor";
-import {
-  handleDeleteImage,
-  uploadPlugin,
-} from "@/components/Editor/utils/upload-editor";
 import { queryClient } from "@/lib/react-query";
 import {
-  CACHE_PAGES,
-  useCreatePage,
-  useGetPageById,
-  useUpdatePage,
-} from "@/loader/pages.loader";
+  CACHE_CITY,
+  useCreateCity,
+  useGetCityById,
+  useUpdateCity,
+} from "@/loader/city.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 import { RULES_FORM } from "@/utils/validator";
 
 interface Props {
-  id?: string;
+  id?: number;
   isCreate?: boolean;
 }
 
-export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
+export default function CityModal({ id, isCreate = true }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
-  const [dataEditor, setDataEditor] = useState<string>("");
   const [form] = Form.useForm();
 
-  const updatePage = useUpdatePage({
+  const updatePage = useUpdateCity({
     config: {
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_PAGES.PAGES]);
+          queryClient.invalidateQueries([CACHE_CITY.CITIES]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -48,13 +40,13 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
     },
   });
 
-  const createPage = useCreatePage({
+  const createPage = useCreateCity({
     config: {
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.create_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_PAGES.PAGES]);
+          queryClient.invalidateQueries([CACHE_CITY.CITIES]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -63,14 +55,13 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
     },
   });
 
-  useGetPageById({
+  useGetCityById({
     id: id!,
     enabled: isOpen && !isCreate,
     config: {
       onSuccess(data) {
         if (!data?.message) {
           form.setFieldsValue(data);
-          setDataEditor(data?.content);
         }
       },
     },
@@ -79,10 +70,9 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
   const handleSubmit = () => {
     form
       .validateFields()
-      .then((values) => {
+      .then(async (values) => {
         const dataPost = {
           ...values,
-          content: dataEditor,
         };
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
@@ -92,7 +82,10 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
           updatePage.mutate(dataPost);
         }
       })
-      .catch(() => message.warning(t("messages.validate_form")));
+      .catch((err) => {
+        console.log(err);
+        message.warning(t("messages.validate_form"));
+      });
   };
 
   const handleCancel = () => {
@@ -119,9 +112,8 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
         </Tooltip>
       )}
       <Modal
-        title={isCreate ? t("page.title_create") : t("page.title_update")}
-        width={"90vw"}
-        style={{ top: 58, padding: 0 }}
+        title={isCreate ? t("city.title_create") : t("city.title_update")}
+        style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -136,41 +128,27 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
         >
           <Form form={form} layout="vertical">
             <Row gutter={32}>
-              <Form.Item name={"page_id"} hidden>
+              <Form.Item name={"city_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={12}>
-                <Form.Item name={"page_title"} label={t("page.fields.title")}>
-                  <Input placeholder={t("page.fields.title")} />
-                </Form.Item>
-              </Col>
+
               <Col span={12}>
                 <Form.Item
-                  name={"page_code"}
-                  label={t("page.fields.code")}
+                  name={"city_name"}
+                  label={t("city.fields.city_name")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Input placeholder={t("page.fields.code")} />
+                  <Input placeholder={t("city.fields.city_name")} />
                 </Form.Item>
               </Col>
-              <Col span={24}>
-                <Form.Item name={"content"} label={t("page.fields.content")}>
-                  <CKEditor
-                    config={{
-                      // @ts-ignore
-                      extraPlugins: [uploadPlugin],
-                    }}
-                    editor={EditorCustom}
-                    onReady={() => {
-                      // You can store the "editor" and use when it is needed.
-                    }}
-                    onChange={(event, editor) => {
-                      const data = editor.getData();
-                      setDataEditor(data);
-                      handleDeleteImage(event);
-                    }}
-                    data={dataEditor}
-                  />
+
+              <Col span={12}>
+                <Form.Item
+                  name={"code"}
+                  label={t("city.fields.code")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input placeholder={t("city.fields.code")} />
                 </Form.Item>
               </Col>
             </Row>

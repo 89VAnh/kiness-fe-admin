@@ -7,28 +7,30 @@ import {
   QueryConfig,
 } from "@/lib/react-query";
 import {
-  createTestRegister,
-  getBranches,
+  createBranch,
+  deleteBranch,
+  getBranchById,
   getBranchesDropdown,
+  searchBranches,
+  updateBranch,
 } from "@/services/branch.service";
 
 export const CACHE_BRANCH = {
   BRANCHES: "BRANCHES",
   DROPDOWN_BRANCH: "DROPDOWN_BRANCH",
-  EXPERIENCE_REGISTER: "EXPERIENCE_REGISTER",
 };
 
-const useBranches = ({
+const useSearchBranches = ({
   params,
   config,
 }: {
   params: AxiosRequestConfig["params"];
-  config?: QueryConfig<typeof getBranches>;
+  config?: QueryConfig<typeof searchBranches>;
 }) => {
-  return useQuery<ExtractFnReturnType<typeof getBranches>>({
+  return useQuery<ExtractFnReturnType<typeof searchBranches>>({
     ...config,
     queryKey: [CACHE_BRANCH.BRANCHES, params],
-    queryFn: () => getBranches({ params }),
+    queryFn: () => searchBranches({ params }),
   });
 };
 
@@ -46,18 +48,70 @@ const useBranchDropdown = ({
   });
 };
 
-const useCreateTestRegister = ({
+const useGetBranchById = ({
+  id,
+  enabled,
   config,
 }: {
-  config?: MutationConfig<typeof createTestRegister>;
+  id: number;
+  enabled: boolean;
+  config?: QueryConfig<typeof getBranchById>;
+}) => {
+  return useQuery<ExtractFnReturnType<typeof getBranchById>>({
+    ...config,
+    enabled,
+    queryKey: [CACHE_BRANCH.BRANCHES, id],
+    queryFn: () => getBranchById(id),
+  });
+};
+
+const useUpdateBranch = ({
+  config,
+}: {
+  config?: MutationConfig<typeof updateBranch>;
 }) => {
   return useMutation({
     onMutate: () => {},
     onError: () => {},
     onSuccess: () => {},
     ...config,
-    mutationFn: createTestRegister,
+    mutationFn: updateBranch,
   });
 };
 
-export { useBranchDropdown, useBranches, useCreateTestRegister };
+const useDeleteBranch = ({
+  config,
+}: {
+  config?: MutationConfig<typeof deleteBranch>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: deleteBranch,
+  });
+};
+
+const useCreateBranch = ({
+  config,
+}: {
+  config?: MutationConfig<typeof createBranch>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: createBranch,
+  });
+};
+
+export {
+  useBranchDropdown,
+  useCreateBranch,
+  useDeleteBranch,
+  useGetBranchById,
+  useSearchBranches,
+  useUpdateBranch,
+};

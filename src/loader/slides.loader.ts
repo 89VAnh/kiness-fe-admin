@@ -98,9 +98,9 @@ const useDeleteSlide = ({
 };
 
 export {
-  useSearchSlides,
-  useGetSlideById,
-  useUpdateSlide,
   useCreateSlide,
   useDeleteSlide,
+  useGetSlideById,
+  useSearchSlides,
+  useUpdateSlide,
 };
