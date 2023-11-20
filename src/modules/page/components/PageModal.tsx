@@ -38,7 +38,7 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_success"));
-          close();
+          handleCancel();
           queryClient.invalidateQueries([CACHE_PAGES.PAGES]);
         } else message.error(data.message);
       },
@@ -52,8 +52,8 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
     config: {
       onSuccess: (data) => {
         if (data.results) {
-          message.success(t("messages.update_success"));
-          close();
+          message.success(t("messages.create_success"));
+          handleCancel();
           queryClient.invalidateQueries([CACHE_PAGES.PAGES]);
         } else message.error(data.message);
       },
@@ -119,7 +119,7 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
         </Tooltip>
       )}
       <Modal
-        title={t("page.title_create")}
+        title={isCreate ? t("page.title_create") : t("page.title_update")}
         width={"90vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}

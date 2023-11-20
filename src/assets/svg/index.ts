@@ -7,3 +7,8 @@ export { ReactComponent as MailIcon } from "./mail.svg";
 export { ReactComponent as TwitterIcon } from "./twitter-social.svg";
 export { ReactComponent as InstagramIcon } from "./instagram-social.svg";
 export { ReactComponent as FacebookIcon } from "./facebook-social.svg";
+export { ReactComponent as IconUsers } from "./icon-users.svg";
+export { ReactComponent as IconDocuments } from "./icon-documents.svg";
+export { ReactComponent as IconPackages } from "./icon-packages.svg";
+export { ReactComponent as IconPapers } from "./icon-papers.svg";
+export { ReactComponent as IconStaff } from "./icon-staff.svg";

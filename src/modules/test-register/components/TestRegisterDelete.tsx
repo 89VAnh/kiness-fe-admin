@@ -5,9 +5,9 @@ import { useQueryClient } from "react-query";
 import { useRecoilValue } from "recoil";
 
 import {
-  CACHE_EXPERIENCE_REGISTER,
-  useDeleteExperienceRegister,
-} from "@/loader/experienceRegister.loader";
+  CACHE_TEST_REGISTER,
+  useDeleteTestRegister,
+} from "@/loader/testRegister.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
@@ -15,15 +15,15 @@ interface Props {
   id: number;
 }
 
-export default function ExperienceRegisterDelete({ id }: Props): JSX.Element {
+export default function TestRegisterDelete({ id }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "experience_register",
+    keyPrefix: "test_register",
   });
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
   const queryClient = useQueryClient();
 
-  const deleteExperienceRegister = useDeleteExperienceRegister({
+  const deleteTestRegister = useDeleteTestRegister({
     config: {
       onSuccess: (data: any) => {
         console.log(data.results);
@@ -38,9 +38,7 @@ export default function ExperienceRegisterDelete({ id }: Props): JSX.Element {
           });
         }
 
-        queryClient.invalidateQueries([
-          CACHE_EXPERIENCE_REGISTER.EXPERIENCE_REGISTER,
-        ]);
+        queryClient.invalidateQueries([CACHE_TEST_REGISTER.TEST_REGISTER]);
         close();
       },
       onError: (err) => {
@@ -71,7 +69,7 @@ export default function ExperienceRegisterDelete({ id }: Props): JSX.Element {
         open={isOpen}
         onCancel={close}
         onOk={() => {
-          deleteExperienceRegister.mutate({
+          deleteTestRegister.mutate({
             list_json: [{ register_id: id }],
             updated_by_id: userProfile.user_id,
           });

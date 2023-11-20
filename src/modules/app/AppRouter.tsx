@@ -2,6 +2,7 @@ import {
   DashboardOutlined,
   DesktopOutlined,
   FileSearchOutlined,
+  HomeOutlined,
   SolutionOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
@@ -10,8 +11,12 @@ import { TFunction } from "i18next";
 import { Link } from "react-router-dom";
 
 import {
+  BRANCH_REGISTER_URL,
+  BRANCH_URL,
+  CITY_URL,
   CONFIG_URL,
   CUSTOMERS_URL,
+  EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
   HOME_URL,
   MANAGER_URL,
@@ -56,32 +61,67 @@ export const routes = (t: TFunction) => [
         name: <Link to={TEST_REGISTER_URL}>{t("nav.test_register")}</Link>,
         icon: <FileSearchOutlined />,
       },
-    ],
-  },
-
-  // Divider
-  {
-    path: CONFIG_URL,
-    name: t("nav.config"),
-    routes: [
       {
-        path: PAGE_URL,
-        name: <Link to={PAGE_URL}>{t("nav.page")}</Link>,
-        icon: <SolutionOutlined />,
+        path: BRANCH_REGISTER_URL,
+        name: <Link to={BRANCH_REGISTER_URL}>{t("nav.branch_register")}</Link>,
+        icon: <FileSearchOutlined />,
       },
       {
-        path: SLIDES_URL,
-        name: <Link to={SLIDES_URL}>{t("nav.slides")}</Link>,
-        icon: <DesktopOutlined />,
+        path: BRANCH_URL,
+        name: <Link to={BRANCH_URL}>{t("nav.branch")}</Link>,
+        icon: <HomeOutlined />,
+      },
+      {
+        path: CITY_URL,
+        name: <Link to={CITY_URL}>{t("nav.city")}</Link>,
+        icon: <FileSearchOutlined />,
       },
     ],
   },
 ];
 
-export const appRoute = (t: TFunction): ProLayoutProps["route"] => {
+export const appRoute = (
+  t: TFunction,
+  userRecoil: any,
+): ProLayoutProps["route"] => {
+  const listRoutes = routes(t);
+
+  if (userRecoil.position_id === 2)
+    listRoutes.push(
+      // Divider
+      {
+        path: CONFIG_URL,
+        name: t("nav.config"),
+        routes: [
+          {
+            path: PAGE_URL,
+            name: <Link to={PAGE_URL}>{t("nav.page")}</Link>,
+            icon: <SolutionOutlined />,
+          },
+          {
+            path: SLIDES_URL,
+            name: <Link to={SLIDES_URL}>{t("nav.slides")}</Link>,
+            icon: <DesktopOutlined />,
+          },
+        ],
+      },
+
+      {
+        path: "/admin",
+        name: t("nav.admin"),
+        routes: [
+          {
+            path: EMPLOYEE_URL,
+            name: <Link to={EMPLOYEE_URL}>{t("nav.employee")}</Link>,
+            icon: <SolutionOutlined />,
+          },
+        ],
+      },
+    );
+
   return {
     path: HOME_URL,
-    routes: routes(t),
+    routes: listRoutes,
   };
 };
 

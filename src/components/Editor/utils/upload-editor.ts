@@ -4,7 +4,7 @@ import {
 } from "@ckeditor/ckeditor5-upload/src/filerepository";
 import _ from "lodash";
 
-import { deleteFile, uploadFile } from "@/services/upload.service";
+import { uploadFile } from "@/services/upload.service";
 
 const handleDeleteImage = (event: any): void => {
   const changes = event?.source?.differ?._cachedChangesWithGraveyard;
@@ -27,9 +27,9 @@ const handleDeleteImage = (event: any): void => {
         if (src) listSrc.push(src);
       });
 
-      listSrc.forEach((src) => {
-        deleteFile({ filePath: src });
-      });
+      // listSrc.forEach((src) => {
+      //   deleteFile({ filePath: src });
+      // });
     }
   }
 };
@@ -42,7 +42,7 @@ function uploadAdapter(loader: FileLoader): UploadAdapter {
           const file = await loader.file;
           const response = await uploadFile({ file });
           resolve({
-            default: `/api/${response.data.path}`,
+            default: `/api/${response?.path}`,
           });
         } catch (error) {
           reject("Hello");
