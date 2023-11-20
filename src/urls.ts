@@ -9,17 +9,26 @@ const NEWS_URL = `${MANAGER_URL}/news`;
 const CUSTOMERS_URL = `${MANAGER_URL}/customers`;
 const EXPERIENCE_REGISTER_URL = `${MANAGER_URL}/experience-register`;
 const TEST_REGISTER_URL = `${MANAGER_URL}/test-register`;
+const BRANCH_REGISTER_URL = `${MANAGER_URL}/branch-register`;
+const BRANCH_URL = `${MANAGER_URL}/branch`;
+const CITY_URL = `${MANAGER_URL}/city`;
 
 // Config
 const CONFIG_URL = "/config";
 const PAGE_URL = `${CONFIG_URL}/pages`;
 const SLIDES_URL = `${CONFIG_URL}/slides`;
 
+// Administration
+const EMPLOYEE_URL = `${MANAGER_URL}/employees`;
+
 const breadcrumbNameMap: Record<string, string> = {
   [HOME_URL]: "Trang chủ",
 };
 
 export {
+  BRANCH_REGISTER_URL,
+  BRANCH_URL,
+  CITY_URL,
   CONFIG_URL,
   CUSTOMERS_URL,
   EXPERIENCE_REGISTER_URL,
@@ -30,5 +39,6 @@ export {
   PAGE_URL,
   SLIDES_URL,
   TEST_REGISTER_URL,
+  EMPLOYEE_URL,
   breadcrumbNameMap,
 };

@@ -100,6 +100,7 @@ export default function CustomerModal({
         } else {
           dataPost.lu_user_id = userProfile.user_id;
           updateCustomer.mutate(dataPost);
+          // console.log(dataPost);
         }
       })
       .catch(() => message.warning(t("messages.validate_form")));
@@ -122,7 +123,6 @@ export default function CustomerModal({
     setIsLoadingBranch(true);
     const dropdown = await getBranchesDropdown({ city_id });
     if (!dropdown.message) setBranchOptions(dropdown);
-    form.setFieldValue("branch_id", dropdown[0].value);
     setIsLoadingBranch(false);
   };
 
@@ -145,7 +145,9 @@ export default function CustomerModal({
         </Tooltip>
       )}
       <Modal
-        title={t("customer.title_create")}
+        title={
+          isCreate ? t("customer.title_create") : t("customer.title_update")
+        }
         width={"90vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}

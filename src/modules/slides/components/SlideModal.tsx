@@ -66,7 +66,7 @@ export default function SlideModal({
     config: {
       onSuccess: (data) => {
         if (data.results) {
-          message.success(t("messages.update_success"));
+          message.success(t("messages.create_success"));
           handleCancel();
           queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
         } else message.error(data.message);
@@ -175,7 +175,7 @@ export default function SlideModal({
         </Tooltip>
       )}
       <Modal
-        title={t("slide.title_create")}
+        title={isCreate ? t("slide.title_create") : t("slide.title_update")}
         style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
         onCancel={handleCancel}

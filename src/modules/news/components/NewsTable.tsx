@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import { BASE_URL } from "@/constant/config";
 import { useSearchNews } from "@/loader/news.loader";
 import { INews } from "@/models/news";
 import { formatToDate } from "@/utils/format-string";
@@ -58,7 +59,10 @@ export default function NewsTable(): JSX.Element {
       dataIndex: "thumbnail",
       width: 100,
       align: "center",
-      render: (thumbnail) => <Image src={"/api/" + thumbnail} width={100} />,
+      // render: (thumbnail) => <Image src={"/api/" + thumbnail} width={100} />,
+      render: (thumbnail) => (
+        <Image src={BASE_URL + "/" + thumbnail} width={100} />
+      ),
       search: false,
     },
     {
@@ -116,7 +120,7 @@ export default function NewsTable(): JSX.Element {
       loading={news.isLoading}
       columns={columns}
       dataSource={news.data?.data || []}
-      headerTitle={t("title")}
+      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
         settings: [],

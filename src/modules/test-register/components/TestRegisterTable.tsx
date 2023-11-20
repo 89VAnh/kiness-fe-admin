@@ -4,6 +4,7 @@ import {
   Button,
   DatePicker,
   Input,
+  Select,
   Space,
   Tag,
   Typography,
@@ -49,6 +50,9 @@ export default function TestRegisterTable(): JSX.Element {
   const [pageSize, setPageSize] = useState<number | string>(
     searchParams.get("page_size") || 10,
   );
+  const [status, setStatus] = useState<string | null>(
+    searchParams.get("status") || null,
+  );
 
   const testRegister = useSearchTestRegister({
     params: {
@@ -56,6 +60,7 @@ export default function TestRegisterTable(): JSX.Element {
       pageSize: pageSize,
       search_content: searchContent,
       user_id: userProfile.user_id,
+      status,
       from_date: rangeDate[0] ? rangeDate[0] : null,
       to_date: rangeDate[1] ? rangeDate[1] : null,
     },
@@ -73,6 +78,13 @@ export default function TestRegisterTable(): JSX.Element {
     setPage(1);
 
     setSearchContent(value);
+  };
+
+  const handleSearchStatus = (status: string) => {
+    if (status !== undefined) searchParams.set("status", status);
+    else searchParams.delete("status");
+
+    setStatus(status);
   };
 
   const columns = [
@@ -110,7 +122,7 @@ export default function TestRegisterTable(): JSX.Element {
       sorter: (a: any, b: any) => compareNumbers(a, b, "gender"),
       width: 100,
       render: (value: number) => (
-        <Typography.Text>{value === 0 ? "Nam" : "Nữ"}</Typography.Text>
+        <Typography.Text>{value === 1 ? "Nam" : "Nữ"}</Typography.Text>
       ),
       search: false,
     },
@@ -195,6 +207,7 @@ export default function TestRegisterTable(): JSX.Element {
     print.mutate({
       search_content: searchContent,
       user_id: userProfile.user_id,
+      status,
       from_date: rangeDate[0] ? rangeDate[0] : null,
       to_date: rangeDate[1] ? rangeDate[1] : null,
     });
@@ -228,6 +241,16 @@ export default function TestRegisterTable(): JSX.Element {
         settings: [],
       }}
       toolBarRender={(_) => [
+        <Select
+          placeholder={t("fields.status")}
+          onChange={handleSearchStatus}
+          options={[
+            { value: "0", label: "Chưa xác nhận" },
+            { value: "1", label: "Đã xác nhận" },
+          ]}
+          allowClear
+          value={status}
+        />,
         <RangePicker
           format={formatDateShow}
           style={{ width: 460 }}

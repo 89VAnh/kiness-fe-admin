@@ -4,6 +4,7 @@ import {
   Button,
   DatePicker,
   Input,
+  Select,
   Space,
   Tag,
   Typography,
@@ -50,12 +51,17 @@ export default function ExperienceRegisterTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
+  const [status, setStatus] = useState<string | null>(
+    searchParams.get("status") || null,
+  );
+
   const experienceRegister = useSearchExperienceRegister({
     params: {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent,
       user_id: userProfile.user_id,
+      status,
       from_date: rangeDate[0] ? rangeDate[0] : null,
       to_date: rangeDate[1] ? rangeDate[1] : null,
     },
@@ -73,6 +79,13 @@ export default function ExperienceRegisterTable(): JSX.Element {
     setPage(1);
 
     setSearchContent(value);
+  };
+
+  const handleSearchStatus = (status: string) => {
+    if (status !== undefined) searchParams.set("status", status);
+    else searchParams.delete("status");
+
+    setStatus(status);
   };
 
   const columns = [
@@ -110,14 +123,14 @@ export default function ExperienceRegisterTable(): JSX.Element {
       sorter: (a: any, b: any) => compareNumbers(a, b, "gender"),
       width: 100,
       render: (value: number) => (
-        <Typography.Text>{value === 0 ? "Nam" : "Nữ"}</Typography.Text>
+        <Typography.Text>{value === 1 ? "Nam" : "Nữ"}</Typography.Text>
       ),
       search: false,
     },
     {
       title: t("fields.date"),
       dataIndex: "date",
-      width: 150,
+      width: 170,
       align: "center",
       valueType: "date",
       sorter: (a: any, b: any) => compareStrings(a, b, "date"),
@@ -195,6 +208,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
     print.mutate({
       search_content: searchContent,
       user_id: userProfile.user_id,
+      status,
       from_date: rangeDate[0] ? rangeDate[0] : null,
       to_date: rangeDate[1] ? rangeDate[1] : null,
     });
@@ -228,6 +242,16 @@ export default function ExperienceRegisterTable(): JSX.Element {
         settings: [],
       }}
       toolBarRender={(_) => [
+        <Select
+          placeholder={t("fields.status")}
+          onChange={handleSearchStatus}
+          options={[
+            { value: "0", label: "Chưa xác nhận" },
+            { value: "1", label: "Đã xác nhận" },
+          ]}
+          allowClear
+          value={status}
+        />,
         <RangePicker
           format={formatDateShow}
           style={{ width: 460 }}

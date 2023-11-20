@@ -1,10 +1,12 @@
 import { AxiosRequestConfig } from "axios";
 
 import { apiClient } from "@/lib/api";
+import { IBaseDelete } from "@/models/base";
+import { IBranch } from "@/models/branch";
 
 const prefix = "branches";
 
-export const getBranches = async (
+export const searchBranches = async (
   params: AxiosRequestConfig["params"],
 ): Promise<any> => {
   const res = await apiClient?.post(`${prefix}/search`, params);
@@ -26,8 +28,22 @@ export const getBranchesDropdown = async (
   return res.data;
 };
 
-export const createTestRegister = async (data: any): Promise<any> => {
-  const res = await apiClient?.post(`${prefix}/create-test-register`, data);
+export const createBranch = async (data: IBranch): Promise<any> => {
+  const res = await apiClient?.post(`${prefix}/create`, data);
+
+  return res.data;
+};
+
+export const updateBranch = async (data: IBranch): Promise<any> => {
+  const res = await apiClient?.post(`${prefix}/update`, data);
+
+  return res.data;
+};
+
+export const deleteBranch = async (data: IBaseDelete): Promise<any> => {
+  const res = await apiClient?.delete(`${prefix}/delete`, {
+    data,
+  });
 
   return res.data;
 };
