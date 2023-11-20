@@ -3,7 +3,6 @@ import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 // import { useEmotionCss } from '@ant-design/use-emotion-css';
 // import { history, useModel } from '@umijs/max';
 import { Spin } from "antd";
-import type { MenuInfo } from "rc-menu/lib/interface";
 import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useResetRecoilState } from "recoil";
@@ -55,7 +54,7 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({
     }
   };
 
-  const onMenuClick = useCallback((event: MenuInfo) => {
+  const onMenuClick = useCallback((event: any) => {
     const { key } = event;
     if (key === "logout") {
       loginOut();
