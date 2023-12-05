@@ -42,6 +42,14 @@
     "branch": "Quản lý chi nhánh",
     "city": "Quản lý thành phố"
   },
+  "dashboard": {
+    "total_customer": "Khách hàng",
+    "total_employee": "Nhân viên",
+    "total_experience": "ĐK trải nghiệm",
+    "total_branch": "ĐK trung tâm",
+    "total_test": "ĐK kiểm tra",
+    "total_news": "Tin tức"
+  },
   "customer": {
     "title": "Quản lý khách hàng",
     "title_create": "Thêm mới khách hàng",

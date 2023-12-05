@@ -28,7 +28,6 @@ import {
 import { AutoLink, Link } from "@ckeditor/ckeditor5-link";
 import { List, ListProperties } from "@ckeditor/ckeditor5-list";
 import { Paragraph } from "@ckeditor/ckeditor5-paragraph";
-import { SelectAll } from "@ckeditor/ckeditor5-select-all";
 import { Table, TableCaption } from "@ckeditor/ckeditor5-table";
 
 import "./scss/editor.scss";
@@ -60,7 +59,6 @@ class EditorCustom extends ClassicEditor {
     List,
     ListProperties,
     Paragraph,
-    SelectAll,
     Strikethrough,
     Table,
     TableCaption,
@@ -97,9 +95,6 @@ class EditorCustom extends ClassicEditor {
       ],
     },
     language: "vi",
-    fontSize: {
-      options: [9, 11, 13, "default", 17, 19, 21, 24, 32],
-    },
     image: {
       toolbar: [
         "imageTextAlternative",
