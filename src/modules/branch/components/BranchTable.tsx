@@ -1,5 +1,5 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Image, Input, Space, Typography } from "antd";
+import { Input, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
@@ -59,12 +59,12 @@ export default function BranchTable(): JSX.Element {
       ),
       search: false,
     },
-    {
-      title: t("fields.thumbnail"),
-      dataIndex: "thumbnail",
-      width: 100,
-      render: (value: any) => <Image src={"/api/" + value} width={100} />,
-    },
+    // {
+    //   title: t("fields.thumbnail"),
+    //   dataIndex: "thumbnail",
+    //   width: 100,
+    //   render: (value: any) => <Image src={"/api/" + value} width={100} />,
+    // },
     {
       title: t("fields.branch_name"),
       dataIndex: "branch_name",
@@ -89,6 +89,24 @@ export default function BranchTable(): JSX.Element {
       width: 200,
       sorter: (a, b) => compareNumbers(a, b, "address"),
     },
+    {
+      title: t("fields.open_time"),
+      dataIndex: "open_time",
+      width: 150,
+      sorter: (a, b) => compareNumbers(a, b, "open_time"),
+    },
+    {
+      title: t("fields.close_time"),
+      dataIndex: "close_time",
+      width: 100,
+      sorter: (a, b) => compareNumbers(a, b, "close_time"),
+    },
+    // {
+    //   title: t("fields.embed_map"),
+    //   dataIndex: "embed_map",
+    //   width: 100,
+    //   sorter: (a, b) => compareNumbers(a, b, "embed_map"),
+    // },
     {
       title: t("fields.actions"),
       dataIndex: "action",

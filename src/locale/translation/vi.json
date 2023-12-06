@@ -46,9 +46,10 @@
     "total_customer": "Khách hàng",
     "total_employee": "Nhân viên",
     "total_experience": "ĐK trải nghiệm",
-    "total_branch": "ĐK trung tâm",
+    "total_branch": "Chi nhánh",
     "total_test": "ĐK kiểm tra",
-    "total_news": "Tin tức"
+    "total_news": "Tin tức",
+    "total_request": "Câu hỏi chưa trả lời"
   },
   "customer": {
     "title": "Quản lý khách hàng",
@@ -134,13 +135,14 @@
     "title": "Quản lý slides",
     "title_create": "Thêm mới slide",
     "title_update": "Cập nhật slide",
-    "search_placeholder": "Nhập nội dung...",
+    "search_placeholder": "Nhập tiêu đề...",
     "title_delete": "Xóa slide",
     "fields": {
       "serial": "STT",
-      "image": "Ảnh",
+      "image_big": "Ảnh desktop",
+      "image_small": "Ảnh mobile",
       "order": "Sắp xếp",
-      "caption": "Nội dung",
+      "caption": "Tiêu đề",
       "actions": "Tác vụ"
     }
   },
@@ -188,94 +190,42 @@
       "update_status_success": "Thay đổi trạng thái thành công"
     }
   },
-  "test_register": {
-    "title": "Quản lý đăng ký kiểm tra",
-    "title_create": "Thêm mới đơn đăng ký",
-    "search_placeholder": "Nhập tên chi nhánh, tên người đăng ký, số điện thoại...",
-    "title_update": "Cập nhật đơn đăng ký",
-    "title_delete": "Xóa đơn đăng ký",
+  "branch": {
+    "title": "Quản lý chi nhánh",
+    "search_placeholder": "Nhập tên chi nhánh, số điện thoại...",
+    "title_update": "Cập nhật chi nhánh",
+    "title_create": "Thêm chi nhánh",
+    "title_delete": "Xóa chi nhánh",
+
     "fields": {
       "serial": "STT",
-      "id": "Mã đơn",
+      "thumbnail": "Ảnh",
       "branch_name": "Tên chi nhánh",
-      "fullname": "Tên người đăng ký",
-      "gender": "Giới tính",
-      "level": "Cấp",
-      "date": "Ngày đăng ký",
       "phone": "Số điện thoại",
+      "city_name": "Tên khu vực",
       "address": "Địa chỉ",
-      "detail": "Chi tiết",
-      "status": "Trạng thái",
-      "created_date_time": "Ngày tạo",
-      "created_user": "Người tạo",
-      "actions": "Tác vụ"
-    },
-    "status": {
-      "0": {
-        "label": "Chưa chấp nhận",
-        "color": "red"
-      },
-      "1": {
-        "label": "Đã chấp nhận",
-        "color": "green"
-      },
-      "-1": {
-        "label": "Đã hủy",
-        "color": "red"
-      }
-    },
-    "btn": {
-      "btn_confirm": "Xác nhận đơn",
-      "btn_cancel_confirm": "Hủy xác nhận"
-    },
-    "messages": {
-      "update_status_success": "Thay đổi trạng thái thành công"
+      "actions": "Tác vụ",
+      "city": "Khu vực",
+      "open_time": "Thời gian mở cửa",
+      "close_time": "Thời gian đóng cửa",
+      "embed_map": "Bản đồ"
     }
   },
-  "branch_register": {
-    "title": "Quản lý đăng ký kiểm tra",
-    "title_create": "Thêm mới đơn đăng ký",
-    "search_placeholder": "Nhập tên chi nhánh, tên người đăng ký, số điện thoại...",
-    "title_update": "Cập nhật đơn đăng ký",
-    "title_delete": "Xóa đơn đăng ký",
+  "city": {
+    "title": "Quản lý khu vực",
+    "search_placeholder": "Nhập tên khu vực, số điện thoại...",
+    "title_update": "Cập nhật khu vực",
+    "title_create": "Thêm khu vực",
+
     "fields": {
       "serial": "STT",
-      "id": "Mã đơn",
-      "branch_name": "Tên chi nhánh",
-      "city_name": "Tên thành phố",
-      "fullname": "Tên người đăng ký",
-      "gender": "Giới tính",
-      "level": "Cấp",
-      "date": "Ngày đăng ký",
-      "phone": "Số điện thoại",
+      "code": "Mã khu vực",
+      "city_name": "Tên khu vực",
       "address": "Địa chỉ",
-      "email": "Email",
-      "detail": "Chi tiết",
-      "status": "Trạng thái",
-      "created_date_time": "Ngày tạo",
-      "created_user": "Người tạo",
-      "actions": "Tác vụ"
-    },
-    "status": {
-      "0": {
-        "label": "Chưa chấp nhận",
-        "color": "red"
-      },
-      "1": {
-        "label": "Đã chấp nhận",
-        "color": "green"
-      },
-      "-1": {
-        "label": "Đã hủy",
-        "color": "red"
-      }
-    },
-    "btn": {
-      "btn_confirm": "Xác nhận đơn",
-      "btn_cancel_confirm": "Hủy xác nhận"
-    },
-    "messages": {
-      "update_status_success": "Thay đổi trạng thái thành công"
+      "actions": "Tác vụ",
+      "open_time": "Thời gian mở cửa",
+      "close_time": "Thời gian đóng cửa",
+      "embed_map": "Bản đồ"
     }
   }
 }

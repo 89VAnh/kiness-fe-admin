@@ -7,12 +7,10 @@ import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import {
-  useGetCountBranchRegister,
-  useGetCountCustomer,
+  useGetCountBranch,
   useGetCountEmployee,
   useGetCountExperienceRegister,
-  useGetCountNews,
-  useGetCountTestRegister,
+  useGetCountRequest,
 } from "@/loader/dashboard.loader";
 import { UserState } from "@/store/auth/atom";
 
@@ -28,16 +26,7 @@ export default function StatisticDash(): JSX.Element {
     return <Icon />;
   };
 
-  useGetCountCustomer({
-    user_id: userProfile.user_id,
-    config: {
-      onSuccess(data) {
-        if (data.total)
-          setCurrentData((prev) => ({ ...prev, customer: data.total }));
-      },
-    },
-  });
-  useGetCountBranchRegister({
+  useGetCountBranch({
     user_id: userProfile.user_id,
     config: {
       onSuccess(data) {
@@ -46,15 +35,20 @@ export default function StatisticDash(): JSX.Element {
       },
     },
   });
+
   useGetCountExperienceRegister({
     user_id: userProfile.user_id,
     config: {
       onSuccess(data) {
         if (data.total)
-          setCurrentData((prev) => ({ ...prev, experience: data.total }));
+          setCurrentData((prev) => ({
+            ...prev,
+            experience: data.total?.total,
+          }));
       },
     },
   });
+
   useGetCountEmployee({
     user_id: userProfile.user_id,
     config: {
@@ -64,21 +58,12 @@ export default function StatisticDash(): JSX.Element {
       },
     },
   });
-  useGetCountNews({
-    user_id: userProfile.user_id,
+
+  useGetCountRequest({
     config: {
       onSuccess(data) {
-        if (data.total)
-          setCurrentData((prev) => ({ ...prev, news: data.total }));
-      },
-    },
-  });
-  useGetCountTestRegister({
-    user_id: userProfile.user_id,
-    config: {
-      onSuccess(data) {
-        if (data.total)
-          setCurrentData((prev) => ({ ...prev, test: data.total }));
+        if (typeof data.total === "number")
+          setCurrentData((prev) => ({ ...prev, request: data.total }));
       },
     },
   });
@@ -93,7 +78,7 @@ export default function StatisticDash(): JSX.Element {
             <Col
               key={item?.[0]}
               style={{
-                width: _.keys(currentData).length <= 5 ? "20%" : "16.6667%",
+                width: _.keys(currentData).length <= 4 ? "25%" : "33.333333%",
               }}
             >
               <Link

@@ -2,12 +2,10 @@ import { useQuery } from "react-query";
 
 import { ExtractFnReturnType, QueryConfig } from "@/lib/react-query";
 import {
-  getCountBranchRegister,
-  getCountCustomer,
+  getCountBranch,
   getCountEmployee,
   getCountExperienceRegister,
-  getCountNews,
-  getCountTestRegister,
+  getCountRequest,
 } from "@/services/dashboards.service";
 
 export const CACHE_DASHBOARD = {
@@ -17,23 +15,7 @@ export const CACHE_DASHBOARD = {
   DASHBOARD_EXPERIENCE: "DASHBOARD_EXPERIENCE",
   DASHBOARD_BRANCH: "DASHBOARD_BRANCH",
   DASHBOARD_NEWS: "DASHBOARD_NEWS",
-};
-
-const useGetCountCustomer = ({
-  user_id,
-  enabled = true,
-  config,
-}: {
-  user_id: string;
-  enabled?: boolean;
-  config?: QueryConfig<typeof getCountCustomer>;
-}) => {
-  return useQuery<ExtractFnReturnType<typeof getCountCustomer>>({
-    ...config,
-    enabled,
-    queryKey: [CACHE_DASHBOARD.DASHBOARD_CUSTOMER, user_id],
-    queryFn: () => getCountCustomer(user_id),
-  });
+  DASHBOARD_REQUEST: "DASHBOARD_REQUEST",
 };
 
 const useGetCountEmployee = ({
@@ -50,23 +32,6 @@ const useGetCountEmployee = ({
     enabled,
     queryKey: [CACHE_DASHBOARD.DASHBOARD_EMPLOYEE],
     queryFn: () => getCountEmployee(user_id),
-  });
-};
-
-const useGetCountTestRegister = ({
-  user_id,
-  enabled = true,
-  config,
-}: {
-  user_id: string;
-  enabled?: boolean;
-  config?: QueryConfig<typeof getCountTestRegister>;
-}) => {
-  return useQuery<ExtractFnReturnType<typeof getCountTestRegister>>({
-    ...config,
-    enabled,
-    queryKey: [CACHE_DASHBOARD.DASHBOARD_TEST],
-    queryFn: () => getCountTestRegister(user_id),
   });
 };
 
@@ -87,45 +52,41 @@ const useGetCountExperienceRegister = ({
   });
 };
 
-const useGetCountBranchRegister = ({
+const useGetCountBranch = ({
   user_id,
   enabled = true,
   config,
 }: {
   user_id: string;
   enabled?: boolean;
-  config?: QueryConfig<typeof getCountBranchRegister>;
+  config?: QueryConfig<typeof getCountBranch>;
 }) => {
-  return useQuery<ExtractFnReturnType<typeof getCountBranchRegister>>({
+  return useQuery<ExtractFnReturnType<typeof getCountBranch>>({
     ...config,
     enabled,
     queryKey: [CACHE_DASHBOARD.DASHBOARD_BRANCH],
-    queryFn: () => getCountBranchRegister(user_id),
+    queryFn: () => getCountBranch(user_id),
   });
 };
 
-const useGetCountNews = ({
-  user_id,
+const useGetCountRequest = ({
   enabled = true,
   config,
 }: {
-  user_id: string;
   enabled?: boolean;
-  config?: QueryConfig<typeof getCountNews>;
+  config?: QueryConfig<typeof getCountRequest>;
 }) => {
-  return useQuery<ExtractFnReturnType<typeof getCountNews>>({
+  return useQuery<ExtractFnReturnType<typeof getCountRequest>>({
     ...config,
     enabled,
-    queryKey: [CACHE_DASHBOARD.DASHBOARD_NEWS],
-    queryFn: () => getCountNews(user_id),
+    queryKey: [CACHE_DASHBOARD.DASHBOARD_REQUEST],
+    queryFn: () => getCountRequest(),
   });
 };
 
 export {
-  useGetCountBranchRegister,
-  useGetCountCustomer,
+  useGetCountBranch,
   useGetCountEmployee,
   useGetCountExperienceRegister,
-  useGetCountNews,
-  useGetCountTestRegister,
+  useGetCountRequest,
 };

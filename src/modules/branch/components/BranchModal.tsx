@@ -1,19 +1,6 @@
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Col,
-  Form,
-  Input,
-  Modal,
-  Row,
-  Tooltip,
-  Upload,
-  UploadFile,
-  UploadProps,
-  message,
-} from "antd";
+import { Button, Col, Form, Input, Modal, Row, Tooltip, message } from "antd";
 import { Select } from "antd/lib";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
@@ -25,7 +12,6 @@ import {
   useUpdateBranch,
 } from "@/loader/branch.loader";
 import { useCityDropdown } from "@/loader/city.loader";
-import { uploadFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 import { RULES_FORM } from "@/utils/validator";
@@ -42,9 +28,8 @@ export default function BranchModal({
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
-  const [file, setFile] = useState<File | null>();
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [form] = Form.useForm();
+  const embedMap = Form.useWatch("embed_map", form);
 
   const { data: cityOptions, isLoading: isLoadingCity } = useCityDropdown({});
 
@@ -67,7 +52,7 @@ export default function BranchModal({
     config: {
       onSuccess: (data) => {
         if (data.results) {
-          message.success(t("messages.create_success"));
+          message.success(t("messages.update_success"));
           handleCancel();
           queryClient.invalidateQueries([CACHE_BRANCH.BRANCHES]);
         } else message.error(data.message);
@@ -94,14 +79,14 @@ export default function BranchModal({
     form
       .validateFields()
       .then(async (values) => {
-        let dataFile;
-        if (file) dataFile = await uploadFile({ file });
+        // let dataFile;
+        // if (file) dataFile = await uploadFile({ file });
 
         const dataPost = {
           ...values,
-          thumbnail: dataFile
-            ? dataFile.path
-            : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
+          // thumbnail: dataFile
+          //   ? dataFile.path
+          //   : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
         };
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
@@ -111,8 +96,7 @@ export default function BranchModal({
           updateBranch.mutate(dataPost);
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         message.warning(t("messages.validate_form"));
       });
   };
@@ -122,25 +106,25 @@ export default function BranchModal({
     close();
   };
 
-  const uploadProps: UploadProps = {
-    maxCount: 1,
-    accept: "image/*",
-    listType: "picture-card",
-    fileList,
-    beforeUpload(file) {
-      setFile(file);
-      return false;
-    },
-    onChange({ fileList }: any) {
-      setFileList(fileList);
-    },
-    onRemove() {
-      form.setFieldValue("image", []);
-      setFile(null);
+  // const uploadProps: UploadProps = {
+  //   maxCount: 1,
+  //   accept: "image/*",
+  //   listType: "picture-card",
+  //   fileList,
+  //   beforeUpload(file) {
+  //     setFile(file);
+  //     return false;
+  //   },
+  //   onChange({ fileList }: any) {
+  //     setFileList(fileList);
+  //   },
+  //   onRemove() {
+  //     form.setFieldValue("image", []);
+  //     setFile(null);
 
-      return false;
-    },
-  };
+  //     return false;
+  //   },
+  // };
 
   return (
     <>
@@ -170,7 +154,7 @@ export default function BranchModal({
       >
         <div
           style={{
-            height: "calc(100vh - 174px)",
+            // height: "calc(100vh - 174px)",
             overflowY: "auto",
             overflowX: "hidden",
           }}
@@ -180,7 +164,7 @@ export default function BranchModal({
               <Form.Item name={"branch_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={12}>
+              <Col span={8}>
                 <Form.Item
                   name={"branch_name"}
                   label={t("branch.fields.branch_name")}
@@ -189,7 +173,7 @@ export default function BranchModal({
                   <Input placeholder={t("branch.fields.branch_name")} />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              {/* <Col span={12}>
                 <Form.Item
                   name={"news_thumbnail"}
                   label={t("news.fields.thumbnail")}
@@ -202,8 +186,8 @@ export default function BranchModal({
                     </div>
                   </Upload>
                 </Form.Item>
-              </Col>
-              <Col span={12}>
+              </Col> */}
+              <Col span={8}>
                 <Form.Item
                   name={"phone"}
                   label={t("branch.fields.phone")}
@@ -212,7 +196,7 @@ export default function BranchModal({
                   <Input placeholder={t("branch.fields.phone")} />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={8}>
                 <Form.Item
                   name={"city_id"}
                   label={t("branch.fields.city")}
@@ -222,10 +206,54 @@ export default function BranchModal({
                     loading={isLoadingCity}
                     placeholder="Chọn tỉnh, thành phố"
                     options={cityOptions || []}
-                    style={{ width: "40%" }}
+                    style={{ width: "100%" }}
                   />
                 </Form.Item>
               </Col>
+
+              <Col span={12}>
+                <Form.Item
+                  name={"open_time"}
+                  label={t("branch.fields.open_time")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input placeholder={t("branch.fields.open_time")} />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name={"close_time"}
+                  label={t("branch.fields.close_time")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input placeholder={t("branch.fields.close_time")} />
+                </Form.Item>
+              </Col>
+
+              <Col span={12}>
+                <Form.Item
+                  name={"embed_map"}
+                  label={t("branch.fields.embed_map")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input
+                    placeholder={
+                      t("branch.fields.embed_map") + ": <iframe>...</iframe>"
+                    }
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <div
+                  style={{ maxHeight: 200, overflow: "hidden" }}
+                  dangerouslySetInnerHTML={{
+                    __html: embedMap?.includes("<iframe")
+                      ? embedMap
+                      : "Không đúng định dạng",
+                  }}
+                ></div>
+              </Col>
+
               <Col span={12}>
                 <Form.Item
                   name={"address"}

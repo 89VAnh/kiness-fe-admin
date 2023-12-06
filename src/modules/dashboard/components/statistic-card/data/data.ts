@@ -3,15 +3,12 @@ import {
   IconPackages,
   IconPapers,
   IconStaff,
-  IconUsers,
 } from "@/assets/svg";
 import {
-  BRANCH_REGISTER_URL,
-  CUSTOMERS_URL,
+  BRANCH_URL,
   EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
-  NEWS_URL,
-  TEST_REGISTER_URL,
+  REQUEST_URL,
 } from "@/urls";
 
 export const dataStatistic = {
@@ -33,27 +30,6 @@ export const dataStatistic = {
 };
 
 export const colorStatistic = {
-  customer: {
-    // title: "Khách hàng",
-    linkTo: CUSTOMERS_URL,
-    title: "total_customer",
-    color: "#1890FF",
-    icon: IconUsers,
-  },
-  branch: {
-    // title: "Hồ sơ CO",
-    linkTo: BRANCH_REGISTER_URL,
-    title: "total_branch",
-    color: "#13AEDF",
-    icon: IconDocuments,
-  },
-  test: {
-    // title: "Sản phẩm",
-    linkTo: TEST_REGISTER_URL,
-    title: "total_test",
-    color: "#3AA966",
-    icon: IconPackages,
-  },
   experience: {
     // title: "Nguyên vật liệu",
     linkTo: EXPERIENCE_REGISTER_URL,
@@ -68,11 +44,18 @@ export const colorStatistic = {
     color: "#17CCB6",
     icon: IconStaff,
   },
-  news: {
-    // title: "Nhân viên",
-    linkTo: NEWS_URL,
-    title: "total_news",
-    color: "#17CCC8",
+  branch: {
+    // title: "Chi nhánh",
+    linkTo: BRANCH_URL,
+    title: "total_branch",
+    color: "#3AA966",
+    icon: IconPackages,
+  },
+  request: {
+    // title: "Chi nhánh",
+    linkTo: REQUEST_URL,
+    title: "total_request",
+    color: "#13aedf",
     icon: IconDocuments,
   },
 };
