@@ -46,7 +46,7 @@
     "total_customer": "Khách hàng",
     "total_employee": "Nhân viên",
     "total_experience": "ĐK trải nghiệm",
-    "total_branch": "ĐK trung tâm",
+    "total_branch": "Chi nhánh",
     "total_test": "ĐK kiểm tra",
     "total_news": "Tin tức"
   },
@@ -276,6 +276,26 @@
     },
     "messages": {
       "update_status_success": "Thay đổi trạng thái thành công"
+    }
+  },
+  "branch": {
+    "title": "Quản lý chi nhánh",
+    "search_placeholder": "Nhập tên chi nhánh, số điện thoại...",
+    "title_update": "Cập nhật chi nhánh",
+    "title_create": "Thêm chi nhánh",
+
+    "fields": {
+      "serial": "STT",
+      "thumbnail": "Ảnh",
+      "branch_name": "Tên chi nhánh",
+      "phone": "Số điện thoại",
+      "city_name": "Tên thành phố",
+      "address": "Địa chỉ",
+      "actions": "Tác vụ",
+      "city": "Thành phố",
+      "open_time": "Thời gian mở cửa",
+      "close_time": "Thời gian đóng cửa",
+      "embed_map": "Bản đồ"
     }
   }
 }

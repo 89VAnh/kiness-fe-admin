@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 
 import { ExtractFnReturnType, QueryConfig } from "@/lib/react-query";
 import {
+  getCountBranch,
   getCountBranchRegister,
   getCountCustomer,
   getCountEmployee,
@@ -121,7 +122,25 @@ const useGetCountNews = ({
   });
 };
 
+const useGetCountBranch = ({
+  user_id,
+  enabled = true,
+  config,
+}: {
+  user_id: string;
+  enabled?: boolean;
+  config?: QueryConfig<typeof getCountBranch>;
+}) => {
+  return useQuery<ExtractFnReturnType<typeof getCountBranch>>({
+    ...config,
+    enabled,
+    queryKey: [CACHE_DASHBOARD.DASHBOARD_BRANCH],
+    queryFn: () => getCountBranch(user_id),
+  });
+};
+
 export {
+  useGetCountBranch,
   useGetCountBranchRegister,
   useGetCountCustomer,
   useGetCountEmployee,
