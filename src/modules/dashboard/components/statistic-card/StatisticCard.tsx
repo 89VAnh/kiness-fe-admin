@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import {
+  useGetCountBranch,
   useGetCountBranchRegister,
   useGetCountCustomer,
   useGetCountEmployee,
@@ -37,7 +38,16 @@ export default function StatisticDash(): JSX.Element {
       },
     },
   });
-  useGetCountBranchRegister({
+  // useGetCountBranchRegister({
+  //   user_id: userProfile.user_id,
+  //   config: {
+  //     onSuccess(data) {
+  //       if (data.total)
+  //         setCurrentData((prev) => ({ ...prev, branch: data.total }));
+  //     },
+  //   },
+  // });
+  useGetCountBranch({
     user_id: userProfile.user_id,
     config: {
       onSuccess(data) {

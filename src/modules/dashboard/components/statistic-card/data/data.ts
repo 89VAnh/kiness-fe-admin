@@ -7,6 +7,7 @@ import {
 } from "@/assets/svg";
 import {
   BRANCH_REGISTER_URL,
+  BRANCH_URL,
   CUSTOMERS_URL,
   EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
@@ -40,13 +41,13 @@ export const colorStatistic = {
     color: "#1890FF",
     icon: IconUsers,
   },
-  branch: {
-    // title: "Hồ sơ CO",
-    linkTo: BRANCH_REGISTER_URL,
-    title: "total_branch",
-    color: "#13AEDF",
-    icon: IconDocuments,
-  },
+  // branch: {
+  //   // title: "Hồ sơ CO",
+  //   linkTo: BRANCH_REGISTER_URL,
+  //   title: "total_branch",
+  //   color: "#13AEDF",
+  //   icon: IconDocuments,
+  // },
   test: {
     // title: "Sản phẩm",
     linkTo: TEST_REGISTER_URL,
@@ -73,6 +74,13 @@ export const colorStatistic = {
     linkTo: NEWS_URL,
     title: "total_news",
     color: "#17CCC8",
+    icon: IconDocuments,
+  },
+  branch: {
+    // title: "Chi nhánh",
+    linkTo: BRANCH_URL,
+    title: "total_branch",
+    color: "#3AA966",
     icon: IconDocuments,
   },
 };

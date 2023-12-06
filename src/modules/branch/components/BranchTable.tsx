@@ -90,6 +90,24 @@ export default function BranchTable(): JSX.Element {
       sorter: (a, b) => compareNumbers(a, b, "address"),
     },
     {
+      title: t("fields.open_time"),
+      dataIndex: "open_time",
+      width: 100,
+      sorter: (a, b) => compareNumbers(a, b, "open_time"),
+    },
+    {
+      title: t("fields.close_time"),
+      dataIndex: "close_time",
+      width: 100,
+      sorter: (a, b) => compareNumbers(a, b, "close_time"),
+    },
+    {
+      title: t("fields.embed_map"),
+      dataIndex: "embed_map",
+      width: 100,
+      sorter: (a, b) => compareNumbers(a, b, "embed_map"),
+    },
+    {
       title: t("fields.actions"),
       dataIndex: "action",
       align: "center",
