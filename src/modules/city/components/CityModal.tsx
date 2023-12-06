@@ -121,7 +121,7 @@ export default function CityModal({ id, isCreate = true }: Props): JSX.Element {
       >
         <div
           style={{
-            height: "calc(100vh - 174px)",
+            // height: "calc(100vh - 174px)",
             overflowY: "auto",
             overflowX: "hidden",
           }}

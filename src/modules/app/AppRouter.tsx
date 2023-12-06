@@ -4,26 +4,21 @@ import {
   FileSearchOutlined,
   HomeOutlined,
   SolutionOutlined,
-  TeamOutlined,
 } from "@ant-design/icons";
 import { ProLayoutProps } from "@ant-design/pro-components";
 import { TFunction } from "i18next";
 import { Link } from "react-router-dom";
 
 import {
-  BRANCH_REGISTER_URL,
   BRANCH_URL,
   CITY_URL,
   CONFIG_URL,
-  CUSTOMERS_URL,
   EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
   HOME_URL,
   MANAGER_URL,
-  NEWS_URL,
   PAGE_URL,
   SLIDES_URL,
-  TEST_REGISTER_URL,
 } from "@/urls";
 import { getKeyFromPath } from "@/utils/format-string";
 
@@ -38,32 +33,12 @@ export const routes = (t: TFunction) => [
     name: t("nav.manager"),
     routes: [
       {
-        path: NEWS_URL,
-        name: <Link to={NEWS_URL}>{t("nav.news")}</Link>,
-        icon: <FileSearchOutlined />,
-      },
-      {
-        path: CUSTOMERS_URL,
-        name: <Link to={CUSTOMERS_URL}>{t("nav.customer")}</Link>,
-        icon: <TeamOutlined />,
-      },
-      {
         path: EXPERIENCE_REGISTER_URL,
         name: (
           <Link to={EXPERIENCE_REGISTER_URL}>
             {t("nav.experience_register")}
           </Link>
         ),
-        icon: <FileSearchOutlined />,
-      },
-      {
-        path: TEST_REGISTER_URL,
-        name: <Link to={TEST_REGISTER_URL}>{t("nav.test_register")}</Link>,
-        icon: <FileSearchOutlined />,
-      },
-      {
-        path: BRANCH_REGISTER_URL,
-        name: <Link to={BRANCH_REGISTER_URL}>{t("nav.branch_register")}</Link>,
         icon: <FileSearchOutlined />,
       },
       {

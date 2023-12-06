@@ -60,10 +60,21 @@ export default function SlideTable(): JSX.Element {
       search: false,
     },
     {
-      title: t("fields.image"),
-      dataIndex: "image",
+      title: t("fields.image_big"),
+      dataIndex: "image_big",
+      width: 400,
+      render: (value: any) => <Image src={"/api/" + value} width={400} />,
+    },
+    {
+      title: t("fields.image_small"),
+      dataIndex: "image_small",
       width: 400,
       render: (value: any) => <Image src={"/api/" + value} width={100} />,
+    },
+    {
+      title: t("fields.caption"),
+      dataIndex: "slide_caption",
+      width: 200,
     },
     {
       title: t("fields.order"),
@@ -82,7 +93,10 @@ export default function SlideTable(): JSX.Element {
         return (
           <Space>
             <SlideModal id={record?.slide_id} isCreate={false} />
-            <SlideDelete id={record?.slide_id} filePath={record.image} />
+            <SlideDelete
+              id={record?.slide_id}
+              filePaths={[record.image_big, record.image_small]}
+            />
           </Space>
         );
       },
