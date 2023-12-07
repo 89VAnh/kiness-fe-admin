@@ -22,7 +22,7 @@ import {
   useCreateSlide,
   useGetSlideById,
   useUpdateSlide,
-} from "@/loader/slides.loader";
+} from "@/loader/slide.loader";
 import { uploadFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
@@ -50,7 +50,7 @@ export default function SlideModal({
         if (data.results) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
+          queryClient.invalidateQueries([CACHE_SLIDES.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -65,7 +65,7 @@ export default function SlideModal({
         if (data.results) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
+          queryClient.invalidateQueries([CACHE_SLIDES.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {

@@ -1,18 +1,18 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Input, Space, Typography } from "antd";
+import { Image, Input, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
-import { useSearchPages } from "@/loader/page.loader";
-import { IPage } from "@/models/page";
-import { compareStrings } from "@/utils/array";
+import { useSearchSlides } from "@/loader/slide.loader";
+import { ISlide } from "@/models/slide";
+import { compareNumbers } from "@/utils/array";
 
-import PageDelete from "./PageDelete";
-import PageModal from "./PageModal";
+import SlideDelete from "./SlideDelete";
+import SlideModal from "./SlideModal";
 
-export default function PageTable(): JSX.Element {
-  const { t } = useTranslation("translation", { keyPrefix: "page" });
+export default function SlideTable(): JSX.Element {
+  const { t } = useTranslation("translation", { keyPrefix: "slide" });
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchContent, setSearchContent] = useState<string>(
     searchParams.get("k") || "",
@@ -24,7 +24,7 @@ export default function PageTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const customers = useSearchPages({
+  const customers = useSearchSlides({
     params: {
       pageIndex: page,
       pageSize: pageSize,
@@ -46,7 +46,7 @@ export default function PageTable(): JSX.Element {
     setSearchContent(value);
   };
 
-  const columns: ProColumns<IPage>[] = [
+  const columns: ProColumns<ISlide>[] = [
     {
       title: t("fields.serial"),
       dataIndex: "serial",
@@ -60,16 +60,28 @@ export default function PageTable(): JSX.Element {
       search: false,
     },
     {
-      title: t("fields.code"),
-      dataIndex: "page_code",
-      sorter: (a, b) => compareStrings(a, b, "page_code"),
-      width: 100,
+      title: t("fields.image_big"),
+      dataIndex: "image_big",
+      width: 400,
+      render: (value: any) => <Image src={"/api/" + value} width={400} />,
     },
     {
-      title: t("fields.title"),
-      dataIndex: "page_title",
-      sorter: (a, b) => compareStrings(a, b, "page_title"),
+      title: t("fields.image_small"),
+      dataIndex: "image_small",
       width: 400,
+      render: (value: any) => <Image src={"/api/" + value} width={100} />,
+    },
+    {
+      title: t("fields.caption"),
+      dataIndex: "slide_caption",
+      width: 200,
+    },
+    {
+      title: t("fields.order"),
+      dataIndex: "order",
+      align: "right",
+      width: 100,
+      sorter: (a, b) => compareNumbers(a, b, "order"),
     },
     {
       title: t("fields.actions"),
@@ -80,8 +92,11 @@ export default function PageTable(): JSX.Element {
       render: (_, record) => {
         return (
           <Space>
-            <PageModal id={record?.page_code} isCreate={false} />
-            <PageDelete id={record?.page_id} />
+            <SlideModal id={record?.slide_id} isCreate={false} />
+            <SlideDelete
+              id={record?.slide_id}
+              filePaths={[record.image_big, record.image_small]}
+            />
           </Space>
         );
       },
@@ -92,10 +107,6 @@ export default function PageTable(): JSX.Element {
     <ProTable
       size="small"
       cardBordered
-      // rowSelection={{
-      //   selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-      //   defaultSelectedRowKeys: [],
-      // }}
       loading={customers.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
@@ -112,10 +123,6 @@ export default function PageTable(): JSX.Element {
       columns={columns}
       dataSource={customers.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      // search={{
-      //   resetText: "Reset",
-      //   labelWidth: "auto",
-      // }}
       search={false}
       toolbar={{
         settings: [],
@@ -128,9 +135,9 @@ export default function PageTable(): JSX.Element {
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,
-        <PageModal />,
+        <SlideModal />,
       ]}
-      rowKey={"page_id"}
+      rowKey={"slide_id"}
     />
   );
 }

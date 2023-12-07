@@ -25,19 +25,42 @@
   display: none !important;
 }
 
-.ant-menu-light .ant-menu-item-selected {
-  background-color: $color-primary !important;
-  color: $color-white;
-  transition: none !important;
-
-  a,
-  span,
-  div {
-    transition: none !important;
+.ant-menu-light {
+  .ant-menu-submenu-title {
+    a {
+      color: $color-black;
+    }
   }
 
-  :hover {
-    color: $color-white;
+  .ant-menu-submenu-selected {
+    & > .ant-menu-submenu-title {
+      background-color: $color-primary !important;
+      color: $color-white !important;
+      transition: none !important;
+
+      a,
+      span,
+      div {
+        transition: none !important;
+        color: $color-white !important;
+      }
+    }
+  }
+
+  .ant-menu-item-selected {
+    background-color: $color-primary !important;
+    transition: none !important;
+
+    a,
+    span,
+    div {
+      color: $color-white;
+      transition: none !important;
+    }
+
+    &:hover {
+      color: $color-white;
+    }
   }
 }
 

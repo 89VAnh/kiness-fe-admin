@@ -9,13 +9,15 @@ import { DashboardPage } from "./modules/dashboard";
 import { EmployeePage } from "./modules/employee";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
+import { FaqManagePage } from "./modules/faq";
 import { PageManagePage } from "./modules/page";
-import { SlideManagePage } from "./modules/slides";
+import { SlideManagePage } from "./modules/slide";
 import {
   BRANCH_URL,
   CITY_URL,
   EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
+  FAQ_URL,
   HOME_URL,
   LOGIN_URL,
   PAGE_URL,
@@ -48,6 +50,45 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: BRANCH_URL,
+        element: (
+          <ProtectedComponent
+            Element={BranchManagePage}
+            title="Quản lý chi nhánh"
+          />
+        ),
+      },
+      {
+        path: CITY_URL,
+        element: (
+          <ProtectedComponent
+            Element={CityManagePage}
+            title="Quản lý thành phố"
+          />
+        ),
+      },
+      {
+        path: FAQ_URL,
+        element: (
+          <ProtectedComponent
+            Element={FaqManagePage}
+            title="Quản lý câu hỏi thường gặp"
+          />
+        ),
+      },
+
+      {
+        path: EMPLOYEE_URL,
+        element: (
+          <ProtectedComponent
+            Element={EmployeePage}
+            title="Quản lý nhân viên"
+            role={2}
+          />
+        ),
+      },
+
+      {
         path: PAGE_URL,
         element: (
           <ProtectedComponent
@@ -66,24 +107,6 @@ export const router = createBrowserRouter([
             role={2}
           />
         ),
-      },
-      {
-        path: EMPLOYEE_URL,
-        element: (
-          <ProtectedComponent
-            Element={EmployeePage}
-            title="Quản lý nhân viên"
-            role={2}
-          />
-        ),
-      },
-      {
-        path: BRANCH_URL,
-        element: <BranchManagePage />,
-      },
-      {
-        path: CITY_URL,
-        element: <CityManagePage />,
       },
     ],
   },

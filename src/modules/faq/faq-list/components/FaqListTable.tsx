@@ -1,18 +1,17 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Image, Input, Space, Typography } from "antd";
+import { Input, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
-import { useSearchSlides } from "@/loader/slides.loader";
-import { ISlide } from "@/models/slide";
-import { compareNumbers } from "@/utils/array";
+import { useSearchFaqs } from "@/loader/faq.loader";
+import { IFaq } from "@/models/faq";
 
-import SlideDelete from "./SlideDelete";
-import SlideModal from "./SlideModal";
+import FaqListDelete from "./FaqListDelete";
+import FaqListModal from "./FaqListModal";
 
-export default function SlideTable(): JSX.Element {
-  const { t } = useTranslation("translation", { keyPrefix: "slide" });
+export default function FaqListTable(): JSX.Element {
+  const { t } = useTranslation("translation", { keyPrefix: "faq.list" });
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchContent, setSearchContent] = useState<string>(
     searchParams.get("k") || "",
@@ -24,7 +23,7 @@ export default function SlideTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const customers = useSearchSlides({
+  const faqListQuery = useSearchFaqs({
     params: {
       pageIndex: page,
       pageSize: pageSize,
@@ -33,9 +32,9 @@ export default function SlideTable(): JSX.Element {
   });
 
   useEffect(() => {
-    return () => customers.remove();
+    return () => faqListQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [customers.remove]);
+  }, [faqListQuery.remove]);
 
   const handleSearch = (value: string) => {
     searchParams.delete("page");
@@ -46,7 +45,7 @@ export default function SlideTable(): JSX.Element {
     setSearchContent(value);
   };
 
-  const columns: ProColumns<ISlide>[] = [
+  const columns: ProColumns<IFaq>[] = [
     {
       title: t("fields.serial"),
       dataIndex: "serial",
@@ -60,43 +59,43 @@ export default function SlideTable(): JSX.Element {
       search: false,
     },
     {
-      title: t("fields.image_big"),
-      dataIndex: "image_big",
-      width: 400,
-      render: (value: any) => <Image src={"/api/" + value} width={400} />,
+      title: t("fields.topic_name"),
+      dataIndex: "topic_name",
+      render: (value) => (
+        <Typography.Text style={{ width: 100 }} ellipsis title={value + ""}>
+          {value}
+        </Typography.Text>
+      ),
     },
     {
-      title: t("fields.image_small"),
-      dataIndex: "image_small",
-      width: 400,
-      render: (value: any) => <Image src={"/api/" + value} width={100} />,
+      title: t("fields.question"),
+      dataIndex: "question",
+      render: (value) => (
+        <Typography.Text style={{ width: 150 }} ellipsis title={value + ""}>
+          {value}
+        </Typography.Text>
+      ),
     },
     {
-      title: t("fields.caption"),
-      dataIndex: "slide_caption",
-      width: 200,
-    },
-    {
-      title: t("fields.order"),
-      dataIndex: "order",
-      align: "right",
-      width: 100,
-      sorter: (a, b) => compareNumbers(a, b, "order"),
+      title: t("fields.answer"),
+      dataIndex: "answer",
+      render: (value) => (
+        <Typography.Text style={{ width: 200 }} ellipsis title={value + ""}>
+          {value}
+        </Typography.Text>
+      ),
     },
     {
       title: t("fields.actions"),
-      dataIndex: "action",
-      width: 100,
+      dataIndex: "actions",
+      width: 50,
       align: "center",
       search: false,
       render: (_, record) => {
         return (
           <Space>
-            <SlideModal id={record?.slide_id} isCreate={false} />
-            <SlideDelete
-              id={record?.slide_id}
-              filePaths={[record.image_big, record.image_small]}
-            />
+            <FaqListModal id={record?.faq_id} isCreate={false} />
+            <FaqListDelete id={record?.faq_id} />
           </Space>
         );
       },
@@ -107,7 +106,7 @@ export default function SlideTable(): JSX.Element {
     <ProTable
       size="small"
       cardBordered
-      loading={customers.isLoading}
+      loading={faqListQuery.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
         current: Number(searchParams.get("page")) || 1,
@@ -118,10 +117,10 @@ export default function SlideTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: customers.data?.totalItems || 0,
+        total: faqListQuery.data?.totalItems || 0,
       }}
       columns={columns}
-      dataSource={customers.data?.data || []}
+      dataSource={faqListQuery.data?.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -131,11 +130,12 @@ export default function SlideTable(): JSX.Element {
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={customers.isLoading}
+          loading={faqListQuery.isLoading}
           onSearch={handleSearch}
+          style={{ minWidth: 150 }}
           onFocus={(e) => e.target.select()}
         />,
-        <SlideModal />,
+        <FaqListModal />,
       ]}
       rowKey={"slide_id"}
     />

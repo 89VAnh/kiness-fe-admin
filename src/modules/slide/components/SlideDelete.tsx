@@ -4,29 +4,29 @@ import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
-import { CACHE_BRANCH, useDeleteBranch } from "@/loader/branch.loader";
+import { CACHE_SLIDES, useDeleteSlide } from "@/loader/slide.loader";
 import { IBaseDelete } from "@/models/base";
 import { deleteFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
 interface Props {
-  id: number;
-  thumbnail: string;
+  id: string;
+  filePaths: string[];
 }
 
-export default function BranchDelete({ id, thumbnail }: Props): JSX.Element {
+export default function SlideDelete({ id, filePaths }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
 
-  const deleteBranch = useDeleteBranch({
+  const deletePage = useDeleteSlide({
     config: {
       onSuccess: (data) => {
         if (data.results) {
           message.success(data.message);
-          queryClient.invalidateQueries([CACHE_BRANCH.SEARCH]);
-          deleteFile({ filePath: thumbnail });
+          queryClient.invalidateQueries([CACHE_SLIDES.SEARCH]);
+          filePaths.forEach((filePath) => deleteFile({ filePath }));
           close();
         } else message.error(data.message);
       },
@@ -38,11 +38,11 @@ export default function BranchDelete({ id, thumbnail }: Props): JSX.Element {
 
   const handleDelete = () => {
     const dataPost: IBaseDelete = {
-      list_json: [{ branch_id: id }],
+      list_json: [{ slide_id: id }],
       updated_by_id: userProfile.user_id,
     };
 
-    deleteBranch.mutate(dataPost);
+    deletePage.mutate(dataPost);
   };
 
   return (
@@ -54,13 +54,13 @@ export default function BranchDelete({ id, thumbnail }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
-        title={t("branch.title_delete")}
+        title={t("page.title_delete")}
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={close}
         onOk={handleDelete}
-        confirmLoading={deleteBranch.isLoading}
+        confirmLoading={deletePage.isLoading}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
       </Modal>

@@ -12,10 +12,10 @@ import {
   printExperienceRegister,
   searchExperienceRegister,
   updateExperienceRegisterStatus,
-} from "@/services/experienceRegister.service";
+} from "@/services/experience-register.service";
 
 export const CACHE_EXPERIENCE_REGISTER = {
-  EXPERIENCE_REGISTER: "EXPERIENCE_REGISTER",
+  SEARCH: "EXPERIENCE_REGISTERS",
 };
 
 const useCreateExperienceRegister = ({
@@ -41,7 +41,7 @@ const useSearchExperienceRegister = ({
 }) => {
   return useQuery<ExtractFnReturnType<typeof searchExperienceRegister>>({
     ...config,
-    queryKey: [CACHE_EXPERIENCE_REGISTER.EXPERIENCE_REGISTER, params],
+    queryKey: [CACHE_EXPERIENCE_REGISTER.SEARCH, params],
     queryFn: () => searchExperienceRegister(params),
   });
 };

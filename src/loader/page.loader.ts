@@ -12,11 +12,11 @@ import {
   getPageById,
   searchPages,
   updatePage,
-} from "@/services/pages.service";
+} from "@/services/page.service";
 
 export const CACHE_PAGES = {
-  PAGES: "PAGES",
-  PAGE_DETAIL: "PAGE_DETAIL",
+  SEARCH: "PAGES",
+  DETAIL: "PAGE_DETAIL",
 };
 
 // Get detail
@@ -32,7 +32,7 @@ const useGetPageById = ({
   return useQuery<ExtractFnReturnType<typeof getPageById>>({
     ...config,
     enabled,
-    queryKey: [CACHE_PAGES.PAGE_DETAIL, id],
+    queryKey: [CACHE_PAGES.DETAIL, id],
     queryFn: () => getPageById(id),
   });
 };
@@ -47,7 +47,7 @@ const useSearchPages = ({
 }) => {
   return useQuery<ExtractFnReturnType<typeof searchPages>>({
     ...config,
-    queryKey: [CACHE_PAGES.PAGES, params],
+    queryKey: [CACHE_PAGES.SEARCH, params],
     queryFn: () => searchPages(params),
   });
 };

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useRecoilValue } from "recoil";
 
-import { CACHE_EMPLOYEES, useDeleteEmployee } from "@/loader/employees.loader";
+import { CACHE_EMPLOYEES, useDeleteEmployee } from "@/loader/employee.loader";
 import { IBaseDelete } from "@/models/base";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
@@ -32,7 +32,7 @@ export default function EmployeeDelete({ id }: Props): JSX.Element {
           });
         }
 
-        queryClient.invalidateQueries([CACHE_EMPLOYEES.EMPLOYEES]);
+        queryClient.invalidateQueries([CACHE_EMPLOYEES.SEARCH]);
         close();
       },
       onError: (err) => {

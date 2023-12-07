@@ -18,8 +18,8 @@ import { useRecoilValue } from "recoil";
 import {
   usePrintExperienceRegister,
   useSearchExperienceRegister,
-} from "@/loader/experienceRegister.loader";
-import { IExperienceRegister } from "@/models/experience_register";
+} from "@/loader/experience-register.loader";
+import { IExperienceRegister } from "@/models/experience-register";
 import { UserState } from "@/store/auth/atom";
 import { compareNumbers, compareStrings } from "@/utils/array";
 import {

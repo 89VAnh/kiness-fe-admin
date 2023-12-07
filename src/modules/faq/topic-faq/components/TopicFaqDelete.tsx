@@ -1,32 +1,25 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Button, Modal, Tooltip, message } from "antd";
 import { useTranslation } from "react-i18next";
-import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
-import { CACHE_SLIDES, useDeleteSlide } from "@/loader/slides.loader";
-import { IBaseDelete } from "@/models/base";
-import { deleteFile } from "@/services/upload.service";
-import { UserState } from "@/store/auth/atom";
+import { CACHE_FAQ_TOPIC, useDeleteFaqTopic } from "@/loader/faq-topic.loader";
 import { useDisclosure } from "@/utils/modal";
 
 interface Props {
   id: string;
-  filePaths: string[];
 }
 
-export default function SlideDelete({ id, filePaths }: Props): JSX.Element {
+export default function TopicFaqDelete({ id }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
-  const userProfile = useRecoilValue(UserState);
 
-  const deletePage = useDeleteSlide({
+  const deleteQuery = useDeleteFaqTopic({
     config: {
       onSuccess: (data) => {
-        if (data.results) {
+        if (data.success) {
           message.success(data.message);
-          queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
-          filePaths.forEach((filePath) => deleteFile({ filePath }));
+          queryClient.invalidateQueries([CACHE_FAQ_TOPIC.SEARCH]);
           close();
         } else message.error(data.message);
       },
@@ -37,12 +30,7 @@ export default function SlideDelete({ id, filePaths }: Props): JSX.Element {
   });
 
   const handleDelete = () => {
-    const dataPost: IBaseDelete = {
-      list_json: [{ slide_id: id }],
-      updated_by_id: userProfile.user_id,
-    };
-
-    deletePage.mutate(dataPost);
+    deleteQuery.mutate(id);
   };
 
   return (
@@ -54,13 +42,13 @@ export default function SlideDelete({ id, filePaths }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
-        title={t("page.title_delete")}
+        title={t("faq.topic.title_delete")}
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={close}
         onOk={handleDelete}
-        confirmLoading={deletePage.isLoading}
+        confirmLoading={deleteQuery.isLoading}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
       </Modal>

@@ -12,11 +12,11 @@ import {
   getSlideById,
   searchSlides,
   updateSlide,
-} from "@/services/slides.service";
+} from "@/services/slide.service";
 
 export const CACHE_SLIDES = {
-  SLIDES: "SLIDES",
-  SLIDE_DETAIL: "SLIDE_DETAIL",
+  SEARCH: "SLIDES",
+  DETAIL: "SLIDE_DETAIL",
 };
 
 // Get detail
@@ -32,7 +32,7 @@ const useGetSlideById = ({
   return useQuery<ExtractFnReturnType<typeof getSlideById>>({
     ...config,
     enabled,
-    queryKey: [CACHE_SLIDES.SLIDE_DETAIL, id],
+    queryKey: [CACHE_SLIDES.DETAIL, id],
     queryFn: () => getSlideById(id),
   });
 };
@@ -47,7 +47,7 @@ const useSearchSlides = ({
 }) => {
   return useQuery<ExtractFnReturnType<typeof searchSlides>>({
     ...config,
-    queryKey: [CACHE_SLIDES.SLIDES, params],
+    queryKey: [CACHE_SLIDES.SEARCH, params],
     queryFn: () => searchSlides(params),
   });
 };

@@ -15,7 +15,8 @@ import {
 } from "@/services/employees.service";
 
 export const CACHE_EMPLOYEES = {
-  EMPLOYEES: "EMPLOYEES",
+  SEARCH: "EMPLOYEES",
+  DETAIL: "EMPLOYEE",
 };
 
 const useGetEmployeeById = ({
@@ -30,7 +31,7 @@ const useGetEmployeeById = ({
   return useQuery<ExtractFnReturnType<typeof getEmployeeById>>({
     ...config,
     enabled,
-    queryKey: [CACHE_EMPLOYEES.EMPLOYEES, id],
+    queryKey: [CACHE_EMPLOYEES.DETAIL, id],
     queryFn: () => getEmployeeById(id),
   });
 };
@@ -86,7 +87,7 @@ const useSearchEmployees = ({
 }) => {
   return useQuery<ExtractFnReturnType<typeof searchEmployees>>({
     ...config,
-    queryKey: [CACHE_EMPLOYEES.EMPLOYEES, params],
+    queryKey: [CACHE_EMPLOYEES.SEARCH, params],
     queryFn: () => searchEmployees(params),
   });
 };
