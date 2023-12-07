@@ -5,12 +5,9 @@ const LOGIN_URL = "/login";
 
 // Manager
 const MANAGER_URL = "/manager";
-const NEWS_URL = `${MANAGER_URL}/news`;
-const CUSTOMERS_URL = `${MANAGER_URL}/customers`;
 const EXPERIENCE_REGISTER_URL = `${MANAGER_URL}/experience-register`;
-const TEST_REGISTER_URL = `${MANAGER_URL}/test-register`;
-const BRANCH_REGISTER_URL = `${MANAGER_URL}/branch-register`;
 const BRANCH_URL = `${MANAGER_URL}/branch`;
+const REQUEST_URL = `${MANAGER_URL}/request`;
 const CITY_URL = `${MANAGER_URL}/city`;
 
 // Config
@@ -29,7 +26,6 @@ const breadcrumbNameMap: Record<string, string> = {
 };
 
 export {
-  BRANCH_REGISTER_URL,
   BRANCH_URL,
   CITY_URL,
   CONFIG_URL,
@@ -39,11 +35,10 @@ export {
   HOME_URL,
   LOGIN_URL,
   MANAGER_URL,
-  NEWS_URL,
   PAGE_URL,
-  POSITION_URL,
-  RESEARCHER_URL,
+  POSITION_URL, REQUEST_URL, RESEARCHER_URL,
   SLIDES_URL,
   TEST_REGISTER_URL,
-  breadcrumbNameMap,
+  breadcrumbNameMap
 };
+

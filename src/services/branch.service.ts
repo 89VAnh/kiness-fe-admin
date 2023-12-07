@@ -41,9 +41,7 @@ export const updateBranch = async (data: IBranch): Promise<any> => {
 };
 
 export const deleteBranch = async (data: IBaseDelete): Promise<any> => {
-  const res = await apiClient?.delete(`${prefix}/delete`, {
-    data,
-  });
+  const res = await apiClient?.post(`${prefix}/delete`, data);
 
   return res.data;
 };

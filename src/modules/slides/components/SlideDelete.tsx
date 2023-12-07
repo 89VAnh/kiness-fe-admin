@@ -12,10 +12,10 @@ import { useDisclosure } from "@/utils/modal";
 
 interface Props {
   id: string;
-  filePath: string;
+  filePaths: string[];
 }
 
-export default function SlideDelete({ id, filePath }: Props): JSX.Element {
+export default function SlideDelete({ id, filePaths }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
@@ -26,7 +26,7 @@ export default function SlideDelete({ id, filePath }: Props): JSX.Element {
         if (data.results) {
           message.success(data.message);
           queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
-          deleteFile({ filePath });
+          filePaths.forEach((filePath) => deleteFile({ filePath }));
           close();
         } else message.error(data.message);
       },

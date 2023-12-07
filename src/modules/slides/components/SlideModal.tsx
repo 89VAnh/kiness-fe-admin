@@ -1,5 +1,4 @@
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
 import {
   Button,
   Col,
@@ -17,8 +16,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
-import EditorBasic from "@/components/Editor/EditorBasic";
-import { handleDeleteImage } from "@/components/Editor/utils/upload-editor";
 import { queryClient } from "@/lib/react-query";
 import {
   CACHE_SLIDES,
@@ -43,8 +40,8 @@ export default function SlideModal({
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
-  const [dataEditor, setDataEditor] = useState<string>("");
-  const [file, setFile] = useState<File | null>();
+  const [fileDesktop, setFileDesktop] = useState<File | null>();
+  const [fileMobile, setFileMobile] = useState<File | null>();
   const [form] = Form.useForm();
 
   const updatePage = useUpdateSlide({
@@ -66,7 +63,7 @@ export default function SlideModal({
     config: {
       onSuccess: (data) => {
         if (data.results) {
-          message.success(t("messages.create_success"));
+          message.success(t("messages.update_success"));
           handleCancel();
           queryClient.invalidateQueries([CACHE_SLIDES.SLIDES]);
         } else message.error(data.message);
@@ -84,14 +81,20 @@ export default function SlideModal({
       onSuccess(data) {
         if (!data?.message) {
           form.setFieldsValue(data);
-          form.setFieldValue("image", [
+          form.setFieldValue("image_big", [
             {
               name: "",
               uid: "1",
-              thumbUrl: "/api/" + data.image,
+              thumbUrl: "/api/" + data.image_big,
             },
           ]);
-          setDataEditor(data?.slide_caption || "");
+          form.setFieldValue("image_small", [
+            {
+              name: "",
+              uid: "1",
+              thumbUrl: "/api/" + data.image_small,
+            },
+          ]);
         }
       },
     },
@@ -101,14 +104,19 @@ export default function SlideModal({
     form
       .validateFields()
       .then(async (values) => {
-        let dataFile;
-        if (file) dataFile = await uploadFile({ file });
+        let dataFileDesktop;
+        let dataFileMobile;
+        if (fileDesktop)
+          dataFileDesktop = await uploadFile({ file: fileDesktop });
+        if (fileMobile) dataFileMobile = await uploadFile({ file: fileMobile });
         const dataPost = {
           ...values,
-          image: dataFile
-            ? dataFile.path
-            : values.image?.[0]?.thumbUrl?.replace("/api/", ""),
-          slide_caption: dataEditor,
+          image_big: dataFileDesktop
+            ? dataFileDesktop.path
+            : values.image_big?.[0]?.thumbUrl?.replace("/api/", ""),
+          image_small: dataFileMobile
+            ? dataFileMobile.path
+            : values.image_small?.[0]?.thumbUrl?.replace("/api/", ""),
         };
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
@@ -126,21 +134,21 @@ export default function SlideModal({
 
   const handleCancel = () => {
     form.resetFields();
-    setFile(null);
-    setDataEditor("");
+    setFileDesktop(null);
+    setFileMobile(null);
     close();
   };
 
-  const uploadProps: UploadProps = {
+  const uploadProps1: UploadProps = {
     maxCount: 1,
     accept: "image/*",
     listType: "picture-card",
     beforeUpload(file) {
-      setFile(file);
+      setFileDesktop(file);
       return false;
     },
     onChange({ file }: any) {
-      form.setFieldValue("image", [
+      form.setFieldValue("image_big", [
         {
           name: "",
           uid: "1",
@@ -149,8 +157,33 @@ export default function SlideModal({
       ]);
     },
     onRemove() {
-      form.setFieldValue("image", []);
-      setFile(null);
+      form.setFieldValue("image_big", []);
+      setFileDesktop(null);
+
+      return false;
+    },
+  };
+
+  const uploadProps2: UploadProps = {
+    maxCount: 1,
+    accept: "image/*",
+    listType: "picture-card",
+    beforeUpload(file) {
+      setFileMobile(file);
+      return false;
+    },
+    onChange({ file }: any) {
+      form.setFieldValue("image_small", [
+        {
+          name: "",
+          uid: "1",
+          thumbUrl: URL.createObjectURL(file),
+        },
+      ]);
+    },
+    onRemove() {
+      form.setFieldValue("image_small", []);
+      setFileMobile(null);
 
       return false;
     },
@@ -184,7 +217,7 @@ export default function SlideModal({
       >
         <div
           style={{
-            height: "calc(100vh - 174px)",
+            // height: "calc(100vh - 174px)",
             overflowY: "auto",
             overflowX: "hidden",
           }}
@@ -194,14 +227,14 @@ export default function SlideModal({
               <Form.Item name={"slide_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={12}>
+              <Col span={8}>
                 <Form.Item
-                  name={"image"}
-                  label={t("slide.fields.image")}
+                  name={"image_big"}
+                  label={t("slide.fields.image_big")}
                   rules={[...RULES_FORM.required]}
                   valuePropName="fileList"
                 >
-                  <Upload {...uploadProps}>
+                  <Upload {...uploadProps1}>
                     <div>
                       <PlusOutlined />
                       <div style={{ marginTop: 8 }}>Upload</div>
@@ -209,7 +242,22 @@ export default function SlideModal({
                   </Upload>
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={8}>
+                <Form.Item
+                  name={"image_small"}
+                  label={t("slide.fields.image_small")}
+                  rules={[...RULES_FORM.required]}
+                  valuePropName="fileList"
+                >
+                  <Upload {...uploadProps2}>
+                    <div>
+                      <PlusOutlined />
+                      <div style={{ marginTop: 8 }}>Upload</div>
+                    </div>
+                  </Upload>
+                </Form.Item>
+              </Col>
+              <Col span={8}>
                 <Form.Item
                   name={"order"}
                   label={t("slide.fields.order") + " (Giảm dần)"}
@@ -223,6 +271,15 @@ export default function SlideModal({
                 </Form.Item>
               </Col>
               <Col span={24}>
+                <Form.Item
+                  name={"slide_caption"}
+                  label={t("slide.fields.caption")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input placeholder={t("slide.fields.order")} />
+                </Form.Item>
+              </Col>
+              {/* <Col span={24}>
                 <Form.Item
                   name={"slide_caption"}
                   label={t("slide.fields.caption")}
@@ -240,7 +297,7 @@ export default function SlideModal({
                     data={dataEditor || ""}
                   />
                 </Form.Item>
-              </Col>
+              </Col> */}
             </Row>
           </Form>
         </div>
