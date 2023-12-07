@@ -22,6 +22,7 @@ import {
   MANAGER_URL,
   NEWS_URL,
   PAGE_URL,
+  POSITION_URL,
   SLIDES_URL,
   TEST_REGISTER_URL,
 } from "@/urls";
@@ -74,6 +75,11 @@ export const routes = (t: TFunction) => [
       {
         path: CITY_URL,
         name: <Link to={CITY_URL}>{t("nav.city")}</Link>,
+        icon: <FileSearchOutlined />,
+      },
+      {
+        path: POSITION_URL,
+        name: <Link to={POSITION_URL}>{t("nav.position")}</Link>,
         icon: <FileSearchOutlined />,
       },
     ],

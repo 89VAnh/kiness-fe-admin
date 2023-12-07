@@ -13,6 +13,7 @@ import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { NewsPage } from "./modules/news";
 import { PageManagePage } from "./modules/page";
+import { PositionPage } from "./modules/position";
 import { SlideManagePage } from "./modules/slides";
 import { TestRegisterPage } from "./modules/test-register";
 import "./urls";
@@ -27,6 +28,7 @@ import {
   LOGIN_URL,
   NEWS_URL,
   PAGE_URL,
+  POSITION_URL,
   SLIDES_URL,
   TEST_REGISTER_URL,
 } from "./urls";
@@ -126,6 +128,11 @@ export const router = createBrowserRouter([
       {
         path: CITY_URL,
         element: <CityManagePage />,
+      },
+
+      {
+        path: POSITION_URL,
+        element: <PositionPage />,
       },
     ],
   },
