@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
-import { useSearchEmployees } from "@/loader/employees.loader";
+import { useSearchEmployees } from "@/loader/employee.loader";
 import { IEmployee } from "@/models/employee";
 import { UserState } from "@/store/auth/atom";
 import { compareNumbers, compareStrings } from "@/utils/array";

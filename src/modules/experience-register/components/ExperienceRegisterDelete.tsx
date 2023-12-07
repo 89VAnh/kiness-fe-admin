@@ -7,7 +7,7 @@ import { useRecoilValue } from "recoil";
 import {
   CACHE_EXPERIENCE_REGISTER,
   useDeleteExperienceRegister,
-} from "@/loader/experienceRegister.loader";
+} from "@/loader/experience-register.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
@@ -38,9 +38,7 @@ export default function ExperienceRegisterDelete({ id }: Props): JSX.Element {
           });
         }
 
-        queryClient.invalidateQueries([
-          CACHE_EXPERIENCE_REGISTER.EXPERIENCE_REGISTER,
-        ]);
+        queryClient.invalidateQueries([CACHE_EXPERIENCE_REGISTER.SEARCH]);
         close();
       },
       onError: (err) => {

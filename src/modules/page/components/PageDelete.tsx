@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
-import { CACHE_PAGES, useDeletePage } from "@/loader/pages.loader";
+import { CACHE_PAGES, useDeletePage } from "@/loader/page.loader";
 import { IBaseDelete } from "@/models/base";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
@@ -23,7 +23,7 @@ export default function PageDelete({ id }: Props): JSX.Element {
       onSuccess: (data) => {
         if (data.results) {
           message.success(data.message);
-          queryClient.invalidateQueries([CACHE_PAGES.PAGES]);
+          queryClient.invalidateQueries([CACHE_PAGES.SEARCH]);
           close();
         } else message.error(data.message);
       },

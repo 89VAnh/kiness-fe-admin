@@ -1,22 +1,15 @@
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { Button, Col, Form, Input, Modal, Row, Tooltip, message } from "antd";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
-import EditorCustom from "@/components/Editor/Editor";
-import {
-  handleDeleteImage,
-  uploadPlugin,
-} from "@/components/Editor/utils/upload-editor";
 import { queryClient } from "@/lib/react-query";
 import {
-  CACHE_PAGES,
-  useCreatePage,
-  useGetPageById,
-  useUpdatePage,
-} from "@/loader/page.loader";
+  CACHE_FAQ_TOPIC,
+  useCreateFaqTopic,
+  useGetFaqTopicById,
+  useUpdateFaqTopic,
+} from "@/loader/faq-topic.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 import { RULES_FORM } from "@/utils/validator";
@@ -26,20 +19,22 @@ interface Props {
   isCreate?: boolean;
 }
 
-export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
+export default function TopicFaqModal({
+  id,
+  isCreate = true,
+}: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
-  const [dataEditor, setDataEditor] = useState<string>("");
   const [form] = Form.useForm();
 
-  const updatePage = useUpdatePage({
+  const updatePage = useUpdateFaqTopic({
     config: {
       onSuccess: (data) => {
-        if (data.results) {
+        if (data.success) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_PAGES.SEARCH]);
+          queryClient.invalidateQueries([CACHE_FAQ_TOPIC.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -48,13 +43,13 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
     },
   });
 
-  const createPage = useCreatePage({
+  const createPage = useCreateFaqTopic({
     config: {
       onSuccess: (data) => {
-        if (data.results) {
-          message.success(t("messages.create_success"));
+        if (data.success) {
+          message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_PAGES.SEARCH]);
+          queryClient.invalidateQueries([CACHE_FAQ_TOPIC.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -63,14 +58,13 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
     },
   });
 
-  useGetPageById({
+  useGetFaqTopicById({
     id: id!,
     enabled: isOpen && !isCreate,
     config: {
       onSuccess(data) {
         if (!data?.message) {
-          form.setFieldsValue(data);
-          setDataEditor(data?.content);
+          form.setFieldsValue(data?.data);
         }
       },
     },
@@ -79,10 +73,9 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
   const handleSubmit = () => {
     form
       .validateFields()
-      .then((values) => {
+      .then(async (values) => {
         const dataPost = {
           ...values,
-          content: dataEditor,
         };
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
@@ -92,7 +85,10 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
           updatePage.mutate(dataPost);
         }
       })
-      .catch(() => message.warning(t("messages.validate_form")));
+      .catch((err) => {
+        console.log(err);
+        message.warning(t("messages.validate_form"));
+      });
   };
 
   const handleCancel = () => {
@@ -119,9 +115,10 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
         </Tooltip>
       )}
       <Modal
-        title={isCreate ? t("page.title_create") : t("page.title_update")}
-        width={"90vw"}
-        style={{ top: 58, padding: 0 }}
+        title={
+          isCreate ? t("faq.topic.title_create") : t("faq.topic.title_update")
+        }
+        style={{ top: 58, padding: 0, minWidth: 400 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -129,48 +126,23 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
       >
         <div
           style={{
-            height: "calc(100vh - 174px)",
+            // height: "calc(100vh - 174px)",
             overflowY: "auto",
             overflowX: "hidden",
           }}
         >
           <Form form={form} layout="vertical">
             <Row gutter={32}>
-              <Form.Item name={"page_id"} hidden>
+              <Form.Item name={"topic_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={12}>
-                <Form.Item name={"page_title"} label={t("page.fields.title")}>
-                  <Input placeholder={t("page.fields.title")} />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
+              <Col span={24}>
                 <Form.Item
-                  name={"page_code"}
-                  label={t("page.fields.code")}
+                  name={"topic_name"}
+                  label={t("faq.topic.fields.topic_name")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Input placeholder={t("page.fields.code")} />
-                </Form.Item>
-              </Col>
-              <Col span={24}>
-                <Form.Item name={"content"} label={t("page.fields.content")}>
-                  <CKEditor
-                    config={{
-                      // @ts-ignore
-                      extraPlugins: [uploadPlugin],
-                    }}
-                    editor={EditorCustom}
-                    onReady={() => {
-                      // You can store the "editor" and use when it is needed.
-                    }}
-                    onChange={(event, editor) => {
-                      const data = editor.getData();
-                      setDataEditor(data);
-                      handleDeleteImage(event);
-                    }}
-                    data={dataEditor}
-                  />
+                  <Input placeholder={t("faq.topic.fields.topic_name")} />
                 </Form.Item>
               </Col>
             </Row>

@@ -40,7 +40,8 @@
     "page": "Quản lý các trang",
     "slides": "Quản lý slides",
     "branch": "Quản lý chi nhánh",
-    "city": "Quản lý thành phố"
+    "city": "Quản lý thành phố",
+    "faq": "Quản lý câu hỏi thường gặp"
   },
   "dashboard": {
     "total_customer": "Khách hàng",
@@ -226,6 +227,36 @@
       "open_time": "Thời gian mở cửa",
       "close_time": "Thời gian đóng cửa",
       "embed_map": "Bản đồ"
+    }
+  },
+  "faq": {
+    "topic": {
+      "title": "Quản lý loại",
+      "search_placeholder": "Nhập tên loại...",
+      "title_update": "Cập nhật loại câu hỏi",
+      "title_create": "Thêm loại câu hỏi",
+      "title_delete": "Xóa loại câu hỏi",
+
+      "fields": {
+        "serial": "STT",
+        "topic_name": "Tên loại",
+        "actions": "Tác vụ"
+      }
+    },
+    "list": {
+      "title": "Quản lý câu hỏi",
+      "search_placeholder": "Nhập câu hỏi...",
+      "title_update": "Cập nhật câu hỏi",
+      "title_create": "Thêm câu hỏi",
+      "title_delete": "Xóa câu hỏi",
+
+      "fields": {
+        "serial": "STT",
+        "topic_name": "Loại",
+        "question": "Câu hỏi",
+        "answer": "Câu trả lời",
+        "actions": "Tác vụ"
+      }
     }
   }
 }
