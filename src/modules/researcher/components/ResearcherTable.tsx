@@ -5,15 +5,15 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
 import { BASE_URL } from "@/constant/config";
-import { useSearchPosition } from "@/loader/position.loader";
-import { IPosition } from "@/models/position";
+import { useSearchResearcher } from "@/loader/researcher.loader";
+import { IResearcher } from "@/models/researcher";
 import { formatToDate } from "@/utils/format-string";
 
-import PositionDelete from "./PositionDelete";
-import PositionModal from "./PositionModal";
+import ResearcherDelete from "./ResearcherDelete";
+import ResearcherModal from "./ResearcherModal";
 
-export default function PositionTable(): JSX.Element {
-  const { t } = useTranslation("translation", { keyPrefix: "position" });
+export default function ResearcherTable(): JSX.Element {
+  const { t } = useTranslation("translation", { keyPrefix: "researcher" });
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchContent, setSearchContent] = useState<string>(
     searchParams.get("k") || "",
@@ -25,7 +25,7 @@ export default function PositionTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const position = useSearchPosition({
+  const researcher = useSearchResearcher({
     params: {
       pageIndex: page,
       pageSize: pageSize,
@@ -41,11 +41,11 @@ export default function PositionTable(): JSX.Element {
   };
 
   useEffect(() => {
-    return () => position.remove();
+    return () => researcher.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [position.remove]);
+  }, [researcher.remove]);
 
-  const columns: ProColumns<IPosition>[] = [
+  const columns: ProColumns<IResearcher>[] = [
     {
       title: t("fields.serial"),
       dataIndex: "serial",
@@ -55,14 +55,31 @@ export default function PositionTable(): JSX.Element {
       search: false,
     },
     {
-      title: t("fields.position_name"),
-      dataIndex: "position_name",
-      width: 150,
+      title: t("fields.image_url"),
+      dataIndex: "image_url",
+      width: 100,
+      align: "center",
+      // render: (image_url) => <Image src={"/api/" + image_url} width={100} />,
+      render: (image_url) => (
+        <Image src={BASE_URL + "/" + image_url} width={100} />
+      ),
+      search: false,
     },
     {
-      title: t("fields.description"),
-      dataIndex: "description",
-      width: 150,
+      title: t("fields.name"),
+      dataIndex: "name",
+      width: 100,
+    },
+
+    {
+      title: t("fields.degree"),
+      dataIndex: "degree",
+      width: 100,
+    },
+    {
+      title: t("fields.position"),
+      dataIndex: "position_name",
+      width: 100,
     },
     {
       title: t("fields.created_date_time"),
@@ -70,10 +87,10 @@ export default function PositionTable(): JSX.Element {
       width: 200,
       align: "center",
       valueType: "date",
-      render: (_, position) => {
+      render: (_, researcher) => {
         return (
           <Typography.Text>
-            {formatToDate(position.created_date_time?.toString() || "")}
+            {formatToDate(researcher.created_date_time?.toString() || "")}
           </Typography.Text>
         );
       },
@@ -92,8 +109,11 @@ export default function PositionTable(): JSX.Element {
       render: (_, record) => {
         return (
           <Space>
-            <PositionModal id={record?.position_id} isCreate={false} />
-            <PositionDelete id={record?.position_id} />
+            <ResearcherModal id={record?.researcher_id} isCreate={false} />
+            <ResearcherDelete
+              id={record?.researcher_id}
+              image_url={record?.image_url || ""}
+            />
           </Space>
         );
       },
@@ -103,9 +123,9 @@ export default function PositionTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      loading={position.isLoading}
+      loading={researcher.isLoading}
       columns={columns}
-      dataSource={position.data?.data || []}
+      dataSource={researcher.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -124,19 +144,19 @@ export default function PositionTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: position.data?.totalItems || 0,
+        total: researcher.data?.totalItems || 0,
       }}
       toolBarRender={() => [
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={position.isLoading}
+          loading={researcher.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,
-        <PositionModal />,
+        <ResearcherModal />,
       ]}
-      rowKey={"position_id"}
+      rowKey={"researcher_id"}
     />
   );
 }

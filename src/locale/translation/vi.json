@@ -40,7 +40,9 @@
     "page": "Quản lý các trang",
     "slides": "Quản lý slides",
     "branch": "Quản lý chi nhánh",
-    "city": "Quản lý thành phố"
+    "city": "Quản lý thành phố",
+    "position": "Quản lý chức vụ",
+    "researcher": "Quản lý nhà nghiên cứu"
   },
   "dashboard": {
     "total_customer": "Khách hàng",
@@ -227,5 +229,44 @@
       "close_time": "Thời gian đóng cửa",
       "embed_map": "Bản đồ"
     }
+  },
+  "position": {
+    "title": "Quản lý chức vụ",
+    "search_placeholder": "Nhập tên chức vụ...",
+
+    "fields": {
+      "serial": "STT",
+      "position_name": "Tên chức vụ",
+      "description": "Mô tả",
+      "created_date_time": "Ngày tạo",
+      "created_by_user_id": "Người tạo",
+      "actions": "Tác vụ"
+    },
+
+    "title_update": "Cập nhật chức vụ",
+    "title_create": "Thêm chức vụ",
+    "title_delete": "Xóa chức vụ"
+  },
+  "researcher": {
+    "title": "Quản lý nhà nghiên cứu",
+    "search_placeholder": "Nhập tên, trình độ, lịch sử, bài báo ...",
+
+    "fields": {
+      "serial": "STT",
+      "name": "Tên",
+      "image_url": "Ảnh",
+      "degree": "Trình độ",
+      "position": "Chức vụ",
+      "description": "Mô tả",
+      "created_date_time": "Ngày tạo",
+      "created_by_user_id": "Người tạo",
+      "actions": "Tác vụ",
+      "story": "Lịch sử tóm tắt",
+      "paper": "Bài báo"
+    },
+
+    "title_update": "Cập nhật nhà nghiên cứu",
+    "title_create": "Thêm nhà nghiên cứu",
+    "title_delete": "Xóa nhà nghiên cứu"
   }
 }

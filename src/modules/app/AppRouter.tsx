@@ -1,9 +1,11 @@
 import {
+  ApartmentOutlined,
   DashboardOutlined,
   DesktopOutlined,
   FileSearchOutlined,
   HomeOutlined,
   SolutionOutlined,
+  TeamOutlined,
 } from "@ant-design/icons";
 import { ProLayoutProps } from "@ant-design/pro-components";
 import { TFunction } from "i18next";
@@ -19,6 +21,7 @@ import {
   MANAGER_URL,
   PAGE_URL,
   POSITION_URL,
+  RESEARCHER_URL,
   SLIDES_URL,
 } from "@/urls";
 import { getKeyFromPath } from "@/utils/format-string";
@@ -55,7 +58,12 @@ export const routes = (t: TFunction) => [
       {
         path: POSITION_URL,
         name: <Link to={POSITION_URL}>{t("nav.position")}</Link>,
-        icon: <FileSearchOutlined />,
+        icon: <ApartmentOutlined />,
+      },
+      {
+        path: RESEARCHER_URL,
+        name: <Link to={RESEARCHER_URL}>{t("nav.researcher")}</Link>,
+        icon: <TeamOutlined />,
       },
     ],
   },

@@ -4,20 +4,28 @@ import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
-import { CACHE_POSITION, useDeletePosition } from "@/loader/position.loader";
+import {
+  CACHE_RESEARCHER,
+  useDeleteResearcher,
+} from "@/loader/researcher.loader";
+import { deleteFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
 interface Props {
   id: number;
+  image_url: string;
 }
 
-export default function PositionDelete({ id }: Props): JSX.Element {
-  const { t } = useTranslation("translation", { keyPrefix: "position" });
+export default function ResearcherDelete({
+  id,
+  image_url,
+}: Props): JSX.Element {
+  const { t } = useTranslation("translation", { keyPrefix: "researcher" });
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
 
-  const deletePosition = useDeletePosition({
+  const deleteResearcher = useDeleteResearcher({
     config: {
       onSuccess: (data: any) => {
         console.log(data);
@@ -32,7 +40,8 @@ export default function PositionDelete({ id }: Props): JSX.Element {
           });
         }
 
-        queryClient.invalidateQueries([CACHE_POSITION.POSITION]);
+        deleteFile({ filePath: image_url });
+        queryClient.invalidateQueries([CACHE_RESEARCHER.RESEARCHER]);
         close();
       },
       onError: (err) => {
@@ -57,8 +66,8 @@ export default function PositionDelete({ id }: Props): JSX.Element {
         open={isOpen}
         onCancel={close}
         onOk={() => {
-          deletePosition.mutate({
-            list_json: [{ position_id: id }],
+          deleteResearcher.mutate({
+            list_json: [{ researcher_id: id }],
             updated_by_id: userProfile.user_id,
           });
           close();

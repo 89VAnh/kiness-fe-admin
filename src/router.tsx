@@ -11,6 +11,7 @@ import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { PageManagePage } from "./modules/page";
 import { PositionPage } from "./modules/position";
+import { ResearcherPage } from "./modules/researcher";
 import { SlideManagePage } from "./modules/slides";
 import {
   BRANCH_URL,
@@ -21,6 +22,7 @@ import {
   LOGIN_URL,
   PAGE_URL,
   POSITION_URL,
+  RESEARCHER_URL,
   SLIDES_URL,
 } from "./urls";
 
@@ -91,6 +93,10 @@ export const router = createBrowserRouter([
       {
         path: POSITION_URL,
         element: <PositionPage />,
+      },
+      {
+        path: RESEARCHER_URL,
+        element: <ResearcherPage />,
       },
     ],
   },
