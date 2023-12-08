@@ -124,20 +124,41 @@ export const router = createBrowserRouter([
       },
       {
         path: BRANCH_URL,
-        element: <BranchManagePage />,
+        element: (
+          <ProtectedComponent
+            Element={BranchManagePage}
+            title="Quản lý chi nhánh"
+          />
+        ),
       },
       {
         path: CITY_URL,
-        element: <CityManagePage />,
+        element: (
+          <ProtectedComponent
+            Element={CityManagePage}
+            title="Quản lý thành phố"
+          />
+        ),
       },
 
       {
         path: POSITION_URL,
-        element: <PositionPage />,
+        element: (
+          <ProtectedComponent
+            Element={PositionPage}
+            title="Quản lý vị trí / chức vụ"
+            role={2}
+          />
+        ),
       },
       {
         path: RESEARCHER_URL,
-        element: <ResearcherPage />,
+        element: (
+          <ProtectedComponent
+            Element={ResearcherPage}
+            title="Quản lý nhà nghiên cứu"
+          />
+        ),
       },
     ],
   },

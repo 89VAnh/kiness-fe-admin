@@ -137,7 +137,7 @@ export default function FaqListTable(): JSX.Element {
         />,
         <FaqListModal />,
       ]}
-      rowKey={"slide_id"}
+      rowKey={"faq_id"}
     />
   );
 }
