@@ -23,7 +23,6 @@ import {
   handleDeleteImage,
   uploadPlugin,
 } from "@/components/Editor/utils/upload-editor";
-import { BASE_URL } from "@/constant/config";
 import { queryClient } from "@/lib/react-query";
 import { usePositionDropdown } from "@/loader/position.loader";
 import {

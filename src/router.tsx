@@ -13,7 +13,6 @@ import { FaqManagePage } from "./modules/faq";
 import { PageManagePage } from "./modules/page";
 import { PositionPage } from "./modules/position";
 import { ResearcherPage } from "./modules/researcher";
-import { SlideManagePage } from "./modules/slides";
 import { SlideManagePage } from "./modules/slide";
 import {
   BRANCH_URL,
@@ -125,20 +124,41 @@ export const router = createBrowserRouter([
       },
       {
         path: BRANCH_URL,
-        element: <BranchManagePage />,
+        element: (
+          <ProtectedComponent
+            Element={BranchManagePage}
+            title="Quản lý chi nhánh"
+          />
+        ),
       },
       {
         path: CITY_URL,
-        element: <CityManagePage />,
+        element: (
+          <ProtectedComponent
+            Element={CityManagePage}
+            title="Quản lý thành phố"
+          />
+        ),
       },
 
       {
         path: POSITION_URL,
-        element: <PositionPage />,
+        element: (
+          <ProtectedComponent
+            Element={PositionPage}
+            title="Quản lý vị trí / chức vụ"
+            role={2}
+          />
+        ),
       },
       {
         path: RESEARCHER_URL,
-        element: <ResearcherPage />,
+        element: (
+          <ProtectedComponent
+            Element={ResearcherPage}
+            title="Quản lý nhà nghiên cứu"
+          />
+        ),
       },
     ],
   },

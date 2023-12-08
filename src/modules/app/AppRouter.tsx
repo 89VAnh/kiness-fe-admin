@@ -2,12 +2,9 @@ import {
   ApartmentOutlined,
   DashboardOutlined,
   DesktopOutlined,
-  FileSearchOutlined,
-  HomeOutlined,
-  SolutionOutlined,
-  TeamOutlined,
   ProfileOutlined,
   SettingOutlined,
+  TeamOutlined,
 } from "@ant-design/icons";
 import { ProLayoutProps } from "@ant-design/pro-components";
 import { t } from "i18next";
@@ -72,14 +69,20 @@ const functions = [
         is_leaf: true,
       },
       {
-        path: POSITION_URL,
-        name: <Link to={POSITION_URL}>{t("nav.position")}</Link>,
+        url: POSITION_URL,
+        title: t("nav.position"),
+        children: [],
+        sort_order: 4,
         icon: <ApartmentOutlined />,
+        is_leaf: true,
       },
       {
-        path: RESEARCHER_URL,
-        name: <Link to={RESEARCHER_URL}>{t("nav.researcher")}</Link>,
+        url: RESEARCHER_URL,
+        title: t("nav.researcher"),
+        children: [],
+        sort_order: 5,
         icon: <TeamOutlined />,
+        is_leaf: true,
       },
     ],
     sort_order: 1,

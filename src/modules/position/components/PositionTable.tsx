@@ -1,10 +1,9 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Image, Input, Space, Typography } from "antd";
+import { Input, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
-import { BASE_URL } from "@/constant/config";
 import { useSearchPosition } from "@/loader/position.loader";
 import { IPosition } from "@/models/position";
 import { formatToDate } from "@/utils/format-string";
