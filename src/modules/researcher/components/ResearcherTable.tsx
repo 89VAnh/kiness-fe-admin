@@ -96,8 +96,8 @@ export default function ResearcherTable(): JSX.Element {
       },
     },
     {
-      title: t("fields.created_by_user_id"),
-      dataIndex: "created_by_user_id",
+      title: t("fields.created_user"),
+      dataIndex: "created_user",
       width: 200,
     },
     {

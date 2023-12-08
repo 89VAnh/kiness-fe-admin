@@ -240,7 +240,7 @@
       "position_name": "Tên chức vụ",
       "description": "Mô tả",
       "created_date_time": "Ngày tạo",
-      "created_by_user_id": "Người tạo",
+      "created_user": "Người tạo",
       "actions": "Tác vụ"
     },
 
@@ -260,7 +260,7 @@
       "position": "Chức vụ",
       "description": "Mô tả",
       "created_date_time": "Ngày tạo",
-      "created_by_user_id": "Người tạo",
+      "created_user": "Người tạo",
       "actions": "Tác vụ",
       "story": "Lịch sử tóm tắt",
       "paper": "Bài báo"
