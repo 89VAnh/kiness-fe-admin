@@ -118,7 +118,7 @@ export default function PositionModal({
       )}
       <Modal
         title={t("position.title_create")}
-        width={"90vw"}
+        // width={"90vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}
@@ -127,7 +127,7 @@ export default function PositionModal({
       >
         <div
           style={{
-            height: "calc(100vh - 174px)",
+            // height: "calc(100vh - 174px)",
             overflowY: "auto",
             overflowX: "hidden",
           }}
@@ -137,7 +137,7 @@ export default function PositionModal({
               <Form.Item name="position_id" hidden>
                 <Input />
               </Form.Item>
-              <Col span={12}>
+              <Col span={24}>
                 <Form.Item
                   name={"position_name"}
                   rules={[...RULES_FORM.required]}
@@ -146,7 +146,7 @@ export default function PositionModal({
                   <Input placeholder={t("position.fields.position_name")} />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={24}>
                 <Form.Item
                   name={"description"}
                   rules={[...RULES_FORM.required]}
