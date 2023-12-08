@@ -16,8 +16,9 @@ import {
 } from "@/services/branch.service";
 
 export const CACHE_BRANCH = {
-  BRANCHES: "BRANCHES",
-  DROPDOWN_BRANCH: "DROPDOWN_BRANCH",
+  SEARCH: "BRANCHES",
+  DETAIL: "BRANCH_DETAIL",
+  DROPDOWN: "DROPDOWN_BRANCH",
 };
 
 const useSearchBranches = ({
@@ -29,7 +30,7 @@ const useSearchBranches = ({
 }) => {
   return useQuery<ExtractFnReturnType<typeof searchBranches>>({
     ...config,
-    queryKey: [CACHE_BRANCH.BRANCHES, params],
+    queryKey: [CACHE_BRANCH.SEARCH, params],
     queryFn: () => searchBranches({ params }),
   });
 };
@@ -43,7 +44,7 @@ const useBranchDropdown = ({
 }) => {
   return useQuery<ExtractFnReturnType<typeof getBranchesDropdown>>({
     ...config,
-    queryKey: [CACHE_BRANCH.DROPDOWN_BRANCH, params],
+    queryKey: [CACHE_BRANCH.DROPDOWN, params],
     queryFn: () => getBranchesDropdown({ params }),
   });
 };
@@ -60,7 +61,7 @@ const useGetBranchById = ({
   return useQuery<ExtractFnReturnType<typeof getBranchById>>({
     ...config,
     enabled,
-    queryKey: [CACHE_BRANCH.BRANCHES, id],
+    queryKey: [CACHE_BRANCH.DETAIL, id],
     queryFn: () => getBranchById(id),
   });
 };

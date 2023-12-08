@@ -39,7 +39,7 @@ export default function BranchModal({
         if (data.results) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_BRANCH.BRANCHES]);
+          queryClient.invalidateQueries([CACHE_BRANCH.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -54,7 +54,7 @@ export default function BranchModal({
         if (data.results) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_BRANCH.BRANCHES]);
+          queryClient.invalidateQueries([CACHE_BRANCH.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {

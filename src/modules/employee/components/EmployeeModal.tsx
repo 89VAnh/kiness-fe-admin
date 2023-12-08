@@ -26,7 +26,7 @@ import {
   useCreateEmployee,
   useGetEmployeeById,
   useUpdateEmployee,
-} from "@/loader/employees.loader";
+} from "@/loader/employee.loader";
 import { usePositionDropdown } from "@/loader/position.loader";
 import { getBranchById, getBranchesDropdown } from "@/services/branch.service";
 import { UserState } from "@/store/auth/atom";
@@ -76,7 +76,7 @@ export default function EmployeeModal({
         if (data.results) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_EMPLOYEES.EMPLOYEES]);
+          queryClient.invalidateQueries([CACHE_EMPLOYEES.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -91,7 +91,7 @@ export default function EmployeeModal({
         if (data.results) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_EMPLOYEES.EMPLOYEES]);
+          queryClient.invalidateQueries([CACHE_EMPLOYEES.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {

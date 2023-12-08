@@ -4,15 +4,14 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
-import { useSearchPages } from "@/loader/page.loader";
-import { IPage } from "@/models/page";
-import { compareStrings } from "@/utils/array";
+import { useSearchFaqs } from "@/loader/faq.loader";
+import { IFaq } from "@/models/faq";
 
-import PageDelete from "./PageDelete";
-import PageModal from "./PageModal";
+import FaqListDelete from "./FaqListDelete";
+import FaqListModal from "./FaqListModal";
 
-export default function PageTable(): JSX.Element {
-  const { t } = useTranslation("translation", { keyPrefix: "page" });
+export default function FaqListTable(): JSX.Element {
+  const { t } = useTranslation("translation", { keyPrefix: "faq.list" });
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchContent, setSearchContent] = useState<string>(
     searchParams.get("k") || "",
@@ -24,7 +23,7 @@ export default function PageTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const customers = useSearchPages({
+  const faqListQuery = useSearchFaqs({
     params: {
       pageIndex: page,
       pageSize: pageSize,
@@ -33,9 +32,9 @@ export default function PageTable(): JSX.Element {
   });
 
   useEffect(() => {
-    return () => customers.remove();
+    return () => faqListQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [customers.remove]);
+  }, [faqListQuery.remove]);
 
   const handleSearch = (value: string) => {
     searchParams.delete("page");
@@ -46,7 +45,7 @@ export default function PageTable(): JSX.Element {
     setSearchContent(value);
   };
 
-  const columns: ProColumns<IPage>[] = [
+  const columns: ProColumns<IFaq>[] = [
     {
       title: t("fields.serial"),
       dataIndex: "serial",
@@ -60,28 +59,43 @@ export default function PageTable(): JSX.Element {
       search: false,
     },
     {
-      title: t("fields.code"),
-      dataIndex: "page_code",
-      sorter: (a, b) => compareStrings(a, b, "page_code"),
-      width: 100,
+      title: t("fields.topic_name"),
+      dataIndex: "topic_name",
+      render: (value) => (
+        <Typography.Text style={{ width: 100 }} ellipsis title={value + ""}>
+          {value}
+        </Typography.Text>
+      ),
     },
     {
-      title: t("fields.title"),
-      dataIndex: "page_title",
-      sorter: (a, b) => compareStrings(a, b, "page_title"),
-      width: 400,
+      title: t("fields.question"),
+      dataIndex: "question",
+      render: (value) => (
+        <Typography.Text style={{ width: 150 }} ellipsis title={value + ""}>
+          {value}
+        </Typography.Text>
+      ),
+    },
+    {
+      title: t("fields.answer"),
+      dataIndex: "answer",
+      render: (value) => (
+        <Typography.Text style={{ width: 200 }} ellipsis title={value + ""}>
+          {value}
+        </Typography.Text>
+      ),
     },
     {
       title: t("fields.actions"),
-      dataIndex: "action",
-      width: 100,
+      dataIndex: "actions",
+      width: 50,
       align: "center",
       search: false,
       render: (_, record) => {
         return (
           <Space>
-            <PageModal id={record?.page_code} isCreate={false} />
-            <PageDelete id={record?.page_id} />
+            <FaqListModal id={record?.faq_id} isCreate={false} />
+            <FaqListDelete id={record?.faq_id} />
           </Space>
         );
       },
@@ -92,11 +106,7 @@ export default function PageTable(): JSX.Element {
     <ProTable
       size="small"
       cardBordered
-      // rowSelection={{
-      //   selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-      //   defaultSelectedRowKeys: [],
-      // }}
-      loading={customers.isLoading}
+      loading={faqListQuery.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
         current: Number(searchParams.get("page")) || 1,
@@ -107,15 +117,11 @@ export default function PageTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: customers.data?.totalItems || 0,
+        total: faqListQuery.data?.totalItems || 0,
       }}
       columns={columns}
-      dataSource={customers.data?.data || []}
+      dataSource={faqListQuery.data?.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      // search={{
-      //   resetText: "Reset",
-      //   labelWidth: "auto",
-      // }}
       search={false}
       toolbar={{
         settings: [],
@@ -124,13 +130,14 @@ export default function PageTable(): JSX.Element {
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={customers.isLoading}
+          loading={faqListQuery.isLoading}
           onSearch={handleSearch}
+          style={{ minWidth: 150 }}
           onFocus={(e) => e.target.select()}
         />,
-        <PageModal />,
+        <FaqListModal />,
       ]}
-      rowKey={"page_id"}
+      rowKey={"slide_id"}
     />
   );
 }

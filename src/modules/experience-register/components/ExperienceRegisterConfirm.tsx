@@ -6,7 +6,7 @@ import { useRecoilValue } from "recoil";
 import {
   CACHE_EXPERIENCE_REGISTER,
   useUpdateExperienceRegisterStatus,
-} from "@/loader/experienceRegister.loader";
+} from "@/loader/experience-register.loader";
 import { UserState } from "@/store/auth/atom";
 
 interface Props {
@@ -29,9 +29,7 @@ export default function ExperienceRegisterConfirm({
       onSuccess: (data) => {
         if (data.results) {
           message.success(t("messages.update_status_success"));
-          queryClient.invalidateQueries([
-            CACHE_EXPERIENCE_REGISTER.EXPERIENCE_REGISTER,
-          ]);
+          queryClient.invalidateQueries([CACHE_EXPERIENCE_REGISTER.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
