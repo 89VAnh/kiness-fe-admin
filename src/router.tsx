@@ -11,6 +11,9 @@ import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { FaqManagePage } from "./modules/faq";
 import { PageManagePage } from "./modules/page";
+import { PositionPage } from "./modules/position";
+import { ResearcherPage } from "./modules/researcher";
+import { SlideManagePage } from "./modules/slides";
 import { SlideManagePage } from "./modules/slide";
 import {
   BRANCH_URL,
@@ -21,6 +24,8 @@ import {
   HOME_URL,
   LOGIN_URL,
   PAGE_URL,
+  POSITION_URL,
+  RESEARCHER_URL,
   SLIDES_URL,
 } from "./urls";
 
@@ -107,6 +112,33 @@ export const router = createBrowserRouter([
             role={2}
           />
         ),
+      },
+      {
+        path: EMPLOYEE_URL,
+        element: (
+          <ProtectedComponent
+            Element={EmployeePage}
+            title="Quản lý nhân viên"
+            role={2}
+          />
+        ),
+      },
+      {
+        path: BRANCH_URL,
+        element: <BranchManagePage />,
+      },
+      {
+        path: CITY_URL,
+        element: <CityManagePage />,
+      },
+
+      {
+        path: POSITION_URL,
+        element: <PositionPage />,
+      },
+      {
+        path: RESEARCHER_URL,
+        element: <ResearcherPage />,
       },
     ],
   },

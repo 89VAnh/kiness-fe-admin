@@ -1,6 +1,11 @@
 import {
+  ApartmentOutlined,
   DashboardOutlined,
   DesktopOutlined,
+  FileSearchOutlined,
+  HomeOutlined,
+  SolutionOutlined,
+  TeamOutlined,
   ProfileOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
@@ -19,6 +24,8 @@ import {
   HOME_URL,
   MANAGER_URL,
   PAGE_URL,
+  POSITION_URL,
+  RESEARCHER_URL,
   SLIDES_URL,
 } from "@/urls";
 
@@ -63,6 +70,16 @@ const functions = [
         children: [],
         sort_order: 3,
         is_leaf: true,
+      },
+      {
+        path: POSITION_URL,
+        name: <Link to={POSITION_URL}>{t("nav.position")}</Link>,
+        icon: <ApartmentOutlined />,
+      },
+      {
+        path: RESEARCHER_URL,
+        name: <Link to={RESEARCHER_URL}>{t("nav.researcher")}</Link>,
+        icon: <TeamOutlined />,
       },
     ],
     sort_order: 1,
