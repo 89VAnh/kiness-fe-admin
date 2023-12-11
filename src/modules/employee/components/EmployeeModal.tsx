@@ -28,6 +28,7 @@ import {
   useUpdateEmployee,
 } from "@/loader/employee.loader";
 import { usePositionDropdown } from "@/loader/position.loader";
+import { useRoleDropdown } from "@/loader/role.loader";
 import { getBranchById, getBranchesDropdown } from "@/services/branch.service";
 import { UserState } from "@/store/auth/atom";
 import { formatDatePost, formatDateShow } from "@/utils/format-string";
@@ -134,6 +135,7 @@ export default function EmployeeModal({
   const { data: cityOptions, isLoading: isLoadingCity } = useCityDropdown({});
   const { data: positionOptions, isLoading: isLoadingPosition } =
     usePositionDropdown({});
+  const { data: roleOptions, isLoading: isLoadingRole } = useRoleDropdown({});
   const [branchOptions, setBranchOptions] = useState<DefaultOptionType[]>([]);
   const [isLoadingBranch, setIsLoadingBranch] = useState<boolean>(false);
 
@@ -175,12 +177,12 @@ export default function EmployeeModal({
       >
         <div
           style={{
-            height: "calc(100vh - 174px)",
+            // height: "calc(100vh - 174px)",
             overflowY: "auto",
             overflowX: "hidden",
           }}
         >
-          <Form form={form} layout="vertical">
+          <Form form={form} spellCheck={false} layout="vertical">
             <Row gutter={32}>
               <Col span={8}>
                 <Form.Item
@@ -212,7 +214,7 @@ export default function EmployeeModal({
                   <Input placeholder={t("employee.fields.phone")} />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={8}>
                 <Form.Item
                   name={"gender"}
                   label={t("employee.fields.gender")}
@@ -225,7 +227,7 @@ export default function EmployeeModal({
                   </Radio.Group>
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={8}>
                 <Form.Item
                   name={"date_of_birth"}
                   label={t("employee.fields.birthday")}
@@ -239,7 +241,7 @@ export default function EmployeeModal({
                   />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={8}>
                 <Form.Item
                   name={"email"}
                   label={t("employee.fields.email")}
@@ -291,6 +293,20 @@ export default function EmployeeModal({
                     placeholder="Chọn vị trí"
                     style={{ width: "100%" }}
                     options={positionOptions?.message ? [] : positionOptions}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"role_id"}
+                  label={"Quyền"}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Select
+                    loading={isLoadingRole}
+                    placeholder="Chọn quyền"
+                    style={{ width: "100%" }}
+                    options={roleOptions?.message ? [] : roleOptions}
                   />
                 </Form.Item>
               </Col>

@@ -131,7 +131,7 @@ export default function TopicFaqModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} layout="vertical">
+          <Form form={form} spellCheck={false} layout="vertical">
             <Row gutter={32}>
               <Form.Item name={"topic_id"} hidden>
                 <Input />

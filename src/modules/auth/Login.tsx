@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "@/assets/img/logo/logo.png";
 import { LOCAL_USER } from "@/constant/config";
 import { useLogin } from "@/loader/user.loader";
-import { LOGIN_URL } from "@/urls";
+import { HOME_URL, LOGIN_URL } from "@/urls";
 import storage, { storageService } from "@/utils/storage";
 import { RULES_FORM } from "@/utils/validator";
 
@@ -39,9 +39,16 @@ const Page = () => {
           storageService.setStorage(LOCAL_USER, JSON.stringify(data));
           notification.success({
             message: t("login_success"),
-            description: "Đang chuyển hướng",
+            description: "Đang chuyển hướng...",
+            duration: 0.6,
           });
-          window.open("/", "_parent");
+          setTimeout(() => {
+            // window.open("/", "_parent");
+            navigate(HOME_URL, {
+              replace: true,
+              preventScrollReset: true,
+            });
+          }, 600);
         }
       },
       onError: (data) => {
