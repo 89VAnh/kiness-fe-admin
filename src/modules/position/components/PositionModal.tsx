@@ -132,7 +132,7 @@ export default function PositionModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} layout="vertical">
+          <Form form={form} spellCheck={false} layout="vertical">
             <Row gutter={32}>
               <Form.Item name="position_id" hidden>
                 <Input />

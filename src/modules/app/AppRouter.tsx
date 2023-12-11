@@ -22,6 +22,7 @@ import {
   MANAGER_URL,
   PAGE_URL,
   POSITION_URL,
+  REQUEST_URL,
   RESEARCHER_URL,
   SLIDES_URL,
 } from "@/urls";
@@ -48,13 +49,6 @@ const functions = [
         is_leaf: true,
       },
       {
-        title: t("nav.branch"),
-        url: BRANCH_URL,
-        children: [],
-        sort_order: 1,
-        is_leaf: true,
-      },
-      {
         title: t("nav.city"),
         url: CITY_URL,
         children: [],
@@ -69,11 +63,10 @@ const functions = [
         is_leaf: true,
       },
       {
-        url: POSITION_URL,
-        title: t("nav.position"),
+        title: t("nav.request"),
+        url: REQUEST_URL,
         children: [],
         sort_order: 4,
-        icon: <ApartmentOutlined />,
         is_leaf: true,
       },
       {
@@ -98,6 +91,21 @@ const functions = [
         url: EMPLOYEE_URL,
         children: [],
         sort_order: 0,
+        is_leaf: true,
+      },
+      {
+        title: t("nav.branch"),
+        url: BRANCH_URL,
+        children: [],
+        sort_order: 1,
+        is_leaf: true,
+      },
+      {
+        url: POSITION_URL,
+        title: t("nav.position"),
+        children: [],
+        sort_order: 4,
+        icon: <ApartmentOutlined />,
         is_leaf: true,
       },
     ],
@@ -138,7 +146,11 @@ const generateRoutes = (tree: any[] = []) => {
       icon: tree[i]?.icon,
       path: tree[i].url,
       title: tree[i].title,
-      name: <Link to={tree[i].url}>{tree[i].title}</Link>,
+      name: (
+        <Link preventScrollReset to={tree[i].url}>
+          {tree[i].title}
+        </Link>
+      ),
       routes: generateRoutes(tree[i].children),
       sort: tree[i].sort_order,
     };

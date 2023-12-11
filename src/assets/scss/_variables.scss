@@ -1,5 +1,7 @@
-// $color-primary: #f53838;
-$color-primary: #2c53a5;
+:root {
+  --color-primary: #2c53a5;
+}
+$color-primary: var(--color-primary);
 $color-blue: #23469a;
 $color-sky: #2bb8e1;
 $color-pink: #fa7a7a;
