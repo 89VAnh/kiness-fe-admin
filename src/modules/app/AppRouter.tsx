@@ -23,6 +23,7 @@ import {
   PAGE_URL,
   POSITION_URL,
   RESEARCHER_URL,
+  RESEARCH_ARTICLE_URL,
   SLIDES_URL,
 } from "@/urls";
 
@@ -81,6 +82,14 @@ const functions = [
         title: t("nav.researcher"),
         children: [],
         sort_order: 5,
+        icon: <TeamOutlined />,
+        is_leaf: true,
+      },
+      {
+        url: RESEARCH_ARTICLE_URL,
+        title: t("nav.research_article"),
+        children: [],
+        sort_order: 6,
         icon: <TeamOutlined />,
         is_leaf: true,
       },

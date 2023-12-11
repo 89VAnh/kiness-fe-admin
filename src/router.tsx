@@ -12,6 +12,7 @@ import { ExperienceRegisterPage } from "./modules/experience-register";
 import { FaqManagePage } from "./modules/faq";
 import { PageManagePage } from "./modules/page";
 import { PositionPage } from "./modules/position";
+import { ResearchArticlePage } from "./modules/research-article";
 import { ResearcherPage } from "./modules/researcher";
 import { SlideManagePage } from "./modules/slide";
 import {
@@ -25,6 +26,7 @@ import {
   PAGE_URL,
   POSITION_URL,
   RESEARCHER_URL,
+  RESEARCH_ARTICLE_URL,
   SLIDES_URL,
 } from "./urls";
 
@@ -157,6 +159,15 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={ResearcherPage}
             title="Quản lý nhà nghiên cứu"
+          />
+        ),
+      },
+      {
+        path: RESEARCH_ARTICLE_URL,
+        element: (
+          <ProtectedComponent
+            Element={ResearchArticlePage}
+            title="Quản lý bài nghiên cứu"
           />
         ),
       },
