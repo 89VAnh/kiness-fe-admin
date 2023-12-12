@@ -159,7 +159,7 @@ export default function BranchModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} layout="vertical">
+          <Form form={form} spellCheck={false} layout="vertical">
             <Row gutter={32}>
               <Form.Item name={"branch_id"} hidden>
                 <Input />

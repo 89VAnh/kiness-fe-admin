@@ -82,6 +82,7 @@ export default function StatisticDash(): JSX.Element {
               }}
             >
               <Link
+                preventScrollReset
                 to={
                   colorStatistic[item?.[0] as keyof typeof colorStatistic]
                     ?.linkTo

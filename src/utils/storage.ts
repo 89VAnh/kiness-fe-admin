@@ -17,10 +17,9 @@ const storage = {
 export default storage;
 
 export const storageService = {
-  getStorage: (key: string) => {
-    return JSON.parse(
-      window.localStorage.getItem(`${storagePrefix}${key}`) || "{}",
-    );
+  getStorage: (key: string, isParse: boolean = true) => {
+    const data = window.localStorage.getItem(`${storagePrefix}${key}`);
+    return isParse ? JSON.parse(data || "{}") : data;
   },
   setStorage: (key: string, value: string) => {
     window.localStorage.setItem(`${storagePrefix}${key}`, value);

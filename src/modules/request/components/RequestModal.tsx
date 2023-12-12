@@ -14,23 +14,23 @@ import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
-import { useFaqTopicDropdown } from "@/loader/faq-topic.loader";
 import {
-  CACHE_FAQ,
-  useCreateFaq,
-  useGetFaqById,
-  useUpdateFaq,
-} from "@/loader/faq.loader";
+  CACHE_REQUEST,
+  useGetRequestById,
+  useUpdateRequest,
+} from "@/loader/request.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 import { RULES_FORM } from "@/utils/validator";
+
+import { acceptOptions, answerOptions } from "../data/data-fake";
 
 interface Props {
   id?: string;
   isCreate?: boolean;
 }
 
-export default function FaqListModal({
+export default function RequestModal({
   id,
   isCreate = true,
 }: Props): JSX.Element {
@@ -39,19 +39,13 @@ export default function FaqListModal({
   const userProfile = useRecoilValue(UserState);
   const [form] = Form.useForm();
 
-  const {
-    data: topicOptions,
-    isLoading: isLoadingTopic,
-    refetch: refetchTopic,
-  } = useFaqTopicDropdown({});
-
-  const updateFaq = useUpdateFaq({
+  const updateRequest = useUpdateRequest({
     config: {
       onSuccess: (data) => {
         if (data.success) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_FAQ.SEARCH]);
+          queryClient.invalidateQueries([CACHE_REQUEST.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -60,22 +54,7 @@ export default function FaqListModal({
     },
   });
 
-  const createFaq = useCreateFaq({
-    config: {
-      onSuccess: (data) => {
-        if (data.success) {
-          message.success(t("messages.update_success"));
-          handleCancel();
-          queryClient.invalidateQueries([CACHE_FAQ.SEARCH]);
-        } else message.error(data.message);
-      },
-      onError: (err) => {
-        message.error(err.message);
-      },
-    },
-  });
-
-  useGetFaqById({
+  useGetRequestById({
     id: id!,
     enabled: isOpen && !isCreate,
     config: {
@@ -96,10 +75,9 @@ export default function FaqListModal({
         };
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
-          createFaq.mutate(dataPost);
         } else {
           dataPost.lu_user_id = userProfile.user_id;
-          updateFaq.mutate(dataPost);
+          updateRequest.mutate(dataPost);
         }
       })
       .catch((err) => {
@@ -115,7 +93,6 @@ export default function FaqListModal({
 
   const handleOpen = () => {
     open();
-    refetchTopic();
   };
 
   return (
@@ -141,14 +118,13 @@ export default function FaqListModal({
         </Tooltip>
       )}
       <Modal
-        title={
-          isCreate ? t("faq.list.title_create") : t("faq.list.title_update")
-        }
+        title={isCreate ? t("request.title_create") : t("request.title_update")}
         style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
-        confirmLoading={updateFaq.isLoading || createFaq.isLoading}
+        confirmLoading={updateRequest.isLoading}
+        maskClosable={false}
       >
         <div
           style={{
@@ -159,40 +135,103 @@ export default function FaqListModal({
         >
           <Form form={form} spellCheck={false} layout="vertical">
             <Row gutter={32}>
-              <Form.Item name={"faq_id"} hidden>
+              <Form.Item name={"request_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={8}>
+              <Col span={6}>
                 <Form.Item
-                  name={"topic_id"}
-                  label={t("faq.list.fields.topic_name")}
+                  name={"subject"}
+                  label={t("request.fields.subject")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Select
-                    loading={isLoadingTopic}
-                    placeholder="Chọn loại"
-                    options={topicOptions?.data || []}
-                    style={{ width: "100%" }}
+                  <Input disabled />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"is_accepted"}
+                  label={t("request.fields.is_accepted.title")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Select defaultValue={""} options={acceptOptions} />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"is_answered"}
+                  label={t("request.fields.is_answered.title")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Select defaultValue={""} options={answerOptions} />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"password"}
+                  label={t("request.fields.password")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input disabled />
+                </Form.Item>
+              </Col>
+
+              <Col span={6}>
+                <Form.Item
+                  name={"email"}
+                  label={t("request.fields.email")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input disabled />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"phone_number"}
+                  label={t("request.fields.phone_number")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input disabled />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"author_name"}
+                  label={t("request.fields.author_name")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input disabled />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"answered_by"}
+                  label={"Người cập nhật cuối cùng"}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input disabled />
+                </Form.Item>
+              </Col>
+
+              <Col span={24}>
+                <Form.Item
+                  name={"content"}
+                  label={t("request.fields.content")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input.TextArea
+                    disabled
+                    placeholder={t("request.fields.content")}
                   />
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item
-                  name={"question"}
-                  label={t("faq.list.fields.question")}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <Input.TextArea placeholder={t("faq.list.fields.question")} />
-                </Form.Item>
-              </Col>
-              <Col span={24}>
-                <Form.Item
                   name={"answer"}
-                  label={t("faq.list.fields.answer")}
+                  label={t("request.fields.answer")}
                   rules={[...RULES_FORM.required]}
                 >
                   <Input.TextArea
-                    placeholder={t("faq.list.fields.answer")}
+                    placeholder={t("request.fields.answer")}
                     rows={4}
                   />
                 </Form.Item>

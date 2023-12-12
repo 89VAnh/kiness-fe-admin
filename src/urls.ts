@@ -6,11 +6,11 @@ const LOGIN_URL = "/login";
 // Manager
 const MANAGER_URL = "/manager";
 const EXPERIENCE_REGISTER_URL = `${MANAGER_URL}/experience-register`;
-const BRANCH_URL = `${MANAGER_URL}/branch`;
 const REQUEST_URL = `${MANAGER_URL}/request`;
 const CITY_URL = `${MANAGER_URL}/city`;
 const FAQ_URL = `${MANAGER_URL}/faq`;
 const RESEARCH_ARTICLE_URL = `${MANAGER_URL}/research-article`;
+const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
 
 // Config
 const CONFIG_URL = "/config";
@@ -19,10 +19,9 @@ const SLIDES_URL = `${CONFIG_URL}/slides`;
 
 // Administration
 const ADMIN_URL = `/admin`;
+const BRANCH_URL = `${ADMIN_URL}/branch`;
 const EMPLOYEE_URL = `${ADMIN_URL}/employees`;
-
-const POSITION_URL = `${MANAGER_URL}/position`;
-const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
+const POSITION_URL = `${ADMIN_URL}/position`;
 
 const breadcrumbNameMap: Record<string, string> = {
   [HOME_URL]: "Trang chủ",

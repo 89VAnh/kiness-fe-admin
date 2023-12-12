@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import AppLayout from "./modules/app/AppLayout";
 import ProtectedComponent from "./modules/app/ProtectComponent";
@@ -12,19 +12,24 @@ import { ExperienceRegisterPage } from "./modules/experience-register";
 import { FaqManagePage } from "./modules/faq";
 import { PageManagePage } from "./modules/page";
 import { PositionPage } from "./modules/position";
+import RequestManage from "./modules/request/RequestManage";
 import { ResearchArticlePage } from "./modules/research-article";
 import { ResearcherPage } from "./modules/researcher";
 import { SlideManagePage } from "./modules/slide";
 import {
+  ADMIN_URL,
   BRANCH_URL,
   CITY_URL,
+  CONFIG_URL,
   EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
   FAQ_URL,
   HOME_URL,
   LOGIN_URL,
+  MANAGER_URL,
   PAGE_URL,
   POSITION_URL,
+  REQUEST_URL,
   RESEARCHER_URL,
   RESEARCH_ARTICLE_URL,
   SLIDES_URL,
@@ -45,6 +50,12 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedComponent Element={DashboardPage} title="Trang chủ" />
         ),
+      },
+
+      // Manager
+      {
+        path: MANAGER_URL,
+        element: <Navigate to={EXPERIENCE_REGISTER_URL} />,
       },
       {
         path: EXPERIENCE_REGISTER_URL,
@@ -82,18 +93,27 @@ export const router = createBrowserRouter([
           />
         ),
       },
-
       {
-        path: EMPLOYEE_URL,
+        path: REQUEST_URL,
+        element: (
+          <ProtectedComponent Element={RequestManage} title="Quản lý yêu cầu" />
+        ),
+      },
+      {
+        path: RESEARCHER_URL,
         element: (
           <ProtectedComponent
-            Element={EmployeePage}
-            title="Quản lý nhân viên"
-            role={2}
+            Element={ResearcherPage}
+            title="Quản lý nhà nghiên cứu"
           />
         ),
       },
 
+      // Config
+      {
+        path: CONFIG_URL,
+        element: <Navigate to={PAGE_URL} />,
+      },
       {
         path: PAGE_URL,
         element: (
@@ -114,6 +134,12 @@ export const router = createBrowserRouter([
           />
         ),
       },
+
+      // Admin
+      {
+        path: ADMIN_URL,
+        element: <Navigate to={EMPLOYEE_URL} />,
+      },
       {
         path: EMPLOYEE_URL,
         element: (
@@ -125,25 +151,6 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: BRANCH_URL,
-        element: (
-          <ProtectedComponent
-            Element={BranchManagePage}
-            title="Quản lý chi nhánh"
-          />
-        ),
-      },
-      {
-        path: CITY_URL,
-        element: (
-          <ProtectedComponent
-            Element={CityManagePage}
-            title="Quản lý thành phố"
-          />
-        ),
-      },
-
-      {
         path: POSITION_URL,
         element: (
           <ProtectedComponent
@@ -154,11 +161,21 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: RESEARCHER_URL,
+        path: BRANCH_URL,
         element: (
           <ProtectedComponent
-            Element={ResearcherPage}
-            title="Quản lý nhà nghiên cứu"
+            Element={BranchManagePage}
+            title="Quản lý chi nhánh"
+            role={2}
+          />
+        ),
+      },
+      {
+        path: RESEARCH_ARTICLE_URL,
+        element: (
+          <ProtectedComponent
+            Element={ResearchArticlePage}
+            title="Quản lý bài nghiên cứu"
           />
         ),
       },

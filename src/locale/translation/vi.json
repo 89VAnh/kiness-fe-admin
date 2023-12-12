@@ -44,7 +44,8 @@
     "position": "Quản lý chức vụ",
     "researcher": "Quản lý nhà nghiên cứu",
     "faq": "Quản lý câu hỏi thường gặp",
-    "research_article": "Quản lý bài nghiên cứu"
+    "research_article": "Quản lý bài nghiên cứu",
+    "request": "Quản lý yêu cầu"
   },
   "dashboard": {
     "total_customer": "Khách hàng",
@@ -333,6 +334,48 @@
         "link": "Liên kết",
         "actions": "Tác vụ"
       }
+    }
+  },
+  "request": {
+    "title": "Quản lý yêu cầu",
+    "search_placeholder": "Nhập yêu cầu...",
+    "title_update": "Cập nhật yêu cầu",
+    "title_create": "Thêm yêu cầu",
+    "title_delete": "Xóa yêu cầu",
+
+    "fields": {
+      "serial": "STT",
+      "subject": "Yêu cầu",
+      "content": "Nội dung",
+      "answer": "Câu trả lời",
+      "author_name": "Tên người yêu cầu",
+      "phone_number": "Số điện thoại",
+      "email": "Email",
+      "answered_by": "Người trả lời",
+      "password": "Mật khẩu",
+      "is_accepted": {
+        "title": "Trạng thái xác minh",
+        "0": {
+          "label": "Chưa xác minh",
+          "color": "red"
+        },
+        "1": {
+          "label": "Đã xác minh",
+          "color": "green"
+        }
+      },
+      "is_answered": {
+        "title": "Trạng thái trả lời",
+        "0": {
+          "label": "Chưa trả lời",
+          "color": "red"
+        },
+        "1": {
+          "label": "Đã trả lời",
+          "color": "green"
+        }
+      },
+      "actions": "Tác vụ"
     }
   }
 }
