@@ -11,6 +11,7 @@ const CITY_URL = `${MANAGER_URL}/city`;
 const FAQ_URL = `${MANAGER_URL}/faq`;
 const RESEARCH_ARTICLE_URL = `${MANAGER_URL}/research-article`;
 const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
+const GROWTH_STORY_URL = `${MANAGER_URL}/growth-story`;
 
 // Config
 const CONFIG_URL = "/config";
@@ -28,21 +29,26 @@ const breadcrumbNameMap: Record<string, string> = {
 };
 
 export {
-  MANAGER_URL,
-  CITY_URL,
-  EXPERIENCE_REGISTER_URL,
-  FAQ_URL,
   HOME_URL,
-  LOGIN_URL,
-  POSITION_URL,
+  // Manager
+  MANAGER_URL,
+  EXPERIENCE_REGISTER_URL,
+  CITY_URL,
+  FAQ_URL,
   REQUEST_URL,
   RESEARCHER_URL,
   RESEARCH_ARTICLE_URL,
+  GROWTH_STORY_URL,
+  // Admin
   ADMIN_URL,
   EMPLOYEE_URL,
   BRANCH_URL,
-  PAGE_URL,
+  POSITION_URL,
+  // Config
   CONFIG_URL,
+  PAGE_URL,
   SLIDES_URL,
+  // Others
   breadcrumbNameMap,
+  LOGIN_URL,
 };

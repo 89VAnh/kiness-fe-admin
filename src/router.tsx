@@ -10,6 +10,7 @@ import { EmployeePage } from "./modules/employee";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { FaqManagePage } from "./modules/faq";
+import { GrowthStoryPage } from "./modules/growth-story";
 import { PageManagePage } from "./modules/page";
 import { PositionPage } from "./modules/position";
 import RequestManage from "./modules/request/RequestManage";
@@ -24,6 +25,7 @@ import {
   EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
   FAQ_URL,
+  GROWTH_STORY_URL,
   HOME_URL,
   LOGIN_URL,
   MANAGER_URL,
@@ -98,17 +100,26 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: RESEARCHER_URL,
+        element: (
+          <ProtectedComponent
+            Element={ResearcherPage}
+            title="Quản lý nhà nghiên cứu"
+          />
+        ),
+      },
+      {
         path: REQUEST_URL,
         element: (
           <ProtectedComponent Element={RequestManage} title="Quản lý yêu cầu" />
         ),
       },
       {
-        path: RESEARCHER_URL,
+        path: GROWTH_STORY_URL,
         element: (
           <ProtectedComponent
-            Element={ResearcherPage}
-            title="Quản lý nhà nghiên cứu"
+            Element={GrowthStoryPage}
+            title="Quản lý câu chuyện tăng trưởng"
           />
         ),
       },

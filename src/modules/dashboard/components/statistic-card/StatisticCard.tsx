@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import {
   useGetCountBranch,
   useGetCountEmployee,
@@ -26,20 +27,22 @@ export default function StatisticDash(): JSX.Element {
     return <Icon />;
   };
 
-  useGetCountBranch({
+  const countBranchQuery = useGetCountBranch({
     user_id: userProfile.user_id,
     config: {
       onSuccess(data) {
+        if (data.message === ERROR_TIMEOUT) countBranchQuery.refetch();
         if (data.total)
           setCurrentData((prev) => ({ ...prev, branch: data.total }));
       },
     },
   });
 
-  useGetCountExperienceRegister({
+  const countExperienceQuery = useGetCountExperienceRegister({
     user_id: userProfile.user_id,
     config: {
       onSuccess(data) {
+        if (data.message === ERROR_TIMEOUT) countExperienceQuery.refetch();
         if (data.total)
           setCurrentData((prev) => ({
             ...prev,
@@ -49,19 +52,21 @@ export default function StatisticDash(): JSX.Element {
     },
   });
 
-  useGetCountEmployee({
+  const countEmployeeQuery = useGetCountEmployee({
     user_id: userProfile.user_id,
     config: {
       onSuccess(data) {
+        if (data.message === ERROR_TIMEOUT) countEmployeeQuery.refetch();
         if (data.total && userProfile.position_id === 2)
           setCurrentData((prev) => ({ ...prev, employee: data.total }));
       },
     },
   });
 
-  useGetCountRequest({
+  const countRequestQuery = useGetCountRequest({
     config: {
       onSuccess(data) {
+        if (data.message === ERROR_TIMEOUT) countRequestQuery.refetch();
         if (typeof data.total === "number")
           setCurrentData((prev) => ({ ...prev, request: data.total }));
       },

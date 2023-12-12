@@ -1,5 +1,6 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
 import { Input, Select, Space, Tag, Typography } from "antd";
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
@@ -37,8 +38,8 @@ export default function RequestTable(): JSX.Element {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent || null,
-      is_accepted: acceptStatus || null,
-      is_answered: answerStatus || null,
+      is_accepted: isEmpty(acceptStatus) ? null : +acceptStatus,
+      is_answered: isEmpty(answerStatus) ? null : +answerStatus,
     },
     config: {
       onSuccess: (data) => {

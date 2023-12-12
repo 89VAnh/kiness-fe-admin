@@ -3,17 +3,20 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import {
   Button,
   Col,
+  DatePicker,
   Form,
   Input,
+  InputNumber,
   Modal,
   Row,
+  Select,
   Tooltip,
   Upload,
   UploadFile,
   UploadProps,
   message,
 } from "antd";
-import { Select } from "antd/lib";
+import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
@@ -24,91 +27,67 @@ import {
   uploadPlugin,
 } from "@/components/Editor/utils/upload-editor";
 import { queryClient } from "@/lib/react-query";
-import { usePositionDropdown } from "@/loader/position.loader";
 import {
-  CACHE_RESEARCHER,
-  useCreateResearcher,
-  useGetResearcherById,
-  useUpdateResearcher,
-} from "@/loader/researcher.loader";
-import { IResearcher } from "@/models/researcher";
+  CACHE_GROWTH_STORY,
+  useGetGrowthStoryById,
+  useUpdateGrowthStory,
+} from "@/loader/growth-story.loader";
+import { IGrowthStory } from "@/models/growth-story";
 import { uploadFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
+import { formatDatePost, formatDateShow } from "@/utils/format-string";
 import { useDisclosure } from "@/utils/modal";
 import { RULES_FORM } from "@/utils/validator";
 
+import { draftOptions } from "../data/data-fake";
+
 interface Props {
-  id?: number;
+  id?: string;
   isCreate?: boolean;
 }
 
-export default function ResearcherModal({
+export default function GrowthStoryModal({
   id,
   isCreate = true,
 }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
-  const [form] = Form.useForm();
   const userProfile = useRecoilValue(UserState);
-  const [storyDataEditor, setStoryDataEditor] = useState<string>("");
-  const [paperDataEditor, setPaperDataEditor] = useState<string>("");
+  const [form] = Form.useForm();
+  const [dataEditor, setDataEditor] = useState<string>("");
+  const [postedDate, setPostedDate] = useState<Dayjs | null>(dayjs());
   const [file, setFile] = useState<File | null>();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
-  useGetResearcherById({
+  const updateGrowthStory = useUpdateGrowthStory({
+    config: {
+      onSuccess: (data) => {
+        if (data.success) {
+          message.success(t("messages.update_success"));
+          handleCancel();
+          queryClient.invalidateQueries([CACHE_GROWTH_STORY.SEARCH]);
+        } else message.error(data.message);
+      },
+      onError: (err) => {
+        message.error(err.message);
+      },
+    },
+  });
+
+  useGetGrowthStoryById({
     id: id!,
     enabled: isOpen && !isCreate,
     config: {
       onSuccess(data) {
-        if (!data?.message) {
-          form.setFieldsValue(data);
-
-          setFileList([
-            {
-              name: "image_url",
-              uid: "1",
-              thumbUrl: "/api/" + data.image_url,
-            },
-          ]);
-
-          setStoryDataEditor(data?.story || "");
-          setPaperDataEditor(data?.paper || "");
+        if (data?.success) {
+          form.setFieldsValue(data?.data);
+          const date = dayjs(data?.data?.posted_date);
+          setPostedDate(date.isValid() ? date : null);
+          setDataEditor(data?.data?.content);
         }
       },
     },
   });
-
-  const updateResearcher = useUpdateResearcher({
-    config: {
-      onSuccess: (data) => {
-        if (data.results) {
-          message.success(t("messages.update_success"));
-          handleCancel();
-          queryClient.invalidateQueries([CACHE_RESEARCHER.RESEARCHER]);
-        } else message.error(data.message);
-      },
-      onError: (err) => {
-        message.error(err.message);
-      },
-    },
-  });
-
-  const createResearcher = useCreateResearcher({
-    config: {
-      onSuccess: (data) => {
-        if (data.results) {
-          message.success(t("messages.create_success"));
-          handleCancel();
-          queryClient.invalidateQueries([CACHE_RESEARCHER.RESEARCHER]);
-        } else message.error(data.message);
-      },
-      onError: (err) => {
-        message.error(err.message);
-      },
-    },
-  });
-
-  const positions = usePositionDropdown({});
 
   const handleSubmit = () => {
     form
@@ -117,30 +96,37 @@ export default function ResearcherModal({
         let dataFile;
         if (file) dataFile = await uploadFile({ file });
 
-        const dataPost: IResearcher = {
+        const dataPost: IGrowthStory = {
           ...values,
-          story: storyDataEditor,
-          paper: paperDataEditor,
-          image_url: dataFile
+          content: dataEditor,
+          posted_date: postedDate?.format(formatDatePost),
+          image_link: dataFile
             ? dataFile.path
             : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
         };
-
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
-          createResearcher.mutate(dataPost);
         } else {
           dataPost.lu_user_id = userProfile.user_id;
-          updateResearcher.mutate(dataPost);
+          updateGrowthStory.mutate(dataPost);
         }
       })
-      .catch(() => message.warning(t("messages.validate_form")));
+      .catch((err) => {
+        console.log(err);
+        message.warning(t("messages.validate_form"));
+      });
   };
 
   const handleCancel = () => {
     form.resetFields();
+    setPostedDate(null);
+    setFileList([]);
     setFile(null);
     close();
+  };
+
+  const handleOpen = () => {
+    open();
   };
 
   const uploadProps: UploadProps = {
@@ -169,28 +155,34 @@ export default function ResearcherModal({
         <Button
           key="button"
           icon={<PlusOutlined />}
-          onClick={open}
+          onClick={handleOpen}
           type="primary"
         >
           {t("all.btn_add")}
         </Button>
       ) : (
         <Tooltip title={t("all.edit")}>
-          <Button type="dashed" onClick={open} style={{ color: "#faad14" }}>
+          <Button
+            type="dashed"
+            onClick={handleOpen}
+            style={{ color: "#faad14" }}
+          >
             <EditOutlined />
           </Button>
         </Tooltip>
       )}
       <Modal
-        title={t("researcher.title_create")}
-        width={"90vw"}
-        style={{ top: 58, padding: 0 }}
+        title={
+          isCreate
+            ? t("growth_story.title_create")
+            : t("growth_story.title_update")
+        }
+        style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
-        confirmLoading={
-          updateResearcher.isLoading || createResearcher.isLoading
-        }
+        confirmLoading={updateGrowthStory.isLoading}
+        maskClosable={false}
       >
         <div
           style={{
@@ -201,33 +193,23 @@ export default function ResearcherModal({
         >
           <Form form={form} spellCheck={false} layout="vertical">
             <Row gutter={32}>
-              <Form.Item name="researcher_id" hidden>
+              <Form.Item name={"growth_story_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={12}>
+              <Col span={6}>
                 <Form.Item
-                  name={"name"}
+                  name={"title"}
+                  label={t("growth_story.fields.title")}
                   rules={[...RULES_FORM.required]}
-                  label={t("researcher.fields.name")}
                 >
-                  <Input placeholder={t("researcher.fields.name")} />
+                  <Input placeholder={t("growth_story.fields.title")} />
                 </Form.Item>
               </Col>
-
-              <Col span={12}>
+              <Col span={7}>
                 <Form.Item
-                  name={"degree"}
+                  name={"image_link"}
+                  label={t("growth_story.fields.image_link")}
                   rules={[...RULES_FORM.required]}
-                  label={t("researcher.fields.degree")}
-                >
-                  <Input placeholder={t("researcher.fields.degree")} />
-                </Form.Item>
-              </Col>
-
-              <Col span={12}>
-                <Form.Item
-                  name={"image_url"}
-                  label={t("researcher.fields.image_url ")}
                 >
                   <Upload {...uploadProps}>
                     <div>
@@ -237,22 +219,57 @@ export default function ResearcherModal({
                   </Upload>
                 </Form.Item>
               </Col>
-
-              <Col span={12}>
+              <Col span={5}>
                 <Form.Item
-                  name={"position_id"}
+                  name={"is_draft"}
+                  label={t("growth_story.fields.is_draft.title")}
                   rules={[...RULES_FORM.required]}
-                  label={t("researcher.fields.position")}
                 >
-                  <Select
-                    style={{ width: "40%" }}
-                    options={positions.data || []}
+                  <Select defaultValue={""} options={draftOptions} />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"author_name"}
+                  label={t("growth_story.fields.author_name")}
+                  rules={[...RULES_FORM.required]}
+                  initialValue={userProfile.full_name}
+                >
+                  <Input autoCapitalize="" />
+                </Form.Item>
+              </Col>
+
+              <Col span={6}>
+                <Form.Item
+                  name={"date"}
+                  label={t("growth_story.fields.posted_date")}
+                  rules={[...RULES_FORM.required]}
+                  initialValue={postedDate}
+                >
+                  <DatePicker
+                    format={formatDateShow}
+                    className="w-full"
+                    onChange={(value) => setPostedDate(value)}
                   />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"view_count"}
+                  label={t("growth_story.fields.view_count")}
+                  rules={[...RULES_FORM.required]}
+                  initialValue={0}
+                >
+                  <InputNumber min={0} className="w-full" />
                 </Form.Item>
               </Col>
 
               <Col span={24}>
-                <Form.Item name={"story"} label={t("researcher.fields.story")}>
+                <Form.Item
+                  name={"content"}
+                  label={t("researcher.fields.paper")}
+                  rules={[...RULES_FORM.required]}
+                >
                   <CKEditor
                     config={{
                       // @ts-ignore
@@ -264,31 +281,10 @@ export default function ResearcherModal({
                     }}
                     onChange={(event, editor) => {
                       const data = editor.getData();
-                      setStoryDataEditor(data);
+                      setDataEditor(data);
                       handleDeleteImage(event);
                     }}
-                    data={storyDataEditor}
-                  />
-                </Form.Item>
-              </Col>
-
-              <Col span={24}>
-                <Form.Item name={"paper"} label={t("researcher.fields.paper")}>
-                  <CKEditor
-                    config={{
-                      // @ts-ignore
-                      extraPlugins: [uploadPlugin],
-                    }}
-                    editor={EditorCustom}
-                    onReady={() => {
-                      // You can store the "editor" and use when it is needed.
-                    }}
-                    onChange={(event, editor) => {
-                      const data = editor.getData();
-                      setPaperDataEditor(data);
-                      handleDeleteImage(event);
-                    }}
-                    data={paperDataEditor}
+                    data={dataEditor}
                   />
                 </Form.Item>
               </Col>
