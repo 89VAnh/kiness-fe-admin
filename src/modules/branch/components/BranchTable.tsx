@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchBranches } from "@/loader/branch.loader";
 import { IBranch } from "@/models/branch";
 import { compareNumbers } from "@/utils/array";
@@ -24,18 +25,25 @@ export default function BranchTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const branches = useSearchBranches({
+  const branchesQuery = useSearchBranches({
     params: {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent,
     },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          branchesQuery.refetch();
+        }
+      },
+    },
   });
 
   useEffect(() => {
-    return () => branches.remove();
+    return () => branchesQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [branches.remove]);
+  }, [branchesQuery.remove]);
 
   const handleSearch = (value: string) => {
     searchParams.delete("page");
@@ -128,7 +136,7 @@ export default function BranchTable(): JSX.Element {
     <ProTable
       size="small"
       cardBordered
-      loading={branches.isLoading}
+      loading={branchesQuery.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
         current: Number(searchParams.get("page")) || 1,
@@ -139,10 +147,10 @@ export default function BranchTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: branches.data?.totalItems || 0,
+        total: branchesQuery.data?.totalItems || 0,
       }}
       columns={columns}
-      dataSource={branches.data?.data || []}
+      dataSource={branchesQuery.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -152,7 +160,7 @@ export default function BranchTable(): JSX.Element {
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={branches.isLoading}
+          loading={branchesQuery.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,

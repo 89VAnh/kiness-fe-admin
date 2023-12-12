@@ -3,6 +3,7 @@ import { Input, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchFaqTopics } from "@/loader/faq-topic.loader";
 import { IFaqTopic } from "@/models/faq-topic";
 
@@ -20,6 +21,13 @@ export default function TopicFaqTable(): JSX.Element {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent,
+    },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          topicQuery.refetch();
+        }
+      },
     },
   });
 

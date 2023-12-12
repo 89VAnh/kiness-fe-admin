@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchFaqs } from "@/loader/faq.loader";
 import { IFaq } from "@/models/faq";
 
@@ -28,6 +29,13 @@ export default function FaqListTable(): JSX.Element {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent,
+    },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          faqListQuery.refetch();
+        }
+      },
     },
   });
 

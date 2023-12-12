@@ -4,7 +4,7 @@ import { apiClient } from "@/lib/api";
 import { IBaseDelete } from "@/models/base";
 import { IRole } from "@/models/role";
 
-const prefix = "roles";
+const prefix = "role";
 
 export const getRolesDropdown = async (): Promise<any> => {
   const res = await apiClient?.get(`${prefix}/dropdown`);

@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import {
   usePrintExperienceRegister,
   useSearchExperienceRegister,
@@ -55,7 +56,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
     searchParams.get("status") || null,
   );
 
-  const experienceRegister = useSearchExperienceRegister({
+  const experienceRegisterQuery = useSearchExperienceRegister({
     params: {
       pageIndex: page,
       pageSize: pageSize,
@@ -65,12 +66,19 @@ export default function ExperienceRegisterTable(): JSX.Element {
       from_date: rangeDate[0] ? rangeDate[0] : null,
       to_date: rangeDate[1] ? rangeDate[1] : null,
     },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          experienceRegisterQuery.refetch();
+        }
+      },
+    },
   });
 
   useEffect(() => {
-    return () => experienceRegister.remove();
+    return () => experienceRegisterQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [experienceRegister.remove]);
+  }, [experienceRegisterQuery.remove]);
 
   const handleSearch = (value: string) => {
     searchParams.delete("page");
@@ -218,7 +226,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
     <ProTable
       size="small"
       cardBordered
-      loading={experienceRegister.isLoading}
+      loading={experienceRegisterQuery.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
         current: Number(searchParams.get("page")) || 1,
@@ -232,10 +240,10 @@ export default function ExperienceRegisterTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: experienceRegister.data?.totalItems || 0,
+        total: experienceRegisterQuery.data?.totalItems || 0,
       }}
       columns={columns as ProColumns<IExperienceRegister>[]}
-      dataSource={experienceRegister.data?.data || []}
+      dataSource={experienceRegisterQuery.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -265,7 +273,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
         />,
         <Input.Search
           placeholder={t("search_placeholder")}
-          loading={experienceRegister.isLoading}
+          loading={experienceRegisterQuery.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,
@@ -274,9 +282,9 @@ export default function ExperienceRegisterTable(): JSX.Element {
           icon={<FileExcelOutlined />}
           onClick={handlePrint}
           disabled={
-            experienceRegister.data?.data === undefined ||
-            experienceRegister.isLoading ||
-            [...experienceRegister.data.data].length === 0
+            experienceRegisterQuery.data?.data === undefined ||
+            experienceRegisterQuery.isLoading ||
+            [...experienceRegisterQuery.data.data].length === 0
           }
         >
           Xuất file

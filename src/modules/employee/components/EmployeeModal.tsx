@@ -235,6 +235,7 @@ export default function EmployeeModal({
                 >
                   <DatePicker
                     format={formatDateShow}
+                    style={{ width: "100%" }}
                     placeholder={formatDateShow.toLowerCase()}
                     name="date_of_birth"
                     disabledDate={disabledDate}

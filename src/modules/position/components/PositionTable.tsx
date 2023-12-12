@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchPosition } from "@/loader/position.loader";
 import { IPosition } from "@/models/position";
 import { formatToDate } from "@/utils/format-string";
@@ -24,11 +25,18 @@ export default function PositionTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const position = useSearchPosition({
+  const positionsQuery = useSearchPosition({
     params: {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent,
+    },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          positionsQuery.refetch();
+        }
+      },
     },
   });
   const handleSearch = (value: string) => {
@@ -40,9 +48,9 @@ export default function PositionTable(): JSX.Element {
   };
 
   useEffect(() => {
-    return () => position.remove();
+    return () => positionsQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [position.remove]);
+  }, [positionsQuery.remove]);
 
   const columns: ProColumns<IPosition>[] = [
     {
@@ -54,7 +62,7 @@ export default function PositionTable(): JSX.Element {
       search: false,
     },
     {
-      title: t("fields.position_name"),
+      title: t("fields.sQuery_name"),
       dataIndex: "position_name",
       width: 150,
     },
@@ -102,9 +110,9 @@ export default function PositionTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      loading={position.isLoading}
+      loading={positionsQuery.isLoading}
       columns={columns}
-      dataSource={position.data?.data || []}
+      dataSource={positionsQuery.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -123,13 +131,13 @@ export default function PositionTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: position.data?.totalItems || 0,
+        total: positionsQuery.data?.totalItems || 0,
       }}
       toolBarRender={() => [
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={position.isLoading}
+          loading={positionsQuery.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,

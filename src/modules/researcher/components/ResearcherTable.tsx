@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
-import { BASE_URL } from "@/constant/config";
+import { BASE_URL, ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchResearcher } from "@/loader/researcher.loader";
 import { IResearcher } from "@/models/researcher";
 import { formatToDate } from "@/utils/format-string";
@@ -25,11 +25,18 @@ export default function ResearcherTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const researcher = useSearchResearcher({
+  const researchersQuery = useSearchResearcher({
     params: {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent,
+    },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          researchersQuery.refetch();
+        }
+      },
     },
   });
   const handleSearch = (value: string) => {
@@ -41,9 +48,9 @@ export default function ResearcherTable(): JSX.Element {
   };
 
   useEffect(() => {
-    return () => researcher.remove();
+    return () => researchersQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [researcher.remove]);
+  }, [researchersQuery.remove]);
 
   const columns: ProColumns<IResearcher>[] = [
     {
@@ -123,9 +130,9 @@ export default function ResearcherTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      loading={researcher.isLoading}
+      loading={researchersQuery.isLoading}
       columns={columns}
-      dataSource={researcher.data?.data || []}
+      dataSource={researchersQuery.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -144,13 +151,13 @@ export default function ResearcherTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: researcher.data?.totalItems || 0,
+        total: researchersQuery.data?.totalItems || 0,
       }}
       toolBarRender={() => [
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={researcher.isLoading}
+          loading={researchersQuery.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,

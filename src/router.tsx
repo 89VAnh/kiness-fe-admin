@@ -43,10 +43,10 @@ export const router = createBrowserRouter([
       </AppLayout>
     ),
     children: [
-      {
-        path: "/",
-        element: <Navigate to={HOME_URL} />,
-      },
+      // {
+      //   path: "/",
+      //   element: <Navigate to={HOME_URL} />,
+      // },
       {
         path: HOME_URL,
         element: (

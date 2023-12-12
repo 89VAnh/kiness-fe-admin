@@ -2,7 +2,7 @@ import { CheckOutlined } from "@ant-design/icons";
 import { ProLayout, ProLayoutProps } from "@ant-design/pro-components";
 import { ConfigProvider, Image, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
 
 import Logo from "@/assets/img/logo/logo-white.png";
 import avatar from "@/assets/img/others/default-avatar.png";
@@ -60,6 +60,9 @@ export default function AppLayout({ children }: Props): JSX.Element {
     }
   };
 
+  if (location.pathname === "/")
+    return <Navigate to={HOME_URL} replace relative="route" />;
+
   return (
     <ProLayout
       actionsRender={() => [
@@ -106,7 +109,7 @@ export default function AppLayout({ children }: Props): JSX.Element {
         height: "100vh",
       }}
       siderWidth={258}
-      location={location}
+      // location={location}
       logo={
         <Space>
           <Image className="logo" preview={false} src={Logo} />

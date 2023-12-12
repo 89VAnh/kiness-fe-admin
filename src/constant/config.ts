@@ -4,3 +4,4 @@ export const KINESS_URL = "https://kiness.aiacademy.edu.vn";
 export const LOCAL_COLOR = "color";
 export const SESSION_CUSTOMER = "customer";
 export const SESSION_EMPLOYEE = "employee";
+export const ERROR_TIMEOUT = "read ECONNRESET";

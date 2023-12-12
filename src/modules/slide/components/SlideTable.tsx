@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchSlides } from "@/loader/slide.loader";
 import { ISlide } from "@/models/slide";
 import { compareNumbers } from "@/utils/array";
@@ -24,18 +25,25 @@ export default function SlideTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const customers = useSearchSlides({
+  const slidesQuery = useSearchSlides({
     params: {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent,
     },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          slidesQuery.refetch();
+        }
+      },
+    },
   });
 
   useEffect(() => {
-    return () => customers.remove();
+    return () => slidesQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [customers.remove]);
+  }, [slidesQuery.remove]);
 
   const handleSearch = (value: string) => {
     searchParams.delete("page");
@@ -107,7 +115,7 @@ export default function SlideTable(): JSX.Element {
     <ProTable
       size="small"
       cardBordered
-      loading={customers.isLoading}
+      loading={slidesQuery.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
         current: Number(searchParams.get("page")) || 1,
@@ -118,10 +126,10 @@ export default function SlideTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: customers.data?.totalItems || 0,
+        total: slidesQuery.data?.totalItems || 0,
       }}
       columns={columns}
-      dataSource={customers.data?.data || []}
+      dataSource={slidesQuery.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -131,7 +139,7 @@ export default function SlideTable(): JSX.Element {
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={customers.isLoading}
+          loading={slidesQuery.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,

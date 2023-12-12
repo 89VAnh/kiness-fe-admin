@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchCities } from "@/loader/city.loader";
 import { ICity } from "@/models/city";
 import { compareNumbers } from "@/utils/array";
@@ -24,18 +25,25 @@ export default function CityTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const customers = useSearchCities({
+  const citiesQuery = useSearchCities({
     params: {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent,
     },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          citiesQuery.refetch();
+        }
+      },
+    },
   });
 
   useEffect(() => {
-    return () => customers.remove();
+    return () => citiesQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [customers.remove]);
+  }, [citiesQuery.remove]);
 
   const handleSearch = (value: string) => {
     searchParams.delete("page");
@@ -92,7 +100,7 @@ export default function CityTable(): JSX.Element {
     <ProTable
       size="small"
       cardBordered
-      loading={customers.isLoading}
+      loading={citiesQuery.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
         current: Number(searchParams.get("page")) || 1,
@@ -103,10 +111,10 @@ export default function CityTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: customers.data?.totalItems || 0,
+        total: citiesQuery.data?.totalItems || 0,
       }}
       columns={columns}
-      dataSource={customers.data?.data || []}
+      dataSource={citiesQuery.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -116,7 +124,7 @@ export default function CityTable(): JSX.Element {
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={customers.isLoading}
+          loading={citiesQuery.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,

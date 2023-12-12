@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchEmployees } from "@/loader/employee.loader";
 import { IEmployee } from "@/models/employee";
 import { UserState } from "@/store/auth/atom";
@@ -27,19 +28,26 @@ export default function EmployeeTable(): JSX.Element {
   const [pageSize, setPageSize] = useState<number | string>(
     searchParams.get("page_size") || 10,
   );
-  const employees = useSearchEmployees({
+  const employeesQuery = useSearchEmployees({
     params: {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent,
       user_id: userProfile.user_id,
     },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          employeesQuery.refetch();
+        }
+      },
+    },
   });
 
   useEffect(() => {
-    return () => employees.remove();
+    return () => employeesQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [employees.remove]);
+  }, [employeesQuery.remove]);
 
   const handleSearch = (value: string) => {
     searchParams.delete("page");
@@ -141,7 +149,7 @@ export default function EmployeeTable(): JSX.Element {
       size="small"
       cardBordered
       // rowSelection={rowSelection}
-      loading={employees.isLoading}
+      loading={employeesQuery.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
         current: Number(searchParams.get("page")) || 1,
@@ -155,10 +163,10 @@ export default function EmployeeTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: employees.data?.totalItems || 0,
+        total: employeesQuery.data?.totalItems || 0,
       }}
       columns={columns}
-      dataSource={employees.data?.data || []}
+      dataSource={employeesQuery.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -167,7 +175,7 @@ export default function EmployeeTable(): JSX.Element {
       toolBarRender={(_) => [
         <Input.Search
           placeholder={t("search_placeholder")}
-          loading={employees.isLoading}
+          loading={employeesQuery.isLoading}
           onSearch={handleSearch}
           style={{ minWidth: 300 }}
           onFocus={(e) => e.target.select()}

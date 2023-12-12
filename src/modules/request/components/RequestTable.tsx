@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchRequests } from "@/loader/request.loader";
 import { IRequest } from "@/models/request";
 import { compareNumbers, compareStrings } from "@/utils/array";
@@ -38,6 +39,13 @@ export default function RequestTable(): JSX.Element {
       search_content: searchContent || null,
       is_accepted: acceptStatus || null,
       is_answered: answerStatus || null,
+    },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          requestListQuery.refetch();
+        }
+      },
     },
   });
 
