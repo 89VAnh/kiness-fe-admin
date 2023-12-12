@@ -44,6 +44,10 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        path: "/",
+        element: <Navigate to={HOME_URL} />,
+      },
+      {
         path: HOME_URL,
         element: (
           <ProtectedComponent Element={DashboardPage} title="Trang chủ" />

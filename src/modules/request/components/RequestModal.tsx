@@ -10,6 +10,7 @@ import {
   Tooltip,
   message,
 } from "antd";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
@@ -38,6 +39,12 @@ export default function RequestModal({
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
   const [form] = Form.useForm();
+  const answer = Form.useWatch("answer", form);
+
+  useEffect(() => {
+    if (answer?.trim()) form.setFieldValue("is_answered", 1);
+    else form.setFieldValue("is_answered", 0);
+  }, [answer, form]);
 
   const updateRequest = useUpdateRequest({
     config: {
@@ -162,7 +169,7 @@ export default function RequestModal({
                   label={t("request.fields.is_answered.title")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Select defaultValue={""} options={answerOptions} />
+                  <Select disabled defaultValue={""} options={answerOptions} />
                 </Form.Item>
               </Col>
               <Col span={6}>
@@ -206,7 +213,6 @@ export default function RequestModal({
                 <Form.Item
                   name={"answered_by"}
                   label={"Người cập nhật cuối cùng"}
-                  rules={[...RULES_FORM.required]}
                 >
                   <Input disabled />
                 </Form.Item>
@@ -225,11 +231,7 @@ export default function RequestModal({
                 </Form.Item>
               </Col>
               <Col span={24}>
-                <Form.Item
-                  name={"answer"}
-                  label={t("request.fields.answer")}
-                  rules={[...RULES_FORM.required]}
-                >
+                <Form.Item name={"answer"} label={t("request.fields.answer")}>
                   <Input.TextArea
                     placeholder={t("request.fields.answer")}
                     rows={4}

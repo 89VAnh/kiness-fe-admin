@@ -11,7 +11,7 @@ import { LOCAL_USER } from "@/constant/config";
 import { authorization } from "@/services/user.service";
 import { UserState } from "@/store/auth/atom";
 import { LOGIN_URL } from "@/urls";
-import { storageService } from "@/utils/storage";
+import storage, { storageService } from "@/utils/storage";
 
 import HeaderDropdown from "../HeaderDropdown";
 
@@ -46,18 +46,22 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const loginOut = async () => {
+  const logOut = async () => {
     const urlParams = new URL(window.location.href).searchParams;
     const redirect = urlParams.get("redirect");
     if (window.location.pathname !== LOGIN_URL && !redirect) {
-      navigate(LOGIN_URL);
+      storage.clearToken();
+      storageService.clearStorage(LOCAL_USER);
+      navigate(LOGIN_URL, {
+        preventScrollReset: true,
+      });
     }
   };
 
   const onMenuClick = useCallback((event: any) => {
     const { key } = event;
     if (key === "logout") {
-      loginOut();
+      logOut();
       return;
     }
     navigate(`/account/${key}`);
