@@ -20,6 +20,7 @@ import {
   FAQ_URL,
   GROWTH_STORY_URL,
   HOME_URL,
+  LICENSE_OF_INVENTION_URL,
   MANAGER_URL,
   PAGE_URL,
   POSITION_URL,
@@ -90,6 +91,14 @@ const functions = [
       {
         url: GROWTH_STORY_URL,
         title: t("nav.growth_story"),
+        children: [],
+        sort_order: 7,
+        icon: <TeamOutlined />,
+        is_leaf: true,
+      },
+      {
+        url: LICENSE_OF_INVENTION_URL,
+        title: t("nav.license_of_invention"),
         children: [],
         sort_order: 7,
         icon: <TeamOutlined />,

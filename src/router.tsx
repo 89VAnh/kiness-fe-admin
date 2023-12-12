@@ -11,6 +11,7 @@ import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { FaqManagePage } from "./modules/faq";
 import { GrowthStoryPage } from "./modules/growth-story";
+import { LicensePage } from "./modules/license-of-invention";
 import { PageManagePage } from "./modules/page";
 import { PositionPage } from "./modules/position";
 import RequestManage from "./modules/request/RequestManage";
@@ -27,6 +28,7 @@ import {
   FAQ_URL,
   GROWTH_STORY_URL,
   HOME_URL,
+  LICENSE_OF_INVENTION_URL,
   LOGIN_URL,
   MANAGER_URL,
   PAGE_URL,
@@ -120,6 +122,15 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={GrowthStoryPage}
             title="Quản lý câu chuyện tăng trưởng"
+          />
+        ),
+      },
+      {
+        path: LICENSE_OF_INVENTION_URL,
+        element: (
+          <ProtectedComponent
+            Element={LicensePage}
+            title="Quản lý bằng sáng chế"
           />
         ),
       },

@@ -46,7 +46,8 @@
     "faq": "Quản lý câu hỏi thường gặp",
     "research_article": "Quản lý bài nghiên cứu",
     "request": "Quản lý yêu cầu",
-    "growth_story": "Quản lý câu chuyện tăng trưởng"
+    "growth_story": "Quản lý câu chuyện tăng trưởng",
+    "license_of_invention": "Quản lý bằng sáng chế"
   },
   "dashboard": {
     "total_customer": "Khách hàng",
@@ -406,6 +407,24 @@
           "color": "green"
         }
       }
+    }
+  },
+  "license_of_invention": {
+    "title": "Quản lý bằng sáng chế",
+    "title_create": "Thêm mới bằng sáng chế",
+    "title_update": "Cập nhật bằng sáng chế",
+    "title_delete": "Xóa bằng sáng chế",
+    "search_placeholder": "Nhập tiêu đề bằng sáng chế",
+    "fields": {
+      "serial": "STT",
+      "id": "Mã",
+      "image_url": "Ảnh",
+      "title": "Tiêu đề",
+      "license_no": "Số",
+      "created_date_time": "Ngày tạo",
+      "created_user": "Người tạo",
+      "description": "Mô tả",
+      "actions": "Tác vụ"
     }
   }
 }

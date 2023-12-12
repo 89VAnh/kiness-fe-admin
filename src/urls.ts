@@ -12,6 +12,7 @@ const FAQ_URL = `${MANAGER_URL}/faq`;
 const RESEARCH_ARTICLE_URL = `${MANAGER_URL}/research-article`;
 const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
 const GROWTH_STORY_URL = `${MANAGER_URL}/growth-story`;
+const LICENSE_OF_INVENTION_URL = `${MANAGER_URL}/license-of-invention`;
 
 // Config
 const CONFIG_URL = "/config";
@@ -39,6 +40,7 @@ export {
   RESEARCHER_URL,
   RESEARCH_ARTICLE_URL,
   GROWTH_STORY_URL,
+  LICENSE_OF_INVENTION_URL,
   // Admin
   ADMIN_URL,
   EMPLOYEE_URL,
