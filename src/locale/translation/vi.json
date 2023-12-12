@@ -44,6 +44,7 @@
     "position": "Quản lý chức vụ",
     "researcher": "Quản lý nhà nghiên cứu",
     "faq": "Quản lý câu hỏi thường gặp",
+    "research_article": "Quản lý bài nghiên cứu",
     "request": "Quản lý yêu cầu"
   },
   "dashboard": {
@@ -297,6 +298,40 @@
         "topic_name": "Loại",
         "question": "Câu hỏi",
         "answer": "Câu trả lời",
+        "actions": "Tác vụ"
+      }
+    }
+  },
+  "research_article": {
+    "title": "Quản lý bài nghiên cứu",
+    "search_placeholder": "Nhập tên bài nghiên cứu...",
+    "title_update": "Cập nhật bài nghiên cứu",
+    "title_create": "Thêm bài nghiên cứu",
+    "title_delete": "Xóa bài nghiên cứu",
+
+    "fields": {
+      "serial": "STT",
+      "title": "Tiêu đề",
+      "authors": "Tác giả",
+      "issuers": "Tổ chức phát hành",
+      "year_of_release": "Năm phát hành",
+      "author_link": "Đường liên kết thông tin tác giả",
+      "article_link": "Đường liên kết bài nghiên cứu",
+      "content": "Nội dung",
+      "actions": "Tác vụ"
+    },
+
+    "author": {
+      "title": "Quản lý tác giả",
+      "search_placeholder": "Nhập tên tác giả...",
+      "title_update": "Cập nhật tác giả",
+      "title_create": "Thêm tác giả",
+      "title_delete": "Xóa tác giả",
+
+      "fields": {
+        "serial": "STT",
+        "name": "Tên tác giả",
+        "link": "Liên kết",
         "actions": "Tác vụ"
       }
     }

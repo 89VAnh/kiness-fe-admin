@@ -9,6 +9,7 @@ const EXPERIENCE_REGISTER_URL = `${MANAGER_URL}/experience-register`;
 const REQUEST_URL = `${MANAGER_URL}/request`;
 const CITY_URL = `${MANAGER_URL}/city`;
 const FAQ_URL = `${MANAGER_URL}/faq`;
+const RESEARCH_ARTICLE_URL = `${MANAGER_URL}/research-article`;
 const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
 
 // Config
@@ -27,12 +28,14 @@ const breadcrumbNameMap: Record<string, string> = {
 };
 
 export {
+  // TEST_REGISTER_URL,
+  ADMIN_URL,
   BRANCH_URL,
   CITY_URL,
-  FAQ_URL,
   CONFIG_URL,
-  // CUSTOMERS_URL,
+  EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
+  FAQ_URL,
   HOME_URL,
   LOGIN_URL,
   MANAGER_URL,
@@ -40,9 +43,8 @@ export {
   POSITION_URL,
   REQUEST_URL,
   RESEARCHER_URL,
+  // CUSTOMERS_URL,
+  RESEARCH_ARTICLE_URL,
   SLIDES_URL,
-  // TEST_REGISTER_URL,
-  ADMIN_URL,
-  EMPLOYEE_URL,
   breadcrumbNameMap,
 };
