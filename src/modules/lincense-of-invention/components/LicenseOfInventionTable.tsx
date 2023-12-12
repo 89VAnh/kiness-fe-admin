@@ -1,18 +1,19 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Input, Space, Typography } from "antd";
+import { Image, Input, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
-import { useSearchResearchArticle } from "@/loader/research-article.loader";
-import { IResearchArticle } from "@/models/research-article";
+import { BASE_URL, ERROR_TIMEOUT } from "@/constant/config";
+import { useSearchLicenses } from "@/loader/license-of-invention.loader";
+import { ILicenseOfInvention } from "@/models/license-of-invention";
 
-import ResearchArticleDelete from "./ResearchArticleDelete";
-import ResearchArticleModal from "./ResearchArticleModal";
+import LicenseDelete from "./LicenseOfInventionDelete";
+import LicenseModal from "./LicenseOfInventionModal";
 
-export default function ResearchArticleTable(): JSX.Element {
+export default function LicenseTable(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "research_article",
+    keyPrefix: "license_of_invention",
   });
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchContent, setSearchContent] = useState<string>(
@@ -25,11 +26,18 @@ export default function ResearchArticleTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const researcharticle = useSearchResearchArticle({
+  const Licenses = useSearchLicenses({
     params: {
       pageIndex: page,
       pageSize: pageSize,
       search_content: searchContent,
+    },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          Licenses.refetch();
+        }
+      },
     },
   });
   const handleSearch = (value: string) => {
@@ -41,54 +49,39 @@ export default function ResearchArticleTable(): JSX.Element {
   };
 
   useEffect(() => {
-    return () => researcharticle.remove();
+    return () => Licenses.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [researcharticle.remove]);
+  }, [Licenses.remove]);
 
-  const columns: ProColumns<IResearchArticle>[] = [
+  const columns: ProColumns<ILicenseOfInvention>[] = [
     {
       title: t("fields.serial"),
       dataIndex: "serial",
       align: "center",
-      width: 20,
+      width: 50,
       render: (_, __, index) => <Typography.Text>{++index}</Typography.Text>,
+      search: false,
+    },
+    {
+      title: t("fields.image_url"),
+      dataIndex: "image_url",
+      width: 100,
+      align: "center",
+      // render: (image_url) => <Image src={"/api/" + image_url} width={100} />,
+      render: (image_url) => (
+        <Image src={BASE_URL + "/" + image_url} width={100} />
+      ),
       search: false,
     },
     {
       title: t("fields.title"),
       dataIndex: "title",
-      width: 150,
-      render: (text) => (
-        <Typography.Paragraph style={{ width: "150" }} ellipsis={{ rows: 2 }}>
-          {text}
-        </Typography.Paragraph>
-      ),
+      width: 200,
     },
     {
-      title: t("fields.authors"),
-      dataIndex: "authors",
+      title: t("fields.license_no"),
+      dataIndex: "license_no",
       width: 100,
-      render: (text) => (
-        <Typography.Paragraph style={{ width: "100" }} ellipsis={{ rows: 2 }}>
-          {text}
-        </Typography.Paragraph>
-      ),
-    },
-
-    {
-      title: t("fields.issuers"),
-      dataIndex: "issuers",
-      width: 150,
-      render: (text) => (
-        <Typography.Paragraph style={{ width: "150" }} ellipsis={{ rows: 2 }}>
-          {text}
-        </Typography.Paragraph>
-      ),
-    },
-    {
-      title: t("fields.year_of_release"),
-      dataIndex: "year_of_release",
-      width: 20,
     },
     {
       title: t("fields.actions"),
@@ -99,8 +92,11 @@ export default function ResearchArticleTable(): JSX.Element {
       render: (_, record) => {
         return (
           <Space>
-            <ResearchArticleModal id={record?.article_id} isCreate={false} />
-            <ResearchArticleDelete id={record?.article_id} />
+            <LicenseModal id={record?.license_id} isCreate={false} />
+            <LicenseDelete
+              id={record?.license_id}
+              image_url={record?.image_url!}
+            />
           </Space>
         );
       },
@@ -110,9 +106,9 @@ export default function ResearchArticleTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      loading={researcharticle.isLoading}
+      loading={Licenses.isLoading}
       columns={columns}
-      dataSource={researcharticle.data?.data || []}
+      dataSource={Licenses.data ? Licenses.data.data.data : []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -131,19 +127,19 @@ export default function ResearchArticleTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: researcharticle.data?.totalItems || 0,
+        total: Licenses.data?.totalItems || 0,
       }}
       toolBarRender={() => [
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={researcharticle.isLoading}
+          loading={Licenses.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,
-        <ResearchArticleModal />,
+        <LicenseModal />,
       ]}
-      rowKey={"researcharticle_id"}
+      rowKey={"license_id"}
     />
   );
 }
