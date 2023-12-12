@@ -10,6 +10,7 @@ import { EmployeePage } from "./modules/employee";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { FaqManagePage } from "./modules/faq";
+import { LicensePage } from "./modules/lincense-of-invention";
 import { PageManagePage } from "./modules/page";
 import { PositionPage } from "./modules/position";
 import RequestManage from "./modules/request/RequestManage";
@@ -25,6 +26,7 @@ import {
   EXPERIENCE_REGISTER_URL,
   FAQ_URL,
   HOME_URL,
+  LICENSE_OF_INVENTION_URL,
   LOGIN_URL,
   MANAGER_URL,
   PAGE_URL,
@@ -109,6 +111,16 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={ResearcherPage}
             title="Quản lý nhà nghiên cứu"
+          />
+        ),
+      },
+
+      {
+        path: LICENSE_OF_INVENTION_URL,
+        element: (
+          <ProtectedComponent
+            Element={LicensePage}
+            title="Quản lý bằng sáng chế"
           />
         ),
       },
