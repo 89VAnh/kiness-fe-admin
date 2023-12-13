@@ -13,6 +13,7 @@ const RESEARCH_ARTICLE_URL = `${MANAGER_URL}/research-article`;
 const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
 const GROWTH_STORY_URL = `${MANAGER_URL}/growth-story`;
 const LICENSE_OF_INVENTION_URL = `${MANAGER_URL}/license-of-invention`;
+const BOOK_URL = `${MANAGER_URL}/book`;
 
 // Config
 const CONFIG_URL = "/config";
@@ -30,27 +31,28 @@ const breadcrumbNameMap: Record<string, string> = {
 };
 
 export {
+  // Admin
+  ADMIN_URL,
+  BOOK_URL,
+  BRANCH_URL,
+  CITY_URL,
+  // Config
+  CONFIG_URL,
+  EMPLOYEE_URL,
+  EXPERIENCE_REGISTER_URL,
+  FAQ_URL,
+  GROWTH_STORY_URL,
   HOME_URL,
+  LICENSE_OF_INVENTION_URL,
+  LOGIN_URL,
   // Manager
   MANAGER_URL,
-  EXPERIENCE_REGISTER_URL,
-  CITY_URL,
-  FAQ_URL,
+  PAGE_URL,
+  POSITION_URL,
   REQUEST_URL,
   RESEARCHER_URL,
   RESEARCH_ARTICLE_URL,
-  GROWTH_STORY_URL,
-  LICENSE_OF_INVENTION_URL,
-  // Admin
-  ADMIN_URL,
-  EMPLOYEE_URL,
-  BRANCH_URL,
-  POSITION_URL,
-  // Config
-  CONFIG_URL,
-  PAGE_URL,
   SLIDES_URL,
   // Others
   breadcrumbNameMap,
-  LOGIN_URL,
 };

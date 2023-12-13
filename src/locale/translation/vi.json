@@ -47,7 +47,8 @@
     "research_article": "Quản lý bài nghiên cứu",
     "request": "Quản lý yêu cầu",
     "growth_story": "Quản lý câu chuyện tăng trưởng",
-    "license_of_invention": "Quản lý bằng sáng chế"
+    "license_of_invention": "Quản lý bằng sáng chế",
+    "book": "Quản lý sách xuất bản"
   },
   "dashboard": {
     "total_customer": "Khách hàng",
@@ -425,6 +426,38 @@
       "created_user": "Người tạo",
       "description": "Mô tả",
       "actions": "Tác vụ"
+    }
+  },
+
+  "book": {
+    "title": "Quản lý sách xuất bản",
+    "search_placeholder": "Nhập tên sách xuất bản...",
+    "title_update": "Cập nhật sách xuất bản",
+    "title_create": "Thêm sách xuất bản",
+    "title_delete": "Xóa sách xuất bản",
+
+    "fields": {
+      "serial": "STT",
+      "image_url": "Ảnh",
+      "title": "Tiêu đề",
+      "author": "Tác giả",
+      "publication_date": "Ngày xuất bản",
+      "actions": "Tác vụ"
+    },
+
+    "author": {
+      "title": "Quản lý tác giả",
+      "search_placeholder": "Nhập tên tác giả...",
+      "title_update": "Cập nhật tác giả",
+      "title_create": "Thêm tác giả",
+      "title_delete": "Xóa tác giả",
+
+      "fields": {
+        "serial": "STT",
+        "name": "Tên tác giả",
+        "link": "Liên kết",
+        "actions": "Tác vụ"
+      }
     }
   }
 }
