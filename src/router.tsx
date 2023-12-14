@@ -12,9 +12,12 @@ import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { FaqManagePage } from "./modules/faq";
 import { GrowthStoryPage } from "./modules/growth-story";
+import { LateStoryPage } from "./modules/late-story";
 import { LicensePage } from "./modules/license-of-invention";
+import { ObesityStoryPage } from "./modules/obesity-story";
 import { PageManagePage } from "./modules/page";
 import { PositionPage } from "./modules/position";
+import { PostureStoryPage } from "./modules/posture-story";
 import RequestManage from "./modules/request/RequestManage";
 import { ResearchArticlePage } from "./modules/research-article";
 import { ResearcherPage } from "./modules/researcher";
@@ -30,11 +33,14 @@ import {
   FAQ_URL,
   GROWTH_STORY_URL,
   HOME_URL,
+  LATE_STORY_URL,
   LICENSE_OF_INVENTION_URL,
   LOGIN_URL,
   MANAGER_URL,
+  OBESITY_STORY_URL,
   PAGE_URL,
   POSITION_URL,
+  POSTURE_STORY_URL,
   REQUEST_URL,
   RESEARCHER_URL,
   RESEARCH_ARTICLE_URL,
@@ -124,6 +130,33 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={GrowthStoryPage}
             title="Quản lý câu chuyện tăng trưởng"
+          />
+        ),
+      },
+      {
+        path: POSTURE_STORY_URL,
+        element: (
+          <ProtectedComponent
+            Element={PostureStoryPage}
+            title="Quản lý trường hợp chỉnh sửa tư thế"
+          />
+        ),
+      },
+      {
+        path: LATE_STORY_URL,
+        element: (
+          <ProtectedComponent
+            Element={LateStoryPage}
+            title="Quản lý trường hợp trễ hạn"
+          />
+        ),
+      },
+      {
+        path: OBESITY_STORY_URL,
+        element: (
+          <ProtectedComponent
+            Element={ObesityStoryPage}
+            title="Quản lý trường hợp béo phì"
           />
         ),
       },

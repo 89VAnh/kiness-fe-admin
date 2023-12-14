@@ -12,6 +12,9 @@ const FAQ_URL = `${MANAGER_URL}/faq`;
 const RESEARCH_ARTICLE_URL = `${MANAGER_URL}/research-article`;
 const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
 const GROWTH_STORY_URL = `${MANAGER_URL}/growth-story`;
+const POSTURE_STORY_URL = `${MANAGER_URL}/posture-story`;
+const LATE_STORY_URL = `${MANAGER_URL}/late-story`;
+const OBESITY_STORY_URL = `${MANAGER_URL}/fa-story`;
 const LICENSE_OF_INVENTION_URL = `${MANAGER_URL}/license-of-invention`;
 const BOOK_URL = `${MANAGER_URL}/book`;
 
@@ -42,6 +45,9 @@ export {
   EXPERIENCE_REGISTER_URL,
   FAQ_URL,
   GROWTH_STORY_URL,
+  POSTURE_STORY_URL,
+  LATE_STORY_URL,
+  OBESITY_STORY_URL,
   HOME_URL,
   LICENSE_OF_INVENTION_URL,
   LOGIN_URL,

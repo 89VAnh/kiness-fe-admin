@@ -47,6 +47,9 @@
     "research_article": "Quản lý bài nghiên cứu",
     "request": "Quản lý yêu cầu",
     "growth_story": "Quản lý câu chuyện tăng trưởng",
+    "posture_story": "Quản lý trường hợp chỉnh sửa tư thế",
+    "late_story": "Quản lý trường hợp trễ hạn",
+    "obesity_story": "Quản lý trường hợp béo phì",
     "license_of_invention": "Quản lý bằng sáng chế",
     "book": "Quản lý sách xuất bản"
   },
@@ -387,6 +390,93 @@
     "title_update": "Cập nhật câu chuyện tăng trưởng",
     "title_create": "Thêm câu chuyện tăng trưởng",
     "title_delete": "Xóa câu chuyện tăng trưởng",
+
+    "fields": {
+      "serial": "STT",
+      "title": "Tiêu đề",
+      "content": "Nội dung",
+      "image_link": "Thumbnail",
+      "author_name": "Tên người đăng bài",
+      "posted_date": "Ngày đăng",
+      "view_count": "Lượt xem",
+      "actions": "Tác vụ",
+      "is_draft": {
+        "title": "Trạng thái nháp",
+        "1": {
+          "label": "Nháp",
+          "color": "red"
+        },
+        "0": {
+          "label": "Đã xác nhận",
+          "color": "green"
+        }
+      }
+    }
+  },
+  "posture_story": {
+    "title": "Quản lý trường hợp chỉnh sửa tư thế",
+    "search_placeholder": "Nhập trường hợp chỉnh sửa tư thế...",
+    "title_update": "Cập nhật trường hợp chỉnh sửa tư thế",
+    "title_create": "Thêm trường hợp chỉnh sửa tư thế",
+    "title_delete": "Xóa trường hợp chỉnh sửa tư thế",
+
+    "fields": {
+      "serial": "STT",
+      "title": "Tiêu đề",
+      "content": "Nội dung",
+      "image_link": "Thumbnail",
+      "author_name": "Tên người đăng bài",
+      "posted_date": "Ngày đăng",
+      "view_count": "Lượt xem",
+      "actions": "Tác vụ",
+      "is_draft": {
+        "title": "Trạng thái nháp",
+        "1": {
+          "label": "Nháp",
+          "color": "red"
+        },
+        "0": {
+          "label": "Đã xác nhận",
+          "color": "green"
+        }
+      }
+    }
+  },
+  "late_story": {
+    "title": "Quản lý trường hợp trễ hạn",
+    "search_placeholder": "Nhập trường hợp trễ hạn...",
+    "title_update": "Cập nhật trường hợp trễ hạn",
+    "title_create": "Thêm trường hợp trễ hạn",
+    "title_delete": "Xóa trường hợp trễ hạn",
+
+    "fields": {
+      "serial": "STT",
+      "title": "Tiêu đề",
+      "content": "Nội dung",
+      "image_link": "Thumbnail",
+      "author_name": "Tên người đăng bài",
+      "posted_date": "Ngày đăng",
+      "view_count": "Lượt xem",
+      "actions": "Tác vụ",
+      "is_draft": {
+        "title": "Trạng thái nháp",
+        "1": {
+          "label": "Nháp",
+          "color": "red"
+        },
+        "0": {
+          "label": "Đã xác nhận",
+          "color": "green"
+        }
+      }
+    }
+  },
+  "obesity_story": {
+    "title": "Quản lý trường hợp béo phì",
+    "search_placeholder": "Nhập trường hợp béo phì...",
+    "title_update": "Cập nhật trường hợp béo phì",
+    "title_create": "Thêm trường hợp béo phì",
+    "title_delete": "Xóa trường hợp béo phì",
 
     "fields": {
       "serial": "STT",

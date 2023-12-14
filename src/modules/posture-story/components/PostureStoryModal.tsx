@@ -28,12 +28,12 @@ import {
 } from "@/components/Editor/utils/upload-editor";
 import { queryClient } from "@/lib/react-query";
 import {
-  CACHE_GROWTH_STORY,
-  useCreateGrowthStory,
-  useGetGrowthStoryById,
-  useUpdateGrowthStory,
-} from "@/loader/growth-story.loader";
-import { IGrowthStory } from "@/models/growth-story";
+  CACHE_POSTURE_STORY,
+  useCreatePostureStory,
+  useGetPostureStoryById,
+  useUpdatePostureStory,
+} from "@/loader/posture-story.loader";
+import { IPostureStory } from "@/models/posture-story";
 import { uploadFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
 import { formatDatePost, formatDateShow } from "@/utils/format-string";
@@ -47,7 +47,7 @@ interface Props {
   isCreate?: boolean;
 }
 
-export default function GrowthStoryModal({
+export default function PostureStoryModal({
   id,
   isCreate = true,
 }: Props): JSX.Element {
@@ -56,17 +56,17 @@ export default function GrowthStoryModal({
   const userProfile = useRecoilValue(UserState);
   const [form] = Form.useForm();
   const [dataEditor, setDataEditor] = useState<string>("");
-  const [postedDate, setPostedDate] = useState<Dayjs | null>(dayjs());
+  const [postedDate, setPostedDate] = useState<Dayjs | null>();
   const [file, setFile] = useState<File | null>();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
-  const createGrowthStory = useCreateGrowthStory({
+  const createPostureStory = useCreatePostureStory({
     config: {
       onSuccess: (data) => {
         if (data.success) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_GROWTH_STORY.SEARCH]);
+          queryClient.invalidateQueries([CACHE_POSTURE_STORY.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -75,13 +75,13 @@ export default function GrowthStoryModal({
     },
   });
 
-  const updateGrowthStory = useUpdateGrowthStory({
+  const updatePostureStory = useUpdatePostureStory({
     config: {
       onSuccess: (data) => {
         if (data.success) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_GROWTH_STORY.SEARCH]);
+          queryClient.invalidateQueries([CACHE_POSTURE_STORY.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -90,7 +90,7 @@ export default function GrowthStoryModal({
     },
   });
 
-  useGetGrowthStoryById({
+  useGetPostureStoryById({
     id: id!,
     enabled: isOpen && !isCreate,
     config: {
@@ -120,9 +120,8 @@ export default function GrowthStoryModal({
         let dataFile;
         if (file) dataFile = await uploadFile({ file });
 
-        const dataPost: IGrowthStory = {
+        const dataPost: IPostureStory = {
           ...values,
-          title: values.title?.trim(),
           content: dataEditor,
           posted_date: postedDate?.format(formatDatePost),
           image_link: dataFile
@@ -131,10 +130,10 @@ export default function GrowthStoryModal({
         };
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
-          createGrowthStory.mutate(dataPost);
+          createPostureStory.mutate(dataPost);
         } else {
           dataPost.lu_user_id = userProfile.user_id;
-          updateGrowthStory.mutate(dataPost);
+          updatePostureStory.mutate(dataPost);
         }
       })
       .catch((err) => {
@@ -201,14 +200,14 @@ export default function GrowthStoryModal({
       <Modal
         title={
           isCreate
-            ? t("growth_story.title_create")
-            : t("growth_story.title_update")
+            ? t("posture_story.title_create")
+            : t("posture_story.title_update")
         }
         style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
-        confirmLoading={updateGrowthStory.isLoading}
+        confirmLoading={updatePostureStory.isLoading}
         maskClosable={false}
       >
         <div
@@ -220,22 +219,22 @@ export default function GrowthStoryModal({
         >
           <Form form={form} spellCheck={false} layout="vertical">
             <Row gutter={32}>
-              <Form.Item name={"growth_story_id"} hidden>
+              <Form.Item name={"posture_story_id"} hidden>
                 <Input />
               </Form.Item>
               <Col span={6}>
                 <Form.Item
                   name={"title"}
-                  label={t("growth_story.fields.title")}
+                  label={t("posture_story.fields.title")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Input placeholder={t("growth_story.fields.title")} />
+                  <Input placeholder={t("posture_story.fields.title")} />
                 </Form.Item>
               </Col>
               <Col span={7}>
                 <Form.Item
                   name={"image_link"}
-                  label={t("growth_story.fields.image_link")}
+                  label={t("posture_story.fields.image_link")}
                   rules={[...RULES_FORM.required]}
                 >
                   <Upload {...uploadProps}>
@@ -249,7 +248,7 @@ export default function GrowthStoryModal({
               <Col span={5}>
                 <Form.Item
                   name={"is_draft"}
-                  label={t("growth_story.fields.is_draft.title")}
+                  label={t("posture_story.fields.is_draft.title")}
                   rules={[...RULES_FORM.required]}
                   initialValue={1}
                 >
@@ -259,7 +258,7 @@ export default function GrowthStoryModal({
               <Col span={6}>
                 <Form.Item
                   name={"author_name"}
-                  label={t("growth_story.fields.author_name")}
+                  label={t("posture_story.fields.author_name")}
                   rules={[...RULES_FORM.required]}
                   initialValue={userProfile.full_name}
                 >
@@ -270,13 +269,13 @@ export default function GrowthStoryModal({
               <Col span={6}>
                 <Form.Item
                   // name={"date"}
-                  label={t("growth_story.fields.posted_date")}
+                  label={t("posture_story.fields.posted_date")}
                   rules={[...RULES_FORM.required]}
                 >
                   <DatePicker
                     format={formatDateShow}
-                    value={postedDate}
                     className="w-full"
+                    value={postedDate}
                     onChange={(value) => setPostedDate(value)}
                   />
                 </Form.Item>
@@ -284,7 +283,7 @@ export default function GrowthStoryModal({
               <Col span={6}>
                 <Form.Item
                   name={"view_count"}
-                  label={t("growth_story.fields.view_count")}
+                  label={t("posture_story.fields.view_count")}
                   rules={[...RULES_FORM.required]}
                   initialValue={0}
                 >

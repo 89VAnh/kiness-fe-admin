@@ -7,17 +7,17 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
 import { BASE_URL, ERROR_TIMEOUT } from "@/constant/config";
-import { useSearchGrowthStories } from "@/loader/growth-story.loader";
-import { IGrowthStory } from "@/models/growth-story";
+import { useSearchPostureStories } from "@/loader/posture-story.loader";
+import { IPostureStory } from "@/models/posture-story";
 import { compareNumbers, compareStrings } from "@/utils/array";
 import { formatDateShow } from "@/utils/format-string";
 
 import { draftOptions } from "../data/data-fake";
-import GrowthStoryDelete from "./GrowthStoryDelete";
-import GrowthStoryModal from "./GrowthStoryModal";
+import PostureStoryDelete from "./PostureStoryDelete";
+import PostureStoryModal from "./PostureStoryModal";
 
-export default function GrowthStoryTable(): JSX.Element {
-  const { t } = useTranslation("translation", { keyPrefix: "growth_story" });
+export default function PostureStoryTable(): JSX.Element {
+  const { t } = useTranslation("translation", { keyPrefix: "posture_story" });
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchContent, setSearchContent] = useState<string>(
     searchParams.get("k") || "",
@@ -32,7 +32,7 @@ export default function GrowthStoryTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const growthStoriesQuery = useSearchGrowthStories({
+  const postureStoriesQuery = useSearchPostureStories({
     params: {
       pageIndex: page,
       pageSize: pageSize,
@@ -42,16 +42,16 @@ export default function GrowthStoryTable(): JSX.Element {
     config: {
       onSuccess: (data) => {
         if (data.message === ERROR_TIMEOUT) {
-          growthStoriesQuery.refetch();
+          postureStoriesQuery.refetch();
         }
       },
     },
   });
 
   useEffect(() => {
-    return () => growthStoriesQuery.remove();
+    return () => postureStoriesQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [growthStoriesQuery.remove]);
+  }, [postureStoriesQuery.remove]);
 
   const handleSearch = (value: string, key = "a") => {
     searchParams.delete("page");
@@ -71,7 +71,7 @@ export default function GrowthStoryTable(): JSX.Element {
     setPage(1);
   };
 
-  const columns: ProColumns<IGrowthStory>[] = [
+  const columns: ProColumns<IPostureStory>[] = [
     {
       title: t("fields.serial"),
       dataIndex: "serial",
@@ -96,16 +96,7 @@ export default function GrowthStoryTable(): JSX.Element {
       title: t("fields.title"),
       dataIndex: "title",
       sorter: (a: any, b: any) => compareStrings(a, b, "title"),
-      width: 200,
-      render: (value) => (
-        <Typography.Text
-          style={{ maxWidth: 400 }}
-          ellipsis
-          title={value?.toString()}
-        >
-          {value?.toString()}
-        </Typography.Text>
-      ),
+      width: "15%",
     },
     {
       title: t("fields.author_name"),
@@ -155,9 +146,9 @@ export default function GrowthStoryTable(): JSX.Element {
       render: (_, record) => {
         return (
           <Space>
-            <GrowthStoryModal id={record?.growth_story_id} isCreate={false} />
-            <GrowthStoryDelete
-              id={record?.growth_story_id}
+            <PostureStoryModal id={record?.posture_story_id} isCreate={false} />
+            <PostureStoryDelete
+              id={record?.posture_story_id}
               image_path={record?.image_link}
             />
           </Space>
@@ -170,7 +161,7 @@ export default function GrowthStoryTable(): JSX.Element {
     <ProTable
       size="small"
       cardBordered
-      loading={growthStoriesQuery.isLoading}
+      loading={postureStoriesQuery.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
         current: Number(searchParams.get("page")) || 1,
@@ -181,10 +172,10 @@ export default function GrowthStoryTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: growthStoriesQuery.data?.totalItems || 0,
+        total: postureStoriesQuery.data?.totalItems || 0,
       }}
       columns={columns}
-      dataSource={growthStoriesQuery.data?.data?.data || []}
+      dataSource={postureStoriesQuery.data?.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -200,14 +191,14 @@ export default function GrowthStoryTable(): JSX.Element {
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={growthStoriesQuery.isLoading}
+          loading={postureStoriesQuery.isLoading}
           onSearch={(value) => handleSearch(value, "k")}
           style={{ minWidth: 150 }}
           onFocus={(e) => e.target.select()}
         />,
-        <GrowthStoryModal />,
+        <PostureStoryModal />,
       ]}
-      rowKey={"growth_story_id"}
+      rowKey={"posture_story_id"}
     />
   );
 }

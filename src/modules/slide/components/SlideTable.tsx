@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
-import { ERROR_TIMEOUT } from "@/constant/config";
+import { BASE_URL, ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchSlides } from "@/loader/slide.loader";
 import { ISlide } from "@/models/slide";
 import { compareNumbers } from "@/utils/array";
@@ -71,13 +71,17 @@ export default function SlideTable(): JSX.Element {
       title: t("fields.image_big"),
       dataIndex: "image_big",
       width: 400,
-      render: (value: any) => <Image src={"/api/" + value} width={400} />,
+      render: (value: any) => (
+        <Image src={`${BASE_URL}/` + value} width={400} />
+      ),
     },
     {
       title: t("fields.image_small"),
       dataIndex: "image_small",
       width: 400,
-      render: (value: any) => <Image src={"/api/" + value} width={100} />,
+      render: (value: any) => (
+        <Image src={`${BASE_URL}/` + value} width={100} />
+      ),
     },
     {
       title: t("fields.caption"),

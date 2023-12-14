@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 
 import { queryClient } from "@/lib/react-query";
 import {
-  CACHE_GROWTH_STORY,
-  useDeleteGrowthStory,
-} from "@/loader/growth-story.loader";
+  CACHE_POSTURE_STORY,
+  useDeletePostureStory,
+} from "@/loader/posture-story.loader";
 import { deleteFile } from "@/services/upload.service";
 import { useDisclosure } from "@/utils/modal";
 
@@ -15,21 +15,21 @@ interface Props {
   image_path: string;
 }
 
-export default function GrowthStoryDelete({
+export default function PostureStoryDelete({
   id,
   image_path,
 }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
 
-  const deleteQuery = useDeleteGrowthStory({
+  const deleteQuery = useDeletePostureStory({
     config: {
       onSuccess: (data) => {
         if (data.success) {
           message.success(data.message);
-          queryClient.invalidateQueries([CACHE_GROWTH_STORY.SEARCH]);
-          close();
+          queryClient.invalidateQueries([CACHE_POSTURE_STORY.SEARCH]);
           deleteFile({ filePath: image_path });
+          close();
         } else message.error(data.message);
       },
       onError(error) {
@@ -51,7 +51,7 @@ export default function GrowthStoryDelete({
       </Tooltip>
 
       <Modal
-        title={t("growth_story.title_delete")}
+        title={t("posture_story.title_delete")}
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
