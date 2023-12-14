@@ -3,6 +3,7 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import AppLayout from "./modules/app/AppLayout";
 import ProtectedComponent from "./modules/app/ProtectComponent";
 import { LoginPage } from "./modules/auth";
+import { BookPage } from "./modules/book";
 import { BranchManagePage } from "./modules/branch";
 import { CityManagePage } from "./modules/city";
 import { DashboardPage } from "./modules/dashboard";
@@ -20,6 +21,7 @@ import { ResearcherPage } from "./modules/researcher";
 import { SlideManagePage } from "./modules/slide";
 import {
   ADMIN_URL,
+  BOOK_URL,
   BRANCH_URL,
   CITY_URL,
   CONFIG_URL,
@@ -131,6 +133,15 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={LicensePage}
             title="Quản lý bằng sáng chế"
+          />
+        ),
+      },
+      {
+        path: BOOK_URL,
+        element: (
+          <ProtectedComponent
+            Element={BookPage}
+            title="Quản lý sách xuất bản"
           />
         ),
       },

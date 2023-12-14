@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 import {
   ADMIN_URL,
+  BOOK_URL,
   BRANCH_URL,
   CITY_URL,
   CONFIG_URL,
@@ -101,6 +102,14 @@ const functions = [
         title: t("nav.license_of_invention"),
         children: [],
         sort_order: 7,
+        icon: <TeamOutlined />,
+        is_leaf: true,
+      },
+      {
+        url: BOOK_URL,
+        title: t("nav.book"),
+        children: [],
+        sort_order: 8,
         icon: <TeamOutlined />,
         is_leaf: true,
       },
