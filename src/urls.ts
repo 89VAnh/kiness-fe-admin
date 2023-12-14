@@ -14,7 +14,7 @@ const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
 const GROWTH_STORY_URL = `${MANAGER_URL}/growth-story`;
 const POSTURE_STORY_URL = `${MANAGER_URL}/posture-story`;
 const LATE_STORY_URL = `${MANAGER_URL}/late-story`;
-const OBESITY_STORY_URL = `${MANAGER_URL}/fa-story`;
+const OBESITY_STORY_URL = `${MANAGER_URL}/obesity-story`;
 const LICENSE_OF_INVENTION_URL = `${MANAGER_URL}/license-of-invention`;
 const BOOK_URL = `${MANAGER_URL}/book`;
 
