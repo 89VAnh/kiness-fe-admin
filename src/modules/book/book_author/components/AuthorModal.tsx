@@ -5,11 +5,11 @@ import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
 import {
-  CACHE_BOOK,
-  useCreateBook,
-  useGetBookById,
-  useUpdateBook,
-} from "@/loader/book.loader";
+  CACHE_BOOK_AUTHOR,
+  useCreateBookAuthor,
+  useGetBookAuthorById,
+  useUpdateBookAuthor,
+} from "@/loader/book-author.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 import { RULES_FORM } from "@/utils/validator";
@@ -25,13 +25,13 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
   const userProfile = useRecoilValue(UserState);
   const [form] = Form.useForm();
 
-  const updatePage = useUpdateBook({
+  const updatePage = useUpdateBookAuthor({
     config: {
       onSuccess: (data) => {
         if (data.success) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_BOOK.SEARCH]);
+          queryClient.invalidateQueries([CACHE_BOOK_AUTHOR.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -40,13 +40,13 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
     },
   });
 
-  const createPage = useCreateBook({
+  const createPage = useCreateBookAuthor({
     config: {
       onSuccess: (data) => {
         if (data.success) {
           message.success(t("messages.update_success"));
           handleCancel();
-          queryClient.invalidateQueries([CACHE_BOOK.SEARCH]);
+          queryClient.invalidateQueries([CACHE_BOOK_AUTHOR.SEARCH]);
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -55,7 +55,7 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
     },
   });
 
-  useGetBookById({
+  useGetBookAuthorById({
     id: id!,
     enabled: isOpen && !isCreate,
     config: {
@@ -112,7 +112,11 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
         </Tooltip>
       )}
       <Modal
-        title={isCreate ? t("book.title_create") : t("book.title_update")}
+        title={
+          isCreate
+            ? t("book.author.title_create")
+            : t("book.author.title_update")
+        }
         style={{ top: 58, padding: 0, minWidth: 400 }}
         open={isOpen}
         onCancel={handleCancel}
@@ -133,11 +137,11 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
               </Form.Item>
               <Col span={24}>
                 <Form.Item
-                  name={"_name"}
-                  label={t("book.fields.name")}
+                  name={"author_name"}
+                  label={t("book.author.fields.name")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Input placeholder={t("book.fields.name")} />
+                  <Input placeholder={t("book.author.fields.name")} />
                 </Form.Item>
               </Col>
             </Row>
