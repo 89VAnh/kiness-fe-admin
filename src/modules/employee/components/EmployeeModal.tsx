@@ -14,7 +14,7 @@ import {
 } from "antd";
 import { RangePickerProps } from "antd/es/date-picker";
 import { DefaultOptionType } from "antd/es/select";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
@@ -40,6 +40,8 @@ interface Props {
   isCreate?: boolean;
 }
 
+const defaultDate = "2000-01-01";
+
 export default function EmployeeModal({
   id,
   isCreate = true,
@@ -48,6 +50,7 @@ export default function EmployeeModal({
   const { open, close, isOpen } = useDisclosure();
   const [form] = Form.useForm();
   const userProfile = useRecoilValue(UserState);
+  const [birthday, setBirthDay] = useState<Dayjs | null>(dayjs(defaultDate));
 
   useGetEmployeeById({
     id: id!,
@@ -66,6 +69,11 @@ export default function EmployeeModal({
             gender: `${data.gender}`,
             date_of_birth: dayjs(data.date_of_birth),
           });
+
+          const date = dayjs(data.date_of_birth).isValid()
+            ? dayjs(data.date_of_birth)
+            : null;
+          setBirthDay(date);
         }
       },
     },
@@ -107,7 +115,9 @@ export default function EmployeeModal({
       .then((values) => {
         const dataPost = {
           ...values,
-          date_of_birth: dayjs(values.date_of_birth).format(formatDatePost),
+          date_of_birth: birthday?.isValid()
+            ? birthday.format(formatDatePost)
+            : null,
           verify: values.verify ? 1 : 0,
         };
 
@@ -123,8 +133,14 @@ export default function EmployeeModal({
       .catch(() => message.warning(t("messages.validate_form")));
   };
 
+  const handleOpen = () => {
+    open();
+    if (isCreate) setBirthDay(dayjs(defaultDate));
+  };
+
   const handleCancel = () => {
     form.resetFields();
+    setBirthDay(null);
     close();
   };
 
@@ -152,14 +168,18 @@ export default function EmployeeModal({
         <Button
           key="button"
           icon={<PlusOutlined />}
-          onClick={open}
+          onClick={handleOpen}
           type="primary"
         >
           {t("all.btn_add")}
         </Button>
       ) : (
         <Tooltip title={t("all.edit")}>
-          <Button type="dashed" onClick={open} style={{ color: "#faad14" }}>
+          <Button
+            type="dashed"
+            onClick={handleOpen}
+            style={{ color: "#faad14" }}
+          >
             <EditOutlined />
           </Button>
         </Tooltip>
@@ -222,20 +242,21 @@ export default function EmployeeModal({
                   rules={[...RULES_FORM.required]}
                 >
                   <Radio.Group name="gender">
-                    <Radio value="1">Nam</Radio>
-                    <Radio value="0">Nữ</Radio>
+                    <Radio value={1}>Nam</Radio>
+                    <Radio value={0}>Nữ</Radio>
                   </Radio.Group>
                 </Form.Item>
               </Col>
               <Col span={8}>
                 <Form.Item
-                  name={"date_of_birth"}
                   label={t("employee.fields.birthday")}
                   rules={[...RULES_FORM.required]}
                 >
                   <DatePicker
                     format={formatDateShow}
                     style={{ width: "100%" }}
+                    value={birthday}
+                    onChange={setBirthDay}
                     placeholder={formatDateShow.toLowerCase()}
                     name="date_of_birth"
                     disabledDate={disabledDate}

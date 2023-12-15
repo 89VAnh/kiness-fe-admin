@@ -97,20 +97,20 @@ export default function EmployeeTable(): JSX.Element {
       sorter: (a, b) => compareNumbers(a, b, "gender"),
       width: 100,
       render: (value) => (
-        <Typography.Text>{value === 0 ? "Nam" : "Nữ"}</Typography.Text>
+        <Typography.Text>{value ? "Nam" : "Nữ"}</Typography.Text>
       ),
       search: false,
     },
     {
       title: t("fields.birthday"),
-      dataIndex: "birthday",
+      dataIndex: "date_of_birth",
       width: 150,
       align: "center",
       valueType: "date",
-      sorter: (a, b) => compareStrings(a, b, "birthday"),
+      sorter: (a, b) => compareStrings(a, b, "date_of_birth"),
       render: (_, employee) => (
         <Typography.Text>
-          {formatToDate(employee.birthday?.toString() || "")}
+          {formatToDate(employee.date_of_birth?.toString() || "")}
         </Typography.Text>
       ),
       search: false,

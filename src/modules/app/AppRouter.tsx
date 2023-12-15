@@ -10,6 +10,8 @@ import { ProLayoutProps } from "@ant-design/pro-components";
 import { t } from "i18next";
 import { Link } from "react-router-dom";
 
+import { LOCAL_USER } from "@/constant/config";
+import { IEmployee } from "@/models/employee";
 import {
   ADMIN_URL,
   BOOK_URL,
@@ -33,6 +35,7 @@ import {
   RESEARCH_ARTICLE_URL,
   SLIDES_URL,
 } from "@/urls";
+import { storageService } from "@/utils/storage";
 
 const functions = [
   {
@@ -148,6 +151,7 @@ const functions = [
     title: t("nav.admin"),
     url: ADMIN_URL,
     icon: <SettingOutlined />,
+    role: 2, // Test
     children: [
       {
         title: t("nav.employee"),
@@ -179,6 +183,7 @@ const functions = [
     title: t("nav.config"),
     url: CONFIG_URL,
     icon: <DesktopOutlined />,
+    role: 2, // Test
     children: [
       {
         title: t("nav.page"),
@@ -203,7 +208,12 @@ const functions = [
 const generateRoutes = (tree: any[] = []) => {
   const routes: any[] = [];
   if (tree.length === 0) return routes;
+
+  // Drunk
+  const user: IEmployee = storageService.getStorage(LOCAL_USER);
+
   for (let i = 0; i < tree.length; i++) {
+    if (tree[i].role && user.position_id !== tree[i].role) continue;
     const route = {
       key: tree[i].title,
       icon: tree[i]?.icon,
