@@ -178,6 +178,15 @@ export const router = createBrowserRouter([
           />
         ),
       },
+      {
+        path: RESEARCH_ARTICLE_URL,
+        element: (
+          <ProtectedComponent
+            Element={ResearchArticlePage}
+            title="Quản lý bài nghiên cứu"
+          />
+        ),
+      },
 
       // Config
       {
@@ -237,24 +246,6 @@ export const router = createBrowserRouter([
             Element={BranchManagePage}
             title="Quản lý chi nhánh"
             role={2}
-          />
-        ),
-      },
-      {
-        path: RESEARCH_ARTICLE_URL,
-        element: (
-          <ProtectedComponent
-            Element={ResearchArticlePage}
-            title="Quản lý bài nghiên cứu"
-          />
-        ),
-      },
-      {
-        path: RESEARCH_ARTICLE_URL,
-        element: (
-          <ProtectedComponent
-            Element={ResearchArticlePage}
-            title="Quản lý bài nghiên cứu"
           />
         ),
       },

@@ -103,10 +103,10 @@ export default function BookTable(): JSX.Element {
           setPage(page);
           setPageSize(pageSize);
         },
-        total: bookQuery.data?.totalItems || 0,
+        total: bookQuery.data?.data?.totalItems || 0,
       }}
       columns={columns}
-      dataSource={bookQuery.data?.data.data || []}
+      dataSource={bookQuery.data?.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{

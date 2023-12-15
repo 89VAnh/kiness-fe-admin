@@ -14,7 +14,7 @@ export default function BookAuthorTable(): JSX.Element {
     keyPrefix: "book.author",
   });
   const [page, setPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(10);
+  const [pageSize, setPageSize] = useState<number>(2);
   const [searchContent, setSearchContent] = useState<string | null>();
 
   const bookAuthorQuery = useSearchBookAuthors({
@@ -81,10 +81,10 @@ export default function BookAuthorTable(): JSX.Element {
           setPage(page);
           setPageSize(pageSize);
         },
-        total: bookAuthorQuery.data?.totalItems || 0,
+        total: bookAuthorQuery.data?.data?.totalItems || 0,
       }}
       columns={columns}
-      dataSource={bookAuthorQuery.data?.data.data || []}
+      dataSource={bookAuthorQuery.data?.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{

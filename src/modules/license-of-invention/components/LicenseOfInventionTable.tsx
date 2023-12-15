@@ -26,7 +26,7 @@ export default function LicenseTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const Licenses = useSearchLicenses({
+  const licensesQuery = useSearchLicenses({
     params: {
       pageIndex: page,
       pageSize: pageSize,
@@ -35,7 +35,7 @@ export default function LicenseTable(): JSX.Element {
     config: {
       onSuccess: (data) => {
         if (data.message === ERROR_TIMEOUT) {
-          Licenses.refetch();
+          licensesQuery.refetch();
         }
       },
     },
@@ -49,9 +49,9 @@ export default function LicenseTable(): JSX.Element {
   };
 
   useEffect(() => {
-    return () => Licenses.remove();
+    return () => licensesQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Licenses.remove]);
+  }, [licensesQuery.remove]);
 
   const columns: ProColumns<ILicenseOfInvention>[] = [
     {
@@ -106,9 +106,9 @@ export default function LicenseTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      loading={Licenses.isLoading}
+      loading={licensesQuery.isLoading}
       columns={columns}
-      dataSource={Licenses.data ? Licenses.data.data.data : []}
+      dataSource={licensesQuery.data ? licensesQuery.data?.data?.data : []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -127,13 +127,13 @@ export default function LicenseTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: Licenses.data?.totalItems || 0,
+        total: licensesQuery.data?.totalItems || 0,
       }}
       toolBarRender={() => [
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={Licenses.isLoading}
+          loading={licensesQuery.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,
