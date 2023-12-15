@@ -4,7 +4,11 @@ import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
-import { CACHE_BOOK, useDeleteBook } from "@/loader/book.loader";
+import {
+  CACHE_BOOK_AUTHOR,
+  useDeleteBookAuthor,
+} from "@/loader/book-author.loader";
+import { CACHE_BOOK } from "@/loader/book.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
@@ -17,11 +21,12 @@ export default function BookDelete({ id }: Props): JSX.Element {
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
 
-  const deleteQuery = useDeleteBook({
+  const deleteQuery = useDeleteBookAuthor({
     config: {
       onSuccess: (data) => {
         if (data.success) {
           message.success(data.message);
+          queryClient.invalidateQueries([CACHE_BOOK_AUTHOR.SEARCH]);
           queryClient.invalidateQueries([CACHE_BOOK.SEARCH]);
           close();
         } else message.error(data.message);
