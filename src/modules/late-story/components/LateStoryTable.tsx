@@ -34,8 +34,8 @@ export default function LateStoryTable(): JSX.Element {
 
   const lateStoriesQuery = useSearchLateStories({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent || null,
       is_draft: isEmpty(draftStatus) ? null : +draftStatus,
     },
@@ -172,7 +172,7 @@ export default function LateStoryTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: lateStoriesQuery.data?.totalItems || 0,
+        total: lateStoriesQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={lateStoriesQuery.data?.data?.data || []}

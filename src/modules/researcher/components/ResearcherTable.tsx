@@ -27,8 +27,8 @@ export default function ResearcherTable(): JSX.Element {
 
   const researchersQuery = useSearchResearcher({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
     config: {
@@ -151,7 +151,7 @@ export default function ResearcherTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: researchersQuery.data?.totalItems || 0,
+        total: researchersQuery.data?.total_items || 0,
       }}
       toolBarRender={() => [
         <Input.Search

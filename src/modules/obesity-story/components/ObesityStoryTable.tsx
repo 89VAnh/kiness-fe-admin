@@ -34,8 +34,8 @@ export default function ObesityStoryTable(): JSX.Element {
 
   const obesityStoriesQuery = useSearchObesityStories({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent || null,
       is_draft: isEmpty(draftStatus) ? null : +draftStatus,
     },
@@ -172,7 +172,7 @@ export default function ObesityStoryTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: obesityStoriesQuery.data?.totalItems || 0,
+        total: obesityStoriesQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={obesityStoriesQuery.data?.data?.data || []}

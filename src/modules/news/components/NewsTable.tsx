@@ -27,8 +27,8 @@ export default function NewsTable(): JSX.Element {
 
   const news = useSearchNews({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
   });
@@ -138,7 +138,7 @@ export default function NewsTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: news.data?.totalItems || 0,
+        total: news.data?.total_items || 0,
       }}
       toolBarRender={() => [
         <Input.Search

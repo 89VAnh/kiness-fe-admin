@@ -27,8 +27,8 @@ export default function ResearchArticleTable(): JSX.Element {
 
   const researcharticle = useSearchResearchArticle({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
   });
@@ -131,7 +131,7 @@ export default function ResearchArticleTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: researcharticle.data?.totalItems || 0,
+        total: researcharticle.data?.total_items || 0,
       }}
       toolBarRender={() => [
         <Input.Search

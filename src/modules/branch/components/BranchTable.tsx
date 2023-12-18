@@ -27,8 +27,8 @@ export default function BranchTable(): JSX.Element {
 
   const branchesQuery = useSearchBranches({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
     config: {
@@ -147,7 +147,7 @@ export default function BranchTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: branchesQuery.data?.totalItems || 0,
+        total: branchesQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={branchesQuery.data?.data || []}

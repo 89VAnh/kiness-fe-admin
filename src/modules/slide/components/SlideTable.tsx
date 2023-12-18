@@ -27,8 +27,8 @@ export default function SlideTable(): JSX.Element {
 
   const slidesQuery = useSearchSlides({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
     config: {
@@ -130,7 +130,7 @@ export default function SlideTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: slidesQuery.data?.totalItems || 0,
+        total: slidesQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={slidesQuery.data?.data || []}

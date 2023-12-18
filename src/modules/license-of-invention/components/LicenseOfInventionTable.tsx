@@ -28,8 +28,8 @@ export default function LicenseTable(): JSX.Element {
 
   const licensesQuery = useSearchLicenses({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
     config: {
@@ -127,7 +127,7 @@ export default function LicenseTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: licensesQuery.data?.totalItems || 0,
+        total: licensesQuery.data?.total_items || 0,
       }}
       toolBarRender={() => [
         <Input.Search

@@ -27,8 +27,8 @@ export default function CityTable(): JSX.Element {
 
   const citiesQuery = useSearchCities({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
     config: {
@@ -111,7 +111,7 @@ export default function CityTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: citiesQuery.data?.totalItems || 0,
+        total: citiesQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={citiesQuery.data?.data || []}

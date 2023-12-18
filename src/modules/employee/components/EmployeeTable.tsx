@@ -30,8 +30,8 @@ export default function EmployeeTable(): JSX.Element {
   );
   const employeesQuery = useSearchEmployees({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
       user_id: userProfile.user_id,
     },
@@ -163,7 +163,7 @@ export default function EmployeeTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: employeesQuery.data?.totalItems || 0,
+        total: employeesQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={employeesQuery.data?.data || []}

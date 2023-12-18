@@ -26,8 +26,8 @@ export default function PageTable(): JSX.Element {
 
   const customers = useSearchPages({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
   });
@@ -107,7 +107,7 @@ export default function PageTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: customers.data?.totalItems || 0,
+        total: customers.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={customers.data?.data || []}
