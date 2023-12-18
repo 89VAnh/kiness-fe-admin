@@ -21,8 +21,8 @@ export default function BookTable(): JSX.Element {
 
   const bookQuery = useSearchBooks({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
   });
@@ -103,7 +103,7 @@ export default function BookTable(): JSX.Element {
           setPage(page);
           setPageSize(pageSize);
         },
-        total: bookQuery.data?.data?.totalItems || 0,
+        total: bookQuery.data?.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={bookQuery.data?.data?.data || []}

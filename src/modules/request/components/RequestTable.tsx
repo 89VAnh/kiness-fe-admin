@@ -35,8 +35,8 @@ export default function RequestTable(): JSX.Element {
 
   const requestListQuery = useSearchRequests({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent || null,
       is_accepted: isEmpty(acceptStatus) ? null : +acceptStatus,
       is_answered: isEmpty(answerStatus) ? null : +answerStatus,
@@ -190,7 +190,7 @@ export default function RequestTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: requestListQuery.data?.totalItems || 0,
+        total: requestListQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={requestListQuery.data?.data?.data || []}

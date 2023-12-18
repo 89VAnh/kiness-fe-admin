@@ -19,8 +19,8 @@ export default function BookAuthorTable(): JSX.Element {
 
   const bookAuthorQuery = useSearchBookAuthors({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
   });
@@ -81,7 +81,7 @@ export default function BookAuthorTable(): JSX.Element {
           setPage(page);
           setPageSize(pageSize);
         },
-        total: bookAuthorQuery.data?.data?.totalItems || 0,
+        total: bookAuthorQuery.data?.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={bookAuthorQuery.data?.data?.data || []}

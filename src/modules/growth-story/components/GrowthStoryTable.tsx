@@ -34,8 +34,8 @@ export default function GrowthStoryTable(): JSX.Element {
 
   const growthStoriesQuery = useSearchGrowthStories({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent || null,
       is_draft: isEmpty(draftStatus) ? null : +draftStatus,
     },
@@ -181,7 +181,7 @@ export default function GrowthStoryTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: growthStoriesQuery.data?.totalItems || 0,
+        total: growthStoriesQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={growthStoriesQuery.data?.data?.data || []}

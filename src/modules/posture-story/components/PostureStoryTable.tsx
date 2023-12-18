@@ -34,8 +34,8 @@ export default function PostureStoryTable(): JSX.Element {
 
   const postureStoriesQuery = useSearchPostureStories({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent || null,
       is_draft: isEmpty(draftStatus) ? null : +draftStatus,
     },
@@ -172,7 +172,7 @@ export default function PostureStoryTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: postureStoriesQuery.data?.totalItems || 0,
+        total: postureStoriesQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={postureStoriesQuery.data?.data?.data || []}

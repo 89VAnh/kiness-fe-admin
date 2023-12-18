@@ -58,8 +58,8 @@ export default function ExperienceRegisterTable(): JSX.Element {
 
   const experienceRegisterQuery = useSearchExperienceRegister({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
       user_id: userProfile.user_id,
       status,
@@ -240,7 +240,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: experienceRegisterQuery.data?.totalItems || 0,
+        total: experienceRegisterQuery.data?.total_items || 0,
       }}
       columns={columns as ProColumns<IExperienceRegister>[]}
       dataSource={experienceRegisterQuery.data?.data || []}

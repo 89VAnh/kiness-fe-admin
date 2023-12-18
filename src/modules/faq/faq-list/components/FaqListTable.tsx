@@ -26,8 +26,8 @@ export default function FaqListTable(): JSX.Element {
 
   const faqListQuery = useSearchFaqs({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
     config: {
@@ -125,7 +125,7 @@ export default function FaqListTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: faqListQuery.data?.totalItems || 0,
+        total: faqListQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={faqListQuery.data?.data?.data || []}

@@ -27,8 +27,8 @@ export default function PositionTable(): JSX.Element {
 
   const positionsQuery = useSearchPosition({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
     config: {
@@ -131,7 +131,7 @@ export default function PositionTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: positionsQuery.data?.totalItems || 0,
+        total: positionsQuery.data?.total_items || 0,
       }}
       toolBarRender={() => [
         <Input.Search

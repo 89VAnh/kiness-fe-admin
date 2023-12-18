@@ -18,8 +18,8 @@ export default function TopicFaqTable(): JSX.Element {
 
   const topicQuery = useSearchFaqTopics({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
     config: {
@@ -87,7 +87,7 @@ export default function TopicFaqTable(): JSX.Element {
           setPage(page);
           setPageSize(pageSize);
         },
-        total: topicQuery.data?.totalItems || 0,
+        total: topicQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={topicQuery.data?.data?.data || []}

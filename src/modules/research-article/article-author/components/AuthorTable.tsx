@@ -19,8 +19,8 @@ export default function ArticleAuthorTable(): JSX.Element {
 
   const articleAuthorQuery = useSearchArticleAuthor({
     params: {
-      pageIndex: page,
-      pageSize: pageSize,
+      page_index: page,
+      page_size: pageSize,
       search_content: searchContent,
     },
   });
@@ -81,7 +81,7 @@ export default function ArticleAuthorTable(): JSX.Element {
           setPage(page);
           setPageSize(pageSize);
         },
-        total: articleAuthorQuery.data?.totalItems || 0,
+        total: articleAuthorQuery.data?.total_items || 0,
       }}
       columns={columns}
       dataSource={articleAuthorQuery.data?.data || []}
