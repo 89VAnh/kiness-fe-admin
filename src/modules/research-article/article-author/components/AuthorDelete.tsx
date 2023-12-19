@@ -38,7 +38,7 @@ export default function ArticleAuthorDelete({ id }: Props): JSX.Element {
   const handleDelete = () => {
     deleteQuery.mutate({
       list_json: [{ author_id: id }],
-      updated_by_id: userProfile.user_id,
+      lu_user_id: userProfile.user_id,
     });
   };
 

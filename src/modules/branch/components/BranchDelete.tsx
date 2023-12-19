@@ -39,7 +39,7 @@ export default function BranchDelete({ id, thumbnail }: Props): JSX.Element {
   const handleDelete = () => {
     const dataPost: IBaseDelete = {
       list_json: [{ branch_id: id }],
-      updated_by_id: userProfile.user_id,
+      lu_user_id: userProfile.user_id,
     };
 
     deleteBranch.mutate(dataPost);

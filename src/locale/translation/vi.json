@@ -23,7 +23,9 @@
     "update_success": "Cập nhật thành công",
     "update_failure": "Cập nhật thất bại! Vui lòng thử lại",
     "validate_form": "Bạn cần điền đầy đủ thông tin",
-    "update_status_success": "Cập nhật trạng thái thành công"
+    "update_status_success": "Cập nhật trạng thái thành công",
+    "create_success": "Tạo thành công",
+    "create_failure": "Cập nhật thất bại! Vui lòng thử lại"
   },
   "nav": {
     "home": "Trang chủ",
@@ -51,7 +53,8 @@
     "late_story": "Quản lý trường hợp trễ hạn",
     "obesity_story": "Quản lý trường hợp béo phì",
     "license_of_invention": "Quản lý bằng sáng chế",
-    "book": "Quản lý sách xuất bản"
+    "book": "Quản lý sách xuất bản",
+    "history": "Quản lý lịch sử"
   },
   "dashboard": {
     "total_customer": "Khách hàng",
@@ -548,6 +551,22 @@
         "link": "Liên kết",
         "actions": "Tác vụ"
       }
+    }
+  },
+  "history": {
+    "title": "Quản lý lịch sử",
+    "search_placeholder": "Nhập năm, nội dung",
+    "title_update": "Cập nhật lịch sử",
+    "title_create": "Thêm lịch sử",
+    "title_delete": "Xóa lịch sử",
+    "fields": {
+      "serial": "STT",
+      "year": "Năm",
+      "content": "Nội dung",
+      "sort_order": "Sắp xếp",
+      "actions": "Tác vụ",
+      "created_user": "Người tạo",
+      "created_date_time": "Ngày tạo"
     }
   }
 }

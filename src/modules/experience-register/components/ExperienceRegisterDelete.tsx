@@ -71,7 +71,7 @@ export default function ExperienceRegisterDelete({ id }: Props): JSX.Element {
         onOk={() => {
           deleteExperienceRegister.mutate({
             list_json: [{ register_id: id }],
-            updated_by_id: userProfile.user_id,
+            lu_user_id: userProfile.user_id,
           });
           close();
         }}

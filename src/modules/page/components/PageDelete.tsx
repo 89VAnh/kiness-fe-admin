@@ -36,7 +36,7 @@ export default function PageDelete({ id }: Props): JSX.Element {
   const handleDelete = () => {
     const dataPost: IBaseDelete = {
       list_json: [{ page_id: id }],
-      updated_by_id: userProfile.user_id,
+      lu_user_id: userProfile.user_id,
     };
 
     deletePage.mutate(dataPost);
