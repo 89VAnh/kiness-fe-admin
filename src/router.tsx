@@ -3,6 +3,7 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import AppLayout from "./modules/app/AppLayout";
 import ProtectedComponent from "./modules/app/ProtectComponent";
 import { LoginPage } from "./modules/auth";
+import { FunctionPage, RolePage } from "./modules/authorization";
 import { BookPage } from "./modules/book";
 import { BranchManagePage } from "./modules/branch";
 import { CityManagePage } from "./modules/city";
@@ -31,6 +32,7 @@ import {
   EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
   FAQ_URL,
+  FUNCTION_URL,
   GROWTH_STORY_URL,
   HOME_URL,
   LATE_STORY_URL,
@@ -44,6 +46,7 @@ import {
   REQUEST_URL,
   RESEARCHER_URL,
   RESEARCH_ARTICLE_URL,
+  ROLE_URL,
   SLIDES_URL,
 } from "./urls";
 
@@ -64,7 +67,11 @@ export const router = createBrowserRouter([
       {
         path: HOME_URL,
         element: (
-          <ProtectedComponent Element={DashboardPage} title="Trang chủ" />
+          <ProtectedComponent
+            Element={DashboardPage}
+            title="Trang chủ"
+            url={HOME_URL}
+          />
         ),
       },
 
@@ -79,6 +86,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={ExperienceRegisterPage}
             title="Quản lý đăng ký trải nghiệm"
+            url={EXPERIENCE_REGISTER_URL}
           />
         ),
       },
@@ -88,6 +96,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={BranchManagePage}
             title="Quản lý chi nhánh"
+            url={BRANCH_URL}
           />
         ),
       },
@@ -97,6 +106,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={CityManagePage}
             title="Quản lý thành phố"
+            url={CITY_URL}
           />
         ),
       },
@@ -106,6 +116,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={FaqManagePage}
             title="Quản lý câu hỏi thường gặp"
+            url={FAQ_URL}
           />
         ),
       },
@@ -115,13 +126,18 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={ResearcherPage}
             title="Quản lý nhà nghiên cứu"
+            url={RESEARCHER_URL}
           />
         ),
       },
       {
         path: REQUEST_URL,
         element: (
-          <ProtectedComponent Element={RequestManage} title="Quản lý yêu cầu" />
+          <ProtectedComponent
+            Element={RequestManage}
+            title="Quản lý yêu cầu"
+            url={REQUEST_URL}
+          />
         ),
       },
       {
@@ -130,6 +146,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={GrowthStoryPage}
             title="Quản lý câu chuyện tăng trưởng"
+            url={GROWTH_STORY_URL}
           />
         ),
       },
@@ -139,6 +156,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={PostureStoryPage}
             title="Quản lý trường hợp chỉnh sửa tư thế"
+            url={POSTURE_STORY_URL}
           />
         ),
       },
@@ -148,6 +166,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={LateStoryPage}
             title="Quản lý trường hợp trễ hạn"
+            url={LATE_STORY_URL}
           />
         ),
       },
@@ -157,6 +176,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={ObesityStoryPage}
             title="Quản lý trường hợp béo phì"
+            url={OBESITY_STORY_URL}
           />
         ),
       },
@@ -166,6 +186,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={LicensePage}
             title="Quản lý bằng sáng chế"
+            url={LICENSE_OF_INVENTION_URL}
           />
         ),
       },
@@ -175,6 +196,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={BookPage}
             title="Quản lý sách xuất bản"
+            url={BOOK_URL}
           />
         ),
       },
@@ -184,6 +206,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={ResearchArticlePage}
             title="Quản lý bài nghiên cứu"
+            url={RESEARCH_ARTICLE_URL}
           />
         ),
       },
@@ -199,7 +222,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={PageManagePage}
             title="Quản lý các trang"
-            role={2}
+            url={PAGE_URL}
           />
         ),
       },
@@ -209,7 +232,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={SlideManagePage}
             title="Quản lý slides"
-            role={2}
+            url={SLIDES_URL}
           />
         ),
       },
@@ -225,7 +248,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={EmployeePage}
             title="Quản lý nhân viên"
-            role={2}
+            url={EMPLOYEE_URL}
           />
         ),
       },
@@ -235,7 +258,7 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={PositionPage}
             title="Quản lý vị trí / chức vụ"
-            role={2}
+            url={POSITION_URL}
           />
         ),
       },
@@ -245,7 +268,27 @@ export const router = createBrowserRouter([
           <ProtectedComponent
             Element={BranchManagePage}
             title="Quản lý chi nhánh"
-            role={2}
+            url={BRANCH_URL}
+          />
+        ),
+      },
+      {
+        path: FUNCTION_URL,
+        element: (
+          <ProtectedComponent
+            Element={FunctionPage}
+            title="Quản lý chức năng"
+            url={FUNCTION_URL}
+          />
+        ),
+      },
+      {
+        path: ROLE_URL,
+        element: (
+          <ProtectedComponent
+            Element={RolePage}
+            title="Quản lý nhóm quyền"
+            url={ROLE_URL}
           />
         ),
       },
@@ -253,6 +296,8 @@ export const router = createBrowserRouter([
   },
   {
     path: LOGIN_URL,
-    element: <ProtectedComponent Element={LoginPage} title="Đăng nhập" />,
+    element: (
+      <ProtectedComponent Element={LoginPage} title="Đăng nhập" url={""} />
+    ),
   },
 ]);

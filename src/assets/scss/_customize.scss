@@ -23,34 +23,59 @@
   }
 }
 
-.ant-layout-sider {
-  .ant-pro-sider-footer {
-    overflow: auto;
+.ant-layout-has-sider {
+  &:has(.ant-layout-sider:not(.ant-pro-sider-collapsed)) {
+    & > div:nth-child(1) {
+      flex: 0 0 298px !important;
+      max-width: 298px !important;
+      min-width: 298px !important;
+      width: 298px !important;
+    }
   }
 
-  .color-picker {
-    text-align: center;
-    .color-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 28px;
-      width: 28px;
+  .ant-layout-sider:not(.ant-pro-sider-collapsed) {
+    flex: 0 0 298px !important;
+    max-width: 298px !important;
+    min-width: 298px !important;
+    width: 298px !important;
+    .ant-pro-sider-footer {
+      overflow: auto;
+    }
 
-      .color-item {
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        border: 1px solid $color-white;
-        cursor: pointer;
-        transition: 0.3s;
+    .color-picker {
+      text-align: center;
+      .color-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 28px;
+        width: 28px;
+
+        .color-item {
+          height: 20px;
+          width: 20px;
+          border-radius: 50%;
+          border: 1px solid $color-white;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        &:hover {
+          .color-item {
+            height: 22px;
+            width: 22px;
+          }
+        }
       }
+    }
+  }
+
+  .ant-layout-sider-children {
+    & > div:nth-child(1) {
+      overflow: hidden !important;
 
       &:hover {
-        .color-item {
-          height: 22px;
-          width: 22px;
-        }
+        overflow: hidden auto !important;
       }
     }
   }

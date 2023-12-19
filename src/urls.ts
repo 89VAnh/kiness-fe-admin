@@ -28,6 +28,9 @@ const ADMIN_URL = `/admin`;
 const BRANCH_URL = `${ADMIN_URL}/branch`;
 const EMPLOYEE_URL = `${ADMIN_URL}/employees`;
 const POSITION_URL = `${ADMIN_URL}/position`;
+const FUNCTION_URL = `${ADMIN_URL}/functions`;
+const ROLE_URL = `${ADMIN_URL}/roles`;
+const USER_URL = `${ADMIN_URL}/users`;
 
 const breadcrumbNameMap: Record<string, string> = {
   [HOME_URL]: "Trang chủ",
@@ -39,6 +42,9 @@ export {
   BOOK_URL,
   BRANCH_URL,
   CITY_URL,
+  FUNCTION_URL,
+  ROLE_URL,
+  USER_URL,
   // Config
   CONFIG_URL,
   EMPLOYEE_URL,

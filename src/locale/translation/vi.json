@@ -9,10 +9,12 @@
     "backHome": "Quay lại trang chủ"
   },
   "all": {
+    "all": "Tất cả",
     "btn_cancel": "Hủy",
     "btn_confirm": "Xác nhận",
     "btn_register": "Đăng ký",
     "btn_add": "Thêm mới",
+    "btn_update": "Chỉnh sửa",
     "btn_save": "Lưu",
     "edit": "Chỉnh sửa",
     "delete": "Xóa"
@@ -20,8 +22,12 @@
   "messages": {
     "login_success": "Đăng nhập thành công",
     "login_failure": "Tài khoản hoặc mật khẩu không đúng!",
+    "create_success": "Thêm mới thành công",
+    "create_failure": "Thêm mới thất bại",
     "update_success": "Cập nhật thành công",
     "update_failure": "Cập nhật thất bại! Vui lòng thử lại",
+    "delete_success": "Xóa thành công",
+    "delete_failure": "Xóa thất bại",
     "validate_form": "Bạn cần điền đầy đủ thông tin",
     "update_status_success": "Cập nhật trạng thái thành công"
   },
@@ -51,7 +57,10 @@
     "late_story": "Quản lý trường hợp trễ hạn",
     "obesity_story": "Quản lý trường hợp béo phì",
     "license_of_invention": "Quản lý bằng sáng chế",
-    "book": "Quản lý sách xuất bản"
+    "book": "Quản lý sách xuất bản",
+    "function": "Quản lý chức năng",
+    "role": "Quản lý nhóm quyền",
+    "user": "Quản lý người dùng"
   },
   "dashboard": {
     "total_customer": "Khách hàng",
@@ -518,7 +527,6 @@
       "actions": "Tác vụ"
     }
   },
-
   "book": {
     "title": "Quản lý sách xuất bản",
     "search_placeholder": "Nhập tên sách xuất bản...",
@@ -547,6 +555,99 @@
         "name": "Tên tác giả",
         "link": "Liên kết",
         "actions": "Tác vụ"
+      }
+    }
+  },
+  "authorization": {
+    "validator": {
+      "required": "Không thể để trống"
+    },
+    "tooltip": {
+      "btn_create": "Thêm mới",
+      "btn_update": "Chỉnh sửa",
+      "btn_delete": "Xóa",
+      "btn_add_role": "Chỉnh sửa nhóm quyền",
+      "btn_reset_password": "Reset mật khẩu",
+      "btn_detail_role": "Xem chi tiết nhóm quyền"
+    },
+    "functions": {
+      "title": "Quản lý tính năng",
+      "search_placeholder": "Tên tính năng",
+      "title_function": "Danh sách tính năng",
+      "modal": {
+        "title_create": "Thêm mới tính năng",
+        "title_update": "Chi tiết tính năng",
+        "title_delete": "Xóa tính năng",
+        "function_group": "Nhóm tính năng",
+        "function_name": "Tên tính năng",
+        "sort_order": "Sắp xếp",
+        "description": "Mô tả"
+      }
+    },
+    "actions": {
+      "title": "Chi tiết tính năng",
+      "search_placeholder": "Mã thao tác, tên thao tác",
+      "table": {
+        "stt": "STT",
+        "action_code": "Mã thao tác",
+        "action_name": "Tên thao tác",
+        "description": "Mô tả",
+        "action": "Action"
+      },
+      "modal": {
+        "title_create": "Thêm mới chi tiết",
+        "title_update": "Chỉnh sửa chi tiết",
+        "title_delete": "Xóa chi tiết"
+      }
+    },
+    "roles": {
+      "title": "QUẢN LÝ NHÓM QUYỀN",
+      "title_role": "Danh sách nhóm quyền",
+      "search_placeholder": "Mã nhóm quyền, tên nhóm quyền",
+      "dropdown_role_placeholder": "Chọn nhóm quyền",
+      "dropdown_role_title": "Nhóm quyền",
+      "title_function": "Danh sách tính năng",
+      "table": {
+        "stt": "STT",
+        "role_code": "Mã nhóm quyền",
+        "role_name": "Tên nhóm quyền",
+        "description": "Mô tả",
+        "action": "Action"
+      },
+      "modal": {
+        "title_create": "Thêm mới nhóm quyền",
+        "title_update": "Chi tiết nhóm quyền",
+        "title_delete": "Xóa nhóm quyền"
+      }
+    },
+    "users": {
+      "title": "DANH MỤC NGƯỜI DÙNG",
+      "search_placeholder": "Tên tài khoản, họ và tên",
+      "profile": "Thông tin tài khoản",
+      "table": {
+        "stt": "STT",
+        "user_name": "Tài khoản",
+        "old_password": "Mật khẩu hiện tại",
+        "new_password": "Mật khẩu mới",
+        "confirm_new_password": "Xác nhận mật khẩu",
+        "full_name": "Họ và tên",
+        "description": "Mô tả",
+        "date_of_birth": "Ngày sinh",
+        "gender": "Giới tính",
+        "email": "Email",
+        "phone": "Số điện thoại",
+        "roles": "Danh sách nhóm quyền",
+        "action": "Action"
+      },
+      "modal": {
+        "title_create": "Thêm mới người dùng",
+        "title_update": "Chi tiết người dùng",
+        "title_add_role": "Chỉnh sửa nhóm quyền",
+        "title_delete": "Xóa người dùng",
+        "title_reset": "Khôi phục mật khẩu",
+        "role_code": "Mã nhóm quyền",
+        "role_name": "Tên nhóm quyền",
+        "description": "Mô tả"
       }
     }
   }
