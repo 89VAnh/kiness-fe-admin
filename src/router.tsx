@@ -12,6 +12,7 @@ import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { FaqManagePage } from "./modules/faq";
 import { GrowthStoryPage } from "./modules/growth-story";
+import { HistoryPage } from "./modules/history";
 import { LateStoryPage } from "./modules/late-story";
 import { LicensePage } from "./modules/license-of-invention";
 import { ObesityStoryPage } from "./modules/obesity-story";
@@ -32,6 +33,7 @@ import {
   EXPERIENCE_REGISTER_URL,
   FAQ_URL,
   GROWTH_STORY_URL,
+  HISTORY_URL,
   HOME_URL,
   LATE_STORY_URL,
   LICENSE_OF_INVENTION_URL,
@@ -185,6 +187,12 @@ export const router = createBrowserRouter([
             Element={ResearchArticlePage}
             title="Quản lý bài nghiên cứu"
           />
+        ),
+      },
+      {
+        path: HISTORY_URL,
+        element: (
+          <ProtectedComponent Element={HistoryPage} title="Quản lý lịch sử" />
         ),
       },
 

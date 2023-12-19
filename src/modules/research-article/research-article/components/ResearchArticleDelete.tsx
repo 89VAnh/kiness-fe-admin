@@ -64,7 +64,7 @@ export default function ResearchArticleDelete({ id }: Props): JSX.Element {
         onOk={() => {
           deleteResearchArticle.mutate({
             list_json: [{ article_id: id }],
-            updated_by_id: userProfile.user_id,
+            lu_user_id: userProfile.user_id,
           });
           close();
         }}

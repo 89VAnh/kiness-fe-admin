@@ -68,7 +68,7 @@ export default function ResearcherDelete({
         onOk={() => {
           deleteResearcher.mutate({
             list_json: [{ researcher_id: id }],
-            updated_by_id: userProfile.user_id,
+            lu_user_id: userProfile.user_id,
           });
           close();
         }}

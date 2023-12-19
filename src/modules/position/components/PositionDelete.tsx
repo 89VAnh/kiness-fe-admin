@@ -59,7 +59,7 @@ export default function PositionDelete({ id }: Props): JSX.Element {
         onOk={() => {
           deletePosition.mutate({
             list_json: [{ position_id: id }],
-            updated_by_id: userProfile.user_id,
+            lu_user_id: userProfile.user_id,
           });
           close();
         }}

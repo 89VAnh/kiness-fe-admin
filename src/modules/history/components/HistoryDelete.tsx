@@ -4,8 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
-import { CACHE_CITY, useDeleteCity } from "@/loader/city.loader";
-import { IBaseDelete } from "@/models/base";
+import { CACHE_HISTORY, useDeleteHistory } from "@/loader/history.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
@@ -13,17 +12,17 @@ interface Props {
   id: number;
 }
 
-export default function CityDelete({ id }: Props): JSX.Element {
+export default function HistoryDelete({ id }: Props): JSX.Element {
   const { t } = useTranslation();
   const { open, close, isOpen } = useDisclosure();
   const userProfile = useRecoilValue(UserState);
 
-  const deletePage = useDeleteCity({
+  const deleteQuery = useDeleteHistory({
     config: {
       onSuccess: (data) => {
-        if (data.results) {
+        if (data.success) {
           message.success(data.message);
-          queryClient.invalidateQueries([CACHE_CITY.CITIES]);
+          queryClient.invalidateQueries([CACHE_HISTORY.SEARCH]);
           close();
         } else message.error(data.message);
       },
@@ -34,12 +33,7 @@ export default function CityDelete({ id }: Props): JSX.Element {
   });
 
   const handleDelete = () => {
-    const dataPost: IBaseDelete = {
-      list_json: [{ city_id: id }],
-      lu_user_id: userProfile.user_id,
-    };
-
-    deletePage.mutate(dataPost);
+    deleteQuery.mutate({ id, lu_user_id: userProfile.user_id });
   };
 
   return (
@@ -51,13 +45,13 @@ export default function CityDelete({ id }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
-        title={t("page.title_delete")}
+        title={t("history.list.title_delete")}
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={close}
         onOk={handleDelete}
-        confirmLoading={deletePage.isLoading}
+        confirmLoading={deleteQuery.isLoading}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
       </Modal>

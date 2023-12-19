@@ -47,7 +47,7 @@ export default function EmployeeDelete({ id }: Props): JSX.Element {
   const handleDelete = () => {
     const dataPost: IBaseDelete = {
       list_json: [{ employee_id: id }],
-      updated_by_id: userProfile.user_id,
+      lu_user_id: userProfile.user_id,
     };
 
     deleteEmployee.mutate(dataPost);
