@@ -30,13 +30,13 @@ export const updateExperienceRegisterStatus = async (data: {
 
 export const deleteExperienceRegister = async ({
   list_json,
-  updated_by_id,
+  lu_user_id,
 }: {
   list_json: { register_id: number }[];
-  updated_by_id: string;
+  lu_user_id: string;
 }): Promise<any> => {
   const res = await apiClient?.delete(`${prefix}/delete`, {
-    data: { list_json, updated_by_id },
+    data: { list_json, lu_user_id },
   });
 
   return res.data;

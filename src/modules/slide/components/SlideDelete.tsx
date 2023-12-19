@@ -39,7 +39,7 @@ export default function SlideDelete({ id, filePaths }: Props): JSX.Element {
   const handleDelete = () => {
     const dataPost: IBaseDelete = {
       list_json: [{ slide_id: id }],
-      updated_by_id: userProfile.user_id,
+      lu_user_id: userProfile.user_id,
     };
 
     deletePage.mutate(dataPost);
