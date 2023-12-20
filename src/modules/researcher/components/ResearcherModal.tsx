@@ -186,8 +186,7 @@ export default function ResearcherModal({
         title={
           isCreate ? t("researcher.title_create") : t("researcher.title_update")
         }
-        width={"60vw"}
-        style={{ top: 58, padding: 0 }}
+        style={{ top: 58, padding: 0, minWidth: 800 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -207,7 +206,18 @@ export default function ResearcherModal({
               <Form.Item name="researcher_id" hidden>
                 <Input />
               </Form.Item>
+
               <Col span={12}>
+                <Form.Item
+                  name={"name"}
+                  rules={[...RULES_FORM.required]}
+                  label={t("researcher.fields.name")}
+                >
+                  <Input placeholder={t("researcher.fields.name")} />
+                </Form.Item>
+              </Col>
+
+              <Col span={8}>
                 <Form.Item
                   name={"image_url"}
                   label={t("researcher.fields.image_url")}
@@ -218,16 +228,6 @@ export default function ResearcherModal({
                       <div style={{ marginTop: 8 }}>Upload</div>
                     </div>
                   </Upload>
-                </Form.Item>
-              </Col>
-
-              <Col span={12}>
-                <Form.Item
-                  name={"name"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("researcher.fields.name")}
-                >
-                  <Input placeholder={t("researcher.fields.name")} />
                 </Form.Item>
               </Col>
 
@@ -248,7 +248,7 @@ export default function ResearcherModal({
                   label={t("researcher.fields.position")}
                 >
                   <Select
-                    style={{ width: "100%" }}
+                    style={{ width: "50%" }}
                     options={positions.data || []}
                   />
                 </Form.Item>

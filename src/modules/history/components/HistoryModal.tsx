@@ -141,7 +141,7 @@ export default function HistoryModal({
       )}
       <Modal
         title={isCreate ? t("history.title_create") : t("history.title_update")}
-        style={{ top: 58, padding: 0, minWidth: 1000 }}
+        style={{ top: 58, padding: 0, minWidth: 600 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -175,7 +175,7 @@ export default function HistoryModal({
                   label={t("history.fields.sort_order")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <InputNumber min={1} max={100} />
+                  <InputNumber min={1} max={100} defaultValue={1} />
                 </Form.Item>
               </Col>
               <Col span={24}>
