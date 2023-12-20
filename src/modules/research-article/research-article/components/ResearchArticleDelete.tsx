@@ -25,8 +25,6 @@ export default function ResearchArticleDelete({ id }: Props): JSX.Element {
   const deleteResearchArticle = useDeleteResearchArticle({
     config: {
       onSuccess: (data: any) => {
-        console.log(data);
-
         if (data.results) {
           notification.success({
             message: data.message,
@@ -68,7 +66,10 @@ export default function ResearchArticleDelete({ id }: Props): JSX.Element {
           });
           close();
         }}
-      ></Modal>
+        confirmLoading={deleteResearchArticle.isLoading}
+      >
+        Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
+      </Modal>
     </>
   );
 }

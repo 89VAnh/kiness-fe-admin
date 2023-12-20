@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchBooks } from "@/loader/book.loader";
 import { IBook } from "@/models/book";
 import { formatDateShow } from "@/utils/format-string";
@@ -24,6 +25,13 @@ export default function BookTable(): JSX.Element {
       page_index: page,
       page_size: pageSize,
       search_content: searchContent,
+    },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          bookQuery.refetch();
+        }
+      },
     },
   });
 

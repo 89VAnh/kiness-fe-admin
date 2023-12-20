@@ -1,5 +1,5 @@
 // import { outLogin } from '@/services/ant-design-pro/api';
-import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import { KeyOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
 // import { useEmotionCss } from '@ant-design/use-emotion-css';
 // import { history, useModel } from '@umijs/max';
 import { Spin } from "antd";
@@ -14,6 +14,8 @@ import { LOGIN_URL } from "@/urls";
 import storage, { storageService } from "@/utils/storage";
 
 import HeaderDropdown from "../HeaderDropdown";
+import ChangePassword from "./components/ChangePassword";
+import Profile from "./components/Profile";
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -60,11 +62,11 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({
 
   const onMenuClick = useCallback((event: any) => {
     const { key } = event;
-    if (key === "logout") {
-      logOut();
-      return;
+    switch (key) {
+      case "logout":
+        logOut();
+        break;
     }
-    navigate(`/account/${key}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -92,9 +94,14 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({
     ...(menu
       ? [
           {
-            key: "center",
+            key: "profile",
             icon: <UserOutlined />,
-            label: "Thông tin người dùng",
+            label: <Profile />,
+          },
+          {
+            key: "pass",
+            icon: <KeyOutlined />,
+            label: <ChangePassword />,
           },
           {
             type: "divider" as const,
@@ -115,6 +122,7 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({
         onClick: onMenuClick,
         items: menuItems,
       }}
+      trigger={["click"]}
     >
       {children}
     </HeaderDropdown>

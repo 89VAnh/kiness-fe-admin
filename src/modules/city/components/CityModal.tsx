@@ -113,7 +113,7 @@ export default function CityModal({ id, isCreate = true }: Props): JSX.Element {
       )}
       <Modal
         title={isCreate ? t("city.title_create") : t("city.title_update")}
-        style={{ top: 58, padding: 0, minWidth: 1000 }}
+        style={{ top: 58, padding: 0, minWidth: 500 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}

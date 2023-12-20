@@ -1,9 +1,11 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
 import { Input, Space, Typography } from "antd";
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchResearchArticle } from "@/loader/research-article.loader";
 import { IResearchArticle } from "@/models/research-article";
 
@@ -25,11 +27,18 @@ export default function ResearchArticleTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
-  const researcharticle = useSearchResearchArticle({
+  const researchArticleQuery = useSearchResearchArticle({
     params: {
       page_index: page,
       page_size: pageSize,
-      search_content: searchContent,
+      search_content: isEmpty(searchContent) ? null : searchContent,
+    },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          researchArticleQuery.refetch();
+        }
+      },
     },
   });
   const handleSearch = (value: string) => {
@@ -41,9 +50,9 @@ export default function ResearchArticleTable(): JSX.Element {
   };
 
   useEffect(() => {
-    return () => researcharticle.remove();
+    return () => researchArticleQuery.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [researcharticle.remove]);
+  }, [researchArticleQuery.remove]);
 
   const columns: ProColumns<IResearchArticle>[] = [
     {
@@ -110,9 +119,9 @@ export default function ResearchArticleTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      loading={researcharticle.isLoading}
+      loading={researchArticleQuery.isLoading}
       columns={columns}
-      dataSource={researcharticle.data?.data || []}
+      dataSource={researchArticleQuery.data?.data || []}
       headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
@@ -131,19 +140,19 @@ export default function ResearchArticleTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },
-        total: researcharticle.data?.total_items || 0,
+        total: researchArticleQuery.data?.total_items || 0,
       }}
       toolBarRender={() => [
         <Input.Search
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
-          loading={researcharticle.isLoading}
+          loading={researchArticleQuery.isLoading}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,
         <ResearchArticleModal />,
       ]}
-      rowKey={"researcharticle_id"}
+      rowKey={"researchArticleQuery_id"}
     />
   );
 }

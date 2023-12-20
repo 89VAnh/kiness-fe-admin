@@ -10,6 +10,8 @@ export const handleLogout = () => {
 };
 
 export const checkPermissionTree = (tree: any[] = [], url: string): boolean => {
+  if (tree.length === 0 && url === HOME_URL) return true;
+
   const stack: any[] = [...tree];
 
   while (stack.length > 0) {

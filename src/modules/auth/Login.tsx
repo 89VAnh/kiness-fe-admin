@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import logo from "@/assets/img/logo/logo.png";
-import { LOCAL_USER } from "@/constant/config";
+import { ERROR_TIMEOUT, LOCAL_USER } from "@/constant/config";
 import { useLogin } from "@/loader/user.loader";
 import { HOME_URL, LOGIN_URL } from "@/urls";
 import storage, { storageService } from "@/utils/storage";
@@ -28,7 +28,10 @@ const Page = () => {
 
   const login = useLogin({
     config: {
-      onSuccess: (data) => {
+      onSuccess: (data, variables) => {
+        if (data.message === ERROR_TIMEOUT) {
+          login.mutate(variables);
+        }
         if (!data || data?.message) {
           notification.error({
             message: data.response?.data?.message || t("login_failure"),

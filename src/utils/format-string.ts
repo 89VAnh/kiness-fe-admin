@@ -24,3 +24,10 @@ export const handleHtmlToString = (html: string) => {
 
 export const formatDateShow = "DD/MM/YYYY";
 export const formatDatePost = "YYYY-MM-DD";
+
+export const handleReplaceHostName = (url: string) => {
+  const index = url.indexOf("/api/");
+
+  const newUrl = url.substring(index + 5);
+  console.log(newUrl);
+};

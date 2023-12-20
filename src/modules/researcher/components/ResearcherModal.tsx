@@ -182,8 +182,10 @@ export default function ResearcherModal({
         </Tooltip>
       )}
       <Modal
-        title={t("researcher.title_create")}
-        width={"90vw"}
+        title={
+          isCreate ? t("researcher.title_create") : t("researcher.title_update")
+        }
+        width={"60vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}
@@ -206,6 +208,20 @@ export default function ResearcherModal({
               </Form.Item>
               <Col span={12}>
                 <Form.Item
+                  name={"image_url"}
+                  label={t("researcher.fields.image_url")}
+                >
+                  <Upload {...uploadProps}>
+                    <div>
+                      <PlusOutlined />
+                      <div style={{ marginTop: 8 }}>Upload</div>
+                    </div>
+                  </Upload>
+                </Form.Item>
+              </Col>
+
+              <Col span={12}>
+                <Form.Item
                   name={"name"}
                   rules={[...RULES_FORM.required]}
                   label={t("researcher.fields.name")}
@@ -226,26 +242,12 @@ export default function ResearcherModal({
 
               <Col span={12}>
                 <Form.Item
-                  name={"image_url"}
-                  label={t("researcher.fields.image_url ")}
-                >
-                  <Upload {...uploadProps}>
-                    <div>
-                      <PlusOutlined />
-                      <div style={{ marginTop: 8 }}>Upload</div>
-                    </div>
-                  </Upload>
-                </Form.Item>
-              </Col>
-
-              <Col span={12}>
-                <Form.Item
                   name={"position_id"}
                   rules={[...RULES_FORM.required]}
                   label={t("researcher.fields.position")}
                 >
                   <Select
-                    style={{ width: "40%" }}
+                    style={{ width: "100%" }}
                     options={positions.data || []}
                   />
                 </Form.Item>

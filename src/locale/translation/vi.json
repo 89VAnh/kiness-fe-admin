@@ -63,6 +63,19 @@
     "user": "Quản lý người dùng",
     "history": "Quản lý lịch sử"
   },
+  "avatar": {
+    "profile": {
+      "title": "Thông tin cá nhân"
+    },
+    "change_password": {
+      "title": "Đổi mật khẩu",
+      "fields": {
+        "old_password": "Mật khẩu hiện tại",
+        "new_password": "Mật khẩu mới",
+        "confirm_password": "Xác nhận mật khẩu mới"
+      }
+    }
+  },
   "dashboard": {
     "total_customer": "Khách hàng",
     "total_employee": "Nhân viên",
@@ -109,6 +122,7 @@
       "name": "Họ và tên",
       "gender": "Giới tính",
       "birthday": "Ngày sinh",
+      "avatar": "Avatar",
       "position": "Vị trí",
       "phone": "Số điện thoại",
       "email": "Email",

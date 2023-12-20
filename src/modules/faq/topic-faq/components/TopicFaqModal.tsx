@@ -118,7 +118,8 @@ export default function TopicFaqModal({
         title={
           isCreate ? t("faq.topic.title_create") : t("faq.topic.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 400 }}
+        width={400}
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}

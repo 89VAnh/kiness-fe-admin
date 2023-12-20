@@ -106,7 +106,6 @@ export default function RoleTable({
         const parentToRemove =
           checkIfNotEnoughLeafs(data?.data || [], functions) || [];
         const result = _.difference(functions, parentToRemove);
-        console.log(functions, parentToRemove, result);
         setDataChecked(result);
       });
     }

@@ -1,8 +1,10 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
 import { Input, Space, Typography } from "antd";
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchArticleAuthor } from "@/loader/article-author.loader";
 import { IArticleAuthor } from "@/models/article-author";
 
@@ -21,7 +23,14 @@ export default function ArticleAuthorTable(): JSX.Element {
     params: {
       page_index: page,
       page_size: pageSize,
-      search_content: searchContent,
+      search_content: isEmpty(searchContent) ? null : searchContent,
+    },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          articleAuthorQuery.refetch();
+        }
+      },
     },
   });
 

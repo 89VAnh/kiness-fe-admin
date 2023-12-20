@@ -14,7 +14,7 @@ import {
   AvatarDropdown,
   AvatarName,
 } from "@/components/RightContent/AvatarDropdown";
-import { LOCAL_COLOR } from "@/constant/config";
+import { BASE_URL, LOCAL_COLOR } from "@/constant/config";
 import { UserState } from "@/store/auth/atom";
 import { HOME_URL } from "@/urls";
 import { storageService } from "@/utils/storage";
@@ -67,92 +67,94 @@ export default function AppLayout({ children }: Props): JSX.Element {
     return <Navigate to={HOME_URL} replace relative="route" />;
 
   return (
-    <ProLayout
-      actionsRender={() => [
-        <Question key="doc" />,
-        <SelectLang key="SelectLang" />,
-      ]}
-      breadcrumbRender={(routes) => {
-        return routes;
-      }}
-      menuHeaderRender={undefined}
-      menuFooterRender={(props) => {
-        if (props?.collapsed) return undefined;
-        return (
-          <div className="color-picker">
-            <Space>
-              {listColors.map((color, index) => (
-                <div
-                  className="color-wrap"
-                  key={index}
-                  onClick={handleChangeColor(color)}
-                >
-                  <div
-                    className="color-item"
-                    style={{ backgroundColor: color }}
-                  >
-                    {color === primary && (
-                      <CheckOutlined style={{ color: "#fff" }} />
-                    )}
-                  </div>
-                </div>
-              ))}
-            </Space>
-          </div>
-        );
-      }}
-      avatarProps={{
-        src: avatar,
-        title: <AvatarName />,
-        render: (_, avatarChildren) => {
-          return <AvatarDropdown menu>{avatarChildren}</AvatarDropdown>;
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: primary,
+          colorTextHeading: primary,
         },
       }}
-      style={{
-        height: "100vh",
-      }}
-      siderWidth={258}
-      // location={location}
-      logo={
-        <Space>
-          <Image className="logo" preview={false} src={Logo} />
-        </Space>
-      }
-      title={""}
-      menu={{
-        defaultOpenAll: true,
-        autoClose: false,
-        // type: "group",
-      }}
-      headerTitleRender={(_, __, ___) => (
-        <Space>
-          <Link preventScrollReset to={HOME_URL}>
-            <Image className="logo" preview={false} src={Logo} />
-          </Link>
-          <Typography.Title
-            level={3}
-            style={{ margin: 0 }}
-            className="header-caption"
-          >
-            HỆ THỐNG QUẢN TRỊ NỘI DUNG KINESS VIỆT NAM
-          </Typography.Title>
-        </Space>
-      )}
-      route={appRoute(userProfile.functions)}
-      {...settings}
     >
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: primary,
-            colorTextHeading: primary,
+      <ProLayout
+        actionsRender={() => [
+          <Question key="doc" />,
+          <SelectLang key="SelectLang" />,
+        ]}
+        breadcrumbRender={(routes) => {
+          return routes;
+        }}
+        menuHeaderRender={undefined}
+        menuFooterRender={(props) => {
+          if (props?.collapsed) return undefined;
+          return (
+            <div className="color-picker">
+              <Space>
+                {listColors.map((color, index) => (
+                  <div
+                    className="color-wrap"
+                    key={index}
+                    onClick={handleChangeColor(color)}
+                  >
+                    <div
+                      className="color-item"
+                      style={{ backgroundColor: color }}
+                    >
+                      {color === primary && (
+                        <CheckOutlined style={{ color: "#fff" }} />
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </Space>
+            </div>
+          );
+        }}
+        avatarProps={{
+          src: userProfile.avatar
+            ? `${BASE_URL}/${userProfile.avatar}`
+            : avatar,
+          title: <AvatarName />,
+          render: (_, avatarChildren) => {
+            return <AvatarDropdown menu>{avatarChildren}</AvatarDropdown>;
           },
         }}
+        style={{
+          height: "100vh",
+        }}
+        siderWidth={258}
+        // location={location}
+        logo={
+          <Space>
+            <Image className="logo" preview={false} src={Logo} />
+          </Space>
+        }
+        title={""}
+        menu={{
+          defaultOpenAll: true,
+          autoClose: false,
+          // type: "group",
+        }}
+        headerTitleRender={(_, __, ___) => (
+          <Space>
+            <Link preventScrollReset to={HOME_URL}>
+              <Image className="logo" preview={false} src={Logo} />
+            </Link>
+            <Typography.Title
+              level={3}
+              style={{ margin: 0 }}
+              className="header-caption"
+            >
+              HỆ THỐNG QUẢN TRỊ NỘI DUNG KINESS VIỆT NAM
+            </Typography.Title>
+          </Space>
+        )}
+        route={appRoute(userProfile.functions)}
+        {...settings}
       >
         <MyBreadcrumb />
         <Outlet />
         {children}
-      </ConfigProvider>
-    </ProLayout>
+      </ProLayout>
+    </ConfigProvider>
   );
 }

@@ -209,7 +209,7 @@ export default function SlideModal({
       )}
       <Modal
         title={isCreate ? t("slide.title_create") : t("slide.title_update")}
-        style={{ top: 58, padding: 0, minWidth: 1000 }}
+        style={{ top: 58, padding: 0, minWidth: 600 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -227,10 +227,10 @@ export default function SlideModal({
               <Form.Item name={"slide_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={8}>
+              <Col span={12}>
                 <Form.Item
                   name={"image_big"}
-                  label={t("slide.fields.image_big")}
+                  label={t("slide.fields.image_big") + " (1920 × 720)"}
                   rules={[...RULES_FORM.required]}
                   valuePropName="fileList"
                 >
@@ -242,10 +242,10 @@ export default function SlideModal({
                   </Upload>
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col span={12}>
                 <Form.Item
                   name={"image_small"}
-                  label={t("slide.fields.image_small")}
+                  label={t("slide.fields.image_small") + " (990 × 1487)"}
                   rules={[...RULES_FORM.required]}
                   valuePropName="fileList"
                 >
@@ -257,7 +257,7 @@ export default function SlideModal({
                   </Upload>
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col span={12}>
                 <Form.Item
                   name={"order"}
                   label={t("slide.fields.order") + " (Giảm dần)"}
@@ -270,7 +270,7 @@ export default function SlideModal({
                   />
                 </Form.Item>
               </Col>
-              <Col span={24}>
+              <Col span={12}>
                 <Form.Item
                   name={"slide_caption"}
                   label={t("slide.fields.caption")}
@@ -279,25 +279,6 @@ export default function SlideModal({
                   <Input placeholder={t("slide.fields.order")} />
                 </Form.Item>
               </Col>
-              {/* <Col span={24}>
-                <Form.Item
-                  name={"slide_caption"}
-                  label={t("slide.fields.caption")}
-                >
-                  <CKEditor
-                    editor={EditorBasic}
-                    onReady={() => {
-                      // You can store the "editor" and use when it is needed.
-                    }}
-                    onChange={(event, editor) => {
-                      const data = editor.getData();
-                      setDataEditor(data);
-                      handleDeleteImage(event);
-                    }}
-                    data={dataEditor || ""}
-                  />
-                </Form.Item>
-              </Col> */}
             </Row>
           </Form>
         </div>
