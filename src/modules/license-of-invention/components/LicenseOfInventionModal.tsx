@@ -22,6 +22,7 @@ import {
   handleDeleteImage,
   uploadPlugin,
 } from "@/components/Editor/utils/upload-editor";
+import { BASE_URL } from "@/constant/config";
 import { queryClient } from "@/lib/react-query";
 import {
   CACHE_LICENSE_OF_INVENTION,
@@ -64,7 +65,7 @@ export default function LicenseModal({
             {
               name: "",
               uid: "1",
-              thumbUrl: "/api/" + data.data.image_url,
+              thumbUrl: `${BASE_URL}/` + data?.data?.image_url,
             },
           ]);
 
@@ -114,10 +115,9 @@ export default function LicenseModal({
         const dataPost: ILicenseOfInvention = {
           ...values,
           description: dataEditor,
-          image_url: dataFile
-            ? dataFile.path
-            : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
         };
+
+        if (dataFile?.path) dataPost.image_url = dataFile.path;
 
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
@@ -133,6 +133,7 @@ export default function LicenseModal({
   const handleCancel = () => {
     form.resetFields();
     setFile(null);
+    setFileList([]);
     close();
   };
 
@@ -176,7 +177,7 @@ export default function LicenseModal({
       )}
       <Modal
         title={t("license_of_invention.title_create")}
-        width={"90vw"}
+        width={"60vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}
@@ -198,29 +199,7 @@ export default function LicenseModal({
               <Form.Item name="license_id" hidden>
                 <Input />
               </Form.Item>
-              <Col span={14}>
-                <Form.Item
-                  name={"title"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("license_of_invention.fields.title")}
-                >
-                  <Input placeholder={t("license_of_invention.fields.title")} />
-                </Form.Item>
-              </Col>
-
-              <Col span={12}>
-                <Form.Item
-                  name={"license_no"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("license_of_invention.fields.license_no")}
-                >
-                  <Input
-                    placeholder={t("license_of_invention.fields.license_no")}
-                  />
-                </Form.Item>
-              </Col>
-
-              <Col span={12}>
+              <Col span={8}>
                 <Form.Item
                   name={"image"}
                   label={t("license_of_invention.fields.image_url")}
@@ -233,6 +212,27 @@ export default function LicenseModal({
                   </Upload>
                 </Form.Item>
               </Col>
+              <Col span={10}>
+                <Form.Item
+                  name={"title"}
+                  rules={[...RULES_FORM.required]}
+                  label={t("license_of_invention.fields.title")}
+                >
+                  <Input placeholder={t("license_of_invention.fields.title")} />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"license_no"}
+                  rules={[...RULES_FORM.required]}
+                  label={t("license_of_invention.fields.license_no")}
+                >
+                  <Input
+                    placeholder={t("license_of_invention.fields.license_no")}
+                  />
+                </Form.Item>
+              </Col>
+
               <Col span={24}>
                 <Form.Item
                   name={"description"}

@@ -9,6 +9,7 @@ import {
   Row,
   Tooltip,
   Upload,
+  UploadFile,
   UploadProps,
   message,
 } from "antd";
@@ -16,6 +17,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
+import { BASE_URL } from "@/constant/config";
 import { queryClient } from "@/lib/react-query";
 import {
   CACHE_SLIDES,
@@ -43,6 +45,7 @@ export default function SlideModal({
   const [fileDesktop, setFileDesktop] = useState<File | null>();
   const [fileMobile, setFileMobile] = useState<File | null>();
   const [form] = Form.useForm();
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const updatePage = useUpdateSlide({
     config: {
@@ -81,18 +84,16 @@ export default function SlideModal({
       onSuccess(data) {
         if (!data?.message) {
           form.setFieldsValue(data);
-          form.setFieldValue("image_big", [
+          setFileList([
             {
-              name: "",
-              uid: "1",
-              thumbUrl: "/api/" + data.image_big,
+              name: "image_big",
+              uid: "abc",
+              thumbUrl: `${BASE_URL}/` + data?.image_big,
             },
-          ]);
-          form.setFieldValue("image_small", [
             {
-              name: "",
-              uid: "1",
-              thumbUrl: "/api/" + data.image_small,
+              name: "image_small",
+              uid: "dgh",
+              thumbUrl: `${BASE_URL}/` + data?.image_small,
             },
           ]);
         }
@@ -111,13 +112,11 @@ export default function SlideModal({
         if (fileMobile) dataFileMobile = await uploadFile({ file: fileMobile });
         const dataPost = {
           ...values,
-          image_big: dataFileDesktop
-            ? dataFileDesktop.path
-            : values.image_big?.[0]?.thumbUrl?.replace("/api/", ""),
-          image_small: dataFileMobile
-            ? dataFileMobile.path
-            : values.image_small?.[0]?.thumbUrl?.replace("/api/", ""),
         };
+
+        if (dataFileDesktop?.path) dataPost.image_big = dataFileDesktop.path;
+        if (dataFileMobile?.path) dataPost.image_small = dataFileMobile.path;
+
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
           createPage.mutate(dataPost);
@@ -136,6 +135,7 @@ export default function SlideModal({
     form.resetFields();
     setFileDesktop(null);
     setFileMobile(null);
+    setFileList([]);
     close();
   };
 
@@ -143,18 +143,16 @@ export default function SlideModal({
     maxCount: 1,
     accept: "image/*",
     listType: "picture-card",
+    fileList: fileList?.[0] ? [fileList[0]] : undefined,
     beforeUpload(file) {
       setFileDesktop(file);
       return false;
     },
-    onChange({ file }: any) {
-      form.setFieldValue("image_big", [
-        {
-          name: "",
-          uid: "1",
-          thumbUrl: URL.createObjectURL(file),
-        },
-      ]);
+    onChange({ fileList }: any) {
+      setFileList((prev) => {
+        const list = prev.slice(1, 2);
+        return [...fileList, ...list];
+      });
     },
     onRemove() {
       form.setFieldValue("image_big", []);
@@ -168,18 +166,16 @@ export default function SlideModal({
     maxCount: 1,
     accept: "image/*",
     listType: "picture-card",
+    fileList: fileList?.[1] ? [fileList[1]] : undefined,
     beforeUpload(file) {
       setFileMobile(file);
       return false;
     },
-    onChange({ file }: any) {
-      form.setFieldValue("image_small", [
-        {
-          name: "",
-          uid: "1",
-          thumbUrl: URL.createObjectURL(file),
-        },
-      ]);
+    onChange({ fileList }: any) {
+      setFileList((prev) => {
+        const list = prev.slice(0, 1);
+        return [...list, ...fileList];
+      });
     },
     onRemove() {
       form.setFieldValue("image_small", []);
@@ -232,7 +228,6 @@ export default function SlideModal({
                   name={"image_big"}
                   label={t("slide.fields.image_big") + " (1920 × 720)"}
                   rules={[...RULES_FORM.required]}
-                  valuePropName="fileList"
                 >
                   <Upload {...uploadProps1}>
                     <div>
@@ -247,7 +242,6 @@ export default function SlideModal({
                   name={"image_small"}
                   label={t("slide.fields.image_small") + " (990 × 1487)"}
                   rules={[...RULES_FORM.required]}
-                  valuePropName="fileList"
                 >
                   <Upload {...uploadProps2}>
                     <div>

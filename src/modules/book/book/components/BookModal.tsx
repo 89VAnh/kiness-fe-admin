@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
+import { BASE_URL } from "@/constant/config";
 import { queryClient } from "@/lib/react-query";
 import { useBookAuthorDropdown } from "@/loader/book-author.loader";
 import {
@@ -27,6 +28,7 @@ import {
   useGetBookById,
   useUpdateBook,
 } from "@/loader/book.loader";
+import { IBook } from "@/models/book";
 import { uploadFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
 import { formatDatePost, formatDateShow } from "@/utils/format-string";
@@ -90,9 +92,9 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
 
           setFileList([
             {
-              name: "",
+              name: "thumbnail",
               uid: "1",
-              thumbUrl: "/api/" + data.thumbnail,
+              thumbUrl: `${BASE_URL}/` + data?.data?.image_url,
             },
           ]);
         }
@@ -113,13 +115,13 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
         let dataFile;
         if (file) dataFile = await uploadFile({ file });
 
-        const dataPost = {
+        const dataPost: IBook = {
           ...values,
           publication_date: values.publication_date.format(formatDatePost),
-          image_url: dataFile
-            ? dataFile.path
-            : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
         };
+
+        if (dataFile?.path) dataPost.image_url = dataFile.path;
+
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
           createPage.mutate(dataPost);
@@ -136,6 +138,8 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
 
   const handleCancel = () => {
     form.resetFields();
+    setFileList([]);
+    setFile(null);
     close();
   };
 

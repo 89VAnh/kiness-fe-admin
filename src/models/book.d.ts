@@ -1,4 +1,4 @@
-import IBaseData from "base";
+import { IBaseData } from "./base";
 
 export interface IBook extends IBaseData {
   book_id: number;
