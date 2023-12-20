@@ -23,6 +23,7 @@ import {
   handleDeleteImage,
   uploadPlugin,
 } from "@/components/Editor/utils/upload-editor";
+import { BASE_URL } from "@/constant/config";
 import { queryClient } from "@/lib/react-query";
 import { usePositionDropdown } from "@/loader/position.loader";
 import {
@@ -67,7 +68,7 @@ export default function ResearcherModal({
             {
               name: "image_url",
               uid: "1",
-              thumbUrl: "/api/" + data.image_url,
+              thumbUrl: `${BASE_URL}/` + data?.image_url,
             },
           ]);
 
@@ -121,10 +122,9 @@ export default function ResearcherModal({
           ...values,
           story: storyDataEditor,
           paper: paperDataEditor,
-          image_url: dataFile
-            ? dataFile.path
-            : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
         };
+
+        if (dataFile?.path) dataPost.image_url = dataFile.path;
 
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
@@ -140,6 +140,7 @@ export default function ResearcherModal({
   const handleCancel = () => {
     form.resetFields();
     setFile(null);
+    setFileList([]);
     close();
   };
 

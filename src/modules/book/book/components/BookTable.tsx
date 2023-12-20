@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { ERROR_TIMEOUT } from "@/constant/config";
+import { BASE_URL, ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchBooks } from "@/loader/book.loader";
 import { IBook } from "@/models/book";
 import { formatDateShow } from "@/utils/format-string";
@@ -63,7 +63,9 @@ export default function BookTable(): JSX.Element {
       dataIndex: "image_url",
       width: 100,
       align: "center",
-      render: (thumbnail) => <Image src={"/api/" + thumbnail} width={100} />,
+      render: (thumbnail) => (
+        <Image src={`${BASE_URL}/` + thumbnail} width={100} />
+      ),
     },
     {
       title: t("fields.title"),

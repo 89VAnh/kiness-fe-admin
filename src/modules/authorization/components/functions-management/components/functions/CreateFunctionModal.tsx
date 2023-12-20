@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { queryClient } from "@/lib/react-query";
 import {
   CACHE_FUNCTION,
@@ -44,11 +45,8 @@ export function CreateFunctionModal(): JSX.Element {
         notification.success({
           message: t("messages.create_success"),
         });
-        form.resetFields();
         queryClient.invalidateQueries([CACHE_FUNCTION.SEARCH]);
-        close();
-        setUrl("");
-        setParentId("");
+        handleCancel();
       },
       onError: () => {
         notification.error({
@@ -58,12 +56,17 @@ export function CreateFunctionModal(): JSX.Element {
     },
   });
 
-  const { data } = useSearchFunctions({
+  const { data, refetch } = useSearchFunctions({
     params: {
       user_id: userRecoil.user_id,
     },
     config: {
       enabled: isOpen,
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          refetch();
+        }
+      },
     },
   });
 
@@ -103,6 +106,7 @@ export function CreateFunctionModal(): JSX.Element {
   };
 
   const handleInputName = (value: string) => {
+    form.setFieldValue("url", convertToPath(value));
     setUrl(convertToPath(value));
   };
 

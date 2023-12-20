@@ -117,6 +117,7 @@ export default function RoleTable({
       onSuccess: (data) => {
         notification.success({
           message: data.message || t("messages.create_success"),
+          description: "Vui lòng đăng nhập lại nếu không thấy thay đổi",
         });
       },
       onError: () => {

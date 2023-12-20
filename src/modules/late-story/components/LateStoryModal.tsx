@@ -26,6 +26,7 @@ import {
   handleDeleteImage,
   uploadPlugin,
 } from "@/components/Editor/utils/upload-editor";
+import { BASE_URL } from "@/constant/config";
 import { queryClient } from "@/lib/react-query";
 import {
   CACHE_LATE_STORY,
@@ -105,7 +106,7 @@ export default function LateStoryModal({
             {
               name: "image_link",
               uid: "1",
-              thumbUrl: "/api/" + data?.data?.image_link,
+              thumbUrl: `${BASE_URL}/` + data?.data?.image_link,
             },
           ]);
         }
@@ -124,10 +125,10 @@ export default function LateStoryModal({
           ...values,
           content: dataEditor,
           posted_date: postedDate?.format(formatDatePost),
-          image_link: dataFile
-            ? dataFile.path
-            : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
         };
+
+        if (dataFile?.path) dataPost.image_link = dataFile.path;
+
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
           createLateStory.mutate(dataPost);

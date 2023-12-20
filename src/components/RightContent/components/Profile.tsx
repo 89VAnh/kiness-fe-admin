@@ -28,11 +28,7 @@ import {
 } from "@/loader/employee.loader";
 import { uploadFile } from "@/services/upload.service";
 import { UserState } from "@/store/auth/atom";
-import {
-  formatDatePost,
-  formatDateShow,
-  handleReplaceHostName,
-} from "@/utils/format-string";
+import { formatDatePost, formatDateShow } from "@/utils/format-string";
 import { useDisclosure } from "@/utils/modal";
 import { storageService } from "@/utils/storage";
 import { RULES_FORM } from "@/utils/validator";
@@ -124,11 +120,11 @@ export default function Profile(): JSX.Element {
           date_of_birth: birthday?.isValid()
             ? birthday.format(formatDatePost)
             : null,
-          avatar: dataFile
-            ? dataFile.path
-            : handleReplaceHostName(fileList?.[0]?.thumbUrl + ""),
           verify: values.verify ? 1 : 0,
         };
+
+        if (dataFile?.path) dataPost.avatar = dataFile.path;
+
         dataPost.lu_user_id = userProfile.user_id;
         updateEmployee.mutate(dataPost);
         // console.log(dataPost);
