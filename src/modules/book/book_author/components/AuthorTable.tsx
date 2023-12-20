@@ -3,6 +3,7 @@ import { Input, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchBookAuthors } from "@/loader/book-author.loader";
 import { IBookAuthor } from "@/models/book-author";
 
@@ -22,6 +23,13 @@ export default function BookAuthorTable(): JSX.Element {
       page_index: page,
       page_size: pageSize,
       search_content: searchContent,
+    },
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          bookAuthorQuery.refetch();
+        }
+      },
     },
   });
 

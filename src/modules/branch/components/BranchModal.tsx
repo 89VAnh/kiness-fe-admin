@@ -146,7 +146,7 @@ export default function BranchModal({
       )}
       <Modal
         title={isCreate ? t("branch.title_create") : t("branch.title_update")}
-        style={{ top: 58, padding: 0, minWidth: 1000 }}
+        style={{ top: 58, padding: 0, minWidth: 600 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -254,7 +254,7 @@ export default function BranchModal({
                 ></div>
               </Col>
 
-              <Col span={12}>
+              <Col span={24}>
                 <Form.Item
                   name={"address"}
                   label={t("branch.fields.address")}

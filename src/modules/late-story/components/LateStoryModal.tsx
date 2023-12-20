@@ -220,16 +220,7 @@ export default function LateStoryModal({
               <Form.Item name={"late_story_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={6}>
-                <Form.Item
-                  name={"title"}
-                  label={t("late_story.fields.title")}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <Input placeholder={t("late_story.fields.title")} />
-                </Form.Item>
-              </Col>
-              <Col span={7}>
+              <Col span={8}>
                 <Form.Item
                   name={"image_link"}
                   label={t("late_story.fields.image_link")}
@@ -243,7 +234,16 @@ export default function LateStoryModal({
                   </Upload>
                 </Form.Item>
               </Col>
-              <Col span={5}>
+              <Col span={8}>
+                <Form.Item
+                  name={"title"}
+                  label={t("late_story.fields.title")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input placeholder={t("late_story.fields.title")} />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
                 <Form.Item
                   name={"is_draft"}
                   label={t("late_story.fields.is_draft.title")}
@@ -253,7 +253,8 @@ export default function LateStoryModal({
                   <Select options={draftOptions} />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+
+              <Col span={8}>
                 <Form.Item
                   name={"author_name"}
                   label={t("late_story.fields.author_name")}
@@ -264,7 +265,7 @@ export default function LateStoryModal({
                 </Form.Item>
               </Col>
 
-              <Col span={6}>
+              <Col span={8}>
                 <Form.Item
                   // name={"date"}
                   label={t("late_story.fields.posted_date")}
@@ -278,7 +279,7 @@ export default function LateStoryModal({
                   />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={8}>
                 <Form.Item
                   name={"view_count"}
                   label={t("late_story.fields.view_count")}

@@ -188,7 +188,7 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
       )}
       <Modal
         title={isCreate ? t("book.title_create") : t("book.title_update")}
-        style={{ top: 58, padding: 0, minWidth: "70vw" }}
+        style={{ top: 58, padding: 0, minWidth: 600 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -208,15 +208,6 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
               </Form.Item>
               <Col span={12}>
                 <Form.Item
-                  name={"title"}
-                  label={t("book.fields.title")}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <Input placeholder={t("book.fields.title")} />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item
                   name={"image_url"}
                   label={t("book.fields.image_url")}
                 >
@@ -226,6 +217,15 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
                       <div style={{ marginTop: 8 }}>Upload</div>
                     </div>
                   </Upload>
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name={"title"}
+                  label={t("book.fields.title")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input placeholder={t("book.fields.title")} />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -251,6 +251,7 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
                   <DatePicker
                     placeholder={formatDateShow.toLowerCase()}
                     format={formatDateShow}
+                    style={{ width: "100%" }}
                   />
                 </Form.Item>
               </Col>

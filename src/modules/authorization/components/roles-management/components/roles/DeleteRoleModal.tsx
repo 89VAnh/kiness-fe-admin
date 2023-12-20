@@ -1,7 +1,11 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Modal, Tooltip, Typography } from "antd";
+import { Button, Modal, Tooltip, Typography, notification } from "antd";
 import { useTranslation } from "react-i18next";
+import { useRecoilValue } from "recoil";
 
+import { queryClient } from "@/lib/react-query";
+import { CACHE_ROLE, useDeleteRole } from "@/loader/role.loader";
+import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
 import styles from "../../../../scss/styles.module.scss";
@@ -15,7 +19,23 @@ interface Props {
 
 export function DeleteRoleModal({ id, name }: Props): JSX.Element {
   const { isOpen, close, open } = useDisclosure();
+  const userRecoil = useRecoilValue(UserState);
   const { t } = useTranslation();
+
+  const deleteRole = useDeleteRole({
+    config: {
+      onSuccess: () => {
+        notification.success({
+          message: t("messages.delete_success"),
+        });
+        queryClient.invalidateQueries([CACHE_ROLE.SEARCH]);
+        close();
+      },
+      onError: () => {
+        notification.error({ message: t("messages.delete_failure") });
+      },
+    },
+  });
 
   const handleOpen = () => {
     open();
@@ -25,9 +45,12 @@ export function DeleteRoleModal({ id, name }: Props): JSX.Element {
     close();
   };
 
-  const handleOk = () => {};
-
-  console.log(id);
+  const handleOk = () => {
+    deleteRole.mutate({
+      list_json: [{ role_id: id }],
+      updated_by_id: userRecoil.user_id,
+    });
+  };
 
   return (
     <>

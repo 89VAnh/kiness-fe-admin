@@ -144,7 +144,7 @@ export default function FaqListModal({
         title={
           isCreate ? t("faq.list.title_create") : t("faq.list.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 1000 }}
+        style={{ top: 58, padding: 0, minWidth: 600 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}

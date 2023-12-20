@@ -228,7 +228,7 @@ export default function EmployeeModal({
         title={
           isCreate ? t("employee.title_create") : "Sửa thông tin nhân viên"
         }
-        width={"90vw"}
+        width={"60vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}

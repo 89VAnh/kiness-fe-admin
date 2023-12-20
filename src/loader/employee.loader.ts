@@ -7,6 +7,7 @@ import {
   QueryConfig,
 } from "@/lib/react-query";
 import {
+  changePasswordEmployee,
   createEmployee,
   deleteEmployee,
   getEmployeeById,
@@ -64,6 +65,20 @@ const useUpdateEmployee = ({
   });
 };
 
+const useChangePasswordEmployee = ({
+  config,
+}: {
+  config?: MutationConfig<typeof changePasswordEmployee>;
+}) => {
+  return useMutation({
+    onMutate: () => {},
+    onError: () => {},
+    onSuccess: () => {},
+    ...config,
+    mutationFn: changePasswordEmployee,
+  });
+};
+
 const useDeleteEmployee = ({
   config,
 }: {
@@ -95,6 +110,7 @@ const useSearchEmployees = ({
 export {
   useDeleteEmployee,
   useGetEmployeeById,
+  useChangePasswordEmployee,
   useSearchEmployees,
   useUpdateEmployee,
   useCreateEmployee,

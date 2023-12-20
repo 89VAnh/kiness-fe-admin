@@ -113,8 +113,6 @@ export default function ResearchArticleModal({
           ),
         };
 
-        console.log(dataPost);
-
         if (isCreate) {
           dataPost.created_by_user_id = userProfile.user_id;
           createResearchArticle.mutate(dataPost);
@@ -160,7 +158,7 @@ export default function ResearchArticleModal({
       )}
       <Modal
         title={t("research_article.title_create")}
-        width={"90vw"}
+        width={"60vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}

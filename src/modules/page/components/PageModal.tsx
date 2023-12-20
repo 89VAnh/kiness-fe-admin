@@ -120,7 +120,7 @@ export default function PageModal({ id, isCreate = true }: Props): JSX.Element {
       )}
       <Modal
         title={isCreate ? t("page.title_create") : t("page.title_update")}
-        width={"90vw"}
+        width={"60vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}

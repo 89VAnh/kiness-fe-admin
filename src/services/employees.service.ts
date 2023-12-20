@@ -24,6 +24,12 @@ export const updateEmployee = async (data: IEmployee): Promise<any> => {
   return res.data;
 };
 
+export const changePasswordEmployee = async (data: any): Promise<any> => {
+  const res = await apiClient?.post(`${prefix}/change-password`, data);
+
+  return res.data;
+};
+
 export const deleteEmployee = async (data: IBaseDelete): Promise<any> => {
   const res = await apiClient?.post(`${prefix}/delete`, data);
 

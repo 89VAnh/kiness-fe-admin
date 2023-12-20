@@ -204,7 +204,7 @@ export default function GrowthStoryModal({
             ? t("growth_story.title_create")
             : t("growth_story.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 1000 }}
+        style={{ top: 58, padding: 0, minWidth: 800 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -223,16 +223,7 @@ export default function GrowthStoryModal({
               <Form.Item name={"growth_story_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={6}>
-                <Form.Item
-                  name={"title"}
-                  label={t("growth_story.fields.title")}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <Input placeholder={t("growth_story.fields.title")} />
-                </Form.Item>
-              </Col>
-              <Col span={7}>
+              <Col span={8}>
                 <Form.Item
                   name={"image_link"}
                   label={t("growth_story.fields.image_link")}
@@ -246,7 +237,16 @@ export default function GrowthStoryModal({
                   </Upload>
                 </Form.Item>
               </Col>
-              <Col span={5}>
+              <Col span={8}>
+                <Form.Item
+                  name={"title"}
+                  label={t("growth_story.fields.title")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input placeholder={t("growth_story.fields.title")} />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
                 <Form.Item
                   name={"is_draft"}
                   label={t("growth_story.fields.is_draft.title")}
@@ -256,7 +256,7 @@ export default function GrowthStoryModal({
                   <Select options={draftOptions} />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={8}>
                 <Form.Item
                   name={"author_name"}
                   label={t("growth_story.fields.author_name")}
@@ -267,7 +267,7 @@ export default function GrowthStoryModal({
                 </Form.Item>
               </Col>
 
-              <Col span={6}>
+              <Col span={8}>
                 <Form.Item
                   // name={"date"}
                   label={t("growth_story.fields.posted_date")}
@@ -281,7 +281,7 @@ export default function GrowthStoryModal({
                   />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={8}>
                 <Form.Item
                   name={"view_count"}
                   label={t("growth_story.fields.view_count")}
@@ -295,7 +295,7 @@ export default function GrowthStoryModal({
               <Col span={24}>
                 <Form.Item
                   name={"content"}
-                  label={t("researcher.fields.paper")}
+                  label={t("growth_story.fields.content")}
                   rules={[...RULES_FORM.required]}
                 >
                   <CKEditor

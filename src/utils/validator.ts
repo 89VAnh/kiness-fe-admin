@@ -9,6 +9,7 @@ interface keyValidator {
   username?: any;
   password?: any;
   people_name?: any;
+  confirm_password?: any;
 }
 
 export const RULES_FORM: Record<keyof keyValidator, FormRule[]> = {
@@ -59,6 +60,23 @@ export const RULES_FORM: Record<keyof keyValidator, FormRule[]> = {
         "Mật khẩu phải có ít nhất 8 kí tự bao gồm chữ hoa, chữ thường, và ít nhất một kí tự đặc biệt và số",
     },
   ],
+  // @ts-ignore
+  confirm_password: (pass_1: string, pass_2: string) => {
+    return [
+      {
+        // @ts-ignore
+        validator(_, __, callback) {
+          try {
+            if (pass_1 && pass_2 && pass_1 !== pass_2)
+              throw new Error("Mật khẩu mới không khớp");
+            else callback(undefined);
+          } catch (err: any) {
+            callback(err);
+          }
+        },
+      },
+    ];
+  },
   people_name: [
     {
       pattern:

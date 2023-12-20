@@ -117,7 +117,8 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
             ? t("book.author.title_create")
             : t("book.author.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 400 }}
+        width={400}
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
