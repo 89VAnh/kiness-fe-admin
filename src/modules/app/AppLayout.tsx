@@ -3,6 +3,7 @@ import { ProLayout, ProLayoutProps } from "@ant-design/pro-components";
 import { ConfigProvider, Image, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 
 import Logo from "@/assets/img/logo/logo-white.png";
 import avatar from "@/assets/img/others/default-avatar.png";
@@ -14,6 +15,7 @@ import {
   AvatarName,
 } from "@/components/RightContent/AvatarDropdown";
 import { LOCAL_COLOR } from "@/constant/config";
+import { UserState } from "@/store/auth/atom";
 import { HOME_URL } from "@/urls";
 import { storageService } from "@/utils/storage";
 
@@ -41,6 +43,7 @@ const listColors = [
 
 export default function AppLayout({ children }: Props): JSX.Element {
   const location = useLocation();
+  const userProfile = useRecoilValue(UserState);
   const [primary, setPrimary] = useState(
     () => storageService.getStorage(LOCAL_COLOR, false) || listColors[0],
   );
@@ -135,7 +138,7 @@ export default function AppLayout({ children }: Props): JSX.Element {
           </Typography.Title>
         </Space>
       )}
-      route={appRoute()}
+      route={appRoute(userProfile.functions)}
       {...settings}
     >
       <ConfigProvider

@@ -52,7 +52,7 @@ const useGetRoleById = ({
   enabled,
   config,
 }: {
-  id: number;
+  id: string | number;
   enabled: boolean;
   config?: QueryConfig<typeof getRoleById>;
 }) => {

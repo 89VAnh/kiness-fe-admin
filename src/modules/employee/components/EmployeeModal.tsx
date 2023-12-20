@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { queryClient } from "@/lib/react-query";
 import { useCityDropdown } from "@/loader/city.loader";
 import {
@@ -52,11 +53,15 @@ export default function EmployeeModal({
   const userProfile = useRecoilValue(UserState);
   const [birthday, setBirthDay] = useState<Dayjs | null>(dayjs(defaultDate));
 
-  useGetEmployeeById({
+  const { refetch: employeeRefetch } = useGetEmployeeById({
     id: id!,
     enabled: isOpen && !isCreate,
     config: {
       async onSuccess(data) {
+        if (data.message === ERROR_TIMEOUT) {
+          employeeRefetch();
+        }
+
         if (!data?.message) {
           const branchData = await getBranchById(data.branch_id);
           const city_id = branchData.city_id;
@@ -148,10 +153,45 @@ export default function EmployeeModal({
     return current && current > dayjs().endOf("day");
   };
 
-  const { data: cityOptions, isLoading: isLoadingCity } = useCityDropdown({});
-  const { data: positionOptions, isLoading: isLoadingPosition } =
-    usePositionDropdown({});
-  const { data: roleOptions, isLoading: isLoadingRole } = useRoleDropdown({});
+  const {
+    data: cityOptions,
+    isLoading: isLoadingCity,
+    refetch: cityDropRefetch,
+  } = useCityDropdown({
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          cityDropRefetch();
+        }
+      },
+    },
+  });
+  const {
+    data: positionOptions,
+    isLoading: isLoadingPosition,
+    refetch: positionDropRefetch,
+  } = usePositionDropdown({
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          positionDropRefetch();
+        }
+      },
+    },
+  });
+  const {
+    data: roleOptions,
+    isLoading: isLoadingRole,
+    refetch: roleDropRefetch,
+  } = useRoleDropdown({
+    config: {
+      onSuccess: (data) => {
+        if (data.message === ERROR_TIMEOUT) {
+          roleDropRefetch();
+        }
+      },
+    },
+  });
   const [branchOptions, setBranchOptions] = useState<DefaultOptionType[]>([]);
   const [isLoadingBranch, setIsLoadingBranch] = useState<boolean>(false);
 

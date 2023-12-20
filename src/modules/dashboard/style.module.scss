@@ -26,11 +26,11 @@
   }
 }
 
-.quan_ly_sp_head {
+.head_manager_wrap {
   margin: 0 !important;
   padding: 20px 20px;
   align-items: center;
-  .search_qlsp {
+  .search_ {
     background: #ffffff;
     border: 1px solid #bfbfbf;
     // border-radius: 2px;
@@ -39,7 +39,7 @@
   }
 }
 
-.head_qlsp {
+.head_wrap {
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   height: 40px;
@@ -52,7 +52,7 @@
     padding-left: 20px;
   }
 
-  .select_qlsp_title {
+  .select_head_title {
     width: 500px;
     height: 32px;
     display: flex;
