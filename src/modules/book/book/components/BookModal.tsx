@@ -240,7 +240,7 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
                 >
                   <Select
                     loading={isLoadingAuthor}
-                    placeholder="Chọn loại"
+                    placeholder={t("book.fields.author")}
                     options={authorOptions?.data || []}
                     style={{ width: "100%" }}
                   />
