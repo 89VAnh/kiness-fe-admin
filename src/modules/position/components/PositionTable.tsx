@@ -62,7 +62,7 @@ export default function PositionTable(): JSX.Element {
       search: false,
     },
     {
-      title: t("fields.sQuery_name"),
+      title: t("fields.position_name"),
       dataIndex: "position_name",
       width: 150,
     },

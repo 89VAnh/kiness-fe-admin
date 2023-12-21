@@ -15,7 +15,7 @@ export default function BookAuthorTable(): JSX.Element {
     keyPrefix: "book.author",
   });
   const [page, setPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(2);
+  const [pageSize, setPageSize] = useState<number>(10);
   const [searchContent, setSearchContent] = useState<string | null>();
 
   const bookAuthorQuery = useSearchBookAuthors({

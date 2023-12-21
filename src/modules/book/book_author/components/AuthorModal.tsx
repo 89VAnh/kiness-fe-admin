@@ -133,7 +133,7 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
         >
           <Form form={form} layout="vertical">
             <Row gutter={32}>
-              <Form.Item name={"_id"} hidden>
+              <Form.Item name={"author_id"} hidden>
                 <Input />
               </Form.Item>
               <Col span={24}>

@@ -39,7 +39,7 @@ export const updateCity = async (data: ICity): Promise<any> => {
 };
 
 export const deleteCity = async (data: IBaseDelete): Promise<any> => {
-  const res = await apiClient?.delete(`${prefix}/delete`, {
+  const res = await apiClient?.post(`${prefix}/delete`, {
     data,
   });
 

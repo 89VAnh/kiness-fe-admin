@@ -46,7 +46,7 @@ export default function StatisticDash(): JSX.Element {
         if (data.total)
           setCurrentData((prev) => ({
             ...prev,
-            experience: data.total?.total,
+            experience: data.total,
           }));
       },
     },

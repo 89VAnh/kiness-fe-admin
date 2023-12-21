@@ -71,7 +71,6 @@ export default function EmployeeModal({
           form.setFieldsValue({
             city: city_id,
             ...data,
-            gender: `${data.gender}`,
             date_of_birth: dayjs(data.date_of_birth),
           });
 

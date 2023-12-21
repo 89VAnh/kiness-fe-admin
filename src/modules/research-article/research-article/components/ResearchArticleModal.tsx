@@ -158,8 +158,7 @@ export default function ResearchArticleModal({
       )}
       <Modal
         title={t("research_article.title_create")}
-        width={"60vw"}
-        style={{ top: 58, padding: 0 }}
+        style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -218,16 +217,6 @@ export default function ResearchArticleModal({
 
               <Col span={12}>
                 <Form.Item
-                  name={"issuers"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("research_article.fields.issuers")}
-                >
-                  <Input placeholder={t("research_article.fields.issuers")} />
-                </Form.Item>
-              </Col>
-
-              <Col span={12}>
-                <Form.Item
                   name={"year_of_release"}
                   rules={[...RULES_FORM.required]}
                   label={t("research_article.fields.year_of_release")}
@@ -238,7 +227,15 @@ export default function ResearchArticleModal({
                   />
                 </Form.Item>
               </Col>
-
+              <Col span={24}>
+                <Form.Item
+                  name={"issuers"}
+                  rules={[...RULES_FORM.required]}
+                  label={t("research_article.fields.issuers")}
+                >
+                  <Input placeholder={t("research_article.fields.issuers")} />
+                </Form.Item>
+              </Col>
               <Col span={24}>
                 <Form.Item
                   name={"content"}

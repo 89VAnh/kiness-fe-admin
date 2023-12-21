@@ -2,10 +2,6 @@ import { DefaultOptionType } from "antd/es/select";
 
 export const acceptOptions: DefaultOptionType[] = [
   {
-    label: "Tất cả xác minh",
-    value: "",
-  },
-  {
     label: "Đã xác minh",
     value: 1,
   },
