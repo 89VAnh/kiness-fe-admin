@@ -7,7 +7,6 @@ const LOGIN_URL = "/login";
 const MANAGER_URL = "/manager";
 const EXPERIENCE_REGISTER_URL = `${MANAGER_URL}/experience-register`;
 const REQUEST_URL = `${MANAGER_URL}/request`;
-const CITY_URL = `${MANAGER_URL}/city`;
 const FAQ_URL = `${MANAGER_URL}/faq`;
 const RESEARCH_ARTICLE_URL = `${MANAGER_URL}/research-article`;
 const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
@@ -42,15 +41,12 @@ export {
   ADMIN_URL,
   BOOK_URL,
   BRANCH_URL,
-  CITY_URL,
-  FUNCTION_URL,
-  ROLE_URL,
-  USER_URL,
   // Config
   CONFIG_URL,
   EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
   FAQ_URL,
+  FUNCTION_URL,
   GROWTH_STORY_URL,
   HISTORY_URL,
   HOME_URL,
@@ -66,7 +62,9 @@ export {
   REQUEST_URL,
   RESEARCHER_URL,
   RESEARCH_ARTICLE_URL,
+  ROLE_URL,
   SLIDES_URL,
+  USER_URL,
   // Others
   breadcrumbNameMap,
 };
