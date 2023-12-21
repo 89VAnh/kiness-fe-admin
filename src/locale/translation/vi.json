@@ -89,7 +89,7 @@
     "title": "Quản lý khách hàng",
     "title_create": "Thêm mới khách hàng",
     "title_update": "Cập nhật khách hàng",
-    "search_placeholder": "Nhập tên, email, số điện thoại...",
+    "search_placeholder": "Tìm kiếm",
     "title_delete": "Xóa khách hàng",
     "title_delete_multi": "Xóa những khách hàng được chọn",
     "message_delete_success": "Xóa khách hàng thành công!",
@@ -112,7 +112,7 @@
     "title": "Quản lý nhân viên",
     "title_create": "Thêm mới nhân viên",
     "title_update": "Cập nhật nhân viên",
-    "search_placeholder": "Nhập tên, email, số điện thoại...",
+    "search_placeholder": "Tìm kiếm",
     "title_delete": "Xóa nhân viên",
     "title_delete_multi": "Xóa những nhân viên được chọn",
     "message_delete_success": "Xóa nhân viên thành công!",
@@ -138,7 +138,7 @@
     "title_create": "Thêm mới tin",
     "title_update": "Cập nhật tin",
     "title_delete": "Xóa tin",
-    "search_placeholder": "Nhập tiêu đề tin",
+    "search_placeholder": "Tìm kiếm",
     "fields": {
       "serial": "STT",
       "id": "Tin",
@@ -156,7 +156,7 @@
     "title": "Quản lý các trang",
     "title_create": "Thêm mới nội dung trang",
     "title_update": "Cập nhật nội dung trang",
-    "search_placeholder": "Nhập tiêu đề, nội dung, url...",
+    "search_placeholder": "Tìm kiếm",
     "title_delete": "Xóa nội dung trang",
     "fields": {
       "serial": "STT",
@@ -170,7 +170,7 @@
     "title": "Quản lý slides",
     "title_create": "Thêm mới slide",
     "title_update": "Cập nhật slide",
-    "search_placeholder": "Nhập tiêu đề...",
+    "search_placeholder": "Tìm kiếm",
     "title_delete": "Xóa slide",
     "fields": {
       "serial": "STT",
@@ -184,7 +184,7 @@
   "experience_register": {
     "title": "Quản lý đăng ký trải nghiệm",
     "title_create": "Thêm mới đơn đăng ký",
-    "search_placeholder": "Nhập tên chi nhánh, tên người đăng ký, số điện thoại...",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật đơn đăng ký",
     "title_delete": "Xóa đơn đăng ký",
     "fields": {
@@ -227,7 +227,7 @@
   },
   "branch": {
     "title": "Quản lý chi nhánh",
-    "search_placeholder": "Nhập tên chi nhánh, số điện thoại...",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật chi nhánh",
     "title_create": "Thêm chi nhánh",
     "title_delete": "Xóa chi nhánh",
@@ -248,7 +248,7 @@
   },
   "city": {
     "title": "Quản lý khu vực",
-    "search_placeholder": "Nhập tên khu vực, số điện thoại...",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật khu vực",
     "title_create": "Thêm khu vực",
 
@@ -265,7 +265,7 @@
   },
   "position": {
     "title": "Quản lý chức vụ",
-    "search_placeholder": "Nhập tên chức vụ...",
+    "search_placeholder": "Tìm kiếm",
 
     "fields": {
       "serial": "STT",
@@ -282,7 +282,7 @@
   },
   "researcher": {
     "title": "Quản lý nhà nghiên cứu",
-    "search_placeholder": "Nhập tên, trình độ, lịch sử, bài báo ...",
+    "search_placeholder": "Tìm kiếm",
 
     "fields": {
       "serial": "STT",
@@ -305,7 +305,7 @@
   "faq": {
     "topic": {
       "title": "Quản lý loại",
-      "search_placeholder": "Nhập tên loại...",
+      "search_placeholder": "Tìm kiếm",
       "title_update": "Cập nhật loại câu hỏi",
       "title_create": "Thêm loại câu hỏi",
       "title_delete": "Xóa loại câu hỏi",
@@ -318,7 +318,7 @@
     },
     "list": {
       "title": "Quản lý câu hỏi",
-      "search_placeholder": "Nhập câu hỏi...",
+      "search_placeholder": "Tìm kiếm",
       "title_update": "Cập nhật câu hỏi",
       "title_create": "Thêm câu hỏi",
       "title_delete": "Xóa câu hỏi",
@@ -334,7 +334,7 @@
   },
   "research_article": {
     "title": "Quản lý bài nghiên cứu",
-    "search_placeholder": "Nhập tên bài nghiên cứu...",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật bài nghiên cứu",
     "title_create": "Thêm bài nghiên cứu",
     "title_delete": "Xóa bài nghiên cứu",
@@ -353,7 +353,7 @@
 
     "author": {
       "title": "Quản lý tác giả",
-      "search_placeholder": "Nhập tên tác giả...",
+      "search_placeholder": "Tìm kiếm",
       "title_update": "Cập nhật tác giả",
       "title_create": "Thêm tác giả",
       "title_delete": "Xóa tác giả",
@@ -368,7 +368,7 @@
   },
   "request": {
     "title": "Quản lý yêu cầu",
-    "search_placeholder": "Nhập yêu cầu...",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật yêu cầu",
     "title_create": "Thêm yêu cầu",
     "title_delete": "Xóa yêu cầu",
@@ -410,7 +410,7 @@
   },
   "growth_story": {
     "title": "Quản lý câu chuyện tăng trưởng",
-    "search_placeholder": "Nhập câu chuyện tăng trưởng...",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật câu chuyện tăng trưởng",
     "title_create": "Thêm câu chuyện tăng trưởng",
     "title_delete": "Xóa câu chuyện tăng trưởng",
@@ -439,7 +439,7 @@
   },
   "posture_story": {
     "title": "Quản lý trường hợp chỉnh sửa tư thế",
-    "search_placeholder": "Nhập trường hợp chỉnh sửa tư thế...",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật trường hợp chỉnh sửa tư thế",
     "title_create": "Thêm trường hợp chỉnh sửa tư thế",
     "title_delete": "Xóa trường hợp chỉnh sửa tư thế",
@@ -468,7 +468,7 @@
   },
   "late_story": {
     "title": "Quản lý trường hợp trễ hạn",
-    "search_placeholder": "Nhập trường hợp trễ hạn...",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật trường hợp trễ hạn",
     "title_create": "Thêm trường hợp trễ hạn",
     "title_delete": "Xóa trường hợp trễ hạn",
@@ -497,7 +497,7 @@
   },
   "obesity_story": {
     "title": "Quản lý trường hợp béo phì",
-    "search_placeholder": "Nhập trường hợp béo phì...",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật trường hợp béo phì",
     "title_create": "Thêm trường hợp béo phì",
     "title_delete": "Xóa trường hợp béo phì",
@@ -529,7 +529,7 @@
     "title_create": "Thêm mới bằng sáng chế",
     "title_update": "Cập nhật bằng sáng chế",
     "title_delete": "Xóa bằng sáng chế",
-    "search_placeholder": "Nhập tiêu đề bằng sáng chế",
+    "search_placeholder": "Tìm kiếm",
     "fields": {
       "serial": "STT",
       "id": "Mã",
@@ -544,7 +544,7 @@
   },
   "book": {
     "title": "Quản lý sách xuất bản",
-    "search_placeholder": "Nhập tên sách xuất bản...",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật sách xuất bản",
     "title_create": "Thêm sách xuất bản",
     "title_delete": "Xóa sách xuất bản",
@@ -553,14 +553,14 @@
       "serial": "STT",
       "image_url": "Ảnh",
       "title": "Tiêu đề",
-      "author": "Tác giả",
+      " ": "Tác giả",
       "publication_date": "Ngày xuất bản",
       "actions": "Tác vụ"
     },
 
     "author": {
       "title": "Quản lý tác giả",
-      "search_placeholder": "Nhập tên tác giả...",
+      "search_placeholder": "Tìm kiếm",
       "title_update": "Cập nhật tác giả",
       "title_create": "Thêm tác giả",
       "title_delete": "Xóa tác giả",
@@ -587,7 +587,7 @@
     },
     "functions": {
       "title": "Quản lý tính năng",
-      "search_placeholder": "Tên tính năng",
+      "search_placeholder": "Tìm kiếm",
       "title_function": "Danh sách tính năng",
       "modal": {
         "title_create": "Thêm mới tính năng",
@@ -601,7 +601,7 @@
     },
     "actions": {
       "title": "Chi tiết tính năng",
-      "search_placeholder": "Mã thao tác, tên thao tác",
+      "search_placeholder": "Tìm kiếm",
       "table": {
         "stt": "STT",
         "action_code": "Mã thao tác",
@@ -618,7 +618,7 @@
     "roles": {
       "title": "QUẢN LÝ NHÓM QUYỀN",
       "title_role": "Danh sách nhóm quyền",
-      "search_placeholder": "Mã nhóm quyền, tên nhóm quyền",
+      "search_placeholder": "Tìm kiếm",
       "dropdown_role_placeholder": "Chọn nhóm quyền",
       "dropdown_role_title": "Nhóm quyền",
       "title_function": "Danh sách tính năng",
@@ -637,7 +637,7 @@
     },
     "users": {
       "title": "DANH MỤC NGƯỜI DÙNG",
-      "search_placeholder": "Tên tài khoản, họ và tên",
+      "search_placeholder": "Tìm kiếm",
       "profile": "Thông tin tài khoản",
       "table": {
         "stt": "STT",
@@ -668,7 +668,7 @@
   },
   "history": {
     "title": "Quản lý lịch sử",
-    "search_placeholder": "Nhập năm, nội dung",
+    "search_placeholder": "Tìm kiếm",
     "title_update": "Cập nhật lịch sử",
     "title_create": "Thêm lịch sử",
     "title_delete": "Xóa lịch sử",

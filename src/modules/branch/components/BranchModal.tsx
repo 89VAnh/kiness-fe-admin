@@ -230,7 +230,7 @@ export default function BranchModal({
                 </Form.Item>
               </Col>
 
-              <Col span={12}>
+              <Col span={24}>
                 <Form.Item
                   name={"embed_map"}
                   label={t("branch.fields.embed_map")}
@@ -243,13 +243,17 @@ export default function BranchModal({
                   />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={24}>
                 <div
                   style={{ maxHeight: 200, overflow: "hidden" }}
                   dangerouslySetInnerHTML={{
                     __html: embedMap?.includes("<iframe")
                       ? embedMap
-                      : "Không đúng định dạng",
+                      : `Không đúng định dạng <br/>
+                      Hướng dẫn gắn địa chỉ : <br/>
+                      1. Nhập thông tin địa chỉ vào google map <br/>
+                      2. Chọn chia sẻ > nhúng bản đồ > sao chép HTML <br/>
+                      3. Dán vào ô địa chỉ bên trên`,
                   }}
                 ></div>
               </Col>

@@ -160,14 +160,13 @@ export default function RequestModal({
                   label={t("request.fields.is_accepted.title")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Select defaultValue={""} options={acceptOptions} />
+                  <Select options={acceptOptions} />
                 </Form.Item>
               </Col>
               <Col span={6}>
                 <Form.Item
                   name={"is_answered"}
                   label={t("request.fields.is_answered.title")}
-                  rules={[...RULES_FORM.required]}
                 >
                   <Select disabled defaultValue={""} options={answerOptions} />
                 </Form.Item>
@@ -176,18 +175,13 @@ export default function RequestModal({
                 <Form.Item
                   name={"password"}
                   label={t("request.fields.password")}
-                  rules={[...RULES_FORM.required]}
                 >
                   <Input disabled />
                 </Form.Item>
               </Col>
 
               <Col span={6}>
-                <Form.Item
-                  name={"email"}
-                  label={t("request.fields.email")}
-                  rules={[...RULES_FORM.required]}
-                >
+                <Form.Item name={"email"} label={t("request.fields.email")}>
                   <Input disabled />
                 </Form.Item>
               </Col>
@@ -195,7 +189,6 @@ export default function RequestModal({
                 <Form.Item
                   name={"phone_number"}
                   label={t("request.fields.phone_number")}
-                  rules={[...RULES_FORM.required]}
                 >
                   <Input disabled />
                 </Form.Item>
@@ -204,7 +197,6 @@ export default function RequestModal({
                 <Form.Item
                   name={"author_name"}
                   label={t("request.fields.author_name")}
-                  rules={[...RULES_FORM.required]}
                 >
                   <Input disabled />
                 </Form.Item>
