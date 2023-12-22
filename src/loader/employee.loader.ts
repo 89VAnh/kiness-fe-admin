@@ -11,6 +11,7 @@ import {
   createEmployee,
   deleteEmployee,
   getEmployeeById,
+  getNewPw,
   searchEmployees,
   updateEmployee,
 } from "@/services/employees.service";
@@ -107,11 +108,26 @@ const useSearchEmployees = ({
   });
 };
 
+const useGetNewPw = ({
+  token,
+  config,
+}: {
+  token: string;
+  config?: QueryConfig<typeof getNewPw>;
+}) => {
+  return useQuery<ExtractFnReturnType<typeof getNewPw>>({
+    ...config,
+    queryKey: [CACHE_EMPLOYEES.DETAIL, token],
+    queryFn: () => getNewPw(token),
+  });
+};
+
 export {
+  useChangePasswordEmployee,
+  useCreateEmployee,
   useDeleteEmployee,
   useGetEmployeeById,
-  useChangePasswordEmployee,
+  useGetNewPw,
   useSearchEmployees,
   useUpdateEmployee,
-  useCreateEmployee,
 };

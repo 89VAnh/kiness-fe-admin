@@ -131,7 +131,6 @@ export default function EmployeeModal({
         } else {
           dataPost.lu_user_id = userProfile.user_id;
           updateEmployee.mutate(dataPost);
-          // console.log(dataPost);
         }
       })
       .catch(() => message.warning(t("messages.validate_form")));
@@ -245,11 +244,17 @@ export default function EmployeeModal({
             <Row gutter={32}>
               <Col span={8}>
                 <Form.Item
-                  label={"Tài khoản"}
+                  label={t("employee.fields.id")}
                   name={"employee_id"}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Input disabled={!isCreate} />
+                  <Input
+                    disabled={!isCreate}
+                    placeholder={t("employee.fields.id")}
+                  />
+                  {/* <Typography.Text>
+                    {t("employee.default_password")}
+                  </Typography.Text> */}
                 </Form.Item>
               </Col>
               <Form.Item name={"user_id"} hidden>

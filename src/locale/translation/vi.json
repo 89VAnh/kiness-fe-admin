@@ -29,7 +29,9 @@
     "validate_form": "Bạn cần điền đầy đủ thông tin",
     "update_status_success": "Cập nhật trạng thái thành công",
     "create_success": "Tạo thành công",
-    "create_failure": "Cập nhật thất bại! Vui lòng thử lại"
+    "create_failure": "Cập nhật thất bại! Vui lòng thử lại",
+    "fpw_failure": "Gửi email ko thành công vui lòng thử lại!",
+    "fpw_success": "Gửi email thành công!"
   },
   "nav": {
     "home": "Trang chủ",
@@ -116,6 +118,7 @@
     "title_delete": "Xóa nhân viên",
     "title_delete_multi": "Xóa những nhân viên được chọn",
     "message_delete_success": "Xóa nhân viên thành công!",
+    "default_password": "Mật khẩu mặc định của tài khoản là 123456",
     "fields": {
       "serial": "STT",
       "id": "Tài khoản",

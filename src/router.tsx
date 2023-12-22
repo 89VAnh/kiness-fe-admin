@@ -15,6 +15,7 @@ import { GrowthStoryPage } from "./modules/growth-story";
 import { HistoryPage } from "./modules/history";
 import { LateStoryPage } from "./modules/late-story";
 import { LicensePage } from "./modules/license-of-invention";
+import { NewPwPage } from "./modules/new-password";
 import { ObesityStoryPage } from "./modules/obesity-story";
 import { PageManagePage } from "./modules/page";
 import { PositionPage } from "./modules/position";
@@ -39,6 +40,7 @@ import {
   LICENSE_OF_INVENTION_URL,
   LOGIN_URL,
   MANAGER_URL,
+  NEW_PASSWORD_URL,
   OBESITY_STORY_URL,
   PAGE_URL,
   POSITION_URL,
@@ -299,6 +301,12 @@ export const router = createBrowserRouter([
     path: LOGIN_URL,
     element: (
       <ProtectedComponent Element={LoginPage} title="Đăng nhập" url={""} />
+    ),
+  },
+  {
+    path: NEW_PASSWORD_URL,
+    element: (
+      <ProtectedComponent Element={NewPwPage} title="Mật khẩu mới" url={""} />
     ),
   },
 ]);

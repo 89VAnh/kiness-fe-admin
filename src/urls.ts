@@ -2,6 +2,7 @@ const HOME_URL = "/dashboard";
 
 // Auth
 const LOGIN_URL = "/login";
+const NEW_PASSWORD_URL = "/new-password";
 
 // Manager
 const MANAGER_URL = "/manager";
@@ -55,6 +56,8 @@ export {
   LOGIN_URL,
   // Manager
   MANAGER_URL,
+  NEW_PASSWORD_URL,
+  // Config
   OBESITY_STORY_URL,
   PAGE_URL,
   POSITION_URL,
