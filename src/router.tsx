@@ -16,6 +16,7 @@ import { HistoryPage } from "./modules/history";
 import { LateStoryPage } from "./modules/late-story";
 import { LicensePage } from "./modules/license-of-invention";
 import { ObesityStoryPage } from "./modules/obesity-story";
+import { OrganizationPage } from "./modules/organization";
 import { PageManagePage } from "./modules/page";
 import { PositionPage } from "./modules/position";
 import { PostureStoryPage } from "./modules/posture-story";
@@ -40,6 +41,7 @@ import {
   LOGIN_URL,
   MANAGER_URL,
   OBESITY_STORY_URL,
+  ORGANIZATION_URL,
   PAGE_URL,
   POSITION_URL,
   POSTURE_STORY_URL,
@@ -208,6 +210,16 @@ export const router = createBrowserRouter([
             Element={HistoryPage}
             title="Quản lý lịch sử"
             url={HISTORY_URL}
+          />
+        ),
+      },
+      {
+        path: ORGANIZATION_URL,
+        element: (
+          <ProtectedComponent
+            Element={OrganizationPage}
+            title="Quản lý sơ đồ tổ chức"
+            url={ORGANIZATION_URL}
           />
         ),
       },

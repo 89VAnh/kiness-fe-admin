@@ -4,31 +4,29 @@ import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
 import { queryClient } from "@/lib/react-query";
-import { CACHE_FUNCTION, useDeleteFunction } from "@/loader/function.loader";
-import { getFunctionIdSelector } from "@/modules/authorization/store/state";
-import { getNodeFromTree } from "@/modules/authorization/utils/recursive";
+import { CACHE_DIAGRAM, useDeleteDiagram } from "@/loader/diagram.loader";
+import { IDiagram } from "@/models/diagram";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
 
-import styles from "../../../../scss/styles.module.scss";
+import styles from "../scss/organ.module.scss";
 
 interface Props {
-  tree: any;
+  node: IDiagram | undefined;
 }
 
-export function DeleteFunctionModal({ tree }: Props): JSX.Element {
+export function DeleteOrganizationModal({ node }: Props): JSX.Element {
   const { isOpen, close, open } = useDisclosure();
-  const function_id = useRecoilValue(getFunctionIdSelector);
   const userRecoil = useRecoilValue(UserState);
   const { t } = useTranslation();
 
-  const deleteFunction = useDeleteFunction({
+  const deleteDiagram = useDeleteDiagram({
     config: {
       onSuccess: () => {
         notification.success({
           message: t("messages.delete_success"),
         });
-        queryClient.invalidateQueries([CACHE_FUNCTION.SEARCH]);
+        queryClient.invalidateQueries([CACHE_DIAGRAM.SEARCH]);
         close();
       },
       onError: () => {
@@ -46,8 +44,8 @@ export function DeleteFunctionModal({ tree }: Props): JSX.Element {
   };
 
   const handleOk = () => {
-    deleteFunction.mutate({
-      list_json: [{ function_id }],
+    deleteDiagram.mutate({
+      list_json: [{ node_id: node?.key }],
       updated_by_id: userRecoil.user_id,
     });
   };
@@ -55,7 +53,7 @@ export function DeleteFunctionModal({ tree }: Props): JSX.Element {
   return (
     <>
       <Tooltip title={t("authorization.tooltip.btn_delete")}>
-        <Button type="default" disabled={!function_id} onClick={handleOpen}>
+        <Button type="default" disabled={!node?.key} onClick={handleOpen}>
           <DeleteOutlined style={{ color: "#ff4d4f" }} />
         </Button>
       </Tooltip>
@@ -68,7 +66,7 @@ export function DeleteFunctionModal({ tree }: Props): JSX.Element {
         cancelText={t("all.btn_cancel")}
         onOk={handleOk}
         onCancel={handleCancel}
-        // confirmLoading={deleteFee.isLoading}
+        confirmLoading={deleteDiagram.isLoading}
         className={styles.modal + " modal-delete"}
       >
         <div
@@ -83,7 +81,7 @@ export function DeleteFunctionModal({ tree }: Props): JSX.Element {
             style={{ fontSize: "1.1rem" }}
           >{`Bạn có muốn xoá `}</Typography.Text>
           <Typography.Text type="danger" style={{ fontSize: "1.1rem" }}>
-            {getNodeFromTree(tree || [], function_id)?.title}{" "}
+            {node?.title}{" "}
           </Typography.Text>
           ?
         </div>

@@ -68,7 +68,7 @@ export default function FunctionTable(): JSX.Element {
           <Button.Group style={{ width: "100%", justifyContent: "flex-end" }}>
             <CreateFunctionModal />
             <UpdateFunctionModal />
-            <DeleteFunctionModal />
+            <DeleteFunctionModal tree={data?.data} />
           </Button.Group>
         </Col>
       </Row>

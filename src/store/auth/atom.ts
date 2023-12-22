@@ -8,6 +8,7 @@ export const UserState = atom({
     full_name: "",
     avatar: "",
     position_id: 0,
+    position_name: "",
     functions: [],
     actions: [],
   },

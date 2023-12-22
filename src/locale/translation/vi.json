@@ -681,5 +681,22 @@
       "created_user": "Người tạo",
       "created_date_time": "Ngày tạo"
     }
+  },
+  "organization": {
+    "title": "Quản lý sơ đồ tổ chức",
+    "search_placeholder": "Tìm kiếm",
+    "title_update": "Cập nhật sơ đồ tổ chức",
+    "title_create": "Thêm sơ đồ tổ chức",
+    "title_delete": "Xóa sơ đồ tổ chức",
+    "fields": {
+      "serial": "STT",
+      "group": "Nhóm tổ chức",
+      "node_name": "Tên tổ chức",
+      "description": "Mô tả",
+      "sort_order": "Sắp xếp",
+      "actions": "Tác vụ",
+      "created_user": "Người tạo",
+      "created_date_time": "Ngày tạo"
+    }
   }
 }

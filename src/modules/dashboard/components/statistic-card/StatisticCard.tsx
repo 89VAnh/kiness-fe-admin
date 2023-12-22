@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
+import { ACCESSES } from "@/constant/access";
 import { ERROR_TIMEOUT } from "@/constant/config";
 import {
   useGetCountBranch,
@@ -32,7 +33,7 @@ export default function StatisticDash(): JSX.Element {
     config: {
       onSuccess(data) {
         if (data.message === ERROR_TIMEOUT) countBranchQuery.refetch();
-        if (data.total)
+        if (typeof data.total === "number")
           setCurrentData((prev) => ({ ...prev, branch: data.total }));
       },
     },
@@ -43,7 +44,7 @@ export default function StatisticDash(): JSX.Element {
     config: {
       onSuccess(data) {
         if (data.message === ERROR_TIMEOUT) countExperienceQuery.refetch();
-        if (data.total)
+        if (typeof data.total === "number")
           setCurrentData((prev) => ({
             ...prev,
             experience: data.total,
@@ -57,7 +58,11 @@ export default function StatisticDash(): JSX.Element {
     config: {
       onSuccess(data) {
         if (data.message === ERROR_TIMEOUT) countEmployeeQuery.refetch();
-        if (data.total && userProfile.position_id === 2)
+        if (
+          typeof data.total === "number" &&
+          userProfile.position_name.toLowerCase() !== ACCESSES.POS_EMPLOYEE &&
+          userProfile.position_name.toLowerCase() !== ACCESSES.POS_CUSTOMER
+        )
           setCurrentData((prev) => ({ ...prev, employee: data.total }));
       },
     },

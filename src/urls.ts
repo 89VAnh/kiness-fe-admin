@@ -17,6 +17,7 @@ const OBESITY_STORY_URL = `${MANAGER_URL}/obesity-story`;
 const LICENSE_OF_INVENTION_URL = `${MANAGER_URL}/license-of-invention`;
 const BOOK_URL = `${MANAGER_URL}/book`;
 const HISTORY_URL = `${MANAGER_URL}/history`;
+const ORGANIZATION_URL = `${MANAGER_URL}/organization`;
 
 // Config
 const CONFIG_URL = "/config";
@@ -65,6 +66,7 @@ export {
   ROLE_URL,
   SLIDES_URL,
   USER_URL,
+  ORGANIZATION_URL,
   // Others
   breadcrumbNameMap,
 };

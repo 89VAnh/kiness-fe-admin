@@ -31,6 +31,7 @@ const Page = () => {
       onSuccess: (data, variables) => {
         if (data.message === ERROR_TIMEOUT) {
           login.mutate(variables);
+          return;
         }
         if (!data || data?.message) {
           notification.error({
