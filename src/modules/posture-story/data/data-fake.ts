@@ -2,10 +2,6 @@ import { DefaultOptionType } from "antd/es/select";
 
 export const draftOptions: DefaultOptionType[] = [
   {
-    label: "Tất cả",
-    value: "",
-  },
-  {
     label: "Nháp",
     value: 1,
   },

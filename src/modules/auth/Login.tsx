@@ -96,8 +96,8 @@ const Page = () => {
 
   const handleNewPw = async () => {
     form.validateFields().then((values) => {
-      // mailNewPw.mutate({ ...values, url: window.location.hostname });
-      mailNewPw.mutate({ ...values, url: "http://localhost:7845" });
+      // mailNewPw.mutate({ ...values, url: "http://localhost:7845" });
+      mailNewPw.mutate({ ...values, url: window.location.hostname });
     });
   };
 
