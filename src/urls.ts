@@ -18,6 +18,8 @@ const LICENSE_OF_INVENTION_URL = `${MANAGER_URL}/license-of-invention`;
 const BOOK_URL = `${MANAGER_URL}/book`;
 const HISTORY_URL = `${MANAGER_URL}/history`;
 const ORGANIZATION_URL = `${MANAGER_URL}/organization`;
+const VIDEO_URL = `${MANAGER_URL}/video`;
+const GROWTH_ARTICLE_URL = `${MANAGER_URL}/growth-article`;
 
 // Config
 const CONFIG_URL = "/config";
@@ -67,6 +69,8 @@ export {
   SLIDES_URL,
   USER_URL,
   ORGANIZATION_URL,
+  VIDEO_URL,
+  GROWTH_ARTICLE_URL,
   // Others
   breadcrumbNameMap,
 };

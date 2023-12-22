@@ -11,6 +11,7 @@ import { EmployeePage } from "./modules/employee";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
 import { ExperienceRegisterPage } from "./modules/experience-register";
 import { FaqManagePage } from "./modules/faq";
+import { GrowthArticlePage } from "./modules/growth-article";
 import { GrowthStoryPage } from "./modules/growth-story";
 import { HistoryPage } from "./modules/history";
 import { LateStoryPage } from "./modules/late-story";
@@ -24,6 +25,7 @@ import RequestManage from "./modules/request/RequestManage";
 import { ResearchArticlePage } from "./modules/research-article";
 import { ResearcherPage } from "./modules/researcher";
 import { SlideManagePage } from "./modules/slide";
+import { VideoPage } from "./modules/video";
 import {
   ADMIN_URL,
   BOOK_URL,
@@ -33,6 +35,7 @@ import {
   EXPERIENCE_REGISTER_URL,
   FAQ_URL,
   FUNCTION_URL,
+  GROWTH_ARTICLE_URL,
   GROWTH_STORY_URL,
   HISTORY_URL,
   HOME_URL,
@@ -50,6 +53,7 @@ import {
   RESEARCH_ARTICLE_URL,
   ROLE_URL,
   SLIDES_URL,
+  VIDEO_URL,
 } from "./urls";
 
 export const router = createBrowserRouter([
@@ -220,6 +224,26 @@ export const router = createBrowserRouter([
             Element={OrganizationPage}
             title="Quản lý sơ đồ tổ chức"
             url={ORGANIZATION_URL}
+          />
+        ),
+      },
+      {
+        path: VIDEO_URL,
+        element: (
+          <ProtectedComponent
+            Element={VideoPage}
+            title="Quản lý TV"
+            url={VIDEO_URL}
+          />
+        ),
+      },
+      {
+        path: GROWTH_ARTICLE_URL,
+        element: (
+          <ProtectedComponent
+            Element={GrowthArticlePage}
+            title="Quản lý câu hỏi tăng trưởng"
+            url={GROWTH_ARTICLE_URL}
           />
         ),
       },

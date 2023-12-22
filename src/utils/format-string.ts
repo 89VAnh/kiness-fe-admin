@@ -31,3 +31,8 @@ export const handleReplaceHostName = (url: string) => {
   const newUrl = url.substring(index + 5);
   console.log(newUrl);
 };
+
+export const extractVideoId = (url: string) => {
+  const match = url.match(/[?&]v=([^&]+)/);
+  return match ? match[1] : null;
+};
