@@ -1,6 +1,6 @@
 import CityTable from "./components/CityTable";
 
-export default function CityManage(): JSX.Element {
+export default function CityPage(): JSX.Element {
   return (
     <div>
       <CityTable />

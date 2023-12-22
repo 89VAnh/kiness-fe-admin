@@ -6,7 +6,6 @@ import { LoginPage } from "./modules/auth";
 import { FunctionPage, RolePage } from "./modules/authorization";
 import { BookPage } from "./modules/book";
 import { BranchManagePage } from "./modules/branch";
-import { CityManagePage } from "./modules/city";
 import { DashboardPage } from "./modules/dashboard";
 import { EmployeePage } from "./modules/employee";
 import { ErrorBoundaryPage } from "./modules/error/boundary";
@@ -28,7 +27,6 @@ import {
   ADMIN_URL,
   BOOK_URL,
   BRANCH_URL,
-  CITY_URL,
   CONFIG_URL,
   EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
@@ -102,16 +100,7 @@ export const router = createBrowserRouter([
           />
         ),
       },
-      {
-        path: CITY_URL,
-        element: (
-          <ProtectedComponent
-            Element={CityManagePage}
-            title="Quản lý thành phố"
-            url={CITY_URL}
-          />
-        ),
-      },
+
       {
         path: FAQ_URL,
         element: (
