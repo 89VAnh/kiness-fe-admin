@@ -36,7 +36,7 @@ export default function GrowthStoryTable(): JSX.Element {
     params: {
       page_index: page,
       page_size: pageSize,
-      search_content: searchContent || null,
+      search_content: isEmpty(searchContent) ? null : searchContent,
       is_draft: isEmpty(draftStatus) ? null : +draftStatus,
     },
     config: {

@@ -10,6 +10,7 @@ import {
   Tooltip,
   Typography,
 } from "antd";
+import { isEmpty } from "lodash";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -40,7 +41,7 @@ export function DetailRoleModal(): JSX.Element {
     params: {
       pageIndex,
       pageSize,
-      search_content: searchContent,
+      search_content: isEmpty(searchContent) ? null : searchContent,
       user_id: userRecoil.user_id,
     },
     config: {

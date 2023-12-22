@@ -37,7 +37,7 @@ export default function RequestTable(): JSX.Element {
     params: {
       page_index: page,
       page_size: pageSize,
-      search_content: searchContent || null,
+      search_content: isEmpty(searchContent) ? null : searchContent,
       is_accepted: isEmpty(acceptStatus) ? null : +acceptStatus,
       is_answered: isEmpty(answerStatus) ? null : +answerStatus,
     },
