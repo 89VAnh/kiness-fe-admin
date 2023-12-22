@@ -684,5 +684,71 @@
       "created_user": "Người tạo",
       "created_date_time": "Ngày tạo"
     }
+  },
+  "organization": {
+    "title": "Quản lý sơ đồ tổ chức",
+    "search_placeholder": "Tìm kiếm",
+    "title_update": "Cập nhật sơ đồ tổ chức",
+    "title_create": "Thêm sơ đồ tổ chức",
+    "title_delete": "Xóa sơ đồ tổ chức",
+    "fields": {
+      "serial": "STT",
+      "group": "Nhóm tổ chức",
+      "node_name": "Tên tổ chức",
+      "description": "Mô tả",
+      "sort_order": "Sắp xếp",
+      "actions": "Tác vụ",
+      "created_user": "Người tạo",
+      "created_date_time": "Ngày tạo"
+    }
+  },
+  "video": {
+    "title": "Quản lý TV",
+    "search_placeholder": "Tìm kiếm",
+
+    "fields": {
+      "serial": "STT",
+      "video_name": "Tên TV",
+      "video_link": "Link",
+      "is_foreign": "Khu vực",
+      "local": "Trong nước",
+      "world": "Ngoài nước",
+      "created_date_time": "Ngày tạo",
+      "created_user": "Người tạo",
+      "actions": "Tác vụ"
+    },
+
+    "title_update": "Cập nhật TV",
+    "title_create": "Thêm TV",
+    "title_delete": "Xóa TV"
+  },
+  "growth_article": {
+    "title": "Quản lý câu hỏi tăng trưởng",
+    "search_placeholder": "Tìm kiếm",
+    "title_update": "Cập nhật câu hỏi tăng trưởng",
+    "title_create": "Thêm câu hỏi tăng trưởng",
+    "title_delete": "Xóa câu hỏi tăng trưởng",
+
+    "fields": {
+      "serial": "STT",
+      "title": "Câu hỏi",
+      "content": "Nội dung",
+      "author_name": "Tên tác giả",
+      "image_link": "Hình ảnh",
+      "posted_date": "Ngày đăng",
+      "view_count": "Lượt xem",
+      "is_draft": {
+        "title": "Trạng thái nháp",
+        "1": {
+          "label": "Nháp",
+          "color": "red"
+        },
+        "0": {
+          "label": "Đã xác minh",
+          "color": "green"
+        }
+      },
+      "actions": "Tác vụ"
+    }
   }
 }

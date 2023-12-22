@@ -7,6 +7,7 @@ import {
   TeamOutlined,
 } from "@ant-design/icons";
 import { ProLayoutProps } from "@ant-design/pro-components";
+import _ from "lodash";
 import { Link } from "react-router-dom";
 
 import { LOCAL_USER } from "@/constant/config";
@@ -214,21 +215,23 @@ const generateRoutes = (tree: any[] = []) => {
   // Drunk
   const user: IEmployee = storageService.getStorage(LOCAL_USER);
 
-  for (let i = 0; i < tree.length; i++) {
-    if (tree[i].role && user.position_id !== tree[i].role) continue;
+  const cloneTree = _.sortBy(tree, "sort_order");
+
+  for (let i = 0; i < cloneTree.length; i++) {
+    if (cloneTree[i].role && user.position_id !== cloneTree[i].role) continue;
     const route = {
-      key: tree[i].title,
+      key: cloneTree[i].title,
       // eslint-disable-next-line eqeqeq
-      icon: tree[i].level == 1 ? icons[i] : null,
-      path: tree[i].url,
-      title: tree[i].title,
+      icon: cloneTree[i].level == 1 ? icons[i] : null,
+      path: cloneTree[i].url,
+      title: cloneTree[i].title,
       name: (
-        <Link preventScrollReset to={tree[i].url}>
-          {tree[i].title}
+        <Link preventScrollReset to={cloneTree[i].url}>
+          {cloneTree[i].title}
         </Link>
       ),
-      routes: generateRoutes(tree[i].children),
-      sort: tree[i].sort_order,
+      routes: generateRoutes(cloneTree[i].children),
+      sort: cloneTree[i].sort_order,
     };
 
     routes.push(route);
@@ -238,7 +241,7 @@ const generateRoutes = (tree: any[] = []) => {
 };
 
 export const appRoute = (functions: any[]): ProLayoutProps["route"] => {
-  const routes = [...generateRoutes(functions)].sort((a, b) => a.sort - b.sort);
+  const routes = [...generateRoutes(functions)];
   return {
     path: HOME_URL,
     routes,

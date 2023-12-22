@@ -121,18 +121,19 @@ export default function AppLayout({ children }: Props): JSX.Element {
         style={{
           height: "100vh",
         }}
-        siderWidth={258}
-        // location={location}
+        siderWidth={298}
+        location={location}
         logo={
           <Space>
             <Image className="logo" preview={false} src={Logo} />
           </Space>
         }
+        suppressSiderWhenMenuEmpty={true}
         title={""}
         menu={{
+          loading: userProfile.functions.length > 0 ? false : true,
+          collapsedShowTitle: false,
           defaultOpenAll: true,
-          autoClose: false,
-          // type: "group",
         }}
         headerTitleRender={(_, __, ___) => (
           <Space>

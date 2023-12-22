@@ -63,7 +63,9 @@ export default function PositionDelete({ id }: Props): JSX.Element {
           });
           close();
         }}
-      ></Modal>
+      >
+        Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
+      </Modal>
     </>
   );
 }

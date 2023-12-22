@@ -24,20 +24,7 @@
 }
 
 .ant-layout-has-sider {
-  &:has(.ant-layout-sider:not(.ant-pro-sider-collapsed)) {
-    & > div:nth-child(1) {
-      flex: 0 0 298px !important;
-      max-width: 298px !important;
-      min-width: 298px !important;
-      width: 298px !important;
-    }
-  }
-
   .ant-layout-sider:not(.ant-pro-sider-collapsed) {
-    flex: 0 0 298px !important;
-    max-width: 298px !important;
-    min-width: 298px !important;
-    width: 298px !important;
     .ant-pro-sider-footer {
       overflow: auto;
     }
