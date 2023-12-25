@@ -273,6 +273,7 @@ export default function LateStoryModal({
                   rules={[...RULES_FORM.required]}
                 >
                   <DatePicker
+                    inputReadOnly
                     format={formatDateShow}
                     className="w-full"
                     value={postedDate}

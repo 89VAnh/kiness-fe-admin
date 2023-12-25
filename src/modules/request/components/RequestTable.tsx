@@ -94,15 +94,21 @@ export default function RequestTable(): JSX.Element {
       dataIndex: "subject",
       sorter: (a: any, b: any) => compareStrings(a, b, "subject"),
       width: "15%",
+      render: (value) => (
+        <Typography.Paragraph ellipsis={{ rows: 2 }} title={value + ""}>
+          {value}
+        </Typography.Paragraph>
+      ),
     },
     {
       title: t("fields.content"),
       dataIndex: "content",
+      width: "12%",
       sorter: (a: any, b: any) => compareStrings(a, b, "content"),
       render: (value) => (
-        <Typography.Text style={{ width: 150 }} ellipsis title={value + ""}>
+        <Typography.Paragraph ellipsis={{ rows: 2 }} title={value + ""}>
           {value}
-        </Typography.Text>
+        </Typography.Paragraph>
       ),
     },
     {

@@ -1,5 +1,5 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Modal, Tooltip, Typography, notification } from "antd";
+import { Button, Modal, Tooltip, notification } from "antd";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
@@ -69,22 +69,7 @@ export function DeleteOrganizationModal({ node }: Props): JSX.Element {
         confirmLoading={deleteDiagram.isLoading}
         className={styles.modal + " modal-delete"}
       >
-        <div
-          style={{
-            textAlign: "center",
-            fontWeight: "700",
-            margin: "2rem 5rem",
-          }}
-        >
-          <Typography.Text
-            // level={4}
-            style={{ fontSize: "1.1rem" }}
-          >{`Bạn có muốn xoá `}</Typography.Text>
-          <Typography.Text type="danger" style={{ fontSize: "1.1rem" }}>
-            {node?.title}{" "}
-          </Typography.Text>
-          ?
-        </div>
+        Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
       </Modal>
     </>
   );

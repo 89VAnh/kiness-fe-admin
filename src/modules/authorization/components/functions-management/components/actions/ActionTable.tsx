@@ -104,10 +104,7 @@ export default function ActionTable(): JSX.Element {
               <ActionModal isCreate={false} id={record?.action_code} />
             </Col>
             <Col>
-              <DeleteActionModal
-                id={record.action_code}
-                name={record.action_name}
-              />
+              <DeleteActionModal id={record.action_code} />
             </Col>
           </Row>
         );
