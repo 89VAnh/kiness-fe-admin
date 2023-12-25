@@ -106,17 +106,16 @@ export default function PostureStoryTable(): JSX.Element {
     {
       title: t("fields.author_name"),
       dataIndex: "author_name",
-      width: 150,
+      width: 100,
       sorter: (a: any, b: any) => compareStrings(a, b, "author_name"),
     },
     {
       title: t("fields.posted_date"),
       dataIndex: "posted_date",
       align: "center",
-      width: 150,
+      width: 80,
       sorter: (a: any, b: any) => compareStrings(a, b, "posted_date"),
       render: (value) => {
-        // const date = new Date(value?.toString() || "");
         const val = value?.toString();
         return (
           <>{dayjs(val).isValid() ? dayjs(val).format(formatDateShow) : ""}</>
@@ -127,7 +126,7 @@ export default function PostureStoryTable(): JSX.Element {
       title: t("fields.view_count"),
       dataIndex: "view_count",
       align: "right",
-      width: 80,
+      width: 50,
       sorter: (a: any, b: any) => compareNumbers(a, b, "view_count"),
     },
     {
@@ -135,7 +134,7 @@ export default function PostureStoryTable(): JSX.Element {
       dataIndex: "is_draft",
       align: "center",
       sorter: (a: any, b: any) => compareNumbers(a, b, "is_draft"),
-      width: 120,
+      width: 100,
       render: (value: any) => (
         <Tag color={t(`fields.is_draft.${value}.color`)}>
           {t(`fields.is_draft.${value}.label`)}

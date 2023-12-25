@@ -2,7 +2,7 @@ import { DefaultOptionType } from "antd/es/select";
 
 export const acceptOptions: DefaultOptionType[] = [
   {
-    label: "Tất cả trạng thái",
+    label: "Tất cả trạng thái xác minh",
     value: "",
   },
   {
@@ -17,7 +17,7 @@ export const acceptOptions: DefaultOptionType[] = [
 
 export const answerOptions: DefaultOptionType[] = [
   {
-    label: "Tất cả trả lời",
+    label: "Tất cả trạng thái trả lời",
     value: "",
   },
   {

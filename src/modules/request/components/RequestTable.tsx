@@ -213,12 +213,12 @@ export default function RequestTable(): JSX.Element {
           options={acceptOptions}
           defaultValue={acceptStatus ? +acceptStatus : ""}
           onChange={(value) => handleSearch(value + "", "a")}
-          style={{ minWidth: 170 }}
+          style={{ minWidth: 240 }}
         />,
         <Select
           options={answerOptions}
           defaultValue={answerStatus ? +answerStatus : ""}
-          style={{ minWidth: 150 }}
+          style={{ minWidth: 210 }}
           onChange={(value) => handleSearch(value + "", "s")}
         />,
         <Input.Search
