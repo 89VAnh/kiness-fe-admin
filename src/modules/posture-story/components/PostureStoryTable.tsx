@@ -36,7 +36,7 @@ export default function PostureStoryTable(): JSX.Element {
     params: {
       page_index: page,
       page_size: pageSize,
-      search_content: searchContent || null,
+      search_content: isEmpty(searchContent) ? null : searchContent,
       is_draft: isEmpty(draftStatus) ? null : +draftStatus,
     },
     config: {
@@ -96,7 +96,12 @@ export default function PostureStoryTable(): JSX.Element {
       title: t("fields.title"),
       dataIndex: "title",
       sorter: (a: any, b: any) => compareStrings(a, b, "title"),
-      width: "15%",
+      width: "25%",
+      render: (value) => (
+        <Typography.Paragraph ellipsis={{ rows: 2 }}>
+          {value}
+        </Typography.Paragraph>
+      ),
     },
     {
       title: t("fields.author_name"),
@@ -173,6 +178,9 @@ export default function PostureStoryTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: postureStoriesQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} câu chuyện`;
+        },
       }}
       columns={columns}
       dataSource={postureStoriesQuery.data?.data?.data || []}

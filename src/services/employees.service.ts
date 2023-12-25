@@ -36,6 +36,12 @@ export const deleteEmployee = async (data: IBaseDelete): Promise<any> => {
   return res.data;
 };
 
+export const getNewPw = async (token: string) => {
+  const res = await apiClient?.get(`${prefix}/new-pw/` + token);
+
+  return res.data;
+};
+
 export const searchEmployees = async (
   params: AxiosRequestConfig["params"],
 ): Promise<any> => {

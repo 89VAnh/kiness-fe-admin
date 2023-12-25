@@ -166,7 +166,11 @@ export default function HistoryModal({
                   label={t("history.fields.year")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <DatePicker picker="year" defaultValue={dayjs()} />
+                  <DatePicker
+                    inputReadOnly
+                    picker="year"
+                    defaultValue={dayjs()}
+                  />
                 </Form.Item>
               </Col>
               <Col span={12}>

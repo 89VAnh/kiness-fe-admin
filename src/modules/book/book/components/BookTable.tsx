@@ -1,6 +1,7 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
 import { Image, Input, Space, Typography } from "antd";
 import dayjs from "dayjs";
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -24,7 +25,7 @@ export default function BookTable(): JSX.Element {
     params: {
       page_index: page,
       page_size: pageSize,
-      search_content: searchContent,
+      search_content: isEmpty(searchContent) ? null : searchContent,
     },
     config: {
       onSuccess: (data) => {
@@ -114,6 +115,9 @@ export default function BookTable(): JSX.Element {
           setPageSize(pageSize);
         },
         total: bookQuery.data?.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} sách`;
+        },
       }}
       columns={columns}
       dataSource={bookQuery.data?.data?.data || []}

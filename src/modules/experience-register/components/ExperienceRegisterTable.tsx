@@ -10,6 +10,7 @@ import {
   Typography,
   message,
 } from "antd";
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
@@ -60,7 +61,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
     params: {
       page_index: page,
       page_size: pageSize,
-      search_content: searchContent,
+      search_content: isEmpty(searchContent) ? null : searchContent,
       user_id: userProfile.user_id,
       status,
       from_date: rangeDate[0] ? rangeDate[0] : null,
@@ -214,7 +215,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
   });
   const handlePrint = () => {
     print.mutate({
-      search_content: searchContent,
+      search_content: isEmpty(searchContent) ? null : searchContent,
       user_id: userProfile.user_id,
       status,
       from_date: rangeDate[0] ? rangeDate[0] : null,
@@ -238,7 +239,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total}`;
+          return `${range[0]}-${range[1]} trên ${total} đơn đăng ký`;
         },
         total: experienceRegisterQuery.data?.total_items || 0,
       }}

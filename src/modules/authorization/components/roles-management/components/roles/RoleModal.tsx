@@ -68,7 +68,7 @@ export function RoleModal({ isCreate, id }: Props): JSX.Element {
     config: {
       onSuccess: () => {
         notification.success({
-          message: t("messages.create_update"),
+          message: t("messages.update_success"),
         });
         close();
         queryClient.invalidateQueries([CACHE_ROLE.SEARCH]);

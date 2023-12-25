@@ -1,5 +1,6 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
 import { Image, Input, Space, Typography } from "antd";
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
@@ -29,7 +30,7 @@ export default function ResearcherTable(): JSX.Element {
     params: {
       page_index: page,
       page_size: pageSize,
-      search_content: searchContent,
+      search_content: isEmpty(searchContent) ? null : searchContent,
     },
     config: {
       onSuccess: (data) => {
@@ -149,7 +150,7 @@ export default function ResearcherTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total}`;
+          return `${range[0]}-${range[1]} trên ${total} nhà nghiên cứu`;
         },
         total: researchersQuery.data?.total_items || 0,
       }}

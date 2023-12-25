@@ -37,7 +37,7 @@ export default function RequestTable(): JSX.Element {
     params: {
       page_index: page,
       page_size: pageSize,
-      search_content: searchContent || null,
+      search_content: isEmpty(searchContent) ? null : searchContent,
       is_accepted: isEmpty(acceptStatus) ? null : +acceptStatus,
       is_answered: isEmpty(answerStatus) ? null : +answerStatus,
     },
@@ -191,6 +191,9 @@ export default function RequestTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: requestListQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} yêu cầu`;
+        },
       }}
       columns={columns}
       dataSource={requestListQuery.data?.data?.data || []}
@@ -204,12 +207,12 @@ export default function RequestTable(): JSX.Element {
           options={acceptOptions}
           defaultValue={acceptStatus ? +acceptStatus : ""}
           onChange={(value) => handleSearch(value + "", "a")}
-          style={{ minWidth: 150 }}
+          style={{ minWidth: 170 }}
         />,
         <Select
           options={answerOptions}
           defaultValue={answerStatus ? +answerStatus : ""}
-          style={{ minWidth: 120 }}
+          style={{ minWidth: 150 }}
           onChange={(value) => handleSearch(value + "", "s")}
         />,
         <Input.Search

@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 import logo from "@/assets/img/logo/logo.png";
 import { ERROR_TIMEOUT, LOCAL_USER } from "@/constant/config";
+import { useMailNewPw } from "@/loader/email.loader";
 import { useLogin } from "@/loader/user.loader";
 import { HOME_URL, LOGIN_URL } from "@/urls";
 import storage, { storageService } from "@/utils/storage";
@@ -47,7 +48,6 @@ const Page = () => {
             duration: 0.6,
           });
           setTimeout(() => {
-            // window.open("/", "_parent");
             navigate(HOME_URL, {
               replace: true,
               preventScrollReset: true,
@@ -63,9 +63,42 @@ const Page = () => {
     },
   });
 
+  const mailNewPw = useMailNewPw({
+    config: {
+      onSuccess: (data, variables) => {
+        if (data.message === ERROR_TIMEOUT) {
+          mailNewPw.mutate(variables);
+        }
+        if (!data || data?.message) {
+          notification.error({
+            message: data.response?.data?.message || t("fpw_failure"),
+          });
+        } else {
+          notification.success({
+            message: t("fpw_success"),
+            description:
+              "Đã gửi email quên mật khẩu! Vui lòng khiểm tra hòm thư của bạn!",
+          });
+        }
+      },
+      onError: (data) => {
+        notification.error({
+          message: data.response?.data?.message || t("fpw_failure"),
+        });
+      },
+    },
+  });
+
   const handleLogin = async () => {
     form.validateFields().then((values) => {
       login.mutate(values);
+    });
+  };
+
+  const handleNewPw = async () => {
+    form.validateFields().then((values) => {
+      // mailNewPw.mutate({ ...values, url: "http://localhost:7845" });
+      mailNewPw.mutate({ ...values, url: window.location.hostname });
     });
   };
 
@@ -87,6 +120,11 @@ const Page = () => {
           backdropFilter: "blur(4px)",
         }}
         subTitle={loginType === "account" ? "Đăng nhập" : "Quên mật khẩu"}
+        submitter={{
+          searchConfig: {
+            submitText: loginType === "account" ? "Đăng nhập" : "Quên mật khẩu",
+          },
+        }}
         // activityConfig={{
         //   style: {
         //     boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
@@ -113,8 +151,14 @@ const Page = () => {
         //     </Typography.Link>
         //   ),
         // }}
-        onFinish={handleLogin}
-        loading={login.isLoading}
+        onFinish={async () => {
+          if (loginType === "account") {
+            handleLogin();
+          } else {
+            handleNewPw();
+          }
+        }}
+        loading={login.isLoading || mailNewPw.isLoading}
       >
         {loginType === "account" ? (
           <>
@@ -199,7 +243,7 @@ const Page = () => {
                   marginBottom: 16,
                 }}
               >
-                Đã nhớ ra? Đăng nhập ngay
+                Đã nhớ ra mật khẩu? Đăng nhập ngay
               </Typography.Link>
             </>
           )}

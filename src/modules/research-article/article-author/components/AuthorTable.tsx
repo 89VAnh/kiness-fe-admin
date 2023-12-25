@@ -91,6 +91,9 @@ export default function ArticleAuthorTable(): JSX.Element {
           setPageSize(pageSize);
         },
         total: articleAuthorQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} tác giả`;
+        },
       }}
       columns={columns}
       dataSource={articleAuthorQuery.data?.data || []}

@@ -253,6 +253,7 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
                   rules={[...RULES_FORM.required]}
                 >
                   <DatePicker
+                    inputReadOnly
                     placeholder={formatDateShow.toLowerCase()}
                     format={formatDateShow}
                     style={{ width: "100%" }}

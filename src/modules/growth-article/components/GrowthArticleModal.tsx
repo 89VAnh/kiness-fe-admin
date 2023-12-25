@@ -201,6 +201,7 @@ export default function GrowthArticleModal({
                   rules={[...RULES_FORM.required]}
                 >
                   <DatePicker
+                    inputReadOnly
                     format={formatDateShow}
                     value={postedDate}
                     className="w-full"

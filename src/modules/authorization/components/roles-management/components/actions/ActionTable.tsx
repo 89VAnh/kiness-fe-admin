@@ -240,6 +240,12 @@ export default function ActionTable(): JSX.Element {
             searchParams.set("size_action", String(pageSize));
             setSearchParams(searchParams);
           },
+          showTotal(total, range) {
+            return (
+              `${range[0]}-${range[1]} trên ${total} ` +
+              t("authorization.actions.title").toLowerCase()
+            );
+          },
         }}
         rowKey={(record) => record.action_code}
       />

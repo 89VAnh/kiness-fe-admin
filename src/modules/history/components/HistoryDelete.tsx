@@ -45,7 +45,7 @@ export default function HistoryDelete({ id }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
-        title={t("history.list.title_delete")}
+        title={t("history.title_delete")}
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}

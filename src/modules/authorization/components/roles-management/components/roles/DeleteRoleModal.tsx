@@ -66,7 +66,7 @@ export function DeleteRoleModal({ id, name }: Props): JSX.Element {
       </Tooltip>
       <Modal
         centered
-        title={t("authorization.functions.modal.title_delete")}
+        title={t("authorization.roles.modal.title_delete")}
         open={isOpen}
         width={"30%"}
         okText={t("all.btn_confirm")}

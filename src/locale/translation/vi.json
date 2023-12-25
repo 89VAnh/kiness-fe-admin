@@ -29,7 +29,9 @@
     "validate_form": "Bạn cần điền đầy đủ thông tin",
     "update_status_success": "Cập nhật trạng thái thành công",
     "create_success": "Tạo thành công",
-    "create_failure": "Cập nhật thất bại! Vui lòng thử lại"
+    "create_failure": "Cập nhật thất bại! Vui lòng thử lại",
+    "fpw_failure": "Gửi email ko thành công vui lòng thử lại!",
+    "fpw_success": "Gửi email thành công!"
   },
   "nav": {
     "home": "Trang chủ",
@@ -116,6 +118,7 @@
     "title_delete": "Xóa nhân viên",
     "title_delete_multi": "Xóa những nhân viên được chọn",
     "message_delete_success": "Xóa nhân viên thành công!",
+    "default_password": "Mật khẩu mặc định của tài khoản là 123456",
     "fields": {
       "serial": "STT",
       "id": "Tài khoản",
@@ -193,7 +196,7 @@
       "branch_name": "Tên chi nhánh",
       "fullname": "Tên người đăng ký",
       "gender": "Giới tính",
-      "level": "Cấp",
+      "level": "Lớp",
       "date": "Ngày đăng ký",
       "phone": "Số điện thoại",
       "address": "Địa chỉ",
@@ -553,7 +556,7 @@
       "serial": "STT",
       "image_url": "Ảnh",
       "title": "Tiêu đề",
-      " ": "Tác giả",
+      "author": "Tác giả",
       "publication_date": "Ngày xuất bản",
       "actions": "Tác vụ"
     },
@@ -631,7 +634,7 @@
       },
       "modal": {
         "title_create": "Thêm mới nhóm quyền",
-        "title_update": "Chi tiết nhóm quyền",
+        "title_update": "Chỉnh sửa nhóm quyền",
         "title_delete": "Xóa nhóm quyền"
       }
     },

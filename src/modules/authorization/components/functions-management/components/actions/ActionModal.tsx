@@ -12,6 +12,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
+import { ERROR_TIMEOUT } from "@/constant/config";
 import { queryClient } from "@/lib/react-query";
 import {
   CACHE_ACTION,
@@ -38,12 +39,16 @@ export function ActionModal({ isCreate, id }: Props): JSX.Element {
   const userRecoil = useRecoilValue(UserState);
   const { t } = useTranslation();
 
-  const { remove: removeAction } = useGetActionById({
+  const { remove: removeAction, refetch } = useGetActionById({
     id: id!,
     config: {
       enabled: isOpen && !!id,
       onSuccess: (data) => {
-        form.setFieldsValue(data);
+        if (data.message === ERROR_TIMEOUT) {
+          refetch();
+        } else {
+          form.setFieldsValue(data);
+        }
       },
     },
   });
@@ -70,7 +75,7 @@ export function ActionModal({ isCreate, id }: Props): JSX.Element {
     config: {
       onSuccess: () => {
         notification.success({
-          message: t("messages.create_update"),
+          message: t("messages.update_success"),
         });
         close();
         queryClient.invalidateQueries([CACHE_ACTION.SEARCH]);
@@ -175,6 +180,7 @@ export function ActionModal({ isCreate, id }: Props): JSX.Element {
                     placeholder={
                       t("authorization.actions.table.action_code") || ""
                     }
+                    disabled={!isCreate}
                   />
                 </Form.Item>
               </Col>

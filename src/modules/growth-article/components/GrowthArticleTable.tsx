@@ -167,6 +167,9 @@ export default function GrowthArticleTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: growthArticleListQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total}`;
+        },
       }}
       columns={columns}
       dataSource={growthArticleListQuery.data?.data?.data || []}

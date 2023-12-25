@@ -1,5 +1,6 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
 import { Input, Space, Typography } from "antd";
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -22,7 +23,7 @@ export default function BookAuthorTable(): JSX.Element {
     params: {
       page_index: page,
       page_size: pageSize,
-      search_content: searchContent,
+      search_content: isEmpty(searchContent) ? null : searchContent,
     },
     config: {
       onSuccess: (data) => {
@@ -90,6 +91,9 @@ export default function BookAuthorTable(): JSX.Element {
           setPageSize(pageSize);
         },
         total: bookAuthorQuery.data?.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} tác giả sách`;
+        },
       }}
       columns={columns}
       dataSource={bookAuthorQuery.data?.data?.data || []}
