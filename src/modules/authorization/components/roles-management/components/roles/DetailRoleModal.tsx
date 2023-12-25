@@ -214,6 +214,12 @@ export function DetailRoleModal(): JSX.Element {
                     searchParams.set("size_role", String(pageSize));
                     setSearchParams(searchParams);
                   },
+                  showTotal(total, range) {
+                    return (
+                      `${range[0]}-${range[1]} trên ${total} ` +
+                      t("authorization.roles.title_role").toLowerCase()
+                    );
+                  },
                 }}
                 rowKey={(record) => record.role_id}
               />

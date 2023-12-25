@@ -115,6 +115,9 @@ export default function BookTable(): JSX.Element {
           setPageSize(pageSize);
         },
         total: bookQuery.data?.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} sách`;
+        },
       }}
       columns={columns}
       dataSource={bookQuery.data?.data?.data || []}

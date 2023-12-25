@@ -157,7 +157,11 @@ export default function ResearchArticleModal({
         </Tooltip>
       )}
       <Modal
-        title={t("research_article.title_create")}
+        title={
+          isCreate
+            ? t("research_article.title_create")
+            : t("research_article.title_update")
+        }
         style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
         onCancel={handleCancel}
@@ -222,6 +226,7 @@ export default function ResearchArticleModal({
                   label={t("research_article.fields.year_of_release")}
                 >
                   <DatePicker
+                    inputReadOnly
                     placeholder={t("research_article.fields.year_of_release")}
                     picker="year"
                   />

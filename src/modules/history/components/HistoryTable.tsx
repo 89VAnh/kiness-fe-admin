@@ -149,6 +149,9 @@ export default function HistoryTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: historyListQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total}`;
+        },
       }}
       columns={columns}
       dataSource={historyListQuery.data?.data?.data || []}

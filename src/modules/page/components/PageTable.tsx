@@ -109,6 +109,9 @@ export default function PageTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: customers.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} trang`;
+        },
       }}
       columns={columns}
       dataSource={customers.data?.data || []}

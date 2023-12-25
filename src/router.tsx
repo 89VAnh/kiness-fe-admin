@@ -253,7 +253,7 @@ export const router = createBrowserRouter([
       // Config
       {
         path: CONFIG_URL,
-        element: <Navigate to={PAGE_URL} />,
+        element: <Navigate to={SLIDES_URL} />,
       },
       {
         path: PAGE_URL,

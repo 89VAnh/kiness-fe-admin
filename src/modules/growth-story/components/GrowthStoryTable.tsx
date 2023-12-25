@@ -182,6 +182,9 @@ export default function GrowthStoryTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: growthStoriesQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} câu chuyện`;
+        },
       }}
       columns={columns}
       dataSource={growthStoriesQuery.data?.data?.data || []}

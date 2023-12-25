@@ -196,7 +196,7 @@
       "branch_name": "Tên chi nhánh",
       "fullname": "Tên người đăng ký",
       "gender": "Giới tính",
-      "level": "Cấp",
+      "level": "Lớp",
       "date": "Ngày đăng ký",
       "phone": "Số điện thoại",
       "address": "Địa chỉ",
@@ -556,7 +556,7 @@
       "serial": "STT",
       "image_url": "Ảnh",
       "title": "Tiêu đề",
-      " ": "Tác giả",
+      "author": "Tác giả",
       "publication_date": "Ngày xuất bản",
       "actions": "Tác vụ"
     },
@@ -634,7 +634,7 @@
       },
       "modal": {
         "title_create": "Thêm mới nhóm quyền",
-        "title_update": "Chi tiết nhóm quyền",
+        "title_update": "Chỉnh sửa nhóm quyền",
         "title_delete": "Xóa nhóm quyền"
       }
     },

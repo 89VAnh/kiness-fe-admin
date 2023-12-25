@@ -297,6 +297,7 @@ export default function EmployeeModal({
                   rules={[...RULES_FORM.required]}
                 >
                   <DatePicker
+                    inputReadOnly
                     format={formatDateShow}
                     style={{ width: "100%" }}
                     value={birthday}

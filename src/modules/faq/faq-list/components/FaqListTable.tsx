@@ -126,7 +126,10 @@ export default function FaqListTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: faqListQuery.data?.total_items || 0,
+        total: faqListQuery?.data?.data?.total_items || 0,
+        showTotal: (total, range) => {
+          return `${range[0]}-${range[1]} trong số ${total} câu hỏi`;
+        },
       }}
       columns={columns}
       dataSource={faqListQuery.data?.data?.data || []}

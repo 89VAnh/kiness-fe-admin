@@ -162,7 +162,7 @@ export default function EmployeeTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total}`;
+          return `${range[0]}-${range[1]} trên ${total} nhân viên`;
         },
         total: employeesQuery.data?.total_items || 0,
       }}

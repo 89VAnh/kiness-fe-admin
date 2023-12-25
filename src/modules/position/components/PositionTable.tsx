@@ -130,7 +130,7 @@ export default function PositionTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total}`;
+          return `${range[0]}-${range[1]} trên ${total} chức vụ`;
         },
         total: positionsQuery.data?.total_items || 0,
       }}

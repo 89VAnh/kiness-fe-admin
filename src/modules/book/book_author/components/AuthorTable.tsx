@@ -91,6 +91,9 @@ export default function BookAuthorTable(): JSX.Element {
           setPageSize(pageSize);
         },
         total: bookAuthorQuery.data?.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} tác giả sách`;
+        },
       }}
       columns={columns}
       dataSource={bookAuthorQuery.data?.data?.data || []}

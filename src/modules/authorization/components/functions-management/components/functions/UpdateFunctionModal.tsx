@@ -45,10 +45,14 @@ export function UpdateFunctionModal(): JSX.Element {
     config: {
       enabled: isOpen,
       onSuccess: (data) => {
-        setParentId(data.parent_id);
-        const urls = data.url?.split("/");
-        setUrl(urls?.[urls?.length - 1]);
-        form.setFieldsValue(data);
+        if (data.message === ERROR_TIMEOUT) {
+          refetch();
+        } else {
+          setParentId(data.parent_id);
+          const urls = data.url?.split("/");
+          setUrl(urls?.[urls?.length - 1]);
+          form.setFieldsValue(data);
+        }
       },
     },
   });

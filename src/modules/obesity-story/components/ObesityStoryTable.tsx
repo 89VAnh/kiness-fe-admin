@@ -173,6 +173,9 @@ export default function ObesityStoryTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: obesityStoriesQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} câu chuyện`;
+        },
       }}
       columns={columns}
       dataSource={obesityStoriesQuery.data?.data?.data || []}

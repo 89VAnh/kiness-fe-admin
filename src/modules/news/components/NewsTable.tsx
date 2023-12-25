@@ -137,7 +137,7 @@ export default function NewsTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total}`;
+          return `${range[0]}-${range[1]} trên ${total} tin tức`;
         },
         total: news.data?.total_items || 0,
       }}

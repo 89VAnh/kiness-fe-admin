@@ -150,7 +150,7 @@ export default function ResearcherTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total}`;
+          return `${range[0]}-${range[1]} trên ${total} nhà nghiên cứu`;
         },
         total: researchersQuery.data?.total_items || 0,
       }}

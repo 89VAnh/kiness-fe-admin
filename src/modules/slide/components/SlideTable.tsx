@@ -132,6 +132,9 @@ export default function SlideTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: slidesQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} slide`;
+        },
       }}
       columns={columns}
       dataSource={slidesQuery.data?.data || []}

@@ -113,6 +113,9 @@ export default function CityTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: citiesQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} khu vực`;
+        },
       }}
       columns={columns}
       dataSource={citiesQuery.data?.data || []}

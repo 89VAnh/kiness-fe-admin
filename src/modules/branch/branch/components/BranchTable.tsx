@@ -149,6 +149,9 @@ export default function BranchTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: branchesQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} chi nhánh`;
+        },
       }}
       columns={columns}
       dataSource={branchesQuery.data?.data || []}

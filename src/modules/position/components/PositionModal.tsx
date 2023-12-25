@@ -117,7 +117,9 @@ export default function PositionModal({
         </Tooltip>
       )}
       <Modal
-        title={t("position.title_create")}
+        title={
+          isCreate ? t("position.title_create") : t("position.title_update")
+        }
         // width={"90vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}

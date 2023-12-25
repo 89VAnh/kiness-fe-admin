@@ -82,6 +82,7 @@ export default function LicenseModal({
           message.success(t("messages.update_success"));
           handleCancel();
           queryClient.invalidateQueries([CACHE_LICENSE_OF_INVENTION.SEARCH]);
+          setDataEditor("");
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -97,6 +98,7 @@ export default function LicenseModal({
           message.success(t("messages.create_success"));
           handleCancel();
           queryClient.invalidateQueries([CACHE_LICENSE_OF_INVENTION.SEARCH]);
+          setDataEditor("");
         } else message.error(data.message);
       },
       onError: (err) => {
@@ -176,7 +178,11 @@ export default function LicenseModal({
         </Tooltip>
       )}
       <Modal
-        title={t("license_of_invention.title_create")}
+        title={
+          isCreate
+            ? t("license_of_invention.title_create")
+            : t("license_of_invention.title_update")
+        }
         width={"60vw"}
         style={{ top: 58, padding: 0 }}
         open={isOpen}

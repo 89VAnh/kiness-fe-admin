@@ -239,7 +239,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total}`;
+          return `${range[0]}-${range[1]} trên ${total} đơn đăng ký`;
         },
         total: experienceRegisterQuery.data?.total_items || 0,
       }}

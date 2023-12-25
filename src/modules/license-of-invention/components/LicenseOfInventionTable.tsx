@@ -126,7 +126,7 @@ export default function LicenseTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total}`;
+          return `${range[0]}-${range[1]} trên ${total} bằng sáng chế`;
         },
         total: licensesQuery.data?.total_items || 0,
       }}

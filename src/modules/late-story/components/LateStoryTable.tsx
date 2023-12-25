@@ -96,7 +96,12 @@ export default function LateStoryTable(): JSX.Element {
       title: t("fields.title"),
       dataIndex: "title",
       sorter: (a: any, b: any) => compareStrings(a, b, "title"),
-      width: "15%",
+      width: "30%",
+      render: (value) => (
+        <Typography.Paragraph ellipsis={{ rows: 2 }}>
+          {value}
+        </Typography.Paragraph>
+      ),
     },
     {
       title: t("fields.author_name"),
@@ -173,6 +178,9 @@ export default function LateStoryTable(): JSX.Element {
           setSearchParams(searchParams);
         },
         total: lateStoriesQuery.data?.total_items || 0,
+        showTotal(total, range) {
+          return `${range[0]}-${range[1]} trên ${total} câu chuyện`;
+        },
       }}
       columns={columns}
       dataSource={lateStoriesQuery.data?.data?.data || []}

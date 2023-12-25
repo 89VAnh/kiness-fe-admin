@@ -274,6 +274,7 @@ export default function ObesityStoryModal({
                   rules={[...RULES_FORM.required]}
                 >
                   <DatePicker
+                    inputReadOnly
                     format={formatDateShow}
                     className="w-full"
                     value={postedDate}

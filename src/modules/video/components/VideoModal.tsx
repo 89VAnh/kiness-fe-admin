@@ -130,7 +130,7 @@ export default function VideoModal({
         </Tooltip>
       )}
       <Modal
-        title={t("video.title_create")}
+        title={isCreate ? t("video.title_create") : t("video.title_update")}
         width={600}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
