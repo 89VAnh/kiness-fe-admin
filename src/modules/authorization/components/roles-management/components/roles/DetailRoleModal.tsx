@@ -137,7 +137,7 @@ export function DetailRoleModal(): JSX.Element {
               <RoleModal isCreate={false} id={record.role_id} />
             </Col>
             <Col>
-              <DeleteRoleModal id={record.role_id} name={record.role_name} />
+              <DeleteRoleModal id={record.role_id} />
             </Col>
           </Row>
         );

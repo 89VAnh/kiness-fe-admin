@@ -373,7 +373,14 @@ export default function EmployeeModal({
                     loading={isLoadingRole}
                     placeholder="Chọn quyền"
                     style={{ width: "100%" }}
-                    options={roleOptions?.message ? [] : roleOptions}
+                    options={
+                      roleOptions?.message
+                        ? []
+                        : roleOptions.filter(
+                            (x: { value: number; label: string }) =>
+                              x?.label?.toLowerCase() !== "khách hàng",
+                          )
+                    }
                   />
                 </Form.Item>
               </Col>

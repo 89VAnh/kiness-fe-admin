@@ -428,7 +428,7 @@
       "view_count": "Lượt xem",
       "actions": "Tác vụ",
       "is_draft": {
-        "title": "Trạng thái nháp",
+        "title": "Trạng thái",
         "1": {
           "label": "Nháp",
           "color": "red"
@@ -457,7 +457,7 @@
       "view_count": "Lượt xem",
       "actions": "Tác vụ",
       "is_draft": {
-        "title": "Trạng thái nháp",
+        "title": "Trạng thái",
         "1": {
           "label": "Nháp",
           "color": "red"
@@ -486,7 +486,7 @@
       "view_count": "Lượt xem",
       "actions": "Tác vụ",
       "is_draft": {
-        "title": "Trạng thái nháp",
+        "title": "Trạng thái",
         "1": {
           "label": "Nháp",
           "color": "red"
@@ -515,7 +515,7 @@
       "view_count": "Lượt xem",
       "actions": "Tác vụ",
       "is_draft": {
-        "title": "Trạng thái nháp",
+        "title": "Trạng thái",
         "1": {
           "label": "Nháp",
           "color": "red"
@@ -738,7 +738,7 @@
       "posted_date": "Ngày đăng",
       "view_count": "Lượt xem",
       "is_draft": {
-        "title": "Trạng thái nháp",
+        "title": "Trạng thái",
         "1": {
           "label": "Nháp",
           "color": "red"

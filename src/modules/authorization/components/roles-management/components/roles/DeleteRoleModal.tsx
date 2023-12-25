@@ -1,5 +1,5 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Modal, Tooltip, Typography, notification } from "antd";
+import { Button, Modal, Tooltip, notification } from "antd";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
@@ -10,14 +10,11 @@ import { useDisclosure } from "@/utils/modal";
 
 import styles from "../../../../scss/styles.module.scss";
 
-// import { queryClient } from "@/lib/react-query";
-
 interface Props {
   id: string | number;
-  name: string;
 }
 
-export function DeleteRoleModal({ id, name }: Props): JSX.Element {
+export function DeleteRoleModal({ id }: Props): JSX.Element {
   const { isOpen, close, open } = useDisclosure();
   const userRecoil = useRecoilValue(UserState);
   const { t } = useTranslation();
@@ -75,22 +72,7 @@ export function DeleteRoleModal({ id, name }: Props): JSX.Element {
         onCancel={handleCancel}
         // confirmLoading={deleteFee.isLoading}
       >
-        <div
-          style={{
-            textAlign: "center",
-            fontWeight: "700",
-            margin: "2rem 5rem",
-          }}
-        >
-          <Typography.Text
-            // level={4}
-            style={{ fontSize: "1.1rem" }}
-          >{`Bạn có muốn xoá `}</Typography.Text>
-          <Typography.Text type="danger" style={{ fontSize: "1.1rem" }}>
-            {name}{" "}
-          </Typography.Text>
-          ?
-        </div>
+        Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
       </Modal>
     </>
   );
