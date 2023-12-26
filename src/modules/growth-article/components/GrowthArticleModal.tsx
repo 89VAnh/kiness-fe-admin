@@ -183,7 +183,9 @@ export default function GrowthArticleModal({
                   label={t("growth_article.fields.is_draft.title")}
                   initialValue={1}
                 >
-                  <Select options={draftOptions} />
+                  <Select
+                    options={draftOptions?.filter((x) => x.value !== "")}
+                  />
                 </Form.Item>
               </Col>
               <Col span={6}>
@@ -217,7 +219,7 @@ export default function GrowthArticleModal({
                   rules={[...RULES_FORM.required]}
                 >
                   <Input.TextArea
-                    rows={4}
+                    rows={8}
                     placeholder={t("growth_article.fields.content")}
                   />
                 </Form.Item>

@@ -101,27 +101,6 @@ export default function RequestTable(): JSX.Element {
       ),
     },
     {
-      title: t("fields.content"),
-      dataIndex: "content",
-      width: "12%",
-      sorter: (a: any, b: any) => compareStrings(a, b, "content"),
-      render: (value) => (
-        <Typography.Paragraph ellipsis={{ rows: 2 }} title={value + ""}>
-          {value}
-        </Typography.Paragraph>
-      ),
-    },
-    {
-      title: t("fields.answer"),
-      dataIndex: "answer",
-      sorter: (a: any, b: any) => compareStrings(a, b, "answer"),
-      render: (value) => (
-        <Typography.Text style={{ width: 150 }} ellipsis title={value + ""}>
-          {value}
-        </Typography.Text>
-      ),
-    },
-    {
       title: t("fields.author_name"),
       dataIndex: "author_name",
       width: 150,
