@@ -79,7 +79,7 @@ export default function SlideTable(): JSX.Element {
     {
       title: t("fields.image_small"),
       dataIndex: "image_small",
-      width: 400,
+      width: 100,
       render: (value: any) => (
         <Image src={`${BASE_URL}/` + value} width={100} />
       ),
@@ -87,7 +87,7 @@ export default function SlideTable(): JSX.Element {
     {
       title: t("fields.caption"),
       dataIndex: "slide_caption",
-      width: 200,
+      width: 400,
     },
     {
       title: t("fields.order"),

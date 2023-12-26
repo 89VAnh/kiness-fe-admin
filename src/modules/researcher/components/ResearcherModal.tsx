@@ -186,7 +186,7 @@ export default function ResearcherModal({
         title={
           isCreate ? t("researcher.title_create") : t("researcher.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 800 }}
+        style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -207,17 +207,43 @@ export default function ResearcherModal({
                 <Input />
               </Form.Item>
 
-              <Col span={12}>
-                <Form.Item
-                  name={"name"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("researcher.fields.name")}
-                >
-                  <Input placeholder={t("researcher.fields.name")} />
-                </Form.Item>
+              <Col span={17}>
+                <Row gutter={32}>
+                  <Col span={24}>
+                    <Form.Item
+                      name={"name"}
+                      rules={[...RULES_FORM.required]}
+                      label={t("researcher.fields.name")}
+                    >
+                      <Input placeholder={t("researcher.fields.name")} />
+                    </Form.Item>
+                  </Col>
+                  <Col span={16}>
+                    <Form.Item
+                      name={"degree"}
+                      rules={[...RULES_FORM.required]}
+                      label={t("researcher.fields.degree")}
+                    >
+                      <Input placeholder={t("researcher.fields.degree")} />
+                    </Form.Item>
+                  </Col>
+
+                  <Col span={8}>
+                    <Form.Item
+                      name={"position_id"}
+                      rules={[...RULES_FORM.required]}
+                      label={t("researcher.fields.position")}
+                    >
+                      <Select
+                        style={{ width: "100%" }}
+                        options={positions.data || []}
+                      />
+                    </Form.Item>
+                  </Col>
+                </Row>
               </Col>
 
-              <Col span={8}>
+              <Col span={7}>
                 <Form.Item
                   name={"image_url"}
                   label={t("researcher.fields.image_url")}
@@ -228,29 +254,6 @@ export default function ResearcherModal({
                       <div style={{ marginTop: 8 }}>Upload</div>
                     </div>
                   </Upload>
-                </Form.Item>
-              </Col>
-
-              <Col span={12}>
-                <Form.Item
-                  name={"degree"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("researcher.fields.degree")}
-                >
-                  <Input placeholder={t("researcher.fields.degree")} />
-                </Form.Item>
-              </Col>
-
-              <Col span={12}>
-                <Form.Item
-                  name={"position_id"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("researcher.fields.position")}
-                >
-                  <Select
-                    style={{ width: "50%" }}
-                    options={positions.data || []}
-                  />
                 </Form.Item>
               </Col>
 

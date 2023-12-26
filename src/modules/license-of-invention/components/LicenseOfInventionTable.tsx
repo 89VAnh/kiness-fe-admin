@@ -59,14 +59,14 @@ export default function LicenseTable(): JSX.Element {
       title: t("fields.serial"),
       dataIndex: "serial",
       align: "center",
-      width: 50,
+      width: 10,
       render: (_, __, index) => <Typography.Text>{++index}</Typography.Text>,
       search: false,
     },
     {
       title: t("fields.image_url"),
       dataIndex: "image_url",
-      width: 100,
+      width: 80,
       align: "center",
       // render: (image_url) => <Image src={"/api/" + image_url} width={100} />,
       render: (image_url) => (
@@ -77,17 +77,17 @@ export default function LicenseTable(): JSX.Element {
     {
       title: t("fields.title"),
       dataIndex: "title",
-      width: 200,
+      width: 400,
     },
     {
       title: t("fields.license_no"),
       dataIndex: "license_no",
-      width: 100,
+      width: 30,
     },
     {
       title: t("fields.actions"),
       dataIndex: "action",
-      width: 100,
+      width: 50,
       align: "center",
       search: false,
       render: (_, record) => {

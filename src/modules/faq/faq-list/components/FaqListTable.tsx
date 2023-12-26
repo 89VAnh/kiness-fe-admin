@@ -9,6 +9,7 @@ import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchFaqs } from "@/loader/faq.loader";
 import { IFaq } from "@/models/faq";
 
+import TopicFaqModal from "../../topic-faq/TopicFaqModal";
 import FaqListDelete from "./FaqListDelete";
 import FaqListModal from "./FaqListModal";
 
@@ -70,28 +71,31 @@ export default function FaqListTable(): JSX.Element {
     {
       title: t("fields.topic_name"),
       dataIndex: "topic_name",
+      width: 100,
       render: (value) => (
-        <Typography.Text style={{ width: 100 }} ellipsis title={value + ""}>
+        <Typography.Paragraph ellipsis={{ rows: 2 }} title={value + ""}>
           {value}
-        </Typography.Text>
+        </Typography.Paragraph>
       ),
     },
     {
       title: t("fields.question"),
       dataIndex: "question",
+      width: 200,
       render: (value) => (
-        <Typography.Text style={{ width: 150 }} ellipsis title={value + ""}>
+        <Typography.Paragraph ellipsis={{ rows: 2 }} title={value + ""}>
           {value}
-        </Typography.Text>
+        </Typography.Paragraph>
       ),
     },
     {
       title: t("fields.answer"),
       dataIndex: "answer",
+      width: 250,
       render: (value) => (
-        <Typography.Text style={{ width: 200 }} ellipsis title={value + ""}>
+        <Typography.Paragraph ellipsis={{ rows: 2 }} title={value + ""}>
           {value}
-        </Typography.Text>
+        </Typography.Paragraph>
       ),
     },
     {
@@ -148,6 +152,7 @@ export default function FaqListTable(): JSX.Element {
           onFocus={(e) => e.target.select()}
         />,
         <FaqListModal />,
+        <TopicFaqModal />,
       ]}
       rowKey={"faq_id"}
     />

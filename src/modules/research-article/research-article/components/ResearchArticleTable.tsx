@@ -9,6 +9,7 @@ import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchResearchArticle } from "@/loader/research-article.loader";
 import { IResearchArticle } from "@/models/research-article";
 
+import AuthorManageModal from "../../article-author/AuthorManageModal";
 import ResearchArticleDelete from "./ResearchArticleDelete";
 import ResearchArticleModal from "./ResearchArticleModal";
 
@@ -59,16 +60,16 @@ export default function ResearchArticleTable(): JSX.Element {
       title: t("fields.serial"),
       dataIndex: "serial",
       align: "center",
-      width: 20,
+      width: 5,
       render: (_, __, index) => <Typography.Text>{++index}</Typography.Text>,
       search: false,
     },
     {
       title: t("fields.title"),
       dataIndex: "title",
-      width: 150,
+      width: 250,
       render: (text) => (
-        <Typography.Paragraph style={{ width: "150" }} ellipsis={{ rows: 2 }}>
+        <Typography.Paragraph ellipsis={{ rows: 2 }}>
           {text}
         </Typography.Paragraph>
       ),
@@ -78,7 +79,7 @@ export default function ResearchArticleTable(): JSX.Element {
       dataIndex: "authors",
       width: 100,
       render: (text) => (
-        <Typography.Paragraph style={{ width: "100" }} ellipsis={{ rows: 2 }}>
+        <Typography.Paragraph ellipsis={{ rows: 2 }}>
           {text}
         </Typography.Paragraph>
       ),
@@ -89,7 +90,7 @@ export default function ResearchArticleTable(): JSX.Element {
       dataIndex: "issuers",
       width: 150,
       render: (text) => (
-        <Typography.Paragraph style={{ width: "150" }} ellipsis={{ rows: 2 }}>
+        <Typography.Paragraph ellipsis={{ rows: 2 }}>
           {text}
         </Typography.Paragraph>
       ),
@@ -97,12 +98,13 @@ export default function ResearchArticleTable(): JSX.Element {
     {
       title: t("fields.year_of_release"),
       dataIndex: "year_of_release",
-      width: 20,
+      align: "right",
+      width: 30,
     },
     {
       title: t("fields.actions"),
       dataIndex: "action",
-      width: 100,
+      width: 30,
       align: "center",
       search: false,
       render: (_, record) => {
@@ -151,6 +153,7 @@ export default function ResearchArticleTable(): JSX.Element {
           onFocus={(e) => e.target.select()}
         />,
         <ResearchArticleModal />,
+        <AuthorManageModal />,
       ]}
       rowKey={"researchArticleQuery_id"}
     />
