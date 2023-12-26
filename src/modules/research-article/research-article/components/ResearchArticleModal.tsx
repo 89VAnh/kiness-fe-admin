@@ -166,7 +166,7 @@ export default function ResearchArticleModal({
         style={{
           top: 58,
           padding: 0,
-          minWidth: 1360 + 24 * 2 + 9.24 * 2 + 1 * 2,
+          minWidth: 1428.48,
         }}
         open={isOpen}
         onCancel={handleCancel}

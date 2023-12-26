@@ -205,7 +205,7 @@ export default function GrowthStoryModal({
             ? t("growth_story.title_create")
             : t("growth_story.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 800 }}
+        style={{ top: 58, padding: 0, minWidth: 1428.48 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
