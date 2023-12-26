@@ -30,7 +30,7 @@ export default function ColumnBasic(): JSX.Element {
     },
     label: {
       // 可手动配置 label 数据标签位置
-      position: "inside",
+      // position: "inside",
       // 'top', 'bottom', 'middle',
       // 配置样式
       style: {
