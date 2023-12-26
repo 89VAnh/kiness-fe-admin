@@ -95,9 +95,13 @@ export default function GrowthArticleTable(): JSX.Element {
       dataIndex: "content",
       sorter: (a: any, b: any) => compareStrings(a, b, "content"),
       render: (value) => (
-        <Typography.Text style={{ width: 150 }} ellipsis title={value + ""}>
+        <Typography.Paragraph
+          style={{ maxWidth: "100%" }}
+          ellipsis={{ rows: 2 }}
+          title={value + ""}
+        >
           {value}
-        </Typography.Text>
+        </Typography.Paragraph>
       ),
     },
     {

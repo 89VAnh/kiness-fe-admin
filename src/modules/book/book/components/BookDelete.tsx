@@ -48,7 +48,7 @@ export default function BookDelete({ id }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
-        title={t("book.topic.title_delete")}
+        title={t("book.author.title_delete")}
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}

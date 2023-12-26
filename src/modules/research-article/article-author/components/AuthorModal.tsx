@@ -158,6 +158,7 @@ export default function ArticleAuthorModal({
                 >
                   <TextArea
                     placeholder={t("research_article.author.fields.link")}
+                    rows={6}
                   />
                 </Form.Item>
               </Col>

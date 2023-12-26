@@ -3,12 +3,11 @@ import { Input, Space, Typography } from "antd";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import { ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchVideos } from "@/loader/video.loader";
 import { IVideo } from "@/models/video";
-import { extractVideoId } from "@/utils/format-string";
 
 import VideoDelete from "./VideoDelete";
 import VideoModal from "./VideoModal";
@@ -65,22 +64,20 @@ export default function VideoTable(): JSX.Element {
     {
       title: t("fields.video_name"),
       dataIndex: "video_name",
-      width: 150,
+      width: 400,
     },
     {
-      title: t("fields.video_link"),
-      dataIndex: "video_link",
-      width: 250,
-      render: (value) => {
-        const data = value?.toString();
-
+      title: t("fields.video_preview"),
+      dataIndex: "video_preview",
+      width: 150,
+      render: (_, record) => {
         return (
           <iframe
             width="250"
             height={100}
-            src={`https://www.youtube.com/embed/${extractVideoId(
-              data + "",
-            )}?autoplay=0`}
+            src={`https://www.youtube.com/embed/${
+              record.video_code + ""
+            }?autoplay=0`}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             frameBorder={0}
@@ -90,9 +87,21 @@ export default function VideoTable(): JSX.Element {
       },
     },
     {
+      title: t("fields.video_link"),
+      dataIndex: "video_link",
+      width: 150,
+      render: (_, record) => {
+        return (
+          <Link to={`https://www.youtube.com/watch?v=` + record.video_code}>
+            {`https://www.youtube.com/watch?v=` + record.video_code}
+          </Link>
+        );
+      },
+    },
+    {
       title: t("fields.is_foreign"),
       dataIndex: "is_foreign",
-      width: 200,
+      width: 80,
       align: "center",
       render: (value) =>
         value?.toString() === "0" ? t("fields.local") : t("fields.world"),
@@ -100,7 +109,7 @@ export default function VideoTable(): JSX.Element {
     {
       title: t("fields.actions"),
       dataIndex: "action",
-      width: 100,
+      width: 50,
       align: "center",
       search: false,
       render: (_, record) => {

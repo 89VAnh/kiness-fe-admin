@@ -76,7 +76,7 @@ export default function ResearcherTable(): JSX.Element {
     {
       title: t("fields.name"),
       dataIndex: "name",
-      width: 100,
+      width: 200,
     },
 
     {
@@ -92,7 +92,7 @@ export default function ResearcherTable(): JSX.Element {
     {
       title: t("fields.created_date_time"),
       dataIndex: "created_date_time",
-      width: 200,
+      width: 100,
       align: "center",
       valueType: "date",
       render: (_, researcher) => {
@@ -106,7 +106,7 @@ export default function ResearcherTable(): JSX.Element {
     {
       title: t("fields.created_user"),
       dataIndex: "created_user",
-      width: 200,
+      width: 100,
     },
     {
       title: t("fields.actions"),

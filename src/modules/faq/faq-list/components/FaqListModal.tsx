@@ -144,7 +144,7 @@ export default function FaqListModal({
         title={
           isCreate ? t("faq.list.title_create") : t("faq.list.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 600 }}
+        style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -162,7 +162,7 @@ export default function FaqListModal({
               <Form.Item name={"faq_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={8}>
+              <Col span={24}>
                 <Form.Item
                   name={"topic_id"}
                   label={t("faq.list.fields.topic_name")}
@@ -182,7 +182,10 @@ export default function FaqListModal({
                   label={t("faq.list.fields.question")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Input.TextArea placeholder={t("faq.list.fields.question")} />
+                  <Input.TextArea
+                    rows={4}
+                    placeholder={t("faq.list.fields.question")}
+                  />
                 </Form.Item>
               </Col>
               <Col span={24}>
@@ -193,7 +196,7 @@ export default function FaqListModal({
                 >
                   <Input.TextArea
                     placeholder={t("faq.list.fields.answer")}
-                    rows={4}
+                    rows={8}
                   />
                 </Form.Item>
               </Col>

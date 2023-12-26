@@ -38,32 +38,7 @@
     "manager": "Quản lý nội dung",
     "config": "Cấu hình website",
     "admin": "Quản trị hệ thống",
-    "dashboard": "Dashboard",
-    "news": "Quản lý tin tức",
-    "customer": "Quản lý khách hàng",
-    "employee": "Quản lý nhân viên",
-    "experience_register": "Quản lý đăng ký trải nghiệm",
-    "test_register": "Quản lý đăng ký kiểm tra",
-    "branch_register": "Quản lý đăng ký trung tâm",
-    "page": "Quản lý các trang",
-    "slides": "Quản lý slides",
-    "branch": "Quản lý chi nhánh",
-    "city": "Quản lý thành phố",
-    "position": "Quản lý chức vụ",
-    "researcher": "Quản lý nhà nghiên cứu",
-    "faq": "Quản lý câu hỏi thường gặp",
-    "research_article": "Quản lý bài nghiên cứu",
-    "request": "Quản lý yêu cầu",
-    "growth_story": "Quản lý câu chuyện tăng trưởng",
-    "posture_story": "Quản lý trường hợp chỉnh sửa tư thế",
-    "late_story": "Quản lý trường hợp trễ hạn",
-    "obesity_story": "Quản lý trường hợp béo phì",
-    "license_of_invention": "Quản lý bằng sáng chế",
-    "book": "Quản lý sách xuất bản",
-    "function": "Quản lý chức năng",
-    "role": "Quản lý nhóm quyền",
-    "user": "Quản lý người dùng",
-    "history": "Quản lý lịch sử"
+    "dashboard": "Dashboard"
   },
   "avatar": {
     "profile": {
@@ -81,14 +56,14 @@
   "dashboard": {
     "total_customer": "Khách hàng",
     "total_employee": "Nhân viên",
-    "total_experience": "ĐK trải nghiệm",
+    "total_experience": "Đăng ký trải nghiệm",
     "total_branch": "Chi nhánh",
-    "total_test": "ĐK kiểm tra",
+    "total_test": "Đăng ký kiểm tra",
     "total_news": "Tin tức",
     "total_request": "Câu hỏi chưa trả lời"
   },
   "customer": {
-    "title": "Quản lý khách hàng",
+    "title": "Khách hàng",
     "title_create": "Thêm mới khách hàng",
     "title_update": "Cập nhật khách hàng",
     "search_placeholder": "Tìm kiếm",
@@ -111,7 +86,7 @@
     }
   },
   "employee": {
-    "title": "Quản lý nhân viên",
+    "title": "Nhân viên",
     "title_create": "Thêm mới nhân viên",
     "title_update": "Cập nhật nhân viên",
     "search_placeholder": "Tìm kiếm",
@@ -145,7 +120,7 @@
     "fields": {
       "serial": "STT",
       "id": "Tin",
-      "thumbnail": "Ảnh",
+      "thumbnail": "Ảnh đại diện",
       "title": "Tiêu đề",
       "content": "Nội dung",
       "content_html": "Nội dung tin tức",
@@ -193,8 +168,8 @@
     "fields": {
       "serial": "STT",
       "id": "Mã đơn",
-      "branch_name": "Tên chi nhánh",
-      "fullname": "Tên người đăng ký",
+      "branch_name": "Chi nhánh",
+      "fullname": "Người đăng ký",
       "gender": "Giới tính",
       "level": "Lớp",
       "date": "Ngày đăng ký",
@@ -237,10 +212,10 @@
 
     "fields": {
       "serial": "STT",
-      "thumbnail": "Ảnh",
+      "thumbnail": "Ảnh đại diện",
       "branch_name": "Tên chi nhánh",
       "phone": "Số điện thoại",
-      "city_name": "Tên khu vực",
+      "city_name": "Khu vực",
       "address": "Địa chỉ",
       "actions": "Tác vụ",
       "city": "Khu vực",
@@ -363,7 +338,7 @@
 
       "fields": {
         "serial": "STT",
-        "name": "Tên tác giả",
+        "name": "Tác giả",
         "link": "Liên kết",
         "actions": "Tác vụ"
       }
@@ -381,7 +356,7 @@
       "subject": "Yêu cầu",
       "content": "Nội dung",
       "answer": "Câu trả lời",
-      "author_name": "Tên người yêu cầu",
+      "author_name": "Người yêu cầu",
       "phone_number": "Số điện thoại",
       "email": "Email",
       "answered_by": "Người trả lời",
@@ -422,8 +397,8 @@
       "serial": "STT",
       "title": "Tiêu đề",
       "content": "Nội dung",
-      "image_link": "Thumbnail",
-      "author_name": "Tên người đăng bài",
+      "image_link": "Ảnh đại diện",
+      "author_name": "Người đăng bài",
       "posted_date": "Ngày đăng",
       "view_count": "Lượt xem",
       "actions": "Tác vụ",
@@ -451,8 +426,8 @@
       "serial": "STT",
       "title": "Tiêu đề",
       "content": "Nội dung",
-      "image_link": "Thumbnail",
-      "author_name": "Tên người đăng bài",
+      "image_link": "Ảnh đại diện",
+      "author_name": "Người đăng bài",
       "posted_date": "Ngày đăng",
       "view_count": "Lượt xem",
       "actions": "Tác vụ",
@@ -470,18 +445,18 @@
     }
   },
   "late_story": {
-    "title": "Quản lý trường hợp trễ hạn",
+    "title": "Quản lý trường hợp phát triển chậm",
     "search_placeholder": "Tìm kiếm",
-    "title_update": "Cập nhật trường hợp trễ hạn",
-    "title_create": "Thêm trường hợp trễ hạn",
-    "title_delete": "Xóa trường hợp trễ hạn",
+    "title_update": "Cập nhật trường hợp phát triển chậm",
+    "title_create": "Thêm trường hợp phát triển chậm",
+    "title_delete": "Xóa trường hợp phát triển chậm",
 
     "fields": {
       "serial": "STT",
       "title": "Tiêu đề",
       "content": "Nội dung",
-      "image_link": "Thumbnail",
-      "author_name": "Tên người đăng bài",
+      "image_link": "Ảnh đại diện",
+      "author_name": "Người đăng bài",
       "posted_date": "Ngày đăng",
       "view_count": "Lượt xem",
       "actions": "Tác vụ",
@@ -509,8 +484,8 @@
       "serial": "STT",
       "title": "Tiêu đề",
       "content": "Nội dung",
-      "image_link": "Thumbnail",
-      "author_name": "Tên người đăng bài",
+      "image_link": "Ảnh đại diện",
+      "author_name": "Người đăng bài",
       "posted_date": "Ngày đăng",
       "view_count": "Lượt xem",
       "actions": "Tác vụ",
@@ -570,7 +545,7 @@
 
       "fields": {
         "serial": "STT",
-        "name": "Tên tác giả",
+        "name": "Tác giả",
         "link": "Liên kết",
         "actions": "Tác vụ"
       }
@@ -703,13 +678,15 @@
     }
   },
   "video": {
-    "title": "Quản lý TV",
+    "title": "Quản lý Video",
     "search_placeholder": "Tìm kiếm",
 
     "fields": {
       "serial": "STT",
-      "video_name": "Tên TV",
-      "video_link": "Link",
+      "video_name": "Tiêu đề video",
+      "video_preview": "Xem trước",
+      "video_link": "Liên kết",
+      "video_share_url": "Đường dẫn video youtube",
       "is_foreign": "Khu vực",
       "local": "Trong nước",
       "world": "Ngoài nước",
@@ -718,9 +695,9 @@
       "actions": "Tác vụ"
     },
 
-    "title_update": "Cập nhật TV",
-    "title_create": "Thêm TV",
-    "title_delete": "Xóa TV"
+    "title_update": "Cập nhật video",
+    "title_create": "Thêm video",
+    "title_delete": "Xóa video"
   },
   "growth_article": {
     "title": "Quản lý câu hỏi tăng trưởng",
@@ -733,7 +710,7 @@
       "serial": "STT",
       "title": "Câu hỏi",
       "content": "Nội dung",
-      "author_name": "Tên tác giả",
+      "author_name": "Tác giả",
       "image_link": "Hình ảnh",
       "posted_date": "Ngày đăng",
       "view_count": "Lượt xem",

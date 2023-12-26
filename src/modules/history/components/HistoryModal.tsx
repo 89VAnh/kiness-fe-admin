@@ -11,6 +11,7 @@ import {
   Tooltip,
   message,
 } from "antd";
+import { RangePickerProps } from "antd/es/date-picker";
 import TextArea from "antd/es/input/TextArea";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
@@ -102,8 +103,7 @@ export default function HistoryModal({
           updateHistory.mutate(dataPost);
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         message.warning(t("messages.validate_form"));
       });
   };
@@ -115,6 +115,10 @@ export default function HistoryModal({
 
   const handleOpen = () => {
     open();
+  };
+
+  const disabledDate: RangePickerProps["disabledDate"] = (current) => {
+    return current && current > dayjs().endOf("day");
   };
 
   return (
@@ -170,6 +174,7 @@ export default function HistoryModal({
                     inputReadOnly
                     picker="year"
                     defaultValue={dayjs()}
+                    disabledDate={disabledDate}
                   />
                 </Form.Item>
               </Col>

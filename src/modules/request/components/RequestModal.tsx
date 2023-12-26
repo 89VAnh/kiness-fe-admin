@@ -145,7 +145,7 @@ export default function RequestModal({
               <Form.Item name={"request_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={6}>
+              <Col span={18}>
                 <Form.Item
                   name={"subject"}
                   label={t("request.fields.subject")}
@@ -180,20 +180,13 @@ export default function RequestModal({
                 </Form.Item>
               </Col>
 
-              <Col span={6}>
+              <Col span={12}>
                 <Form.Item name={"email"} label={t("request.fields.email")}>
                   <Input disabled />
                 </Form.Item>
               </Col>
-              <Col span={6}>
-                <Form.Item
-                  name={"phone_number"}
-                  label={t("request.fields.phone_number")}
-                >
-                  <Input disabled />
-                </Form.Item>
-              </Col>
-              <Col span={6}>
+
+              <Col span={12}>
                 <Form.Item
                   name={"author_name"}
                   label={t("request.fields.author_name")}
@@ -209,7 +202,14 @@ export default function RequestModal({
                   <Input disabled />
                 </Form.Item>
               </Col>
-
+              <Col span={6}>
+                <Form.Item
+                  name={"phone_number"}
+                  label={t("request.fields.phone_number")}
+                >
+                  <Input disabled />
+                </Form.Item>
+              </Col>
               <Col span={24}>
                 <Form.Item
                   name={"content"}
@@ -219,6 +219,7 @@ export default function RequestModal({
                   <Input.TextArea
                     disabled
                     placeholder={t("request.fields.content")}
+                    rows={4}
                   />
                 </Form.Item>
               </Col>
