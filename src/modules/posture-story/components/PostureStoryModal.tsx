@@ -204,7 +204,7 @@ export default function PostureStoryModal({
             ? t("posture_story.title_create")
             : t("posture_story.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 1000 }}
+        style={{ top: 58, padding: 0, minWidth: 1428.48 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -223,7 +223,69 @@ export default function PostureStoryModal({
               <Form.Item name={"posture_story_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={8}>
+
+              <Col span={19}>
+                <Row gutter={32}>
+                  <Col span={16}>
+                    <Form.Item
+                      name={"title"}
+                      label={t("posture_story.fields.title")}
+                      rules={[...RULES_FORM.required]}
+                    >
+                      <Input placeholder={t("posture_story.fields.title")} />
+                    </Form.Item>
+                  </Col>
+                  <Col span={8}>
+                    <Form.Item
+                      name={"is_draft"}
+                      label={t("posture_story.fields.is_draft.title")}
+                      rules={[...RULES_FORM.required]}
+                      initialValue={1}
+                    >
+                      <Select
+                        options={draftOptions?.filter((x) => x.value !== "")}
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item
+                      name={"author_name"}
+                      label={t("posture_story.fields.author_name")}
+                      rules={[...RULES_FORM.required]}
+                      initialValue={userProfile.full_name}
+                    >
+                      <Input autoCapitalize="" />
+                    </Form.Item>
+                  </Col>
+
+                  <Col span={6}>
+                    <Form.Item
+                      label={t("posture_story.fields.posted_date")}
+                      rules={[...RULES_FORM.required]}
+                    >
+                      <DatePicker
+                        inputReadOnly
+                        format={formatDateShow}
+                        className="w-full"
+                        value={postedDate}
+                        onChange={(value) => setPostedDate(value)}
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={6}>
+                    <Form.Item
+                      name={"view_count"}
+                      label={t("posture_story.fields.view_count")}
+                      rules={[...RULES_FORM.required]}
+                      initialValue={0}
+                    >
+                      <InputNumber min={0} className="w-full" />
+                    </Form.Item>
+                  </Col>
+                </Row>
+              </Col>
+
+              <Col span={5}>
                 <Form.Item
                   name={"image_link"}
                   label={t("posture_story.fields.image_link")}
@@ -235,61 +297,6 @@ export default function PostureStoryModal({
                       <div style={{ marginTop: 8 }}>Upload</div>
                     </div>
                   </Upload>
-                </Form.Item>
-              </Col>
-              <Col span={8}>
-                <Form.Item
-                  name={"title"}
-                  label={t("posture_story.fields.title")}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <Input placeholder={t("posture_story.fields.title")} />
-                </Form.Item>
-              </Col>
-              <Col span={8}>
-                <Form.Item
-                  name={"is_draft"}
-                  label={t("posture_story.fields.is_draft.title")}
-                  rules={[...RULES_FORM.required]}
-                  initialValue={1}
-                >
-                  <Select options={draftOptions} />
-                </Form.Item>
-              </Col>
-              <Col span={8}>
-                <Form.Item
-                  name={"author_name"}
-                  label={t("posture_story.fields.author_name")}
-                  rules={[...RULES_FORM.required]}
-                  initialValue={userProfile.full_name}
-                >
-                  <Input autoCapitalize="" />
-                </Form.Item>
-              </Col>
-
-              <Col span={8}>
-                <Form.Item
-                  // name={"date"}
-                  label={t("posture_story.fields.posted_date")}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <DatePicker
-                    inputReadOnly
-                    format={formatDateShow}
-                    className="w-full"
-                    value={postedDate}
-                    onChange={(value) => setPostedDate(value)}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={8}>
-                <Form.Item
-                  name={"view_count"}
-                  label={t("posture_story.fields.view_count")}
-                  rules={[...RULES_FORM.required]}
-                  initialValue={0}
-                >
-                  <InputNumber min={0} className="w-full" />
                 </Form.Item>
               </Col>
 

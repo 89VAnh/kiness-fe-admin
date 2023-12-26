@@ -1,5 +1,5 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Image, Input, Select, Space, Tag, Typography } from "antd";
+import { DatePicker, Image, Input, Select, Space, Tag, Typography } from "antd";
 import dayjs from "dayjs";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ import { BASE_URL, ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchLateStories } from "@/loader/late-story.loader";
 import { ILateStory } from "@/models/late-story";
 import { compareNumbers, compareStrings } from "@/utils/array";
-import { formatDateShow } from "@/utils/format-string";
+import { formatDatePost, formatDateShow } from "@/utils/format-string";
 
 import { draftOptions } from "../data/data-fake";
 import LateStoryDelete from "./LateStoryDelete";
@@ -19,6 +19,7 @@ import LateStoryModal from "./LateStoryModal";
 export default function LateStoryTable(): JSX.Element {
   const { t } = useTranslation("translation", { keyPrefix: "late_story" });
   const [searchParams, setSearchParams] = useSearchParams();
+  const [rangeDate, setRangeDate] = useState<string[]>([]);
   const [searchContent, setSearchContent] = useState<string>(
     searchParams.get("k") || "",
   );
@@ -38,6 +39,8 @@ export default function LateStoryTable(): JSX.Element {
       page_size: pageSize,
       search_content: isEmpty(searchContent) ? null : searchContent,
       is_draft: isEmpty(draftStatus) ? null : +draftStatus,
+      from_date: rangeDate[0] ? rangeDate[0] : null,
+      to_date: rangeDate[1] ? rangeDate[1] : null,
     },
     config: {
       onSuccess: (data) => {
@@ -70,6 +73,8 @@ export default function LateStoryTable(): JSX.Element {
     setSearchParams(searchParams);
     setPage(1);
   };
+
+  const { RangePicker } = DatePicker;
 
   const columns: ProColumns<ILateStory>[] = [
     {
@@ -190,6 +195,17 @@ export default function LateStoryTable(): JSX.Element {
         settings: [],
       }}
       toolBarRender={() => [
+        <RangePicker
+          format={formatDateShow}
+          style={{ width: 600 }}
+          onChange={(range) => {
+            setRangeDate(
+              range
+                ? range.map((x) => (x ? x.format(formatDatePost) : ""))
+                : [],
+            );
+          }}
+        />,
         <Select
           options={draftOptions}
           defaultValue={draftStatus ? +draftStatus : ""}
