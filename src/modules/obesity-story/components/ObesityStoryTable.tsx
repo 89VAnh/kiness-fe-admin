@@ -96,7 +96,7 @@ export default function ObesityStoryTable(): JSX.Element {
       title: t("fields.title"),
       dataIndex: "title",
       sorter: (a: any, b: any) => compareStrings(a, b, "title"),
-      width: "15%",
+      width: "25%",
     },
     {
       title: t("fields.author_name"),

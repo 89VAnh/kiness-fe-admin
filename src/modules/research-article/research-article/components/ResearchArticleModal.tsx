@@ -12,6 +12,7 @@ import {
   Tooltip,
   message,
 } from "antd";
+import TextArea from "antd/es/input/TextArea";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -162,7 +163,11 @@ export default function ResearchArticleModal({
             ? t("research_article.title_create")
             : t("research_article.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 1000 }}
+        style={{
+          top: 58,
+          padding: 0,
+          minWidth: 1360 + 24 * 2 + 9.24 * 2 + 1 * 2,
+        }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -207,19 +212,7 @@ export default function ResearchArticleModal({
                 </Form.Item>
               </Col>
 
-              <Col span={12}>
-                <Form.Item
-                  name={"article_link"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("research_article.fields.article_link")}
-                >
-                  <Input
-                    placeholder={t("research_article.fields.article_link")}
-                  />
-                </Form.Item>
-              </Col>
-
-              <Col span={12}>
+              <Col span={6}>
                 <Form.Item
                   name={"year_of_release"}
                   rules={[...RULES_FORM.required]}
@@ -229,16 +222,28 @@ export default function ResearchArticleModal({
                     inputReadOnly
                     placeholder={t("research_article.fields.year_of_release")}
                     picker="year"
+                    style={{ width: "100%" }}
                   />
                 </Form.Item>
               </Col>
-              <Col span={24}>
+              <Col span={18}>
                 <Form.Item
                   name={"issuers"}
                   rules={[...RULES_FORM.required]}
                   label={t("research_article.fields.issuers")}
                 >
                   <Input placeholder={t("research_article.fields.issuers")} />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <Form.Item
+                  name={"article_link"}
+                  rules={[...RULES_FORM.required]}
+                  label={t("research_article.fields.article_link")}
+                >
+                  <TextArea
+                    placeholder={t("research_article.fields.article_link")}
+                  />
                 </Form.Item>
               </Col>
               <Col span={24}>
