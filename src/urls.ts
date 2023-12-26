@@ -4,43 +4,48 @@ const HOME_URL = "/dashboard";
 const LOGIN_URL = "/login";
 const NEW_PASSWORD_URL = "/new-password";
 
-// Manager
-const MANAGER_URL = "/manager";
-const EXPERIENCE_REGISTER_URL = `${MANAGER_URL}/experience-register`;
-const REQUEST_URL = `${MANAGER_URL}/request`;
-const FAQ_URL = `${MANAGER_URL}/faq`;
-const RESEARCH_ARTICLE_URL = `${MANAGER_URL}/research-article`;
-const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
-const GROWTH_STORY_URL = `${MANAGER_URL}/growth-story`;
-const POSTURE_STORY_URL = `${MANAGER_URL}/posture-story`;
-const LATE_STORY_URL = `${MANAGER_URL}/late-story`;
-const OBESITY_STORY_URL = `${MANAGER_URL}/obesity-story`;
-const LICENSE_OF_INVENTION_URL = `${MANAGER_URL}/license-of-invention`;
-const BOOK_URL = `${MANAGER_URL}/book`;
-const HISTORY_URL = `${MANAGER_URL}/history`;
-const ORGANIZATION_URL = `${MANAGER_URL}/organization`;
-const VIDEO_URL = `${MANAGER_URL}/video`;
-const GROWTH_ARTICLE_URL = `${MANAGER_URL}/growth-article`;
+// Customer
+const CUSTOMER_URL = "/customer";
+const EXPERIENCE_REGISTER_URL = `${CUSTOMER_URL}/experience-register`;
+const REQUEST_URL = `${CUSTOMER_URL}/request`;
+const FAQ_URL = `${CUSTOMER_URL}/faq`;
+const GROWTH_STORY_URL = `${CUSTOMER_URL}/growth-story`;
+const POSTURE_STORY_URL = `${CUSTOMER_URL}/posture-story`;
+const LATE_STORY_URL = `${CUSTOMER_URL}/late-story`;
+const OBESITY_STORY_URL = `${CUSTOMER_URL}/obesity-story`;
+const GROWTH_ARTICLE_URL = `${CUSTOMER_URL}/growth-article`;
 
 // Config
 const CONFIG_URL = "/config";
 const PAGE_URL = `${CONFIG_URL}/pages`;
-const SLIDES_URL = `${CONFIG_URL}/slides`;
+
+// Manager
+const MANAGER_URL = "/manager";
+const RESEARCH_ARTICLE_URL = `${MANAGER_URL}/research-article`;
+const RESEARCHER_URL = `${MANAGER_URL}/researcher`;
+const LICENSE_OF_INVENTION_URL = `${MANAGER_URL}/license-of-invention`;
+const BOOK_URL = `${MANAGER_URL}/book`;
+const HISTORY_URL = `${MANAGER_URL}/history`;
+const ORGANIZATION_URL = `${MANAGER_URL}/organization`;
+const EMPLOYEE_URL = `${MANAGER_URL}/employees`;
+const VIDEO_URL = `${MANAGER_URL}/video`;
+const BRANCH_URL = `${MANAGER_URL}/branch`;
 
 // Administration
 const ADMIN_URL = `/admin`;
-const BRANCH_URL = `${ADMIN_URL}/branch`;
-const EMPLOYEE_URL = `${ADMIN_URL}/employees`;
 const POSITION_URL = `${ADMIN_URL}/position`;
 const FUNCTION_URL = `${ADMIN_URL}/functions`;
 const ROLE_URL = `${ADMIN_URL}/roles`;
 const USER_URL = `${ADMIN_URL}/users`;
+const SLIDES_URL = `${ADMIN_URL}/slides`;
 
 const breadcrumbNameMap: Record<string, string> = {
   [HOME_URL]: "Trang chủ",
 };
 
 export {
+  //Customer
+  CUSTOMER_URL,
   // Admin
   ADMIN_URL,
   BOOK_URL,

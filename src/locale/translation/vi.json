@@ -585,7 +585,7 @@
         "action_code": "Mã thao tác",
         "action_name": "Tên thao tác",
         "description": "Mô tả",
-        "action": "Action"
+        "action": "Tác vụ"
       },
       "modal": {
         "title_create": "Thêm mới chi tiết",
@@ -594,7 +594,7 @@
       }
     },
     "roles": {
-      "title": "QUẢN LÝ NHÓM QUYỀN",
+      "title": "Quản lý nhóm quyền",
       "title_role": "Danh sách nhóm quyền",
       "search_placeholder": "Tìm kiếm",
       "dropdown_role_placeholder": "Chọn nhóm quyền",
@@ -605,7 +605,7 @@
         "role_code": "Mã nhóm quyền",
         "role_name": "Tên nhóm quyền",
         "description": "Mô tả",
-        "action": "Action"
+        "action": "Tác vụ"
       },
       "modal": {
         "title_create": "Thêm mới nhóm quyền",
@@ -630,7 +630,7 @@
         "email": "Email",
         "phone": "Số điện thoại",
         "roles": "Danh sách nhóm quyền",
-        "action": "Action"
+        "action": "Tác vụ"
       },
       "modal": {
         "title_create": "Thêm mới người dùng",

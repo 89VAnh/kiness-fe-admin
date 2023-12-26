@@ -43,7 +43,7 @@ export function CreateOrganizationModal({ node, tree }: Props): JSX.Element {
   const [form] = Form.useForm();
   const { isOpen, close, open } = useDisclosure();
   const { t } = useTranslation();
-  const [parentId, setParentId] = useState("0");
+  const [parentId, setParentId] = useState(node?.parent_id || "0");
   const userRecoil = useRecoilValue(UserState);
 
   const createDiagram = useCreateDiagram({

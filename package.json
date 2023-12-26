@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
-    "@ant-design/plots": "^1.2.5",
+    "@ant-design/plots": "^2.1.4",
     "@ant-design/pro-components": "^2.6.28",
     "@ckeditor/ckeditor5-alignment": "^40.0.0",
     "@ckeditor/ckeditor5-basic-styles": "^40.0.0",
