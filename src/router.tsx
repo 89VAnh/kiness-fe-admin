@@ -32,6 +32,7 @@ import {
   BOOK_URL,
   BRANCH_URL,
   CONFIG_URL,
+  CUSTOMER_URL,
   EMPLOYEE_URL,
   EXPERIENCE_REGISTER_URL,
   FAQ_URL,
@@ -98,17 +99,6 @@ export const router = createBrowserRouter([
           />
         ),
       },
-      {
-        path: BRANCH_URL,
-        element: (
-          <ProtectedComponent
-            Element={BranchManagePage}
-            title="Quản lý chi nhánh"
-            url={BRANCH_URL}
-          />
-        ),
-      },
-
       {
         path: FAQ_URL,
         element: (
@@ -180,6 +170,42 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: VIDEO_URL,
+        element: (
+          <ProtectedComponent
+            Element={VideoPage}
+            title="Quản lý TV"
+            url={VIDEO_URL}
+          />
+        ),
+      },
+      {
+        path: GROWTH_ARTICLE_URL,
+        element: (
+          <ProtectedComponent
+            Element={GrowthArticlePage}
+            title="Quản lý câu hỏi tăng trưởng"
+            url={GROWTH_ARTICLE_URL}
+          />
+        ),
+      },
+
+      // Customer
+      {
+        path: CUSTOMER_URL,
+        element: <Navigate to={BRANCH_URL} />,
+      },
+      {
+        path: BRANCH_URL,
+        element: (
+          <ProtectedComponent
+            Element={BranchManagePage}
+            title="Quản lý chi nhánh"
+            url={BRANCH_URL}
+          />
+        ),
+      },
+      {
         path: LICENSE_OF_INVENTION_URL,
         element: (
           <ProtectedComponent
@@ -229,26 +255,6 @@ export const router = createBrowserRouter([
           />
         ),
       },
-      {
-        path: VIDEO_URL,
-        element: (
-          <ProtectedComponent
-            Element={VideoPage}
-            title="Quản lý TV"
-            url={VIDEO_URL}
-          />
-        ),
-      },
-      {
-        path: GROWTH_ARTICLE_URL,
-        element: (
-          <ProtectedComponent
-            Element={GrowthArticlePage}
-            title="Quản lý câu hỏi tăng trưởng"
-            url={GROWTH_ARTICLE_URL}
-          />
-        ),
-      },
 
       // Config
       {
@@ -262,16 +268,6 @@ export const router = createBrowserRouter([
             Element={PageManagePage}
             title="Quản lý các trang"
             url={PAGE_URL}
-          />
-        ),
-      },
-      {
-        path: SLIDES_URL,
-        element: (
-          <ProtectedComponent
-            Element={SlideManagePage}
-            title="Quản lý slides"
-            url={SLIDES_URL}
           />
         ),
       },
@@ -328,6 +324,16 @@ export const router = createBrowserRouter([
             Element={RolePage}
             title="Quản lý nhóm quyền"
             url={ROLE_URL}
+          />
+        ),
+      },
+      {
+        path: SLIDES_URL,
+        element: (
+          <ProtectedComponent
+            Element={SlideManagePage}
+            title="Quản lý slides"
+            url={SLIDES_URL}
           />
         ),
       },

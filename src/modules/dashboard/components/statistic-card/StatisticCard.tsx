@@ -17,7 +17,7 @@ import {
 import { UserState } from "@/store/auth/atom";
 
 import { colorStatistic } from "./data/data";
-import styles from "./styles/statistic.module.scss";
+import styles from "./scss/statistic.module.scss";
 
 export default function StatisticDash(): JSX.Element {
   const { t } = useTranslation();
@@ -84,35 +84,26 @@ export default function StatisticDash(): JSX.Element {
       style={{ margin: "0 4px", marginTop: 16, marginBottom: 37 }}
     >
       {currentData
-        ? Object?.entries(currentData || {})?.map((item) => (
+        ? colorStatistic?.map((item) => (
             <Col
-              key={item?.[0]}
+              key={item.key}
               style={{
                 width: _.keys(currentData).length <= 4 ? "25%" : "33.333333%",
               }}
             >
-              <Link
-                preventScrollReset
-                to={
-                  colorStatistic[item?.[0] as keyof typeof colorStatistic]
-                    ?.linkTo
-                }
-              >
+              <Link preventScrollReset to={item?.linkTo}>
                 <div className={styles.statistic_card}>
                   <div style={{ paddingRight: 8 }}>
                     <Typography.Title
                       level={1}
                       className={styles.value}
                       style={{
-                        color:
-                          colorStatistic[
-                            item?.[0] as keyof typeof colorStatistic
-                          ]?.color,
+                        color: item.color,
                       }}
                     >
                       <CountUp
                         start={0}
-                        end={Number(item?.[1] || 0)}
+                        end={currentData[item.key as keyof typeof currentData]}
                         duration={0.8}
                         decimal=","
                       />
@@ -121,26 +112,13 @@ export default function StatisticDash(): JSX.Element {
                       level={3}
                       className={styles.title}
                       style={{
-                        color:
-                          colorStatistic[
-                            item?.[0] as keyof typeof colorStatistic
-                          ]?.color,
+                        color: item?.color,
                       }}
                     >
-                      {t(
-                        "dashboard." +
-                          colorStatistic[
-                            item?.[0] as keyof typeof colorStatistic
-                          ]?.title,
-                      )}
+                      {t("dashboard." + item?.title)}
                     </Typography.Title>
                   </div>
-                  <div>
-                    {renderIcon(
-                      colorStatistic[item?.[0] as keyof typeof colorStatistic]
-                        ?.icon,
-                    )}
-                  </div>
+                  <div>{renderIcon(item?.icon)}</div>
                 </div>
               </Link>
             </Col>

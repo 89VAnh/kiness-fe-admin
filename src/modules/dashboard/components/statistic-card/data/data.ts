@@ -29,33 +29,41 @@ export const dataStatistic = {
   },
 };
 
-export const colorStatistic = {
-  experience: {
+export const colorStatistic = [
+  {
+    key: "experience",
     // title: "Nguyên vật liệu",
     linkTo: EXPERIENCE_REGISTER_URL,
     title: "total_experience",
-    color: "#F4AA3A",
+    color: "#EE7214",
     icon: IconPapers,
+    sort: 0,
   },
-  employee: {
+  {
+    key: "employee",
     // title: "Nhân viên",
     linkTo: EMPLOYEE_URL,
     title: "total_employee",
-    color: "#17CCB6",
+    color: "#31304D",
     icon: IconStaff,
+    sort: 1,
   },
-  branch: {
+  {
+    key: "branch",
     // title: "Chi nhánh",
     linkTo: BRANCH_URL,
     title: "total_branch",
-    color: "#3AA966",
+    color: "#38419D",
     icon: IconPackages,
+    sort: 2,
   },
-  request: {
+  {
+    key: "request",
     // title: "Chi nhánh",
     linkTo: REQUEST_URL,
     title: "total_request",
-    color: "#13aedf",
+    color: "#304D30",
     icon: IconDocuments,
+    sort: 3,
   },
-};
+];
