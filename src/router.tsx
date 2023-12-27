@@ -84,9 +84,9 @@ export const router = createBrowserRouter([
         ),
       },
 
-      // Manager
+      // Customer
       {
-        path: MANAGER_URL,
+        path: CUSTOMER_URL,
         element: <Navigate to={EXPERIENCE_REGISTER_URL} />,
       },
       {
@@ -192,7 +192,7 @@ export const router = createBrowserRouter([
 
       // Customer
       {
-        path: CUSTOMER_URL,
+        path: MANAGER_URL,
         element: <Navigate to={BRANCH_URL} />,
       },
       {
@@ -255,6 +255,16 @@ export const router = createBrowserRouter([
           />
         ),
       },
+      {
+        path: EMPLOYEE_URL,
+        element: (
+          <ProtectedComponent
+            Element={EmployeePage}
+            title="Quản lý nhân viên"
+            url={EMPLOYEE_URL}
+          />
+        ),
+      },
 
       // Config
       {
@@ -275,17 +285,7 @@ export const router = createBrowserRouter([
       // Admin
       {
         path: ADMIN_URL,
-        element: <Navigate to={EMPLOYEE_URL} />,
-      },
-      {
-        path: EMPLOYEE_URL,
-        element: (
-          <ProtectedComponent
-            Element={EmployeePage}
-            title="Quản lý nhân viên"
-            url={EMPLOYEE_URL}
-          />
-        ),
+        element: <Navigate to={SLIDES_URL} />,
       },
       {
         path: POSITION_URL,

@@ -1,7 +1,7 @@
 export const getOrganTree = (data: any[]) => {
   const tree: any = [];
 
-  if (!data || data?.length === 0) return;
+  if (!data || data?.length === 0) return [];
 
   data.forEach((node) => {
     const item = {

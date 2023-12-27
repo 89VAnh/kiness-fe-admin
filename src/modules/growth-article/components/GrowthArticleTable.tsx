@@ -194,7 +194,7 @@ export default function GrowthArticleTable(): JSX.Element {
           defaultValue={searchContent}
           loading={growthArticleListQuery.isLoading}
           onSearch={(value) => handleSearch(value, "k")}
-          style={{ minWidth: 150 }}
+          style={{ minWidth: 350 }}
           onFocus={(e) => e.target.select()}
         />,
         <GrowthArticleModal />,

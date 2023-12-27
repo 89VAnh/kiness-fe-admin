@@ -1,4 +1,4 @@
-import { EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { EditOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import {
   Button,
   Col,
@@ -161,7 +161,8 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
       setFileList(fileList);
     },
     onRemove() {
-      form.setFieldValue("image", []);
+      form.setFieldValue("image_url", []);
+      setFileList([]);
       setFile(null);
 
       return false;
@@ -192,7 +193,7 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
       )}
       <Modal
         title={isCreate ? t("book.title_create") : t("book.title_update")}
-        style={{ top: 58, padding: 0, minWidth: 600 }}
+        style={{ top: 58, padding: 0, minWidth: 800 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -210,54 +211,60 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
               <Form.Item name={"book_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={12}>
+              <Col span={16}>
+                <Row gutter={32}>
+                  <Col span={24}>
+                    <Form.Item
+                      name={"title"}
+                      label={t("book.fields.title")}
+                      rules={[...RULES_FORM.required]}
+                    >
+                      <Input placeholder={t("book.fields.title")} />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item
+                      name={"author_id"}
+                      label={t("book.fields.author")}
+                      rules={[...RULES_FORM.required]}
+                    >
+                      <Select
+                        loading={isLoadingAuthor}
+                        placeholder={t("book.fields.author")}
+                        options={authorOptions?.data || []}
+                        style={{ width: "100%" }}
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item
+                      name={"publication_date"}
+                      label={t("book.fields.publication_date")}
+                      rules={[...RULES_FORM.required]}
+                    >
+                      <DatePicker
+                        inputReadOnly
+                        placeholder={formatDateShow.toLowerCase()}
+                        format={formatDateShow}
+                        style={{ width: "100%" }}
+                      />
+                    </Form.Item>
+                  </Col>
+                </Row>
+              </Col>
+
+              <Col span={8}>
                 <Form.Item
                   name={"image_url"}
                   label={t("book.fields.image_url")}
                 >
-                  <Upload {...uploadProps}>
-                    <div>
-                      <PlusOutlined />
-                      <div style={{ marginTop: 8 }}>Upload</div>
-                    </div>
+                  <Upload
+                    {...uploadProps}
+                    listType="picture"
+                    className="list-uploads"
+                  >
+                    <Button icon={<UploadOutlined />}>Upload</Button>
                   </Upload>
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item
-                  name={"title"}
-                  label={t("book.fields.title")}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <Input placeholder={t("book.fields.title")} />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item
-                  name={"author_id"}
-                  label={t("book.fields.author")}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <Select
-                    loading={isLoadingAuthor}
-                    placeholder={t("book.fields.author")}
-                    options={authorOptions?.data || []}
-                    style={{ width: "100%" }}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item
-                  name={"publication_date"}
-                  label={t("book.fields.publication_date")}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <DatePicker
-                    inputReadOnly
-                    placeholder={formatDateShow.toLowerCase()}
-                    format={formatDateShow}
-                    style={{ width: "100%" }}
-                  />
                 </Form.Item>
               </Col>
             </Row>

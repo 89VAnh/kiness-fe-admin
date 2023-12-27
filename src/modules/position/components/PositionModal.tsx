@@ -121,7 +121,7 @@ export default function PositionModal({
           isCreate ? t("position.title_create") : t("position.title_update")
         }
         // width={"90vw"}
-        style={{ top: 58, padding: 0 }}
+        style={{ top: 58, padding: 0, minWidth: 600 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -134,7 +134,12 @@ export default function PositionModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} spellCheck={false} layout="vertical">
+          <Form
+            form={form}
+            spellCheck={false}
+            layout="vertical"
+            style={{ marginRight: 5 }}
+          >
             <Row gutter={32}>
               <Form.Item name="position_id" hidden>
                 <Input />
@@ -154,7 +159,10 @@ export default function PositionModal({
                   rules={[...RULES_FORM.required]}
                   label={t("position.fields.description")}
                 >
-                  <TextArea placeholder={t("position.fields.description")} />
+                  <TextArea
+                    rows={6}
+                    placeholder={t("position.fields.description")}
+                  />
                 </Form.Item>
               </Col>
             </Row>

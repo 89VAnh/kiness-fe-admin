@@ -163,7 +163,12 @@ export default function GrowthArticleModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} spellCheck={false} layout="vertical">
+          <Form
+            form={form}
+            spellCheck={false}
+            layout="vertical"
+            style={{ marginRight: 5 }}
+          >
             <Row gutter={32}>
               <Form.Item name={"growth_article_id"} hidden>
                 <Input />

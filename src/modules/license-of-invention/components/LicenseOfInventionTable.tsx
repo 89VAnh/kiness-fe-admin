@@ -59,14 +59,14 @@ export default function LicenseTable(): JSX.Element {
       title: t("fields.serial"),
       dataIndex: "serial",
       align: "center",
-      width: 10,
+      width: 50,
       render: (_, __, index) => <Typography.Text>{++index}</Typography.Text>,
       search: false,
     },
     {
       title: t("fields.image_url"),
       dataIndex: "image_url",
-      width: 80,
+      width: 100,
       align: "center",
       // render: (image_url) => <Image src={"/api/" + image_url} width={100} />,
       render: (image_url) => (
@@ -77,12 +77,11 @@ export default function LicenseTable(): JSX.Element {
     {
       title: t("fields.title"),
       dataIndex: "title",
-      width: 400,
     },
     {
       title: t("fields.license_no"),
       dataIndex: "license_no",
-      width: 30,
+      width: 200,
     },
     {
       title: t("fields.actions"),
@@ -136,6 +135,7 @@ export default function LicenseTable(): JSX.Element {
           defaultValue={searchContent}
           loading={licensesQuery.isLoading}
           onSearch={handleSearch}
+          style={{ minWidth: 350 }}
           onFocus={(e) => e.target.select()}
         />,
         <LicenseModal />,

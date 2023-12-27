@@ -11,7 +11,7 @@ import {
   TreeSelect,
   message,
 } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
@@ -29,22 +29,14 @@ interface Props {
   tree: any;
 }
 
-const defaultNode = {
-  key: "0",
-  parent_id: "0",
-  level: 0,
-  title: "Mặc định",
-  is_leaf: true,
-  value: "0",
-  children: [],
-};
-
 export function CreateOrganizationModal({ node, tree }: Props): JSX.Element {
   const [form] = Form.useForm();
   const { isOpen, close, open } = useDisclosure();
   const { t } = useTranslation();
-  const [parentId, setParentId] = useState(node?.parent_id || "0");
+  const [parentId, setParentId] = useState(node?.key || "0");
   const userRecoil = useRecoilValue(UserState);
+
+  useEffect(() => setParentId(node?.key || "0"), [node]);
 
   const createDiagram = useCreateDiagram({
     config: {
@@ -99,7 +91,7 @@ export function CreateOrganizationModal({ node, tree }: Props): JSX.Element {
   return (
     <>
       <Tooltip title={t("all.btn_add")}>
-        <Button type="default" onClick={handleOpen}>
+        <Button type="default" onClick={handleOpen} disabled={!node?.key}>
           <PlusCircleOutlined style={{ color: "#1587F1" }} />
         </Button>
       </Tooltip>
@@ -124,7 +116,7 @@ export function CreateOrganizationModal({ node, tree }: Props): JSX.Element {
                   label={t("organization.fields.group")}
                   name={"parent_id"}
                   rules={[...RULES_FORM.required]}
-                  initialValue={node?.key}
+                  initialValue={parentId}
                   valuePropName="title"
                 >
                   <TreeSelect
@@ -135,19 +127,7 @@ export function CreateOrganizationModal({ node, tree }: Props): JSX.Element {
                     onChange={handelChangeParentFunction}
                     treeNodeFilterProp="title"
                     treeDefaultExpandedKeys={[node?.key ? node.key : "0"]}
-                    treeData={tree ? [defaultNode, ...tree] : [defaultNode]}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={12}></Col>
-              <Col span={12}>
-                <Form.Item
-                  label={t("organization.fields.node_name")}
-                  name={"node_name"}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <Input
-                    placeholder={t("organization.fields.node_name") || ""}
+                    treeData={tree || []}
                   />
                 </Form.Item>
               </Col>
@@ -164,6 +144,19 @@ export function CreateOrganizationModal({ node, tree }: Props): JSX.Element {
                   />
                 </Form.Item>
               </Col>
+
+              <Col span={24}>
+                <Form.Item
+                  label={t("organization.fields.node_name")}
+                  name={"node_name"}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input
+                    placeholder={t("organization.fields.node_name") || ""}
+                  />
+                </Form.Item>
+              </Col>
+
               <Col span={24}>
                 <Form.Item
                   name="description"

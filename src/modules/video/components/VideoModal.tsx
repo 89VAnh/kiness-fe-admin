@@ -155,7 +155,12 @@ export default function VideoModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} spellCheck={false} layout="vertical">
+          <Form
+            form={form}
+            spellCheck={false}
+            layout="vertical"
+            style={{ marginRight: 5 }}
+          >
             <Row gutter={32}>
               <Form.Item name="video_id" hidden>
                 <Input />
@@ -194,7 +199,7 @@ export default function VideoModal({
               </Col>
               <Col span={24}>
                 <Form.Item
-                  name={"video_share_url"}
+                  name={"video_link"}
                   rules={[...RULES_FORM.required]}
                   label={t("video.fields.video_share_url")}
                 >

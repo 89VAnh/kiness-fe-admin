@@ -1,5 +1,5 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Image, Input, Select, Space, Tag, Typography } from "antd";
+import { DatePicker, Image, Input, Select, Space, Tag, Typography } from "antd";
 import dayjs from "dayjs";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ import { BASE_URL, ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchObesityStories } from "@/loader/obesity-story.loader";
 import { IObesityStory } from "@/models/obesity-story";
 import { compareNumbers, compareStrings } from "@/utils/array";
-import { formatDateShow } from "@/utils/format-string";
+import { formatDatePost, formatDateShow } from "@/utils/format-string";
 
 import { draftOptions } from "../data/data-fake";
 import ObesityStoryDelete from "./ObesityStoryDelete";
@@ -18,6 +18,7 @@ import ObesityStoryModal from "./ObesityStoryModal";
 
 export default function ObesityStoryTable(): JSX.Element {
   const { t } = useTranslation("translation", { keyPrefix: "obesity_story" });
+  const [rangeDate, setRangeDate] = useState<string[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchContent, setSearchContent] = useState<string>(
     searchParams.get("k") || "",
@@ -38,6 +39,8 @@ export default function ObesityStoryTable(): JSX.Element {
       page_size: pageSize,
       search_content: isEmpty(searchContent) ? null : searchContent,
       is_draft: isEmpty(draftStatus) ? null : +draftStatus,
+      from_date: rangeDate[0] ? rangeDate[0] : null,
+      to_date: rangeDate[1] ? rangeDate[1] : null,
     },
     config: {
       onSuccess: (data) => {
@@ -47,6 +50,8 @@ export default function ObesityStoryTable(): JSX.Element {
       },
     },
   });
+
+  const { RangePicker } = DatePicker;
 
   useEffect(() => {
     return () => obesityStoriesQuery.remove();
@@ -185,6 +190,17 @@ export default function ObesityStoryTable(): JSX.Element {
         settings: [],
       }}
       toolBarRender={() => [
+        <RangePicker
+          format={formatDateShow}
+          style={{ minWidth: 300 }}
+          onChange={(range) => {
+            setRangeDate(
+              range
+                ? range.map((x) => (x ? x.format(formatDatePost) : ""))
+                : [],
+            );
+          }}
+        />,
         <Select
           options={draftOptions}
           defaultValue={draftStatus ? +draftStatus : ""}
@@ -196,7 +212,7 @@ export default function ObesityStoryTable(): JSX.Element {
           defaultValue={searchContent}
           loading={obesityStoriesQuery.isLoading}
           onSearch={(value) => handleSearch(value, "k")}
-          style={{ minWidth: 150 }}
+          style={{ minWidth: 350 }}
           onFocus={(e) => e.target.select()}
         />,
         <ObesityStoryModal />,

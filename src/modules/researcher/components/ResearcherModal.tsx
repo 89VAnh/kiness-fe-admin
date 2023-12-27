@@ -1,4 +1,4 @@
-import { EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { EditOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import {
   Button,
@@ -157,7 +157,8 @@ export default function ResearcherModal({
       setFileList(fileList);
     },
     onRemove() {
-      form.setFieldValue("image", []);
+      form.setFieldValue("image_url", []);
+      setFileList([]);
       setFile(null);
 
       return false;
@@ -201,7 +202,12 @@ export default function ResearcherModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} spellCheck={false} layout="vertical">
+          <Form
+            form={form}
+            spellCheck={false}
+            layout="vertical"
+            style={{ marginRight: 5 }}
+          >
             <Row gutter={32}>
               <Form.Item name="researcher_id" hidden>
                 <Input />
@@ -247,11 +253,12 @@ export default function ResearcherModal({
                   name={"image_url"}
                   label={t("researcher.fields.image_url")}
                 >
-                  <Upload {...uploadProps}>
-                    <div>
-                      <PlusOutlined />
-                      <div style={{ marginTop: 8 }}>Upload</div>
-                    </div>
+                  <Upload
+                    {...uploadProps}
+                    listType="picture"
+                    className="list-uploads"
+                  >
+                    <Button icon={<UploadOutlined />}>Upload</Button>
                   </Upload>
                 </Form.Item>
               </Col>

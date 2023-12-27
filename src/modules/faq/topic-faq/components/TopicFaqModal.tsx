@@ -118,7 +118,7 @@ export default function TopicFaqModal({
         title={
           isCreate ? t("faq.topic.title_create") : t("faq.topic.title_update")
         }
-        width={400}
+        width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}
@@ -132,7 +132,12 @@ export default function TopicFaqModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} spellCheck={false} layout="vertical">
+          <Form
+            form={form}
+            spellCheck={false}
+            layout="vertical"
+            style={{ marginRight: 5 }}
+          >
             <Row gutter={32}>
               <Form.Item name={"topic_id"} hidden>
                 <Input />

@@ -1,4 +1,4 @@
-import { EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { EditOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import {
   Button,
@@ -152,7 +152,8 @@ export default function LicenseModal({
       setFileList(fileList);
     },
     onRemove() {
-      form.setFieldValue("image", []);
+      form.setFieldValue("image_url", []);
+      setFileList([]);
       setFile(null);
 
       return false;
@@ -200,42 +201,56 @@ export default function LicenseModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} spellCheck={false} layout="vertical">
+          <Form
+            form={form}
+            spellCheck={false}
+            layout="vertical"
+            style={{ marginRight: 5 }}
+          >
             <Row gutter={32}>
               <Form.Item name="license_id" hidden>
                 <Input />
               </Form.Item>
-              <Col span={8}>
+              <Col span={19}>
+                <Row gutter={32}>
+                  <Col span={24}>
+                    <Form.Item
+                      name={"title"}
+                      rules={[...RULES_FORM.required]}
+                      label={t("license_of_invention.fields.title")}
+                    >
+                      <Input
+                        placeholder={t("license_of_invention.fields.title")}
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={24}>
+                    <Form.Item
+                      name={"license_no"}
+                      rules={[...RULES_FORM.required]}
+                      label={t("license_of_invention.fields.license_no")}
+                    >
+                      <Input
+                        placeholder={t(
+                          "license_of_invention.fields.license_no",
+                        )}
+                      />
+                    </Form.Item>
+                  </Col>
+                </Row>
+              </Col>
+              <Col span={5}>
                 <Form.Item
-                  name={"image"}
+                  name={"image_url"}
                   label={t("license_of_invention.fields.image_url")}
                 >
-                  <Upload {...uploadProps}>
-                    <div>
-                      <PlusOutlined />
-                      <div style={{ marginTop: 8 }}>Upload</div>
-                    </div>
+                  <Upload
+                    {...uploadProps}
+                    listType="picture"
+                    className="list-uploads"
+                  >
+                    <Button icon={<UploadOutlined />}>Upload</Button>
                   </Upload>
-                </Form.Item>
-              </Col>
-              <Col span={10}>
-                <Form.Item
-                  name={"title"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("license_of_invention.fields.title")}
-                >
-                  <Input placeholder={t("license_of_invention.fields.title")} />
-                </Form.Item>
-              </Col>
-              <Col span={6}>
-                <Form.Item
-                  name={"license_no"}
-                  rules={[...RULES_FORM.required]}
-                  label={t("license_of_invention.fields.license_no")}
-                >
-                  <Input
-                    placeholder={t("license_of_invention.fields.license_no")}
-                  />
                 </Form.Item>
               </Col>
 

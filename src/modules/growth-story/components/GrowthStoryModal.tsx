@@ -1,4 +1,4 @@
-import { EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { EditOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import {
   Button,
@@ -170,7 +170,8 @@ export default function GrowthStoryModal({
       setFileList(fileList);
     },
     onRemove() {
-      form.setFieldValue("image", []);
+      form.setFieldValue("image_link", []);
+      setFileList([]);
       setFile(null);
 
       return false;
@@ -220,14 +221,19 @@ export default function GrowthStoryModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} spellCheck={false} layout="vertical">
+          <Form
+            form={form}
+            spellCheck={false}
+            layout="vertical"
+            style={{ marginRight: 5 }}
+          >
             <Row gutter={32}>
               <Form.Item name={"growth_story_id"} hidden>
                 <Input />
               </Form.Item>
               <Col span={19}>
                 <Row gutter={32}>
-                  <Col span={18}>
+                  <Col span={24}>
                     <Form.Item
                       name={"title"}
                       label={t("growth_story.fields.title")}
@@ -248,14 +254,14 @@ export default function GrowthStoryModal({
                       />
                     </Form.Item>
                   </Col>
-                  <Col span={12}>
+                  <Col span={6}>
                     <Form.Item
                       name={"author_name"}
                       label={t("growth_story.fields.author_name")}
                       rules={[...RULES_FORM.required]}
                       initialValue={userProfile.full_name}
                     >
-                      <Input autoCapitalize="" />
+                      <Input autoCapitalize="" disabled />
                     </Form.Item>
                   </Col>
 
@@ -292,11 +298,12 @@ export default function GrowthStoryModal({
                   label={t("growth_story.fields.image_link")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Upload {...uploadProps}>
-                    <div>
-                      <PlusOutlined />
-                      <div style={{ marginTop: 8 }}>Upload</div>
-                    </div>
+                  <Upload
+                    {...uploadProps}
+                    listType="picture"
+                    className="list-uploads"
+                  >
+                    <Button icon={<UploadOutlined />}>Upload</Button>
                   </Upload>
                 </Form.Item>
               </Col>

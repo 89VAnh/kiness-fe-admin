@@ -12,6 +12,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@ant-design/graphs": "1.4.0",
     "@ant-design/icons": "^5.2.6",
     "@ant-design/plots": "^2.1.4",
     "@ant-design/pro-components": "^2.6.28",

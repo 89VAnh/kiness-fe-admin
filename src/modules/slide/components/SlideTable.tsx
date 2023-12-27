@@ -87,7 +87,6 @@ export default function SlideTable(): JSX.Element {
     {
       title: t("fields.caption"),
       dataIndex: "slide_caption",
-      width: 400,
     },
     {
       title: t("fields.order"),
@@ -119,7 +118,7 @@ export default function SlideTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      cardBordered
+      bordered
       loading={slidesQuery.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
@@ -148,6 +147,7 @@ export default function SlideTable(): JSX.Element {
           placeholder={t("search_placeholder")}
           defaultValue={searchContent}
           loading={slidesQuery.isLoading}
+          style={{ minWidth: 350 }}
           onSearch={handleSearch}
           onFocus={(e) => e.target.select()}
         />,

@@ -148,7 +148,7 @@ export default function FaqListTable(): JSX.Element {
           defaultValue={searchContent}
           loading={faqListQuery.isLoading}
           onSearch={handleSearch}
-          style={{ minWidth: 150 }}
+          style={{ minWidth: 350 }}
           onFocus={(e) => e.target.select()}
         />,
         <FaqListModal />,

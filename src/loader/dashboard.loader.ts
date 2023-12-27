@@ -6,6 +6,7 @@ import {
   getCountEmployee,
   getCountExperienceRegister,
   getCountRequest,
+  getStatisticExperience,
 } from "@/services/dashboards.service";
 
 export const CACHE_DASHBOARD = {
@@ -16,6 +17,7 @@ export const CACHE_DASHBOARD = {
   DASHBOARD_BRANCH: "DASHBOARD_BRANCH",
   DASHBOARD_NEWS: "DASHBOARD_NEWS",
   DASHBOARD_REQUEST: "DASHBOARD_REQUEST",
+  DASHBOARD_STATISTIC_EXPERIENCE: "DASHBOARD_STATISTIC_EXPERIENCE",
 };
 
 const useGetCountEmployee = ({
@@ -84,9 +86,25 @@ const useGetCountRequest = ({
   });
 };
 
+const useStatisticExperience = ({
+  enabled = true,
+  config,
+}: {
+  enabled?: boolean;
+  config?: QueryConfig<typeof getStatisticExperience>;
+}) => {
+  return useQuery<ExtractFnReturnType<typeof getStatisticExperience>>({
+    ...config,
+    enabled,
+    queryKey: [CACHE_DASHBOARD.DASHBOARD_STATISTIC_EXPERIENCE],
+    queryFn: () => getStatisticExperience(),
+  });
+};
+
 export {
   useGetCountBranch,
   useGetCountEmployee,
   useGetCountExperienceRegister,
   useGetCountRequest,
+  useStatisticExperience,
 };

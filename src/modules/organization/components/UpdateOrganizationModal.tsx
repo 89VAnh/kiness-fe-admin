@@ -11,7 +11,7 @@ import {
   TreeSelect,
   message,
 } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
@@ -34,22 +34,14 @@ interface Props {
   tree: any;
 }
 
-const defaultNode = {
-  key: "0",
-  parent_id: "0",
-  level: 0,
-  title: "Mặc định",
-  is_leaf: true,
-  value: "0",
-  children: [],
-};
-
 export function UpdateOrganizationModal({ node, tree }: Props): JSX.Element {
   const [form] = Form.useForm();
   const { isOpen, close, open } = useDisclosure();
   const { t } = useTranslation();
   const userRecoil = useRecoilValue(UserState);
-  const [parentId, setParentId] = useState("");
+  const [parentId, setParentId] = useState(node?.key || "1");
+
+  useEffect(() => setParentId(node?.key || "1"), [node]);
 
   const { refetch, remove } = useGetDiagramById({
     id: node?.key!,
@@ -60,7 +52,6 @@ export function UpdateOrganizationModal({ node, tree }: Props): JSX.Element {
           refetch();
         }
         if (data.success) {
-          setParentId(data?.data?.parent_id);
           form.setFieldsValue(data?.data);
         }
       },
@@ -101,7 +92,7 @@ export function UpdateOrganizationModal({ node, tree }: Props): JSX.Element {
         const dataPost = {
           ...values,
           node_id: node?.key,
-          level: item?.level ? item.level + 1 : 1,
+          level: item?.level,
           lu_user_id: userRecoil.user_id,
         };
         updateDiagram.mutate(dataPost);
@@ -150,12 +141,12 @@ export function UpdateOrganizationModal({ node, tree }: Props): JSX.Element {
                   <TreeSelect
                     showSearch
                     style={{ width: "100%" }}
-                    value={parentId ? parentId : "0"}
+                    value={parentId}
                     dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
                     onChange={handelChangeParentDiagram}
                     treeNodeFilterProp="title"
                     treeDefaultExpandedKeys={[node?.key ? node.key : "0"]}
-                    treeData={tree ? [defaultNode, ...tree] : [defaultNode]}
+                    treeData={tree || []}
                   />
                 </Form.Item>
               </Col>

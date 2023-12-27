@@ -166,7 +166,7 @@ export default function HistoryTable(): JSX.Element {
           defaultValue={searchContent}
           loading={historyListQuery.isLoading}
           onSearch={(value) => handleSearch(value, "k")}
-          style={{ minWidth: 150 }}
+          style={{ minWidth: 350 }}
           onFocus={(e) => e.target.select()}
         />,
         <HistoryModal />,

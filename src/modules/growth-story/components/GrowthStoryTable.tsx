@@ -1,5 +1,5 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { Image, Input, Select, Space, Tag, Typography } from "antd";
+import { DatePicker, Image, Input, Select, Space, Tag, Typography } from "antd";
 import dayjs from "dayjs";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ import { BASE_URL, ERROR_TIMEOUT } from "@/constant/config";
 import { useSearchGrowthStories } from "@/loader/growth-story.loader";
 import { IGrowthStory } from "@/models/growth-story";
 import { compareNumbers, compareStrings } from "@/utils/array";
-import { formatDateShow } from "@/utils/format-string";
+import { formatDatePost, formatDateShow } from "@/utils/format-string";
 
 import { draftOptions } from "../data/data-fake";
 import GrowthStoryDelete from "./GrowthStoryDelete";
@@ -18,6 +18,7 @@ import GrowthStoryModal from "./GrowthStoryModal";
 
 export default function GrowthStoryTable(): JSX.Element {
   const { t } = useTranslation("translation", { keyPrefix: "growth_story" });
+  const [rangeDate, setRangeDate] = useState<string[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchContent, setSearchContent] = useState<string>(
     searchParams.get("k") || "",
@@ -32,12 +33,16 @@ export default function GrowthStoryTable(): JSX.Element {
     searchParams.get("page_size") || 10,
   );
 
+  const { RangePicker } = DatePicker;
+
   const growthStoriesQuery = useSearchGrowthStories({
     params: {
       page_index: page,
       page_size: pageSize,
       search_content: isEmpty(searchContent) ? null : searchContent,
       is_draft: isEmpty(draftStatus) ? null : +draftStatus,
+      from_date: rangeDate[0] ? rangeDate[0] : null,
+      to_date: rangeDate[1] ? rangeDate[1] : null,
     },
     config: {
       onSuccess: (data) => {
@@ -194,6 +199,17 @@ export default function GrowthStoryTable(): JSX.Element {
         settings: [],
       }}
       toolBarRender={() => [
+        <RangePicker
+          format={formatDateShow}
+          style={{ minWidth: 300 }}
+          onChange={(range) => {
+            setRangeDate(
+              range
+                ? range.map((x) => (x ? x.format(formatDatePost) : ""))
+                : [],
+            );
+          }}
+        />,
         <Select
           options={draftOptions}
           defaultValue={draftStatus ? +draftStatus : ""}
@@ -205,7 +221,7 @@ export default function GrowthStoryTable(): JSX.Element {
           defaultValue={searchContent}
           loading={growthStoriesQuery.isLoading}
           onSearch={(value) => handleSearch(value, "k")}
-          style={{ minWidth: 150 }}
+          style={{ minWidth: 350 }}
           onFocus={(e) => e.target.select()}
         />,
         <GrowthStoryModal />,

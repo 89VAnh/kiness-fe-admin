@@ -33,3 +33,9 @@ export const getCountRequest = async (): Promise<any> => {
 
   return res.data;
 };
+
+export const getStatisticExperience = async (): Promise<any> => {
+  const res = await apiClient?.get(`${prefix}/statistic-experience`, {});
+
+  return res.data;
+};

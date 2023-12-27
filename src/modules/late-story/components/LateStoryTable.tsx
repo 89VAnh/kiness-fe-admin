@@ -197,7 +197,7 @@ export default function LateStoryTable(): JSX.Element {
       toolBarRender={() => [
         <RangePicker
           format={formatDateShow}
-          style={{ width: 600 }}
+          style={{ minWidth: 300 }}
           onChange={(range) => {
             setRangeDate(
               range
@@ -217,7 +217,7 @@ export default function LateStoryTable(): JSX.Element {
           defaultValue={searchContent}
           loading={lateStoriesQuery.isLoading}
           onSearch={(value) => handleSearch(value, "k")}
-          style={{ minWidth: 150 }}
+          style={{ minWidth: 350 }}
           onFocus={(e) => e.target.select()}
         />,
         <LateStoryModal />,

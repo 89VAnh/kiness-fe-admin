@@ -240,7 +240,12 @@ export default function EmployeeModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} spellCheck={false} layout="vertical">
+          <Form
+            form={form}
+            spellCheck={false}
+            layout="vertical"
+            style={{ marginRight: 5 }}
+          >
             <Row gutter={32}>
               <Col span={8}>
                 <Form.Item
@@ -376,7 +381,7 @@ export default function EmployeeModal({
                     options={
                       roleOptions?.message
                         ? []
-                        : roleOptions.filter(
+                        : roleOptions?.filter(
                             (x: { value: number; label: string }) =>
                               x?.label?.toLowerCase() !== "khách hàng",
                           )

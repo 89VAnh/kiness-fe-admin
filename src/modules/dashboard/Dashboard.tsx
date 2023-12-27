@@ -9,7 +9,7 @@ export default function Dashboard(): JSX.Element {
       <StatisticCard />
 
       <Typography.Title level={3}>
-        Thống kê lượt đăng ký trải nghiệm
+        Thống kê lượt đăng ký trải nghiệm trong 1 tuần
       </Typography.Title>
       <ColumnBasic />
     </>

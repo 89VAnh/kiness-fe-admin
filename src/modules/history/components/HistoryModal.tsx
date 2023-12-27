@@ -159,7 +159,12 @@ export default function HistoryModal({
             overflowX: "hidden",
           }}
         >
-          <Form form={form} spellCheck={false} layout="vertical">
+          <Form
+            form={form}
+            spellCheck={false}
+            layout="vertical"
+            style={{ marginRight: 5 }}
+          >
             <Row gutter={32}>
               <Form.Item name={"history_id"} hidden>
                 <Input />
@@ -173,6 +178,7 @@ export default function HistoryModal({
                   <DatePicker
                     inputReadOnly
                     picker="year"
+                    style={{ width: "100%" }}
                     defaultValue={dayjs()}
                     disabledDate={disabledDate}
                   />
@@ -184,7 +190,12 @@ export default function HistoryModal({
                   label={t("history.fields.sort_order")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <InputNumber min={1} max={100} defaultValue={1} />
+                  <InputNumber
+                    min={1}
+                    max={100}
+                    defaultValue={1}
+                    style={{ width: "100%" }}
+                  />
                 </Form.Item>
               </Col>
               <Col span={24}>
@@ -193,7 +204,7 @@ export default function HistoryModal({
                   label={t("history.fields.content")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <TextArea />
+                  <TextArea rows={6} />
                 </Form.Item>
               </Col>
             </Row>

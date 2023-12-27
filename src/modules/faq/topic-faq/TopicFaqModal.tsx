@@ -15,7 +15,7 @@ export default function TopicFaqModal(): JSX.Element {
       <Modal
         onCancel={close}
         onOk={close}
-        style={{ top: 58, padding: 0, minWidth: 600 }}
+        style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
       >
         <TopicFaqTable />
