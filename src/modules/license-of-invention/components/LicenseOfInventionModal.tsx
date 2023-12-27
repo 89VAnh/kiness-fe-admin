@@ -184,7 +184,7 @@ export default function LicenseModal({
             ? t("license_of_invention.title_create")
             : t("license_of_invention.title_update")
         }
-        width={"60vw"}
+        width="75.728vw"
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}
@@ -249,7 +249,12 @@ export default function LicenseModal({
                     listType="picture"
                     className="list-uploads"
                   >
-                    <Button icon={<UploadOutlined />}>Upload</Button>
+                    <Button
+                      icon={<UploadOutlined />}
+                      style={{ marginBottom: 10 }}
+                    >
+                      Upload
+                    </Button>
                   </Upload>
                 </Form.Item>
               </Col>

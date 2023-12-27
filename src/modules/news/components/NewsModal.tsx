@@ -177,7 +177,7 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
       )}
       <Modal
         title={t("news.title_create")}
-        width={"90vw"}
+        width="75.728vw"
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}

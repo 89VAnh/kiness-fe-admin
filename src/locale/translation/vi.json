@@ -700,11 +700,11 @@
     "title_delete": "Xóa video"
   },
   "growth_article": {
-    "title": "Quản lý câu hỏi tăng trưởng",
+    "title": "Hỏi đáp cùng chuyên gia",
     "search_placeholder": "Tìm kiếm",
-    "title_update": "Cập nhật câu hỏi tăng trưởng",
-    "title_create": "Thêm câu hỏi tăng trưởng",
-    "title_delete": "Xóa câu hỏi tăng trưởng",
+    "title_update": "Cập nhật hỏi/đáp",
+    "title_create": "Thêm hỏi/đáp",
+    "title_delete": "Xóa hỏi/đáp",
 
     "fields": {
       "serial": "STT",

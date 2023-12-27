@@ -90,7 +90,7 @@ export default function EmployeeTable(): JSX.Element {
       title: t("fields.phone"),
       dataIndex: "phone_number",
       sorter: (a, b) => compareStrings(a, b, "phone_number"),
-      width: 200,
+      width: 130,
     },
     {
       title: t("fields.gender"),

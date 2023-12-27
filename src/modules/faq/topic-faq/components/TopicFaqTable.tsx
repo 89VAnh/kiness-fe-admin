@@ -79,7 +79,6 @@ export default function TopicFaqTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      cardBordered
       loading={topicQuery.isLoading}
       pagination={{
         pageSize,
@@ -95,7 +94,6 @@ export default function TopicFaqTable(): JSX.Element {
       }}
       columns={columns}
       dataSource={topicQuery.data?.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
         settings: [],

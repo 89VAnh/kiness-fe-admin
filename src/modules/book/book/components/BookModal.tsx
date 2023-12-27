@@ -263,7 +263,12 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
                     listType="picture"
                     className="list-uploads"
                   >
-                    <Button icon={<UploadOutlined />}>Upload</Button>
+                    <Button
+                      icon={<UploadOutlined />}
+                      style={{ marginBottom: 10 }}
+                    >
+                      Upload
+                    </Button>
                   </Upload>
                 </Form.Item>
               </Col>
