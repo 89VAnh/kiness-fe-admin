@@ -263,7 +263,7 @@ export default function ExperienceRegisterTable(): JSX.Element {
         />,
         <RangePicker
           format={formatDateShow}
-          style={{ width: 460 }}
+          style={{ width: 660 }}
           onChange={(range) => {
             setRangeDate(
               range

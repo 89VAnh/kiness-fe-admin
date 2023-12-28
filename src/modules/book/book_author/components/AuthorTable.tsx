@@ -81,7 +81,6 @@ export default function BookAuthorTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      cardBordered
       loading={bookAuthorQuery.isLoading}
       pagination={{
         pageSize,
@@ -97,7 +96,6 @@ export default function BookAuthorTable(): JSX.Element {
       }}
       columns={columns}
       dataSource={bookAuthorQuery.data?.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
         settings: [],

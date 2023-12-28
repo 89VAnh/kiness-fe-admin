@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Button, Modal, Typography } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { useDisclosure } from "@/utils/modal";
@@ -13,6 +13,7 @@ export default function TopicFaqModal(): JSX.Element {
     <>
       <Button onClick={open}>{t("title")}</Button>
       <Modal
+        title={<Typography.Title level={3}>{t("title")}</Typography.Title>}
         onCancel={close}
         onOk={close}
         style={{ top: 58, padding: 0, minWidth: 1000 }}

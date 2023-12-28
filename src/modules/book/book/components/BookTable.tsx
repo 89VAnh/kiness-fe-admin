@@ -10,6 +10,7 @@ import { useSearchBooks } from "@/loader/book.loader";
 import { IBook } from "@/models/book";
 import { formatDateShow } from "@/utils/format-string";
 
+import BookAuthorModal from "../../book_author/BookAuthorModal";
 import BookDelete from "./BookDelete";
 import BookModal from "./BookModal";
 
@@ -135,6 +136,7 @@ export default function BookTable(): JSX.Element {
           onFocus={(e) => e.target.select()}
         />,
         <BookModal />,
+        <BookAuthorModal />,
       ]}
       rowKey={"book_id"}
     />

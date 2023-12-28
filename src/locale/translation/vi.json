@@ -645,11 +645,11 @@
     }
   },
   "history": {
-    "title": "Quản lý lịch sử",
+    "title": "Quản lý lịch sử phát triển Kiness",
     "search_placeholder": "Tìm kiếm",
-    "title_update": "Cập nhật lịch sử",
-    "title_create": "Thêm lịch sử",
-    "title_delete": "Xóa lịch sử",
+    "title_update": "Cập nhật lịch sử phát triển",
+    "title_create": "Thêm lịch sử phát triển",
+    "title_delete": "Xóa lịch sử phát triển",
     "fields": {
       "serial": "STT",
       "year": "Năm",
@@ -700,11 +700,11 @@
     "title_delete": "Xóa video"
   },
   "growth_article": {
-    "title": "Quản lý câu hỏi tăng trưởng",
+    "title": "Hỏi đáp cùng chuyên gia",
     "search_placeholder": "Tìm kiếm",
-    "title_update": "Cập nhật câu hỏi tăng trưởng",
-    "title_create": "Thêm câu hỏi tăng trưởng",
-    "title_delete": "Xóa câu hỏi tăng trưởng",
+    "title_update": "Cập nhật hỏi/đáp",
+    "title_create": "Thêm hỏi/đáp",
+    "title_delete": "Xóa hỏi/đáp",
 
     "fields": {
       "serial": "STT",

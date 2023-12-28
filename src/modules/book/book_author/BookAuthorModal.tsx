@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 
 import { useDisclosure } from "@/utils/modal";
 
-import ArticleAuthorTable from "./components/AuthorTable";
+import BookAuthorTable from "./components/AuthorTable";
 
-export default function AuthorManageModal(): JSX.Element {
+export default function BookAuthorModal() {
   const { t } = useTranslation("translation", {
-    keyPrefix: "research_article.author",
+    keyPrefix: "book.author",
   });
   const { open, close, isOpen } = useDisclosure();
 
@@ -21,7 +21,7 @@ export default function AuthorManageModal(): JSX.Element {
         style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
       >
-        <ArticleAuthorTable />
+        <BookAuthorTable />
       </Modal>
     </>
   );

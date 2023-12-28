@@ -187,7 +187,8 @@ export default function ResearcherModal({
         title={
           isCreate ? t("researcher.title_create") : t("researcher.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 1200 }}
+        width="74.661vw"
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -258,7 +259,12 @@ export default function ResearcherModal({
                     listType="picture"
                     className="list-uploads"
                   >
-                    <Button icon={<UploadOutlined />}>Upload</Button>
+                    <Button
+                      icon={<UploadOutlined />}
+                      style={{ marginBottom: 10 }}
+                    >
+                      Upload
+                    </Button>
                   </Upload>
                 </Form.Item>
               </Col>

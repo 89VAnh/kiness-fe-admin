@@ -99,7 +99,7 @@ export default function ResearchArticleTable(): JSX.Element {
       title: t("fields.year_of_release"),
       dataIndex: "year_of_release",
       align: "right",
-      width: 30,
+      width: 60,
     },
     {
       title: t("fields.actions"),

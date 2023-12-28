@@ -173,27 +173,8 @@ export default function GrowthArticleModal({
               <Form.Item name={"growth_article_id"} hidden>
                 <Input />
               </Form.Item>
-              <Col span={6}>
-                <Form.Item
-                  name={"title"}
-                  label={t("growth_article.fields.title")}
-                  rules={[...RULES_FORM.required]}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={6}>
-                <Form.Item
-                  name={"is_draft"}
-                  label={t("growth_article.fields.is_draft.title")}
-                  initialValue={1}
-                >
-                  <Select
-                    options={draftOptions?.filter((x) => x.value !== "")}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={6}>
+
+              <Col span={12}>
                 <Form.Item
                   name={"author_name"}
                   label={t("growth_article.fields.author_name")}
@@ -214,6 +195,26 @@ export default function GrowthArticleModal({
                     className="w-full"
                     onChange={(value) => setPostedDate(value)}
                   />
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+                <Form.Item
+                  name={"is_draft"}
+                  label={t("growth_article.fields.is_draft.title")}
+                  initialValue={1}
+                >
+                  <Select
+                    options={draftOptions?.filter((x) => x.value !== "")}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <Form.Item
+                  name={"title"}
+                  label={t("growth_article.fields.title")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Input.TextArea />
                 </Form.Item>
               </Col>
 

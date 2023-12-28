@@ -203,7 +203,8 @@ export default function LateStoryModal({
         title={
           isCreate ? t("late_story.title_create") : t("late_story.title_update")
         }
-        style={{ top: 58, padding: 0, minWidth: 1428.48 }}
+        width="75.728vw"
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -298,7 +299,12 @@ export default function LateStoryModal({
                     listType="picture"
                     className="list-uploads"
                   >
-                    <Button icon={<UploadOutlined />}>Upload</Button>
+                    <Button
+                      icon={<UploadOutlined />}
+                      style={{ marginBottom: 10 }}
+                    >
+                      Upload
+                    </Button>
                   </Upload>
                 </Form.Item>
               </Col>

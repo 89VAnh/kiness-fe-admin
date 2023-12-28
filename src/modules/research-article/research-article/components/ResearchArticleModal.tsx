@@ -163,10 +163,10 @@ export default function ResearchArticleModal({
             ? t("research_article.title_create")
             : t("research_article.title_update")
         }
+        width="74.67vw"
         style={{
           top: 58,
           padding: 0,
-          minWidth: 1428.48,
         }}
         open={isOpen}
         onCancel={handleCancel}
@@ -187,17 +187,19 @@ export default function ResearchArticleModal({
               <Form.Item name="article_id" hidden>
                 <Input />
               </Form.Item>
-              <Col span={12}>
+              <Col span={24}>
                 <Form.Item
                   name={"title"}
                   rules={[...RULES_FORM.required]}
                   label={t("research_article.fields.title")}
                 >
-                  <Input placeholder={t("research_article.fields.title")} />
+                  <Input.TextArea
+                    placeholder={t("research_article.fields.title")}
+                  />
                 </Form.Item>
               </Col>
 
-              <Col span={12}>
+              <Col span={10}>
                 <Form.Item
                   name={"authors"}
                   rules={[...RULES_FORM.required]}
@@ -212,7 +214,7 @@ export default function ResearchArticleModal({
                 </Form.Item>
               </Col>
 
-              <Col span={6}>
+              <Col span={4}>
                 <Form.Item
                   name={"year_of_release"}
                   rules={[...RULES_FORM.required]}
@@ -226,7 +228,7 @@ export default function ResearchArticleModal({
                   />
                 </Form.Item>
               </Col>
-              <Col span={18}>
+              <Col span={10}>
                 <Form.Item
                   name={"issuers"}
                   rules={[...RULES_FORM.required]}
