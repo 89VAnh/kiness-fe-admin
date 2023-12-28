@@ -645,11 +645,11 @@
     }
   },
   "history": {
-    "title": "Quản lý lịch sử",
+    "title": "Quản lý lịch sử phát triển Kiness",
     "search_placeholder": "Tìm kiếm",
-    "title_update": "Cập nhật lịch sử",
-    "title_create": "Thêm lịch sử",
-    "title_delete": "Xóa lịch sử",
+    "title_update": "Cập nhật lịch sử phát triển",
+    "title_create": "Thêm lịch sử phát triển",
+    "title_delete": "Xóa lịch sử phát triển",
     "fields": {
       "serial": "STT",
       "year": "Năm",
