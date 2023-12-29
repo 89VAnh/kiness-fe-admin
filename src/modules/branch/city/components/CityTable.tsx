@@ -100,7 +100,6 @@ export default function CityTable(): JSX.Element {
   return (
     <ProTable
       size="small"
-      cardBordered
       loading={citiesQuery.isLoading}
       pagination={{
         pageSize: Number(searchParams.get("page_size")) || 10,
@@ -119,7 +118,6 @@ export default function CityTable(): JSX.Element {
       }}
       columns={columns}
       dataSource={citiesQuery.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
       search={false}
       toolbar={{
         settings: [],

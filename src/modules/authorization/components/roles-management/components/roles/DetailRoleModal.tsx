@@ -39,8 +39,8 @@ export function DetailRoleModal(): JSX.Element {
   // Get roles
   const rolesQuery = useSearchRoles({
     params: {
-      pageIndex,
-      pageSize,
+      page_index: pageIndex,
+      page_size: pageSize,
       search_content: isEmpty(searchContent) ? null : searchContent,
       user_id: userRecoil.user_id,
     },
@@ -206,7 +206,7 @@ export function DetailRoleModal(): JSX.Element {
                 loading={rolesQuery?.isLoading}
                 dataSource={rolesQuery?.data?.data}
                 pagination={{
-                  total: rolesQuery?.data?.totalItems,
+                  total: rolesQuery?.data?.total_items,
                   current: pageIndex,
                   pageSize,
                   onChange: (page, pageSize) => {
