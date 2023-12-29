@@ -27,8 +27,8 @@ export default function ActionTable(): JSX.Element {
 
   const actionsQuery = useSearchActions({
     params: {
-      pageIndex,
-      pageSize,
+      page_index: pageIndex,
+      page_size: pageSize,
       search_content: isEmpty(searchContent) ? null : searchContent,
       function_id,
       user_id: userRecoil.user_id,
@@ -150,7 +150,7 @@ export default function ActionTable(): JSX.Element {
         loading={actionsQuery.isLoading}
         dataSource={actionsQuery?.data?.data}
         pagination={{
-          total: actionsQuery?.data?.totalItems,
+          total: actionsQuery?.data?.total_items,
           current: pageIndex,
           pageSize,
           onChange: (page, pageSize) => {

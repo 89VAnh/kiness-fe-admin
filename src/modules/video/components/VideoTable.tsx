@@ -147,7 +147,7 @@ export default function VideoTable(): JSX.Element {
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total} video`;
         },
-        total: videosQuery.data?.total_items || 0,
+        total: videosQuery.data?.data?.total_items || 0,
       }}
       toolBarRender={() => [
         <Input.Search

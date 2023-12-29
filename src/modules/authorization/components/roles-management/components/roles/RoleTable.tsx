@@ -114,9 +114,9 @@ export default function RoleTable({
 
   const createFuncPermissions = useCreatePerFuncForRole({
     config: {
-      onSuccess: (data) => {
+      onSuccess: () => {
         notification.success({
-          message: data.message || t("messages.create_success"),
+          message: t("messages.save_success"),
           description: "Vui lòng đăng nhập lại nếu không thấy thay đổi",
         });
       },

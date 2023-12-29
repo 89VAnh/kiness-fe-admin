@@ -1,6 +1,7 @@
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Col, Form, Input, Modal, Row, Tooltip, message } from "antd";
 import { Select } from "antd/lib";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
@@ -14,6 +15,13 @@ import {
 import { useCityDropdown } from "@/loader/city.loader";
 import { UserState } from "@/store/auth/atom";
 import { useDisclosure } from "@/utils/modal";
+import {
+  getAdress,
+  getCityDropdown,
+  getCommuneDropdown,
+  getDistrictDropdown,
+  getFullAddress,
+} from "@/utils/select-address";
 import { RULES_FORM } from "@/utils/validator";
 
 interface Props {
@@ -30,6 +38,10 @@ export default function BranchModal({
   const userProfile = useRecoilValue(UserState);
   const [form] = Form.useForm();
   const embedMap = Form.useWatch("embed_map", form);
+
+  const [city, setCity] = useState("");
+  const [district, setDistrict] = useState("");
+  const [address, setAddress] = useState("");
 
   const { data: cityOptions, isLoading: isLoadingCity } = useCityDropdown({});
 
@@ -69,7 +81,15 @@ export default function BranchModal({
     config: {
       onSuccess(data) {
         if (!data?.message) {
-          form.setFieldsValue(data);
+          const { cityId, districtId, communeId } = getAdress(data.address);
+          setCity(cityId);
+          setDistrict(districtId);
+          form.setFieldsValue({
+            ...data,
+            select_city: cityId,
+            select_district: districtId,
+            select_commune: communeId,
+          });
         }
       },
     },
@@ -84,6 +104,7 @@ export default function BranchModal({
 
         const dataPost = {
           ...values,
+          address,
           // thumbnail: dataFile
           //   ? dataFile.path
           //   : fileList?.[0]?.thumbUrl?.replace("/api/", ""),
@@ -146,7 +167,7 @@ export default function BranchModal({
       )}
       <Modal
         title={isCreate ? t("branch.title_create") : t("branch.title_update")}
-        style={{ top: 58, padding: 0, minWidth: 600 }}
+        style={{ top: 58, padding: 0, minWidth: 1200 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
@@ -263,13 +284,48 @@ export default function BranchModal({
                 ></div>
               </Col>
 
-              <Col span={24}>
+              <Col span={8}>
                 <Form.Item
-                  name={"address"}
-                  label={t("branch.fields.address")}
+                  name={"select_city"}
+                  label={t("branch.fields.select_city")}
                   rules={[...RULES_FORM.required]}
                 >
-                  <Input placeholder={t("branch.fields.address")} />
+                  <Select
+                    style={{ width: "100%" }}
+                    placeholder={t("branch.fields.select_city")}
+                    options={getCityDropdown()}
+                    onChange={setCity}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item
+                  name={"select_district"}
+                  label={t("branch.fields.select_district")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Select
+                    style={{ width: "100%" }}
+                    placeholder={t("branch.fields.select_district")}
+                    disabled={city === ""}
+                    options={getDistrictDropdown(city)}
+                    onChange={setDistrict}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item
+                  name={"select_commune"}
+                  label={t("branch.fields.select_commune")}
+                  rules={[...RULES_FORM.required]}
+                >
+                  <Select
+                    style={{ width: "100%" }}
+                    placeholder={t("branch.fields.select_commune")}
+                    disabled={district === ""}
+                    options={getCommuneDropdown(district)}
+                    onChange={(value) => setAddress(getFullAddress(value))}
+                  />
                 </Form.Item>
               </Col>
             </Row>
