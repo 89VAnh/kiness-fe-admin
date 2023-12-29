@@ -136,6 +136,7 @@ export default function ObesityStoryModal({
           dataPost.lu_user_id = userProfile.user_id;
           updateObesityStory.mutate(dataPost);
         }
+        setDataEditor("");
       })
       .catch((err) => {
         console.log(err);

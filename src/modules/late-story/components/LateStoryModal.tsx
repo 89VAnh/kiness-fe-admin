@@ -136,6 +136,7 @@ export default function LateStoryModal({
           dataPost.lu_user_id = userProfile.user_id;
           updateLateStory.mutate(dataPost);
         }
+        setDataEditor("");
       })
       .catch((err) => {
         console.log(err);
