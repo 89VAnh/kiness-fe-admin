@@ -101,7 +101,7 @@ export default function VideoModal({
       .then(async (values: any) => {
         const dataPost: IVideo = {
           ...values,
-          video_code: getYouTubeVideoId(values.video_share_url),
+          video_code: getYouTubeVideoId(values.video_link),
         };
 
         if (isCreate) {
