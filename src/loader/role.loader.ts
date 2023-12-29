@@ -43,7 +43,7 @@ const useSearchRoles = ({
   return useQuery<ExtractFnReturnType<typeof searchRoles>>({
     ...config,
     queryKey: [CACHE_ROLE.SEARCH, params],
-    queryFn: () => searchRoles({ params }),
+    queryFn: () => searchRoles(params),
   });
 };
 
@@ -107,10 +107,10 @@ const useCreateRole = ({
 };
 
 export {
-  useRoleDropdown,
   useCreateRole,
   useDeleteRole,
   useGetRoleById,
+  useRoleDropdown,
   useSearchRoles,
   useUpdateRole,
 };

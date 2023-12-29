@@ -31,7 +31,8 @@
     "create_success": "Tạo thành công",
     "create_failure": "Cập nhật thất bại! Vui lòng thử lại",
     "fpw_failure": "Gửi email ko thành công vui lòng thử lại!",
-    "fpw_success": "Gửi email thành công!"
+    "fpw_success": "Gửi email thành công!",
+    "save_success": "Lưu thành công"
   },
   "nav": {
     "home": "Trang chủ",
@@ -221,7 +222,10 @@
       "city": "Khu vực",
       "open_time": "Thời gian mở cửa",
       "close_time": "Thời gian đóng cửa",
-      "embed_map": "Bản đồ"
+      "embed_map": "Bản đồ",
+      "select_city": "Tỉnh / Thành phố",
+      "select_district": "Quận / Huyện",
+      "select_commune": "Xã / Phường"
     }
   },
   "city": {

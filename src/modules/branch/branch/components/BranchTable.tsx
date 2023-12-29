@@ -10,6 +10,7 @@ import { useSearchBranches } from "@/loader/branch.loader";
 import { IBranch } from "@/models/branch";
 import { compareNumbers } from "@/utils/array";
 
+import CityModal from "../../city/CityModal";
 import BranchDelete from "./BranchDelete";
 import BranchModal from "./BranchModal";
 
@@ -169,6 +170,7 @@ export default function BranchTable(): JSX.Element {
           onFocus={(e) => e.target.select()}
         />,
         <BranchModal />,
+        <CityModal />,
       ]}
       rowKey={"branch_id"}
     />
