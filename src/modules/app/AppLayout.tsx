@@ -32,14 +32,7 @@ const settings: ProLayoutProps = {
   contentWidth: "Fluid",
 };
 
-const listColors = [
-  "#1c4093",
-  "#0bc9bd",
-  "#31304D",
-  "#AA5656",
-  "#2D9596",
-  "#860A35",
-];
+const listColors = ["#1c4093", "#31304D", "#AA5656", "#2D9596", "#860A35"];
 
 export default function AppLayout({ children }: Props): JSX.Element {
   const location = useLocation();
@@ -143,7 +136,7 @@ export default function AppLayout({ children }: Props): JSX.Element {
             </Link>
             <Typography.Title
               level={3}
-              style={{ margin: 0 }}
+              style={{ margin: 0, fontSize: 20 }}
               className="header-caption"
             >
               HỆ THỐNG QUẢN TRỊ NỘI DUNG KINESS VIỆT NAM

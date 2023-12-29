@@ -1,5 +1,6 @@
 {
   "name": "kiness-fe-admin",
+  "homepage": "https://admin.kiness.vn",
   "private": true,
   "version": "1.0.0",
   "type": "module",

@@ -116,44 +116,47 @@ export default function SlideTable(): JSX.Element {
   ];
 
   return (
-    <ProTable
-      size="small"
-      bordered
-      loading={slidesQuery.isLoading}
-      pagination={{
-        pageSize: Number(searchParams.get("page_size")) || 10,
-        current: Number(searchParams.get("page")) || 1,
-        onChange(page, pageSize) {
-          searchParams.set("page", page + "");
-          searchParams.set("page_size", pageSize + "");
-          setPage(page);
-          setPageSize(pageSize);
-          setSearchParams(searchParams);
-        },
-        total: slidesQuery.data?.total_items || 0,
-        showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total} slide`;
-        },
-      }}
-      columns={columns}
-      dataSource={slidesQuery.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      search={false}
-      toolbar={{
-        settings: [],
-      }}
-      toolBarRender={() => [
-        <Input.Search
-          placeholder={t("search_placeholder")}
-          defaultValue={searchContent}
-          loading={slidesQuery.isLoading}
-          style={{ minWidth: 350 }}
-          onSearch={handleSearch}
-          onFocus={(e) => e.target.select()}
-        />,
-        <SlideModal />,
-      ]}
-      rowKey={"slide_id"}
-    />
+    <>
+      <Typography.Title level={3}>{t("title")}</Typography.Title>
+      <ProTable
+        size="small"
+        bordered
+        loading={slidesQuery.isLoading}
+        pagination={{
+          pageSize: Number(searchParams.get("page_size")) || 10,
+          current: Number(searchParams.get("page")) || 1,
+          onChange(page, pageSize) {
+            searchParams.set("page", page + "");
+            searchParams.set("page_size", pageSize + "");
+            setPage(page);
+            setPageSize(pageSize);
+            setSearchParams(searchParams);
+          },
+          total: slidesQuery.data?.total_items || 0,
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} trên ${total} slide`;
+          },
+        }}
+        columns={columns}
+        dataSource={slidesQuery.data?.data || []}
+        // headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
+        search={false}
+        toolbar={{
+          settings: [],
+        }}
+        toolBarRender={() => [
+          <Input.Search
+            placeholder={t("search_placeholder")}
+            defaultValue={searchContent}
+            loading={slidesQuery.isLoading}
+            style={{ minWidth: 350 }}
+            onSearch={handleSearch}
+            onFocus={(e) => e.target.select()}
+          />,
+          <SlideModal />,
+        ]}
+        rowKey={"slide_id"}
+      />
+    </>
   );
 }

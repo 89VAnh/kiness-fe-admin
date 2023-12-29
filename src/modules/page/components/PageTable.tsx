@@ -90,51 +90,54 @@ export default function PageTable(): JSX.Element {
   ];
 
   return (
-    <ProTable
-      size="small"
-      cardBordered
-      // rowSelection={{
-      //   selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-      //   defaultSelectedRowKeys: [],
-      // }}
-      loading={customers.isLoading}
-      pagination={{
-        pageSize: Number(searchParams.get("page_size")) || 10,
-        current: Number(searchParams.get("page")) || 1,
-        onChange(page, pageSize) {
-          searchParams.set("page", page + "");
-          searchParams.set("page_size", pageSize + "");
-          setPage(page);
-          setPageSize(pageSize);
-          setSearchParams(searchParams);
-        },
-        total: customers.data?.total_items || 0,
-        showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total} trang`;
-        },
-      }}
-      columns={columns}
-      dataSource={customers.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      // search={{
-      //   resetText: "Reset",
-      //   labelWidth: "auto",
-      // }}
-      search={false}
-      toolbar={{
-        settings: [],
-      }}
-      toolBarRender={() => [
-        <Input.Search
-          placeholder={t("search_placeholder")}
-          defaultValue={searchContent}
-          loading={customers.isLoading}
-          onSearch={handleSearch}
-          onFocus={(e) => e.target.select()}
-        />,
-        <PageModal />,
-      ]}
-      rowKey={"page_id"}
-    />
+    <>
+      <Typography.Title level={3}>{t("title")}</Typography.Title>
+      <ProTable
+        size="small"
+        cardBordered
+        // rowSelection={{
+        //   selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
+        //   defaultSelectedRowKeys: [],
+        // }}
+        loading={customers.isLoading}
+        pagination={{
+          pageSize: Number(searchParams.get("page_size")) || 10,
+          current: Number(searchParams.get("page")) || 1,
+          onChange(page, pageSize) {
+            searchParams.set("page", page + "");
+            searchParams.set("page_size", pageSize + "");
+            setPage(page);
+            setPageSize(pageSize);
+            setSearchParams(searchParams);
+          },
+          total: customers.data?.total_items || 0,
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} trên ${total} trang`;
+          },
+        }}
+        columns={columns}
+        dataSource={customers.data?.data || []}
+        // headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
+        // search={{
+        //   resetText: "Reset",
+        //   labelWidth: "auto",
+        // }}
+        search={false}
+        toolbar={{
+          settings: [],
+        }}
+        toolBarRender={() => [
+          <Input.Search
+            placeholder={t("search_placeholder")}
+            defaultValue={searchContent}
+            loading={customers.isLoading}
+            onSearch={handleSearch}
+            onFocus={(e) => e.target.select()}
+          />,
+          <PageModal />,
+        ]}
+        rowKey={"page_id"}
+      />
+    </>
   );
 }

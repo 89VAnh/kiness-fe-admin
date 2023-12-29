@@ -104,43 +104,46 @@ export default function LicenseTable(): JSX.Element {
   ];
 
   return (
-    <ProTable
-      size="small"
-      loading={licensesQuery.isLoading}
-      columns={columns}
-      dataSource={licensesQuery.data ? licensesQuery.data?.data?.data : []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      search={false}
-      toolbar={{
-        settings: [],
-      }}
-      pagination={{
-        pageSize: Number(searchParams.get("page_size")) || 10,
-        current: Number(searchParams.get("page")) || 1,
-        onChange(page, pageSize) {
-          searchParams.set("page", page + "");
-          searchParams.set("page_size", pageSize + "");
-          setPage(page);
-          setPageSize(pageSize);
-          setSearchParams(searchParams);
-        },
-        showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total} bằng sáng chế`;
-        },
-        total: licensesQuery.data?.total_items || 0,
-      }}
-      toolBarRender={() => [
-        <Input.Search
-          placeholder={t("search_placeholder")}
-          defaultValue={searchContent}
-          loading={licensesQuery.isLoading}
-          onSearch={handleSearch}
-          style={{ minWidth: 350 }}
-          onFocus={(e) => e.target.select()}
-        />,
-        <LicenseModal />,
-      ]}
-      rowKey={"license_id"}
-    />
+    <>
+      <Typography.Title level={3}>{t("title")}</Typography.Title>
+      <ProTable
+        size="small"
+        loading={licensesQuery.isLoading}
+        columns={columns}
+        dataSource={licensesQuery.data ? licensesQuery.data?.data?.data : []}
+        // headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
+        search={false}
+        toolbar={{
+          settings: [],
+        }}
+        pagination={{
+          pageSize: Number(searchParams.get("page_size")) || 10,
+          current: Number(searchParams.get("page")) || 1,
+          onChange(page, pageSize) {
+            searchParams.set("page", page + "");
+            searchParams.set("page_size", pageSize + "");
+            setPage(page);
+            setPageSize(pageSize);
+            setSearchParams(searchParams);
+          },
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} trên ${total} bằng sáng chế`;
+          },
+          total: licensesQuery.data?.total_items || 0,
+        }}
+        toolBarRender={() => [
+          <Input.Search
+            placeholder={t("search_placeholder")}
+            defaultValue={searchContent}
+            loading={licensesQuery.isLoading}
+            onSearch={handleSearch}
+            style={{ minWidth: 350 }}
+            onFocus={(e) => e.target.select()}
+          />,
+          <LicenseModal />,
+        ]}
+        rowKey={"license_id"}
+      />
+    </>
   );
 }

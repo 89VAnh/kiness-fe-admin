@@ -96,12 +96,9 @@ export default function CityModal({ id, isCreate = true }: Props): JSX.Element {
   return (
     <>
       {isCreate ? (
-        <Button
-          key="button"
-          icon={<PlusOutlined />}
-          onClick={open}
-          type="primary"
-        ></Button>
+        <Button key="button" onClick={open} type="primary">
+          <PlusOutlined /> {t("all.btn_add")}
+        </Button>
       ) : (
         <Tooltip title={t("all.edit")}>
           <Button type="dashed" onClick={open} style={{ color: "#faad14" }}>

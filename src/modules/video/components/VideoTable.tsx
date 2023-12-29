@@ -124,42 +124,45 @@ export default function VideoTable(): JSX.Element {
   ];
 
   return (
-    <ProTable
-      size="small"
-      loading={videosQuery.isLoading}
-      columns={columns}
-      dataSource={videosQuery.data?.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      search={false}
-      toolbar={{
-        settings: [],
-      }}
-      pagination={{
-        pageSize: Number(searchParams.get("page_size")) || 10,
-        current: Number(searchParams.get("page")) || 1,
-        onChange(page, pageSize) {
-          searchParams.set("page", page + "");
-          searchParams.set("page_size", pageSize + "");
-          setPage(page);
-          setPageSize(pageSize);
-          setSearchParams(searchParams);
-        },
-        showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total} video`;
-        },
-        total: videosQuery.data?.data?.total_items || 0,
-      }}
-      toolBarRender={() => [
-        <Input.Search
-          placeholder={t("search_placeholder")}
-          defaultValue={searchContent}
-          loading={videosQuery.isLoading}
-          onSearch={handleSearch}
-          onFocus={(e) => e.target.select()}
-        />,
-        <VideoModal />,
-      ]}
-      rowKey={"video_id"}
-    />
+    <>
+      <Typography.Title level={3}>{t("title")}</Typography.Title>
+      <ProTable
+        size="small"
+        loading={videosQuery.isLoading}
+        columns={columns}
+        dataSource={videosQuery.data?.data?.data || []}
+        // headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
+        search={false}
+        toolbar={{
+          settings: [],
+        }}
+        pagination={{
+          pageSize: Number(searchParams.get("page_size")) || 10,
+          current: Number(searchParams.get("page")) || 1,
+          onChange(page, pageSize) {
+            searchParams.set("page", page + "");
+            searchParams.set("page_size", pageSize + "");
+            setPage(page);
+            setPageSize(pageSize);
+            setSearchParams(searchParams);
+          },
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} trên ${total} video`;
+          },
+          total: videosQuery.data?.data?.total_items || 0,
+        }}
+        toolBarRender={() => [
+          <Input.Search
+            placeholder={t("search_placeholder")}
+            defaultValue={searchContent}
+            loading={videosQuery.isLoading}
+            onSearch={handleSearch}
+            onFocus={(e) => e.target.select()}
+          />,
+          <VideoModal />,
+        ]}
+        rowKey={"video_id"}
+      />
+    </>
   );
 }

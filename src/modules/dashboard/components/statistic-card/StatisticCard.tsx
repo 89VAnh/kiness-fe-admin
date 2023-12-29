@@ -84,7 +84,7 @@ export default function StatisticDash(): JSX.Element {
   return (
     <Row
       gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
-      style={{ margin: "0 4px", marginTop: 16, marginBottom: 37 }}
+      style={{ marginTop: 16, marginBottom: 37 }}
     >
       {currentData
         ? colorStatistic?.map((item) => (

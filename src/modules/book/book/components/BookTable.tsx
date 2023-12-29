@@ -104,41 +104,44 @@ export default function BookTable(): JSX.Element {
   ];
 
   return (
-    <ProTable
-      size="small"
-      cardBordered
-      loading={bookQuery.isLoading}
-      pagination={{
-        pageSize,
-        current: page,
-        onChange(page, pageSize) {
-          setPage(page);
-          setPageSize(pageSize);
-        },
-        total: bookQuery.data?.data?.total_items || 0,
-        showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total} sách`;
-        },
-      }}
-      columns={columns}
-      dataSource={bookQuery.data?.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      search={false}
-      toolbar={{
-        settings: [],
-      }}
-      toolBarRender={() => [
-        <Input.Search
-          placeholder={t("search_placeholder")}
-          loading={bookQuery.isLoading}
-          onSearch={handleSearch}
-          style={{ minWidth: 350 }}
-          onFocus={(e) => e.target.select()}
-        />,
-        <BookModal />,
-        <BookAuthorModal />,
-      ]}
-      rowKey={"book_id"}
-    />
+    <>
+      <Typography.Title level={3}>{t("title")}</Typography.Title>
+      <ProTable
+        size="small"
+        cardBordered
+        loading={bookQuery.isLoading}
+        pagination={{
+          pageSize,
+          current: page,
+          onChange(page, pageSize) {
+            setPage(page);
+            setPageSize(pageSize);
+          },
+          total: bookQuery.data?.data?.total_items || 0,
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} trên ${total} sách`;
+          },
+        }}
+        columns={columns}
+        dataSource={bookQuery.data?.data?.data || []}
+        // headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
+        search={false}
+        toolbar={{
+          settings: [],
+        }}
+        toolBarRender={() => [
+          <Input.Search
+            placeholder={t("search_placeholder")}
+            loading={bookQuery.isLoading}
+            onSearch={handleSearch}
+            style={{ minWidth: 350 }}
+            onFocus={(e) => e.target.select()}
+          />,
+          <BookModal />,
+          <BookAuthorModal />,
+        ]}
+        rowKey={"book_id"}
+      />
+    </>
   );
 }

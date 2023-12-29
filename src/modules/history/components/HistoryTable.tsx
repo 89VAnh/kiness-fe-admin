@@ -134,44 +134,47 @@ export default function HistoryTable(): JSX.Element {
   ];
 
   return (
-    <ProTable
-      size="small"
-      cardBordered
-      loading={historyListQuery.isLoading}
-      pagination={{
-        pageSize: Number(searchParams.get("page_size")) || 10,
-        current: Number(searchParams.get("page")) || 1,
-        onChange(page, pageSize) {
-          searchParams.set("page", page + "");
-          searchParams.set("page_size", pageSize + "");
-          setPage(page);
-          setPageSize(pageSize);
-          setSearchParams(searchParams);
-        },
-        total: historyListQuery.data?.total_items || 0,
-        showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total}`;
-        },
-      }}
-      columns={columns}
-      dataSource={historyListQuery.data?.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      search={false}
-      toolbar={{
-        settings: [],
-      }}
-      toolBarRender={() => [
-        <Input.Search
-          placeholder={t("search_placeholder")}
-          defaultValue={searchContent}
-          loading={historyListQuery.isLoading}
-          onSearch={(value) => handleSearch(value, "k")}
-          style={{ minWidth: 350 }}
-          onFocus={(e) => e.target.select()}
-        />,
-        <HistoryModal />,
-      ]}
-      rowKey="history_id"
-    />
+    <>
+      <Typography.Title level={3}>{t("title")}</Typography.Title>
+      <ProTable
+        size="small"
+        cardBordered
+        loading={historyListQuery.isLoading}
+        pagination={{
+          pageSize: Number(searchParams.get("page_size")) || 10,
+          current: Number(searchParams.get("page")) || 1,
+          onChange(page, pageSize) {
+            searchParams.set("page", page + "");
+            searchParams.set("page_size", pageSize + "");
+            setPage(page);
+            setPageSize(pageSize);
+            setSearchParams(searchParams);
+          },
+          total: historyListQuery.data?.total_items || 0,
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} trên ${total}`;
+          },
+        }}
+        columns={columns}
+        dataSource={historyListQuery.data?.data?.data || []}
+        // headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
+        search={false}
+        toolbar={{
+          settings: [],
+        }}
+        toolBarRender={() => [
+          <Input.Search
+            placeholder={t("search_placeholder")}
+            defaultValue={searchContent}
+            loading={historyListQuery.isLoading}
+            onSearch={(value) => handleSearch(value, "k")}
+            style={{ minWidth: 350 }}
+            onFocus={(e) => e.target.select()}
+          />,
+          <HistoryModal />,
+        ]}
+        rowKey="history_id"
+      />
+    </>
   );
 }
