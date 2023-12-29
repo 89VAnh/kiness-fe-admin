@@ -1,6 +1,6 @@
-import districts from "./dist/quan_huyen.json";
-import cities from "./dist/tinh_tp.json";
-import communes from "./dist/xa_phuong.json";
+import districts from "./data/quan_huyen.json";
+import cities from "./data/tinh_tp.json";
+import communes from "./data/xa_phuong.json";
 
 export const getCityDropdown = () =>
   Object.keys(cities).map((id) => ({

@@ -136,6 +136,7 @@ export default function PostureStoryModal({
           dataPost.lu_user_id = userProfile.user_id;
           updatePostureStory.mutate(dataPost);
         }
+        setDataEditor("");
       })
       .catch((err) => {
         console.log(err);

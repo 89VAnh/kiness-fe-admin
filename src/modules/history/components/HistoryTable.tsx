@@ -148,7 +148,7 @@ export default function HistoryTable(): JSX.Element {
           setPageSize(pageSize);
           setSearchParams(searchParams);
         },
-        total: historyListQuery.data?.total_items || 0,
+        total: historyListQuery.data?.data?.total_items || 0,
         showTotal(total, range) {
           return `${range[0]}-${range[1]} trên ${total}`;
         },

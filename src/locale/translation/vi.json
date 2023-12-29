@@ -391,11 +391,11 @@
     }
   },
   "growth_story": {
-    "title": "Quản lý câu chuyện tăng trưởng",
+    "title": "Quản lý hỏi đáp cùng chuyên gia",
     "search_placeholder": "Tìm kiếm",
-    "title_update": "Cập nhật câu chuyện tăng trưởng",
-    "title_create": "Thêm câu chuyện tăng trưởng",
-    "title_delete": "Xóa câu chuyện tăng trưởng",
+    "title_update": "Cập nhật hỏi đáp cùng chuyên gia",
+    "title_create": "Thêm hỏi đáp cùng chuyên gia",
+    "title_delete": "Xóa hỏi đáp cùng chuyên gia",
 
     "fields": {
       "serial": "STT",
