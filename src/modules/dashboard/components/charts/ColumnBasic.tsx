@@ -47,6 +47,7 @@ export default function ColumnBasic(): JSX.Element {
     data,
     xField: "type",
     yField: "value",
+    height: 400,
     style: {
       fill: token.token.colorPrimary,
     },

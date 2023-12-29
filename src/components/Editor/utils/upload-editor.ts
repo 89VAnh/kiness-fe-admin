@@ -4,6 +4,7 @@ import {
 } from "@ckeditor/ckeditor5-upload/src/filerepository";
 import _ from "lodash";
 
+import { BASE_URL } from "@/constant/config";
 import { uploadFile } from "@/services/upload.service";
 
 const handleDeleteImage = (event: any): void => {
@@ -42,7 +43,7 @@ function uploadAdapter(loader: FileLoader): UploadAdapter {
           const file = await loader.file;
           const response = await uploadFile({ file });
           resolve({
-            default: `/api/${response?.path}`,
+            default: `${BASE_URL}/${response?.path}`,
           });
         } catch (error) {
           reject("Hello");

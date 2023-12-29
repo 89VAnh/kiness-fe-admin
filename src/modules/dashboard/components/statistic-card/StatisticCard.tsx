@@ -84,7 +84,7 @@ export default function StatisticDash(): JSX.Element {
   return (
     <Row
       gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
-      style={{ marginTop: 16, marginBottom: 37 }}
+      style={{ marginBottom: 24 }}
     >
       {currentData
         ? colorStatistic?.map((item) => (
@@ -96,32 +96,36 @@ export default function StatisticDash(): JSX.Element {
             >
               <Link preventScrollReset to={item?.linkTo}>
                 <div className={styles.statistic_card}>
-                  <div style={{ paddingRight: 8 }}>
-                    <Typography.Title
-                      level={1}
-                      className={styles.value}
-                      style={{
-                        color: item.color,
-                      }}
-                    >
-                      <CountUp
-                        start={0}
-                        end={currentData[item.key as keyof typeof currentData]}
-                        duration={0.8}
-                        decimal=","
-                      />
-                    </Typography.Title>
-                    <Typography.Title
-                      level={3}
-                      className={styles.title}
-                      style={{
-                        color: item?.color,
-                      }}
-                    >
-                      {t("dashboard." + item?.title)}
-                    </Typography.Title>
+                  <div className={styles.statistic}>
+                    <div style={{ paddingRight: 8 }}>
+                      <Typography.Title
+                        level={1}
+                        className={styles.value}
+                        style={{
+                          color: item.color,
+                        }}
+                      >
+                        <CountUp
+                          start={0}
+                          end={
+                            currentData[item.key as keyof typeof currentData]
+                          }
+                          duration={0.8}
+                          decimal=","
+                        />
+                      </Typography.Title>
+                    </div>
+                    <div>{renderIcon(item?.icon)}</div>
                   </div>
-                  <div>{renderIcon(item?.icon)}</div>
+                  <Typography.Title
+                    level={3}
+                    className={styles.title}
+                    style={{
+                      color: item?.color,
+                    }}
+                  >
+                    {t("dashboard." + item?.title)}
+                  </Typography.Title>
                 </div>
               </Link>
             </Col>

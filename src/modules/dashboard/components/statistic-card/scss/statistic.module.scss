@@ -4,20 +4,27 @@
   padding: 16px;
   border-radius: 8px;
   display: flex;
+  flex-direction: column;
   flex-wrap: nowrap;
   height: 100%;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   min-height: 130px !important;
 
+  & .statistic {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
   & .value {
     color: var(--3, #1890ff);
-    font-size: 40px;
-    font-style: normal;
+    font-size: 48px;
     font-weight: 700;
-    margin-bottom: 16px;
     display: block;
     line-height: 1;
+    margin-bottom: 0;
   }
 
   & .title {
