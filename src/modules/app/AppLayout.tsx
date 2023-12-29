@@ -33,7 +33,7 @@ const settings: ProLayoutProps = {
 };
 
 const listColors = [
-  "#2c53a5",
+  "#1c4093",
   "#0bc9bd",
   "#31304D",
   "#AA5656",
@@ -133,7 +133,8 @@ export default function AppLayout({ children }: Props): JSX.Element {
         menu={{
           loading: userProfile.functions.length > 0 ? false : true,
           collapsedShowTitle: false,
-          defaultOpenAll: true,
+          type: "sub",
+          // defaultOpenAll: true,
         }}
         headerTitleRender={(_, __, ___) => (
           <Space>

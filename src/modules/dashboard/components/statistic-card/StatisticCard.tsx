@@ -57,7 +57,10 @@ export default function StatisticDash(): JSX.Element {
     user_id: userProfile.user_id,
     config: {
       onSuccess(data) {
-        if (data.message === ERROR_TIMEOUT) countEmployeeQuery.refetch();
+        if (data.message === ERROR_TIMEOUT) {
+          countEmployeeQuery.refetch();
+          return;
+        }
         if (
           typeof data.total === "number" &&
           userProfile.position_name.toLowerCase() !== ACCESSES.POS_EMPLOYEE &&
