@@ -207,6 +207,7 @@ export default function SlideModal({
         title={isCreate ? t("slide.title_create") : t("slide.title_update")}
         style={{ top: 58, padding: 0, minWidth: 600 }}
         open={isOpen}
+        maskClosable={false}
         onCancel={handleCancel}
         onOk={handleSubmit}
         confirmLoading={updatePage.isLoading || createPage.isLoading}

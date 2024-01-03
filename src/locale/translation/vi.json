@@ -688,6 +688,7 @@
     "fields": {
       "serial": "STT",
       "video_name": "Tiêu đề video",
+      "video_code": "Mã youtube video",
       "video_preview": "Xem trước",
       "video_link": "Liên kết",
       "video_share_url": "Đường dẫn video youtube",

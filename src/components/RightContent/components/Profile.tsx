@@ -173,6 +173,7 @@ export default function Profile(): JSX.Element {
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={updateEmployee.isLoading}
       >
         <div

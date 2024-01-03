@@ -60,6 +60,7 @@ export default function SlideDelete({ id, filePaths }: Props): JSX.Element {
         open={isOpen}
         onCancel={close}
         onOk={handleDelete}
+        maskClosable={false}
         confirmLoading={deletePage.isLoading}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?

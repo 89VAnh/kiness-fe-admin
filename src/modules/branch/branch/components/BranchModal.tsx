@@ -171,6 +171,7 @@ export default function BranchModal({
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={updateBranch.isLoading || createBranch.isLoading}
       >
         <div

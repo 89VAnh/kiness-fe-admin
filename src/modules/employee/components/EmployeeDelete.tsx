@@ -68,10 +68,13 @@ export default function EmployeeDelete({ id }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
+        style={{ top: 58, padding: 0 }}
         title={t("title_delete")}
         open={isOpen}
         onCancel={close}
         onOk={handleDelete}
+        maskClosable={false}
+        confirmLoading={deleteEmployee.isLoading}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
       </Modal>

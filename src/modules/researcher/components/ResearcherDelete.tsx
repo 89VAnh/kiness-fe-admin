@@ -63,8 +63,10 @@ export default function ResearcherDelete({
 
       <Modal
         title={t("title_delete")}
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={close}
+        maskClosable={false}
         onOk={() => {
           deleteResearcher.mutate({
             list_json: [{ researcher_id: id }],

@@ -65,9 +65,11 @@ export default function ExperienceRegisterDelete({ id }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
+        style={{ top: 58, padding: 0 }}
         title={t("title_delete")}
         open={isOpen}
         onCancel={close}
+        maskClosable={false}
         onOk={() => {
           deleteExperienceRegister.mutate({
             list_json: [{ register_id: id }],
@@ -75,7 +77,9 @@ export default function ExperienceRegisterDelete({ id }: Props): JSX.Element {
           });
           close();
         }}
-      ></Modal>
+      >
+        Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
+      </Modal>
     </>
   );
 }

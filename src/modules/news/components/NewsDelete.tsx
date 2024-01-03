@@ -60,6 +60,9 @@ export default function NewsDelete({ id, thumbnail }: Props): JSX.Element {
         title={t("title_delete")}
         open={isOpen}
         onCancel={close}
+        maskClosable={false}
+        style={{ top: 58, padding: 0 }}
+        confirmLoading={deleteNews.isLoading}
         onOk={() => {
           deleteNews.mutate({
             list_json: [{ news_id: id }],
@@ -67,7 +70,9 @@ export default function NewsDelete({ id, thumbnail }: Props): JSX.Element {
           });
           close();
         }}
-      ></Modal>
+      >
+        Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
+      </Modal>
     </>
   );
 }

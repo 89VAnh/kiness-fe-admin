@@ -189,6 +189,7 @@ export default function LicenseModal({
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={
           updateLicenseOfInvention.isLoading ||
           createLicenseOfInvention.isLoading

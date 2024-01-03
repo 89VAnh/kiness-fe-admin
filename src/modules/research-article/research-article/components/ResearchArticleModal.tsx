@@ -171,6 +171,7 @@ export default function ResearchArticleModal({
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={
           updateResearchArticle.isLoading || createResearchArticle.isLoading
         }

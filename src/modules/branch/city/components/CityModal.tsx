@@ -112,6 +112,7 @@ export default function CityModal({ id, isCreate = true }: Props): JSX.Element {
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={updatePage.isLoading || createPage.isLoading}
       >
         <div

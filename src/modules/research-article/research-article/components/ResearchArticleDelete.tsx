@@ -57,8 +57,10 @@ export default function ResearchArticleDelete({ id }: Props): JSX.Element {
 
       <Modal
         title={t("title_delete")}
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={close}
+        maskClosable={false}
         onOk={() => {
           deleteResearchArticle.mutate({
             list_json: [{ article_id: id }],

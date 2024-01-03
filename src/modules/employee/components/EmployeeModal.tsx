@@ -231,6 +231,7 @@ export default function EmployeeModal({
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={updateEmployee.isLoading}
       >
         <div

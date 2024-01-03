@@ -57,6 +57,7 @@ export default function LateStoryDelete({
         open={isOpen}
         onCancel={close}
         onOk={handleDelete}
+        maskClosable={false}
         confirmLoading={deleteQuery.isLoading}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?

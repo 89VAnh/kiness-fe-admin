@@ -197,6 +197,7 @@ export default function BookModal({ id, isCreate = true }: Props): JSX.Element {
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={updatePage.isLoading || createPage.isLoading}
       >
         <div
