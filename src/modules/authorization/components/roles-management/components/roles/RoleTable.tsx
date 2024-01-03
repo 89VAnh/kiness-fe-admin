@@ -280,7 +280,7 @@ export default function RoleTable({
         onCheck={handleCheck}
         autoExpandParent
         className={styles.tree + " " + styles.tree_small}
-        height={450}
+        style={{ maxHeight: 600, overflow: "auto" }}
         onSelect={onSelect}
         treeData={data?.data}
       />

@@ -39,7 +39,7 @@ export default function FunctionTable(): JSX.Element {
   const { t } = useTranslation();
 
   const onSelect: DirectoryTreeProps["onSelect"] = (keys) => {
-    setFunction(keys[0].toString());
+    setFunction(keys?.length > 0 ? keys[0].toString() : "");
   };
 
   const handleSearch = (value: string) => {
@@ -72,10 +72,10 @@ export default function FunctionTable(): JSX.Element {
           </Button.Group>
         </Col>
       </Row>
-      <Tree.DirectoryTree
+      <Tree
         defaultExpandAll
         className={styles.tree}
-        height={600}
+        style={{ maxHeight: 600, overflow: "auto", padding: 10 }}
         onSelect={onSelect}
         treeData={data?.data}
       />

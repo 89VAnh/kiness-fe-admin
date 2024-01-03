@@ -55,7 +55,7 @@ export function DeleteFunctionModal(): JSX.Element {
         </Button>
       </Tooltip>
       <Modal
-        centered
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         title={t("authorization.functions.modal.title_delete")}
         width={"30%"}

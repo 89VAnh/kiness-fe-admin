@@ -64,7 +64,7 @@ export default function AppLayout({ children }: Props): JSX.Element {
       theme={{
         token: {
           colorPrimary: primary,
-          colorTextHeading: primary,
+          // colorTextHeading: primary,
         },
       }}
     >
