@@ -51,6 +51,7 @@ export default function GrowthArticleDelete({ id }: Props): JSX.Element {
         open={isOpen}
         onCancel={close}
         onOk={handleDelete}
+        maskClosable={false}
         confirmLoading={deleteQuery.isLoading}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?

@@ -125,6 +125,7 @@ export default function ArticleAuthorModal({
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={updatePage.isLoading || createPage.isLoading}
       >
         <div

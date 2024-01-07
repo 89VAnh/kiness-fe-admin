@@ -182,6 +182,7 @@ export default function NewsModal({ id, isCreate = true }: Props): JSX.Element {
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={updateNews.isLoading || createNews.isLoading}
       >
         <div

@@ -1,12 +1,9 @@
 import { Column, ColumnConfig } from "@ant-design/plots";
 import { useToken } from "@ant-design/pro-components";
-import dayjs from "dayjs";
-import _ from "lodash";
 import { useState } from "react";
 
 import { ERROR_TIMEOUT } from "@/constant/config";
 import { useStatisticExperience } from "@/loader/dashboard.loader";
-import { formatDateShow } from "@/utils/format-string";
 
 export default function ColumnBasic(): JSX.Element {
   const token = useToken();
@@ -26,19 +23,21 @@ export default function ColumnBasic(): JSX.Element {
             type: `${item.day}/${item.month}/${item.year}`,
           }));
 
-          if (dataTransformed.length === 7) {
-            setData(dataTransformed);
-            return;
-          }
+          setData(dataTransformed);
 
-          const initData = [...Array(7)].map((_, index) => ({
-            value: 0,
-            type: dayjs().subtract(index, "day").format(formatDateShow),
-          }));
+          // if (dataTransformed.length === 7) {
+          //   setData(dataTransformed);
+          //   return;
+          // }
 
-          const dataDiff = _.differenceBy(initData, dataTransformed, "type");
+          // const initData = [...Array(7)].map((_, index) => ({
+          //   value: 0,
+          //   type: dayjs().subtract(index, "day").format(formatDateShow),
+          // }));
 
-          setData(_.sortBy([...dataDiff, ...dataTransformed], "type"));
+          // const dataDiff = _.differenceBy(initData, dataTransformed, "type");
+
+          // setData(_.sortBy([...dataDiff, ...dataTransformed], "type"));
         }
       },
     },
@@ -48,12 +47,13 @@ export default function ColumnBasic(): JSX.Element {
     data,
     xField: "type",
     yField: "value",
+    height: 400,
     style: {
       fill: token.token.colorPrimary,
     },
     label: {
       // 可手动配置 label 数据标签位置
-      // position: "inside",
+      position: "inside",
       // 'top', 'bottom', 'middle',
       // 配置样式
       style: {

@@ -75,6 +75,7 @@ export function DeleteActionModal({ id }: Props): JSX.Element {
         okText={t("all.btn_confirm")}
         cancelText={t("all.btn_cancel")}
         destroyOnClose
+        maskClosable={false}
         onOk={handleOk}
         onCancel={handleCancel}
         // confirmLoading={deleteFee.isLoading}

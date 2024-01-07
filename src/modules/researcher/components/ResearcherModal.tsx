@@ -192,6 +192,7 @@ export default function ResearcherModal({
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={
           updateResearcher.isLoading || createResearcher.isLoading
         }

@@ -10,7 +10,6 @@ import {
   Tooltip,
   message,
 } from "antd";
-import TextArea from "antd/es/input/TextArea";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 
@@ -87,13 +86,13 @@ export default function VideoModal({
     },
   });
 
-  function getYouTubeVideoId(url: string): string | null {
-    const regex =
-      /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
+  // function getYouTubeVideoId(url: string): string | null {
+  //   const regex =
+  //     /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+  //   const match = url.match(regex);
 
-    return match ? match[1] : null;
-  }
+  //   return match ? match[1] : null;
+  // }
 
   const handleSubmit = () => {
     form
@@ -101,7 +100,7 @@ export default function VideoModal({
       .then(async (values: any) => {
         const dataPost: IVideo = {
           ...values,
-          video_code: getYouTubeVideoId(values.video_link),
+          // video_code: getYouTubeVideoId(values.video_link),
         };
 
         if (isCreate) {
@@ -141,11 +140,12 @@ export default function VideoModal({
       )}
       <Modal
         title={isCreate ? t("video.title_create") : t("video.title_update")}
-        width={1000}
+        width={600}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={updateVideo.isLoading || createVideo.isLoading}
       >
         <div
@@ -165,7 +165,7 @@ export default function VideoModal({
               <Form.Item name="video_id" hidden>
                 <Input />
               </Form.Item>
-              <Col span={18}>
+              <Col span={24}>
                 <Form.Item
                   name={"video_name"}
                   rules={[...RULES_FORM.required]}
@@ -175,7 +175,7 @@ export default function VideoModal({
                 </Form.Item>
               </Col>
 
-              <Col span={6}>
+              <Col span={12}>
                 <Form.Item
                   name={"is_foreign"}
                   rules={[...RULES_FORM.required]}
@@ -197,16 +197,13 @@ export default function VideoModal({
                   />
                 </Form.Item>
               </Col>
-              <Col span={24}>
+              <Col span={12}>
                 <Form.Item
-                  name={"video_link"}
+                  name={"video_code"}
                   rules={[...RULES_FORM.required]}
-                  label={t("video.fields.video_share_url")}
+                  label={t("video.fields.video_code")}
                 >
-                  <TextArea
-                    rows={6}
-                    placeholder={t("video.fields.video_share_url")}
-                  />
+                  <Input placeholder={t("video.fields.video_code")} />
                 </Form.Item>
               </Col>
             </Row>

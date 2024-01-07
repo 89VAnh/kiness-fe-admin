@@ -71,13 +71,12 @@ export default function CityTable(): JSX.Element {
     {
       title: t("fields.city_name"),
       dataIndex: "city_name",
-      width: 100,
       sorter: (a, b) => compareNumbers(a, b, "city_name"),
     },
     {
       title: t("fields.code"),
       dataIndex: "code",
-      width: 100,
+      width: 200,
       sorter: (a, b) => compareNumbers(a, b, "code"),
     },
     {

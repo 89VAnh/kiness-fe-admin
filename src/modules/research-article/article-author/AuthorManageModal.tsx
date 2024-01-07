@@ -18,6 +18,7 @@ export default function AuthorManageModal(): JSX.Element {
         title={<Typography.Title level={3}>{t("title")}</Typography.Title>}
         onCancel={close}
         onOk={close}
+        maskClosable={false}
         style={{ top: 58, padding: 0, minWidth: 1000 }}
         open={isOpen}
       >

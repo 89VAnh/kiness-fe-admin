@@ -42,10 +42,13 @@ export default function VideoDelete({ id }: Props): JSX.Element {
       <Modal
         title={t("title_delete")}
         open={isOpen}
+        style={{ top: 58, padding: 0 }}
         onCancel={close}
+        maskClosable={false}
         onOk={() => {
           deleteVideo.mutate(id);
         }}
+        confirmLoading={deleteVideo.isLoading}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
       </Modal>

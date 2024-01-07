@@ -71,6 +71,7 @@ export function CreateFunctionModal(): JSX.Element {
   });
 
   const handleOpen = () => {
+    form.setFieldValue("parent_id", function_id);
     open();
   };
 
@@ -118,12 +119,10 @@ export function CreateFunctionModal(): JSX.Element {
         </Button>
       </Tooltip>
       <Modal
-        style={{ top: 110 }}
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         width={"40%"}
         title={t("authorization.functions.modal.title_create")}
-        okText={t("all.btn_save")}
-        cancelText={t("all.btn_cancel")}
         onOk={handleOk}
         maskClosable={false}
         destroyOnClose
@@ -138,7 +137,6 @@ export function CreateFunctionModal(): JSX.Element {
                   label={t("authorization.functions.modal.function_group")}
                   name={"parent_id"}
                   rules={[...RULES_FORM.required]}
-                  initialValue={function_id}
                   valuePropName="title"
                 >
                   <TreeSelect

@@ -123,6 +123,7 @@ export default function PositionModal({
         // width={"90vw"}
         style={{ top: 58, padding: 0, minWidth: 600 }}
         open={isOpen}
+        maskClosable={false}
         onCancel={handleCancel}
         onOk={handleSubmit}
         confirmLoading={updatePosition.isLoading || createPosition.isLoading}

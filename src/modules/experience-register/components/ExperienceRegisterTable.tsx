@@ -224,74 +224,78 @@ export default function ExperienceRegisterTable(): JSX.Element {
   };
 
   return (
-    <ProTable
-      size="small"
-      cardBordered
-      loading={experienceRegisterQuery.isLoading}
-      pagination={{
-        pageSize: Number(searchParams.get("page_size")) || 10,
-        current: Number(searchParams.get("page")) || 1,
-        onChange(page, pageSize) {
-          searchParams.set("page", page + "");
-          searchParams.set("page_size", pageSize + "");
-          setPage(page);
-          setPageSize(pageSize);
-          setSearchParams(searchParams);
-        },
-        showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total} đơn đăng ký`;
-        },
-        total: experienceRegisterQuery.data?.total_items || 0,
-      }}
-      columns={columns as ProColumns<IExperienceRegister>[]}
-      dataSource={experienceRegisterQuery.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      search={false}
-      toolbar={{
-        settings: [],
-      }}
-      toolBarRender={(_) => [
-        <Select
-          placeholder={t("fields.status")}
-          onChange={handleSearchStatus}
-          options={[
-            { value: "0", label: "Chưa xác nhận" },
-            { value: "1", label: "Đã xác nhận" },
-          ]}
-          allowClear
-          value={status}
-        />,
-        <RangePicker
-          format={formatDateShow}
-          style={{ width: 660 }}
-          onChange={(range) => {
-            setRangeDate(
-              range
-                ? range.map((x) => (x ? x.format(formatDatePost) : ""))
-                : [],
-            );
-          }}
-        />,
-        <Input.Search
-          placeholder={t("search_placeholder")}
-          loading={experienceRegisterQuery.isLoading}
-          onSearch={handleSearch}
-          onFocus={(e) => e.target.select()}
-        />,
-        <Button
-          type="primary"
-          icon={<FileExcelOutlined />}
-          onClick={handlePrint}
-          disabled={
-            experienceRegisterQuery.data?.data === undefined ||
-            experienceRegisterQuery.isLoading ||
-            [...experienceRegisterQuery.data.data].length === 0
-          }
-        >
-          Xuất file
-        </Button>,
-      ]}
-      rowKey={"register_id"}
-    />
+    <>
+      <Typography.Title level={3}>{t("title")}</Typography.Title>
+      <ProTable
+        size="small"
+        cardBordered
+        loading={experienceRegisterQuery.isLoading}
+        pagination={{
+          pageSize: Number(searchParams.get("page_size")) || 10,
+          current: Number(searchParams.get("page")) || 1,
+          onChange(page, pageSize) {
+            searchParams.set("page", page + "");
+            searchParams.set("page_size", pageSize + "");
+            setPage(page);
+            setPageSize(pageSize);
+            setSearchParams(searchParams);
+          },
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} trên ${total} đơn đăng ký`;
+          },
+          total: experienceRegisterQuery.data?.total_items || 0,
+        }}
+        columns={columns as ProColumns<IExperienceRegister>[]}
+        dataSource={experienceRegisterQuery.data?.data || []}
+        // headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
+        search={false}
+        toolbar={{
+          settings: [],
+        }}
+        toolBarRender={(_) => [
+          <Select
+            placeholder={t("fields.status")}
+            onChange={handleSearchStatus}
+            options={[
+              { value: "0", label: "Chưa xác nhận" },
+              { value: "1", label: "Đã xác nhận" },
+            ]}
+            allowClear
+            value={status}
+          />,
+          <RangePicker
+            format={formatDateShow}
+            style={{ minWidth: 250 }}
+            onChange={(range) => {
+              setRangeDate(
+                range
+                  ? range.map((x) => (x ? x.format(formatDatePost) : ""))
+                  : [],
+              );
+            }}
+          />,
+          <Input.Search
+            placeholder={t("search_placeholder")}
+            loading={experienceRegisterQuery.isLoading}
+            style={{ minWidth: 250 }}
+            onSearch={handleSearch}
+            onFocus={(e) => e.target.select()}
+          />,
+          <Button
+            type="primary"
+            icon={<FileExcelOutlined />}
+            onClick={handlePrint}
+            disabled={
+              experienceRegisterQuery.data?.data === undefined ||
+              experienceRegisterQuery.isLoading ||
+              [...experienceRegisterQuery.data.data].length === 0
+            }
+          >
+            Xuất file
+          </Button>,
+        ]}
+        rowKey={"register_id"}
+      />
+    </>
   );
 }

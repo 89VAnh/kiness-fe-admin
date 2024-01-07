@@ -107,6 +107,10 @@
     }
   }
 
+  & > .ant-menu-item:nth-child(1) {
+    margin-top: 40px;
+  }
+
   & > .ant-menu-item-only-child {
     font-weight: bold;
   }

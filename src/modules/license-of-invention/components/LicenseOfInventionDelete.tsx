@@ -62,9 +62,12 @@ export default function LicenseDelete({ id, image_url }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
+        style={{ top: 58, padding: 0 }}
         title={t("title_delete")}
         open={isOpen}
         onCancel={close}
+        maskClosable={false}
+        confirmLoading={deleteLicenseOfInvention.isLoading}
         onOk={() => {
           deleteLicenseOfInvention.mutate({
             id,
@@ -72,7 +75,9 @@ export default function LicenseDelete({ id, image_url }: Props): JSX.Element {
           });
           close();
         }}
-      ></Modal>
+      >
+        Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
+      </Modal>
     </>
   );
 }

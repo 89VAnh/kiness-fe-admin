@@ -54,8 +54,11 @@ export default function PositionDelete({ id }: Props): JSX.Element {
 
       <Modal
         title={t("title_delete")}
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         onCancel={close}
+        maskClosable={false}
+        confirmLoading={deletePosition.isLoading}
         onOk={() => {
           deletePosition.mutate({
             list_json: [{ position_id: id }],

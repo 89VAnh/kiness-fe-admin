@@ -138,12 +138,10 @@ export function UpdateFunctionModal(): JSX.Element {
       </Tooltip>
 
       <Modal
-        style={{ top: 110 }}
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         width={"40%"}
         title={t("authorization.functions.modal.title_update")}
-        okText={t("all.btn_save")}
-        cancelText={t("all.btn_cancel")}
         onOk={handleOk}
         maskClosable={false}
         destroyOnClose

@@ -60,6 +60,7 @@ export default function BranchDelete({ id, thumbnail }: Props): JSX.Element {
         open={isOpen}
         onCancel={close}
         onOk={handleDelete}
+        maskClosable={false}
         confirmLoading={deleteBranch.isLoading}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?

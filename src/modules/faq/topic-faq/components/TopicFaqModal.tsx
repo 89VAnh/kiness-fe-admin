@@ -123,6 +123,7 @@ export default function TopicFaqModal({
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={updatePage.isLoading || createPage.isLoading}
       >
         <div

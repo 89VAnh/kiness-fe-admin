@@ -46,6 +46,7 @@ export default function RequestDelete({ id }: Props): JSX.Element {
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
+        maskClosable={false}
         onCancel={close}
         onOk={handleDelete}
         confirmLoading={deleteQuery.isLoading}

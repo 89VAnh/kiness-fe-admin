@@ -129,42 +129,45 @@ export default function ResearcherTable(): JSX.Element {
   ];
 
   return (
-    <ProTable
-      size="small"
-      loading={researchersQuery.isLoading}
-      columns={columns}
-      dataSource={researchersQuery.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      search={false}
-      toolbar={{
-        settings: [],
-      }}
-      pagination={{
-        pageSize: Number(searchParams.get("page_size")) || 10,
-        current: Number(searchParams.get("page")) || 1,
-        onChange(page, pageSize) {
-          searchParams.set("page", page + "");
-          searchParams.set("page_size", pageSize + "");
-          setPage(page);
-          setPageSize(pageSize);
-          setSearchParams(searchParams);
-        },
-        showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total} nhà nghiên cứu`;
-        },
-        total: researchersQuery.data?.total_items || 0,
-      }}
-      toolBarRender={() => [
-        <Input.Search
-          placeholder={t("search_placeholder")}
-          defaultValue={searchContent}
-          loading={researchersQuery.isLoading}
-          onSearch={handleSearch}
-          onFocus={(e) => e.target.select()}
-        />,
-        <ResearcherModal />,
-      ]}
-      rowKey={"researcher_id"}
-    />
+    <>
+      <Typography.Title level={3}>{t("title")}</Typography.Title>
+      <ProTable
+        size="small"
+        loading={researchersQuery.isLoading}
+        columns={columns}
+        dataSource={researchersQuery.data?.data || []}
+        // headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
+        search={false}
+        toolbar={{
+          settings: [],
+        }}
+        pagination={{
+          pageSize: Number(searchParams.get("page_size")) || 10,
+          current: Number(searchParams.get("page")) || 1,
+          onChange(page, pageSize) {
+            searchParams.set("page", page + "");
+            searchParams.set("page_size", pageSize + "");
+            setPage(page);
+            setPageSize(pageSize);
+            setSearchParams(searchParams);
+          },
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} trên ${total} nhà nghiên cứu`;
+          },
+          total: researchersQuery.data?.total_items || 0,
+        }}
+        toolBarRender={() => [
+          <Input.Search
+            placeholder={t("search_placeholder")}
+            defaultValue={searchContent}
+            loading={researchersQuery.isLoading}
+            onSearch={handleSearch}
+            onFocus={(e) => e.target.select()}
+          />,
+          <ResearcherModal />,
+        ]}
+        rowKey={"researcher_id"}
+      />
+    </>
   );
 }

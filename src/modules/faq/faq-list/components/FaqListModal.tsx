@@ -148,6 +148,7 @@ export default function FaqListModal({
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={updateFaq.isLoading || createFaq.isLoading}
       >
         <div

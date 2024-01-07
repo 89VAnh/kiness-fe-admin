@@ -167,61 +167,64 @@ export default function PostureStoryTable(): JSX.Element {
   ];
 
   return (
-    <ProTable
-      size="small"
-      cardBordered
-      loading={postureStoriesQuery.isLoading}
-      pagination={{
-        pageSize: Number(searchParams.get("page_size")) || 10,
-        current: Number(searchParams.get("page")) || 1,
-        onChange(page, pageSize) {
-          searchParams.set("page", page + "");
-          searchParams.set("page_size", pageSize + "");
-          setPage(page);
-          setPageSize(pageSize);
-          setSearchParams(searchParams);
-        },
-        total: postureStoriesQuery.data?.total_items || 0,
-        showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total} câu chuyện`;
-        },
-      }}
-      columns={columns}
-      dataSource={postureStoriesQuery.data?.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      search={false}
-      toolbar={{
-        settings: [],
-      }}
-      toolBarRender={() => [
-        <RangePicker
-          format={formatDateShow}
-          style={{ minWidth: 300 }}
-          onChange={(range) => {
-            setRangeDate(
-              range
-                ? range.map((x) => (x ? x.format(formatDatePost) : ""))
-                : [],
-            );
-          }}
-        />,
-        <Select
-          options={draftOptions}
-          defaultValue={draftStatus ? +draftStatus : ""}
-          onChange={(value) => handleSearch(value + "", "d")}
-          style={{ minWidth: 150 }}
-        />,
-        <Input.Search
-          placeholder={t("search_placeholder")}
-          defaultValue={searchContent}
-          loading={postureStoriesQuery.isLoading}
-          onSearch={(value) => handleSearch(value, "k")}
-          style={{ minWidth: 350 }}
-          onFocus={(e) => e.target.select()}
-        />,
-        <PostureStoryModal />,
-      ]}
-      rowKey={"posture_story_id"}
-    />
+    <>
+      <Typography.Title level={3}>{t("title")}</Typography.Title>
+      <ProTable
+        size="small"
+        cardBordered
+        loading={postureStoriesQuery.isLoading}
+        pagination={{
+          pageSize: Number(searchParams.get("page_size")) || 10,
+          current: Number(searchParams.get("page")) || 1,
+          onChange(page, pageSize) {
+            searchParams.set("page", page + "");
+            searchParams.set("page_size", pageSize + "");
+            setPage(page);
+            setPageSize(pageSize);
+            setSearchParams(searchParams);
+          },
+          total: postureStoriesQuery.data?.total_items || 0,
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} trên ${total} câu chuyện`;
+          },
+        }}
+        columns={columns}
+        dataSource={postureStoriesQuery.data?.data?.data || []}
+        // headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
+        search={false}
+        toolbar={{
+          settings: [],
+        }}
+        toolBarRender={() => [
+          <RangePicker
+            format={formatDateShow}
+            style={{ minWidth: 300 }}
+            onChange={(range) => {
+              setRangeDate(
+                range
+                  ? range.map((x) => (x ? x.format(formatDatePost) : ""))
+                  : [],
+              );
+            }}
+          />,
+          <Select
+            options={draftOptions}
+            defaultValue={draftStatus ? +draftStatus : ""}
+            onChange={(value) => handleSearch(value + "", "d")}
+            style={{ minWidth: 150 }}
+          />,
+          <Input.Search
+            placeholder={t("search_placeholder")}
+            defaultValue={searchContent}
+            loading={postureStoriesQuery.isLoading}
+            onSearch={(value) => handleSearch(value, "k")}
+            style={{ minWidth: 350 }}
+            onFocus={(e) => e.target.select()}
+          />,
+          <PostureStoryModal />,
+        ]}
+        rowKey={"posture_story_id"}
+      />
+    </>
   );
 }

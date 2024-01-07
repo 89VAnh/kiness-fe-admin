@@ -391,11 +391,11 @@
     }
   },
   "growth_story": {
-    "title": "Quản lý hỏi đáp cùng chuyên gia",
+    "title": "Quản lý câu chuyện tăng trưởng",
     "search_placeholder": "Tìm kiếm",
-    "title_update": "Cập nhật hỏi đáp cùng chuyên gia",
-    "title_create": "Thêm hỏi đáp cùng chuyên gia",
-    "title_delete": "Xóa hỏi đáp cùng chuyên gia",
+    "title_update": "Cập nhật câu chuyện tăng trưởng",
+    "title_create": "Thêm câu chuyện tăng trưởng",
+    "title_delete": "Xóa câu chuyện tăng trưởng",
 
     "fields": {
       "serial": "STT",
@@ -420,11 +420,11 @@
     }
   },
   "posture_story": {
-    "title": "Quản lý trường hợp chỉnh sửa tư thế",
+    "title": "Quản lý trường hợp phát triển thực tế",
     "search_placeholder": "Tìm kiếm",
-    "title_update": "Cập nhật trường hợp chỉnh sửa tư thế",
-    "title_create": "Thêm trường hợp chỉnh sửa tư thế",
-    "title_delete": "Xóa trường hợp chỉnh sửa tư thế",
+    "title_update": "Cập nhật trường hợp phát triển thực tế",
+    "title_create": "Thêm trường hợp phát triển thực tế",
+    "title_delete": "Xóa trường hợp phát triển thực tế",
 
     "fields": {
       "serial": "STT",
@@ -449,11 +449,11 @@
     }
   },
   "late_story": {
-    "title": "Quản lý trường hợp phát triển chậm",
+    "title": "Quản lý trường hợp phát triển muộn",
     "search_placeholder": "Tìm kiếm",
-    "title_update": "Cập nhật trường hợp phát triển chậm",
-    "title_create": "Thêm trường hợp phát triển chậm",
-    "title_delete": "Xóa trường hợp phát triển chậm",
+    "title_update": "Cập nhật trường hợp phát triển muộn",
+    "title_create": "Thêm trường hợp phát triển muộn",
+    "title_delete": "Xóa trường hợp phát triển muộn",
 
     "fields": {
       "serial": "STT",
@@ -688,6 +688,7 @@
     "fields": {
       "serial": "STT",
       "video_name": "Tiêu đề video",
+      "video_code": "Mã youtube video",
       "video_preview": "Xem trước",
       "video_link": "Liên kết",
       "video_share_url": "Đường dẫn video youtube",

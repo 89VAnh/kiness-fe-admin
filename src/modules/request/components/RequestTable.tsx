@@ -161,55 +161,58 @@ export default function RequestTable(): JSX.Element {
   ];
 
   return (
-    <ProTable
-      size="small"
-      cardBordered
-      loading={requestListQuery.isLoading}
-      pagination={{
-        pageSize: Number(searchParams.get("page_size")) || 10,
-        current: Number(searchParams.get("page")) || 1,
-        onChange(page, pageSize) {
-          searchParams.set("page", page + "");
-          searchParams.set("page_size", pageSize + "");
-          setPage(page);
-          setPageSize(pageSize);
-          setSearchParams(searchParams);
-        },
-        total: requestListQuery.data?.total_items || 0,
-        showTotal(total, range) {
-          return `${range[0]}-${range[1]} trên ${total} yêu cầu`;
-        },
-      }}
-      columns={columns}
-      dataSource={requestListQuery.data?.data?.data || []}
-      headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
-      search={false}
-      toolbar={{
-        settings: [],
-      }}
-      toolBarRender={() => [
-        <Select
-          options={acceptOptions}
-          defaultValue={acceptStatus ? +acceptStatus : ""}
-          onChange={(value) => handleSearch(value + "", "a")}
-          style={{ minWidth: 240 }}
-        />,
-        <Select
-          options={answerOptions}
-          defaultValue={answerStatus ? +answerStatus : ""}
-          style={{ minWidth: 210 }}
-          onChange={(value) => handleSearch(value + "", "s")}
-        />,
-        <Input.Search
-          placeholder={t("search_placeholder")}
-          defaultValue={searchContent}
-          loading={requestListQuery.isLoading}
-          onSearch={(value) => handleSearch(value, "k")}
-          style={{ minWidth: 350 }}
-          onFocus={(e) => e.target.select()}
-        />,
-      ]}
-      rowKey={"request_id"}
-    />
+    <>
+      <Typography.Title level={3}>{t("title")}</Typography.Title>
+      <ProTable
+        size="small"
+        cardBordered
+        loading={requestListQuery.isLoading}
+        pagination={{
+          pageSize: Number(searchParams.get("page_size")) || 10,
+          current: Number(searchParams.get("page")) || 1,
+          onChange(page, pageSize) {
+            searchParams.set("page", page + "");
+            searchParams.set("page_size", pageSize + "");
+            setPage(page);
+            setPageSize(pageSize);
+            setSearchParams(searchParams);
+          },
+          total: requestListQuery.data?.data?.total_items || 0,
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} trên ${total} yêu cầu`;
+          },
+        }}
+        columns={columns}
+        dataSource={requestListQuery.data?.data?.data || []}
+        // headerTitle={<Typography.Title level={3}>{t("title")}</Typography.Title>}
+        search={false}
+        toolbar={{
+          settings: [],
+        }}
+        toolBarRender={() => [
+          <Select
+            options={acceptOptions}
+            defaultValue={acceptStatus ? +acceptStatus : ""}
+            onChange={(value) => handleSearch(value + "", "a")}
+            style={{ minWidth: 240 }}
+          />,
+          <Select
+            options={answerOptions}
+            defaultValue={answerStatus ? +answerStatus : ""}
+            style={{ minWidth: 210 }}
+            onChange={(value) => handleSearch(value + "", "s")}
+          />,
+          <Input.Search
+            placeholder={t("search_placeholder")}
+            defaultValue={searchContent}
+            loading={requestListQuery.isLoading}
+            onSearch={(value) => handleSearch(value, "k")}
+            style={{ minWidth: 350 }}
+            onFocus={(e) => e.target.select()}
+          />,
+        ]}
+        rowKey={"request_id"}
+      />
+    </>
   );
 }

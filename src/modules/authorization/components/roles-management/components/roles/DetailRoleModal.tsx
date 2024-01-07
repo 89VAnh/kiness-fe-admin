@@ -166,7 +166,6 @@ export function DetailRoleModal(): JSX.Element {
         maskClosable={false}
         destroyOnClose
         onCancel={handleCancel}
-        // confirmLoading={createFee.isLoading}
         className={styles.modal}
         footer={false}
       >

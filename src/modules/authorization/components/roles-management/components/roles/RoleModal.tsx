@@ -154,7 +154,7 @@ export function RoleModal({ isCreate, id }: Props): JSX.Element {
         maskClosable={false}
         destroyOnClose
         onCancel={handleCancel}
-        // confirmLoading={createFee.isLoading}
+        confirmLoading={createRole.isLoading || updateRole.isLoading}
       >
         <Form form={form} layout="vertical">
           <Row gutter={32}>

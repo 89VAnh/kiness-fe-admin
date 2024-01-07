@@ -55,15 +55,16 @@ export function DeleteFunctionModal(): JSX.Element {
         </Button>
       </Tooltip>
       <Modal
-        centered
+        style={{ top: 58, padding: 0 }}
         open={isOpen}
         title={t("authorization.functions.modal.title_delete")}
         width={"30%"}
         okText={t("all.btn_confirm")}
         cancelText={t("all.btn_cancel")}
         onOk={handleOk}
+        maskClosable={false}
         onCancel={handleCancel}
-        // confirmLoading={deleteFee.isLoading}
+        confirmLoading={deleteFunction.isLoading}
         className={styles.modal + " modal-delete"}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?

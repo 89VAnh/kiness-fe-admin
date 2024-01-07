@@ -80,6 +80,7 @@ export default function ChangePassword(): JSX.Element {
         open={isOpen}
         onCancel={handleCancel}
         onOk={handleSubmit}
+        maskClosable={false}
         confirmLoading={changePassword.isLoading}
       >
         <Form form={form} layout="vertical">

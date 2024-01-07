@@ -66,6 +66,7 @@ export function DeleteOrganizationModal({ node }: Props): JSX.Element {
         cancelText={t("all.btn_cancel")}
         onOk={handleOk}
         onCancel={handleCancel}
+        maskClosable={false}
         confirmLoading={deleteDiagram.isLoading}
         className={styles.modal + " modal-delete"}
       >

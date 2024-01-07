@@ -70,7 +70,8 @@ export function DeleteRoleModal({ id }: Props): JSX.Element {
         cancelText={t("all.btn_cancel")}
         onOk={handleOk}
         onCancel={handleCancel}
-        // confirmLoading={deleteFee.isLoading}
+        maskClosable={false}
+        confirmLoading={deleteRole.isLoading}
       >
         Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
       </Modal>

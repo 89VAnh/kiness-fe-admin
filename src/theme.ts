@@ -7,6 +7,6 @@ export const theme: ThemeConfig = {
     // fontSize: 16,
     lineHeight: 2,
     colorPrimary: "#2c53a5",
-    colorTextHeading: "#2c53a5",
+    // colorTextHeading: "#222",
   },
 };
