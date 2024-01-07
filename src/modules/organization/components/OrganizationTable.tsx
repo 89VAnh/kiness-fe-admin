@@ -68,6 +68,7 @@ export default function OrganizationTable(): JSX.Element {
           <Input.Search
             onSearch={handleSearch}
             placeholder={t("organization.search_placeholder") || ""}
+            defaultValue={searchContent}
           />
         </Col>
         <Col span={2} style={{ paddingTop: 12 }}>
