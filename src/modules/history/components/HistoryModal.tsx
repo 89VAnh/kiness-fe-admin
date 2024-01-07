@@ -174,12 +174,12 @@ export default function HistoryModal({
                   name={"year"}
                   label={t("history.fields.year")}
                   rules={[...RULES_FORM.required]}
+                  initialValue={dayjs()}
                 >
                   <DatePicker
                     inputReadOnly
                     picker="year"
                     style={{ width: "100%" }}
-                    defaultValue={dayjs()}
                     disabledDate={disabledDate}
                   />
                 </Form.Item>
@@ -189,13 +189,9 @@ export default function HistoryModal({
                   name={"sort_order"}
                   label={t("history.fields.sort_order")}
                   rules={[...RULES_FORM.required]}
+                  initialValue={1}
                 >
-                  <InputNumber
-                    min={1}
-                    max={100}
-                    defaultValue={1}
-                    style={{ width: "100%" }}
-                  />
+                  <InputNumber min={1} max={100} style={{ width: "100%" }} />
                 </Form.Item>
               </Col>
               <Col span={24}>
