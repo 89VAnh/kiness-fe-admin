@@ -92,9 +92,10 @@ export default function PostureStoryTable(): JSX.Element {
     {
       title: t("fields.image_link"),
       dataIndex: "image_link",
+      align: "center",
       width: 100,
       render: (value) => (
-        <Image style={{ maxWidth: 100 }} src={`${BASE_URL}/` + value} />
+        <Image style={{ maxWidth: 120 }} src={`${BASE_URL}/` + value} />
       ),
     },
     {
