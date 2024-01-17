@@ -67,6 +67,7 @@ export default function StatisticDash(): JSX.Element {
           userProfile.position_name.toLowerCase() !== ACCESSES.POS_CUSTOMER
         )
           setCurrentData((prev) => ({ ...prev, employee: data.total }));
+        else setCurrentData((prev) => ({ ...prev, employee: null }));
       },
     },
   });
@@ -87,49 +88,53 @@ export default function StatisticDash(): JSX.Element {
       style={{ marginBottom: 24 }}
     >
       {currentData
-        ? colorStatistic?.map((item) => (
-            <Col
-              key={item.key}
-              style={{
-                width: _.keys(currentData).length <= 4 ? "25%" : "33.333333%",
-              }}
-            >
-              <Link preventScrollReset to={item?.linkTo}>
-                <div className={styles.statistic_card}>
-                  <div className={styles.statistic}>
-                    <div style={{ paddingRight: 8 }}>
-                      <Typography.Title
-                        level={1}
-                        className={styles.value}
-                        style={{
-                          color: item.color,
-                        }}
-                      >
-                        <CountUp
-                          start={0}
-                          end={
-                            currentData[item.key as keyof typeof currentData]
-                          }
-                          duration={0.8}
-                          decimal=","
-                        />
-                      </Typography.Title>
+        ? colorStatistic
+            ?.filter(
+              (item) => currentData[item.key as keyof typeof currentData],
+            )
+            .map((item) => (
+              <Col
+                key={item.key}
+                style={{
+                  width: _.keys(currentData).length <= 4 ? "25%" : "33.333333%",
+                }}
+              >
+                <Link preventScrollReset to={item?.linkTo}>
+                  <div className={styles.statistic_card}>
+                    <div className={styles.statistic}>
+                      <div style={{ paddingRight: 8 }}>
+                        <Typography.Title
+                          level={1}
+                          className={styles.value}
+                          style={{
+                            color: item.color,
+                          }}
+                        >
+                          <CountUp
+                            start={0}
+                            end={
+                              currentData[item.key as keyof typeof currentData]
+                            }
+                            duration={0.8}
+                            decimal=","
+                          />
+                        </Typography.Title>
+                      </div>
+                      <div>{renderIcon(item?.icon)}</div>
                     </div>
-                    <div>{renderIcon(item?.icon)}</div>
+                    <Typography.Title
+                      level={3}
+                      className={styles.title}
+                      style={{
+                        color: item?.color,
+                      }}
+                    >
+                      {t("dashboard." + item?.title)}
+                    </Typography.Title>
                   </div>
-                  <Typography.Title
-                    level={3}
-                    className={styles.title}
-                    style={{
-                      color: item?.color,
-                    }}
-                  >
-                    {t("dashboard." + item?.title)}
-                  </Typography.Title>
-                </div>
-              </Link>
-            </Col>
-          ))
+                </Link>
+              </Col>
+            ))
         : [...Array(5)].map((_, index) => (
             <Col key={index} style={{ width: "20%" }}>
               <div className={styles.statistic_card}>
