@@ -60,7 +60,7 @@ export function DeleteOrganizationModal({ node }: Props): JSX.Element {
       <Modal
         centered
         open={isOpen}
-        title={t("authorization.functions.modal.title_delete")}
+        title={t("organization.title_delete")}
         width={"30%"}
         okText={t("all.btn_confirm")}
         cancelText={t("all.btn_cancel")}

@@ -54,7 +54,7 @@ export default function SlideDelete({ id, filePaths }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
-        title={t("page.title_delete")}
+        title={t("slide.title_delete")}
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}

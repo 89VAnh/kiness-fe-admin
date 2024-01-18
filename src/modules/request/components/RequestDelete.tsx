@@ -42,7 +42,7 @@ export default function RequestDelete({ id }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
-        title={t("request.list.title_delete")}
+        title={t("request.title_delete")}
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
