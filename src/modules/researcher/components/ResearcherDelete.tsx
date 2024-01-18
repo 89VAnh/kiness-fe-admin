@@ -74,7 +74,9 @@ export default function ResearcherDelete({
           });
           close();
         }}
-      ></Modal>
+      >
+        Hành động này sẽ làm mất dữ liệu hiện tại. Tiếp tục?
+      </Modal>
     </>
   );
 }

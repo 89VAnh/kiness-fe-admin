@@ -573,7 +573,7 @@
       "title_function": "Danh sách tính năng",
       "modal": {
         "title_create": "Thêm mới tính năng",
-        "title_update": "Chi tiết tính năng",
+        "title_update": "Chỉnh sửa tính năng",
         "title_delete": "Xóa tính năng",
         "function_group": "Nhóm tính năng",
         "function_name": "Tên tính năng",
@@ -667,9 +667,9 @@
   "organization": {
     "title": "Quản lý sơ đồ tổ chức",
     "search_placeholder": "Tìm kiếm",
-    "title_update": "Cập nhật sơ đồ tổ chức",
-    "title_create": "Thêm sơ đồ tổ chức",
-    "title_delete": "Xóa sơ đồ tổ chức",
+    "title_update": "Cập nhật chức vụ trong sơ đồ tổ chức",
+    "title_create": "Thêm chức vụ vào sơ đồ tổ chức",
+    "title_delete": "Xóa chức vụ khỏi sơ đồ tổ chức",
     "fields": {
       "serial": "STT",
       "group": "Nhóm tổ chức",

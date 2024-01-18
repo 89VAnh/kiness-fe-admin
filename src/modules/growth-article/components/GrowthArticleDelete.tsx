@@ -45,7 +45,7 @@ export default function GrowthArticleDelete({ id }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
-        title={t("growth_article.list.title_delete")}
+        title={t("growth_article.title_delete")}
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
