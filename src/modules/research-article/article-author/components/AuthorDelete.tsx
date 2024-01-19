@@ -51,7 +51,7 @@ export default function ArticleAuthorDelete({ id }: Props): JSX.Element {
       </Tooltip>
 
       <Modal
-        title={t("faq.topic.title_delete")}
+        title={t("research_article.author.title_delete")}
         width={500}
         style={{ top: 58, padding: 0 }}
         open={isOpen}
